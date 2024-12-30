@@ -1,0 +1,71 @@
+/**
+ * PaperSizeField
+ *
+ * Created by sunvisor on 2024/03/17.
+ * Copyright (C) Sunvisor Lab. 2024.
+ */
+import { SxProps, TextField } from '@mui/material';
+import MenuItem from '@mui/material/MenuItem';
+import { PaperSize } from '@sunvisor/super-leopard-core';
+import { ChangeEvent, useCallback } from "react";
+import getCaptions from '../../../captions/getCaptions';
+import { ChangeValueHandler } from '../usePropertyStates';
+
+type Props = {
+  label: string;
+  name: string;
+  value: string;
+  onChangeValue: ChangeValueHandler<string>;
+  sx?: SxProps;
+}
+
+function getPaperSizeList(customCaption: string) {
+  const paperSizeList: {key: string, value: string}[] = [];
+  for (const key in PaperSize) {
+    paperSizeList.push({
+      key,
+      value: key,
+    });
+  }
+  paperSizeList.push({key: 'custom', value: customCaption});
+  return paperSizeList;
+}
+
+export default function PaperSizeField(props: Props) {
+  const { label, name, value, onChangeValue, sx } = props;
+  const captions = getCaptions('pageProperty');
+  const paperSizeList = getPaperSizeList(captions.custom);
+
+  const handleChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+    onChangeValue(name, value);
+  }, [name, onChangeValue]);
+
+  const handleBlur = useCallback(() => {
+    onChangeValue(name, value, true);
+  }, [name, onChangeValue, value])
+
+  return (
+    <TextField
+      size="small"
+      name={name}
+      label={label}
+      value={value}
+      sx={sx}
+      onChange={handleChange}
+      onBlur={handleBlur}
+      select
+    >
+      {
+        paperSizeList.map(item => (
+          <MenuItem
+            key={item.key}
+            value={item.key}
+          >
+            {item.value}
+          </MenuItem>
+        ))
+      }
+    </TextField>
+  );
+}

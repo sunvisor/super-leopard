@@ -1,0 +1,85 @@
+// noinspection JSUnusedGlobalSymbols
+
+/**
+ * PropertyEditor Story
+ *
+ * Created by sunvisor on 2024/02/20.
+ * Copyright (C) Sunvisor Lab. 2024.
+ */
+import PropertyEditor from "./PropertyEditor";
+import { Meta, StoryFn, StoryObj } from '@storybook/react';
+import { createShapes, Shapes } from '@sunvisor/super-leopard-core';
+import { SelectionAtom } from '../../atom/SelectionAtom';
+import { createStore } from 'jotai/index';
+import { SetReportAtom } from '../../atom/ReportAtom';
+import { emptyReport } from '../emptyReport';
+import { Provider } from 'jotai';
+import { ClipboardAtom } from '../../atom/ClipboardAtom';
+import { testAssets } from '../../__test_assets__';
+
+type Story = StoryObj<typeof PropertyEditor>
+
+const { shapeTestData } = testAssets;
+
+const meta: Meta<typeof PropertyEditor> = {
+  component: PropertyEditor,
+};
+
+const report = emptyReport;
+const store = createStore();
+
+const getDecorator = (selection: Shapes, clipboard: Shapes) =>
+  (Story: StoryFn) => {
+    store.set(SetReportAtom, report);
+    store.set(SelectionAtom, selection);
+    store.set(ClipboardAtom, clipboard);
+    return (
+      <Provider store={store}>
+        <div data-testid="test">
+          <Story/>
+        </div>
+      </Provider>
+    );
+  }
+
+export const NotSelected: Story = {
+  args: {},
+  decorators: [getDecorator(
+    createShapes([]),
+    createShapes([]),
+  )]
+};
+
+export const CanPaste: Story = {
+  args: {},
+  decorators: [getDecorator(
+    createShapes([]),
+    createShapes([shapeTestData[0]]),
+  )]
+}
+
+export const SingleObject: Story = {
+  args: {},
+  decorators: [getDecorator(
+    createShapes([shapeTestData[0]]),
+    createShapes([]),
+  )]
+};
+
+export const MultipleObjects: Story = {
+  args: {},
+  decorators: [getDecorator(
+    createShapes(shapeTestData),
+    createShapes([]),
+  )]
+}
+
+export const GroupObject: Story = {
+  args: {},
+  decorators: [getDecorator(
+    createShapes([shapeTestData[4]]),
+    createShapes([]),
+  )]
+}
+
+export default meta;

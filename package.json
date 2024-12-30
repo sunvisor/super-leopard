@@ -1,0 +1,24 @@
+{
+  "name": "@sunvisor/super-leopard-base",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Super Leopard monorepo base",
+  "license": "UNLICENSED",
+  "author": "Sunvisor <hisashi@sunvisor.net> (https://www.sunvisor.net/)",
+  "workspaces": [
+    "packages/core",
+    "packages/component",
+    "packages/pdf"
+  ],
+  "scripts": {
+    "test:core": "npm run test -w packages/core",
+    "build:core": "npm run build -w packages/core",
+    "test:component": "npm run test -w packages/component",
+    "build:component": "npm run build -w packages/component",
+    "test:pdf": "npm run test -w packages/pdf",
+    "make:pdf": "npm run makePdf -w packages/pdf",
+    "build:pdf": "npm run build -w packages/pdf",
+    "storybook:component": "npm run storybook -w packages/component",
+    "test-storybook:component": "npm run test-storybook -w packages/component"
+  }
+}

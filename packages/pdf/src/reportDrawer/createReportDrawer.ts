@@ -1,0 +1,39 @@
+/**
+ * ReportDrawer
+ *
+ * Created by sunvisor on 2025/02/05.
+ * Copyright (C) Sunvisor Lab. 2025.
+ */
+import { createPage, ReportData, reportHasList } from '@sunvisor/super-leopard-core';
+import { GetPdfImagePath } from '../index';
+import { PdfFont } from '../font/pdfFont';
+import { PageReportDrawer } from './PageReportDrawer';
+import { createPdfDrawer } from './createPdfDrawer';
+import { ListReportDrawer } from './ListReportDrawer';
+import { ReportDrawerInterface } from './type';
+
+
+type CreateReportDrawerParams = {
+  report: ReportData;
+  getImagePath: GetPdfImagePath;
+  fonts: PdfFont;
+}
+
+export function createReportDrawer(params: CreateReportDrawerParams): ReportDrawerInterface {
+  const { report } = params;
+  return reportHasList(report) ? createListReportDrawer(params) : createPageReportDrawer(params);
+}
+
+function createListReportDrawer(params: CreateReportDrawerParams): ListReportDrawer {
+  const { report, getImagePath, fonts } = params;
+  const page = createPage(report.page);
+  const drawer = createPdfDrawer({ getImagePath, fonts, page });
+  return new ListReportDrawer({ report, drawer, page });
+}
+
+function createPageReportDrawer(params: CreateReportDrawerParams): PageReportDrawer {
+  const { report, getImagePath, fonts } = params;
+  const page = createPage(report.page);
+  const drawer = createPdfDrawer({ getImagePath, fonts, page });
+  return new PageReportDrawer({ report, page, drawer });
+}
