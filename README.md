@@ -8,7 +8,7 @@ Super Leopard is intended to be incorporated into your application to provide fl
 
 We are currently developing it for release.
 
-[日本語の解説はこちら(Japanese document is here)](./docs/ja/README)
+[日本語の解説はこちら(Japanese document is here)](./docs/ja/README.md)
 
 Super Leopard features
 -------------------
