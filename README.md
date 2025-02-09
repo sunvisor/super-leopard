@@ -6,6 +6,10 @@ It can add data to a template written in a specified format and output a PDF.
 The template data is expressed in JSON, but a GUI is provided for editing on a web screen.
 Super Leopard is intended to be incorporated into your application to provide flexible report generation functionality.
 
+We are currently developing it for release.
+
+[日本語の解説はこちら(Japanese document is here)](./docs/ja/README)
+
 Super Leopard features
 -------------------
 
@@ -37,6 +41,8 @@ This provides a function to display forms on a web screen and a GUI for editing 
 You can edit templates on a web screen.
 The component is implemented using React and MUI.
 
+![report editor](docs/en/images/report_editor.png)
+
 ### pdf library
 
 This provides a library for outputting PDF.
@@ -48,3 +54,8 @@ This library uses PDFKit for creating PDF.
 This provides a model for defining each element of the report template.
 The processing common to the component library and pdf library is mainly placed here.
 If you need a report that outputs something other than web or PDF, you can create it using the core library.
+
+License
+-------
+
+MIT

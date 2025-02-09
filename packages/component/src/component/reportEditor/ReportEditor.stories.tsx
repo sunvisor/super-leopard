@@ -16,7 +16,7 @@ import { SetReportAtom } from '../../atom/ReportAtom';
 import imageHandlers from '../../__test_assets__/msw/imageHandlers';
 import { fontList, testAssets, testImageListData, webFontMap } from '../../__test_assets__';
 
-const { billTestData } = testAssets;
+const { billTestData, en } = testAssets;
 
 type Story = StoryObj<typeof ReportEditor>
 
@@ -74,7 +74,7 @@ export const Bill: Story = {
 export const InEnglish: Story = {
   args: {
     title: 'Bill',
-    data: billTestData,
+    data: en.billTestData,
     reportId: 1,
     getImageUrl,
     webFontMap,
