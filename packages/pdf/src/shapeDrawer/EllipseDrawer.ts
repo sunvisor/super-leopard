@@ -6,11 +6,11 @@
  */
 import { ShapeDrawerProps } from './ShapeDrawer';
 import { DrawerParams, Ellipse, EllipseDrawerInterface, Scale } from '@sunvisor/super-leopard-core';
-import { applyStyle } from '../style/style';
-import PDFDocument = PDFKit.PDFDocument;
+import { EllipseParams, PdfDocumentInterface } from '../pdfDriver/PdfDriverInterface';
+import { applyFillColor, applyOpacity, applyStroke } from './style';
 
 export class EllipseDrawer implements EllipseDrawerInterface {
-  readonly #doc: PDFDocument;
+  readonly #doc: PdfDocumentInterface;
   readonly #scale: Scale;
 
   constructor({ doc, scale }: ShapeDrawerProps) {
@@ -25,8 +25,17 @@ export class EllipseDrawer implements EllipseDrawerInterface {
     });
     const rx = this.#scale.toPoint(ellipse.width) / 2;
     const ry = this.#scale.toPoint(ellipse.height) / 2;
-    const doc = this.#doc.ellipse(pos.x, pos.y, rx, ry);
-    applyStyle(doc, ellipse.border, ellipse.fillColor, params?.opacity);
+    const ellipseParams: EllipseParams = {
+      x: pos.x,
+      y: pos.y,
+      rx,
+      ry
+    };
+    applyStroke(ellipseParams, ellipse.border);
+    applyFillColor(ellipseParams, ellipse.fillColor);
+    applyOpacity(ellipseParams, params?.opacity);
+
+    this.#doc.ellipse(ellipseParams);
   }
 
 }

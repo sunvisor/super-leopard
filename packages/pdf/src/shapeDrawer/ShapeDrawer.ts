@@ -1,10 +1,10 @@
 import { MeasurementInterface, Scale } from '@sunvisor/super-leopard-core';
 import { GetPdfImagePath } from '../index';
-import PDFDocument = PDFKit.PDFDocument;
 import { PdfFont } from '../font/pdfFont';
+import { PdfDocumentInterface } from '../pdfDriver/PdfDriverInterface';
 
 export type ShapeDrawerProps = {
-  doc: PDFDocument;
+  doc: PdfDocumentInterface;
   scale: Scale;
 }
 

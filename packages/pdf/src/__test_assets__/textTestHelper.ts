@@ -1,5 +1,4 @@
 import { AdditionalFontMap, PdfFont } from '../font/pdfFont';
-import PDFDocument = PDFKit.PDFDocument;
 import {
   createRect,
   createText,
@@ -15,6 +14,7 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 import { Measurement } from '../shapeDrawer/Measurement';
 import { TextElementDrawer } from '../shapeDrawer/TextElementDrawer';
+import { PdfDocumentInterface } from '../pdfDriver/PdfDriverInterface';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -93,9 +93,9 @@ export const mockMeasurement: MeasurementInterface = {
   measureWidth: (text: Text) => text.font.size * text.text.length,
 }
 
-export function createAndRegisterTestFonts(pdfDoc: PDFDocument): PdfFont {
+export function createAndRegisterTestFonts(doc: PdfDocumentInterface): PdfFont {
   const font = createTestFonts();
-  font.registerFonts(pdfDoc);
+  font.registerFonts(doc);
 
   return font;
 }
@@ -116,7 +116,7 @@ export type TextDrawData = {
   outline?: boolean;
 }
 
-export function drawTexts(doc: PDFDocument, scale: Scale, texts: TextDrawData[]) {
+export function drawTexts(doc: PdfDocumentInterface, scale: Scale, texts: TextDrawData[]) {
   const fonts = createAndRegisterTestFonts(doc);
   const measurement = new Measurement({ doc, fonts });
   const textElementDrawer = new TextElementDrawer({ doc, scale, fonts, measurement });

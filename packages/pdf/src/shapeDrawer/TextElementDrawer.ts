@@ -15,8 +15,9 @@ import {
   TextDrawerInterface
 } from '@sunvisor/super-leopard-core';
 import { PdfFont } from '../font/pdfFont';
-import PDFDocument = PDFKit.PDFDocument;
 import TextOptions = PDFKit.Mixins.TextOptions;
+import { PdfDocumentInterface, TextParams } from '../pdfDriver/PdfDriverInterface';
+import { applyFont } from './style';
 
 function pdfAlign(align: AlignValue) {
   switch (align) {
@@ -30,7 +31,7 @@ function pdfAlign(align: AlignValue) {
 }
 
 export class TextElementDrawer implements TextDrawerInterface {
-  readonly #doc: PDFDocument;
+  readonly #doc: PdfDocumentInterface;
   readonly #scale: Scale;
   readonly #fonts: PdfFont;
   readonly #measurement: MeasurementInterface
@@ -43,16 +44,15 @@ export class TextElementDrawer implements TextDrawerInterface {
   }
 
   draw(text: Text, params?: DrawerParams): void {
-    this.applyFont(text);
     const pos = this.#scale.toPoint({ x: text.x, y: text.y });
-    this.#doc.opacity(params?.opacity || 1);
-    this.#doc.fillColor(text.color?.color || '#000000');
-    this.#doc.text(text.text, pos.x, pos.y, this.textOptions(text));
-  }
-
-  private applyFont(text: Text) {
-    const fontName = this.#fonts.fontName(text.font);
-    this.#doc.font(fontName).fontSize(text.font.size);
+    const textParams: TextParams = {
+      ...pos,
+      text: text.text,
+      opacity: params?.opacity ?? 1,
+      options: this.textOptions(text),
+    }
+    applyFont(textParams, text.font, this.#fonts);
+    this.#doc.text(textParams);
   }
 
   private pointWidth(text: Text) {

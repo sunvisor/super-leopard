@@ -5,9 +5,8 @@
  * Copyright (C) Sunvisor Lab. 2025.
  */
 import { createPdfDrawer } from "./createPdfDrawer";
-import { createPage, createScale, UnitType } from '@sunvisor/super-leopard-core';
-import PdfDocument from 'pdfkit';
-import { createAndRegisterTestFonts, drawTexts } from '../__test_assets__';
+import { createPage, UnitType } from '@sunvisor/super-leopard-core';
+import { createAndRegisterTestFonts, mockDoc } from '../__test_assets__';
 import { expect } from 'vitest';
 import { PdfDrawer } from './PdfDrawer';
 
@@ -15,9 +14,8 @@ describe('Tests for createSvgDrawer', () => {
 
   it('should return data drawer', () => {
     // Arrange
-    const doc = new PdfDocument()
     const getImagePath = vi.fn();
-    const fonts = createAndRegisterTestFonts(doc);
+    const fonts = createAndRegisterTestFonts(mockDoc);
     const page = createPage({ size: 'A4', unit: UnitType.MILLIMETER });
     // Act
     const drawer = createPdfDrawer({

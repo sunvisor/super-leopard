@@ -1,16 +1,21 @@
 import fs from 'fs';
-import PDFDocument = PDFKit.PDFDocument;
-import PdfDocument from 'pdfkit';
 import { Box, createScale, Scale, StyleType } from '@sunvisor/super-leopard-core';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { PdfDocumentInterface } from '../pdfDriver/PdfDriverInterface';
+import { pdfKitDriver } from '../pdfDriver/PdfKitDriver';
+
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const outputBaseDir = `${__dirname}/../../__pdf__`;
 
-
-export function createDocAndScale(): { doc: PDFDocument, scale: Scale } {
-  const doc = createPdfDocument();
+export function createDocAndScale(): { doc: PdfDocumentInterface, scale: Scale } {
+  const doc = pdfKitDriver.createDocument();
+  doc.addPage({
+    size: 'A4',
+    margin: 0,
+  });
   const scale = createScale({
     unit: 'mm',
   });
@@ -18,26 +23,15 @@ export function createDocAndScale(): { doc: PDFDocument, scale: Scale } {
 }
 
 export function getWritePdf(category: string) {
-  return (fileName: string, pdf: PDFDocument) => writePdfFile(category, fileName, pdf);
+  return (fileName: string, pdf: PdfDocumentInterface) => writePdfFile(category, fileName, pdf);
 }
 
-export function createPdfDocument(): PDFDocument {
-  const d = new Date('2024-01-01T00:00:00.000Z');
-  return new PdfDocument({
-    margin: 0,
-    info: {
-      CreationDate: d,
-      ModDate: d,
-    }
-  });
-}
-
-export async function writePdfFile(category: string, fileName: string, doc: PDFDocument): Promise<string> {
+export async function writePdfFile(category: string, fileName: string, doc: PdfDocumentInterface): Promise<string> {
   makeDir(category);
   const fullPath = `${outputBaseDir}/${category}/${fileName}`
   const stream = fs.createWriteStream(fullPath);
-  doc.pipe(stream);
-  doc.end();
+  doc.open(stream);
+  doc.close();
 
   return new Promise((resolve, reject) => {
     stream.on('finish', () => resolve(fullPath));
@@ -66,8 +60,18 @@ export const borders = {
   black: { width: 2, color: '#000000', style: StyleType.SOLID },
 }
 
-export function drawCaption(caption: string, bbox: Box, scale: Scale, doc: PDFDocument) {
+export function drawCaption(caption: string, bbox: Box, scale: Scale, doc: PdfDocumentInterface) {
   const { x, y } = scale.toPoint({ x: bbox.x, y: bbox.y - 3 });
-  doc.fillColor('#000000').opacity(1).font('Helvetica').fontSize(8).text(caption, x, y);
+  doc.text({
+    text: caption,
+    x,
+    y,
+    font: {
+      name: 'Helvetica',
+      size: 8
+    },
+    fillColor: '#000000',
+    opacity: 1
+  })
 }
 

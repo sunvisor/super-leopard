@@ -8,27 +8,27 @@ import { createPdfFont } from "./pdfFont";
 import { additionalPdfFontMap } from '../__test_assets__/font';
 import { createFont } from '@sunvisor/super-leopard-core';
 import { describe, expect } from 'vitest';
-import PDFDocument = PDFKit.PDFDocument;
+import { mockDoc } from '../__test_assets__';
 
 describe('Tests for PdfFont', () => {
 
   describe('Tests for registerFonts', () => {
 
-    test('Should register additional fonts to PDFDocument', () => {
+    test('Should register additional fonts to PdfDocument', () => {
       // Arrange
-      const doc = {
-        registerFont: vi.fn()
-      } as undefined as PDFDocument;
       const options = {
         additionalFontMap: additionalPdfFontMap,
         fontPath: '/fonts',
       }
       const pdfFont = createPdfFont(options);
       // Act
-      pdfFont.registerFonts(doc);
+      pdfFont.registerFonts(mockDoc);
       // Assert
-      expect(doc.registerFont).toBeCalledTimes(14);
-      expect(doc.registerFont).toHaveBeenNthCalledWith(1, 'NotoSerifJP-Regular', '/fonts/NotoSerifJP-Regular.otf');
+      expect(mockDoc.registerFont).toBeCalledTimes(14);
+      expect(mockDoc.registerFont).toHaveBeenNthCalledWith(1, {
+        name: 'NotoSerifJP-Regular',
+        src: '/fonts/NotoSerifJP-Regular.otf',
+      });
     });
   });
 

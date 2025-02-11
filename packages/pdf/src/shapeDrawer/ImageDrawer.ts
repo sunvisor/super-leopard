@@ -8,12 +8,12 @@ import fs from 'fs';
 import { DrawerParams, Image, ImageDrawerInterface, Scale } from '@sunvisor/super-leopard-core';
 import { ImageDrawerProps } from './ShapeDrawer';
 import { isJPEGFile, isPngFile, isSVGFile } from './imageType';
-import SVGtoPDF from 'svg-to-pdfkit';
-import PDFDocument = PDFKit.PDFDocument;
 import { GetPdfImagePath } from '../index';
+import { ImageParams, PdfDocumentInterface } from '../pdfDriver/PdfDriverInterface';
+import { applyOpacity } from './style';
 
 export class ImageDrawer implements ImageDrawerInterface {
-  readonly #doc: PDFDocument;
+  readonly #doc: PdfDocumentInterface;
   readonly #scale: Scale;
   readonly #getImagePath: GetPdfImagePath;
 
@@ -25,52 +25,40 @@ export class ImageDrawer implements ImageDrawerInterface {
 
   draw(image: Image, params?: DrawerParams): void {
     const imageFile = this.#getImagePath(image.src);
-    if (params?.opacity !== undefined) {
-      this.#doc.opacity(params.opacity);
-    }
     if (isSVGFile(imageFile)) {
-      this.drawSvg(imageFile, image);
+      this.drawSvg(imageFile, image, params?.opacity);
       return;
     }
     if (isPngFile(imageFile)) {
-      this.drawImage(imageFile, image);
+      this.drawImage(imageFile, image, params?.opacity);
       return;
     }
     if (isJPEGFile(imageFile)) {
-      this.drawImage(imageFile, image);
+      this.drawImage(imageFile, image, params?.opacity);
       return;
     }
     throw new Error(`Unsupported image file: ${imageFile}`);
   }
 
-  private drawImage(path: string, image: Image): void {
+  private drawImage(path: string, image: Image, opacity?: number): void {
     const box = this.#scale.toPoint(image.bbox);
-    this.#doc.image(
-      path,
-      box.x,
-      box.y,
-      {
-        fit: [box.width, box.height],
-        align: 'center',
-        valign: 'center'
-      }
-    );
+    const imageParams: ImageParams = {
+      ...box,
+      src: path,
+    }
+    applyOpacity(imageParams, opacity);
+    this.#doc.image(imageParams);
   }
 
-  private drawSvg(path: string, image: Image): void {
+  private drawSvg(path: string, image: Image, opacity?: number): void {
     const box = this.#scale.toPoint(image.bbox);
     const content = fs.readFileSync(path, 'utf8');
-    const doc = this.#doc;
-    SVGtoPDF(
-      doc,
-      content,
-      box.x,
-      box.y,
-      {
-        width: box.width,
-        height: box.height,
-      }
-    );
+    const imageParams: ImageParams = {
+      ...box,
+      svg: content,
+    }
+    applyOpacity(imageParams, opacity);
+    this.#doc.image(imageParams);
   }
 
 }

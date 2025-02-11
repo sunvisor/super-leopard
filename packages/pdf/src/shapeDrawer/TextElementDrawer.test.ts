@@ -6,19 +6,12 @@
  */
 import { TextElementDrawer } from './TextElementDrawer';
 import { AlignType, createText, Text, Scale } from '@sunvisor/super-leopard-core';
-import PdfDocument from 'pdfkit';
 import { PdfFont } from '../font/pdfFont';
-
-const mockDoc = new PdfDocument();
-mockDoc.font = vi.fn().mockReturnThis();
-mockDoc.fontSize = vi.fn().mockReturnThis();
-mockDoc.text = vi.fn();
-mockDoc.heightOfString = vi.fn().mockReturnValue(10);
-mockDoc.widthOfString = vi.fn().mockReturnValue(50);
+import { mockDoc } from '../__test_assets__';
 
 const mockScale = {
-  toPoint: vi.fn(({ x, y }) => ({ x: x * 2, y: y * 2 })),
-  fromPoint: vi.fn(({ x, y }) => ({ x: x / 2, y: y / 2 }))
+  toPoint: vi.fn(value => value),
+  fromPoint: vi.fn(value => value),
 } as unknown as Scale;
 
 const mockMeasurement = {
@@ -31,11 +24,15 @@ const mockFonts = {
   textOption: vi.fn().mockReturnValue({}),
 } as unknown as PdfFont;
 
-describe('Tests for TextDrawer', () => {
+describe('Tests for TextElementDrawer', () => {
 
   function createDrawer() {
     return new TextElementDrawer({ doc: mockDoc, scale: mockScale, fonts: mockFonts, measurement: mockMeasurement });
   }
+
+  afterEach(() => {
+    vi.clearAllMocks();
+  });
 
   it('should apply font correctly', () => {
     // Arrange
@@ -56,9 +53,17 @@ describe('Tests for TextDrawer', () => {
     // Act
     textDrawer.draw(text);
     // Assert
-    expect(mockFonts.fontName).toHaveBeenCalled();
-    expect(mockDoc.font).toHaveBeenCalledWith('MockFont');
-    expect(mockDoc.fontSize).toHaveBeenCalledWith(12);
+    expect(mockDoc.text).toHaveBeenCalledWith({
+      x: 20,
+      y: 20,
+      text: 'Hello',
+      font: { name: 'MockFont', size: 12 },
+      options: {
+        align: 'left',
+        width: 170,
+      },
+      opacity: 1,
+    });
   });
 
   it('should draw text at the correct position', () => {
@@ -81,29 +86,14 @@ describe('Tests for TextDrawer', () => {
     // Act
     textDrawer.draw(text);
     // Assert
-    expect(mockDoc.text).toHaveBeenCalledWith('Hello', 20, 40, expect.any(Object));
-  });
-
-  it('should set correct text options', () => {
-    // Arrange
-    const textDrawer = createDrawer();
-    const text = createText({
-      type: 'text',
+    expect(mockDoc.text).toHaveBeenCalledWith({
+      text: 'Hello',
       x: 10,
       y: 20,
-      width: 170,
-      height: 7,
-      text: 'Hello',
-      font: {
-        family: 'TimesRoman',
-        size: 12
-      },
-      align: AlignType.CENTER,
-      color: '#000000',
+      font: expect.any(Object),
+      options: expect.any(Object),
+      opacity: 1
     });
-
-    const options = textDrawer["textOptions"](text);
-    expect(options.align).toBe('center');
   });
 
 });

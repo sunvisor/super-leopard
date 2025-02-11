@@ -4,8 +4,10 @@
  * Created by sunvisor on 2025/02/06.
  * Copyright (C) Sunvisor Lab. 2025.
  */
-import { createTestFonts, getImagePath, getWritePdf, testAssets } from '../index';
 import { createReportDrawer } from '../../reportDrawer/createReportDrawer';
+import { testAssets } from '@sunvisor/super-leopard-core';
+import { createTestFonts } from '../textTestHelper';
+import { getImagePath, getWritePdf } from '../drawerTestHelper';
 
 
 const { billTestData, billValues, dummyBillRecords } = testAssets;

@@ -13,7 +13,6 @@ import {
   ShapesDrawerInterface,
   StaticShapeDrawers
 } from '@sunvisor/super-leopard-core';
-import PDFDocument = PDFKit.PDFDocument;
 import { GetPdfImagePath } from '../index';
 import { PdfFont } from '../font/pdfFont';
 import { CreateShapeDrawerParams } from '../shapeDrawer/ShapeDrawer';
@@ -23,10 +22,11 @@ import { RectDrawer } from '../shapeDrawer/RectDrawer';
 import { LineDrawer } from '../shapeDrawer/LineDrawer';
 import { ImageDrawer } from '../shapeDrawer/ImageDrawer';
 import { TextElementDrawer } from '../shapeDrawer/TextElementDrawer';
+import { PdfDocumentInterface } from '../pdfDriver/PdfDriverInterface';
 
 
 type PdfDrawerProps = {
-  doc: PDFDocument;
+  doc: PdfDocumentInterface;
   scale: Scale;
   getImagePath: GetPdfImagePath;
   fonts: PdfFont;
@@ -35,15 +35,13 @@ type PdfDrawerProps = {
 
 export class PdfDrawer {
 
-  private readonly doc: PDFDocument;
+  private readonly doc: PdfDocumentInterface;
   private readonly drawer: ShapesDrawerInterface;
   private readonly scale: Scale;
-  private readonly measurement: MeasurementInterface;
 
   constructor({ doc, getImagePath, scale, fonts, measurement }: PdfDrawerProps) {
     this.doc = doc;
     this.scale = scale;
-    this.measurement = measurement;
     this.drawer = createDrawer({
       doc: this.doc,
       scale,
@@ -53,7 +51,7 @@ export class PdfDrawer {
     })
   }
 
-  get document(): PDFDocument {
+  get document(): PdfDocumentInterface {
     return this.doc;
   }
 

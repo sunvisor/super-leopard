@@ -6,29 +6,23 @@
  */
 import { ListReportDrawer } from "./ListReportDrawer";
 import { createPage, createScale, ReportData } from '@sunvisor/super-leopard-core';
-import { createAndRegisterTestFonts, getImagePath, mockMeasurement, testAssets } from '../__test_assets__';
+import { createAndRegisterTestFonts, getImagePath, mockDoc, mockMeasurement, testAssets } from '../__test_assets__';
 import { PdfDrawer } from './PdfDrawer';
-import PdfDocument from 'pdfkit';
-import { describe } from 'vitest';
+import { describe, Mock } from 'vitest';
 
 
 const { combinationTestData } = testAssets;
 
-const mockText = vi.fn();
-
 function createDrawer(report: ReportData) {
-  const doc = new PdfDocument({
-    autoFirstPage: false,
-  });
   const scale = createScale({
     unit: 'mm',
   });
-  doc.text = mockText;
+
   const drawer = new PdfDrawer({
-    doc,
+    doc: mockDoc,
     scale,
     getImagePath,
-    fonts: createAndRegisterTestFonts(doc),
+    fonts: createAndRegisterTestFonts(mockDoc),
     measurement: mockMeasurement,
   });
   const page = createPage(report.page);
@@ -64,12 +58,12 @@ describe('Tests for ListReportDrawer', () => {
     // Act
     drawer.draw({ values, listRecords });
     // Assert
-    expect(mockText).toHaveBeenCalledTimes(25 * 4);
-    const result = mockText.mock.calls;
-    expect(result[0][0]).toBe('First Name');
-    expect(result[1][0]).toBe('Last Name');
-    expect(result[2][0]).toBe('First1');
-    expect(result[3][0]).toBe('Last1');
+    expect(mockDoc.text).toHaveBeenCalledTimes(25 * 4);
+    const result = (mockDoc.text as Mock).mock.calls;
+    expect(result[0][0].text).toBe('First Name');
+    expect(result[1][0].text).toBe('Last Name');
+    expect(result[2][0].text).toBe('First1');
+    expect(result[3][0].text).toBe('Last1');
 
   });
 

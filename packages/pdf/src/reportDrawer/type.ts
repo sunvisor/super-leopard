@@ -1,5 +1,5 @@
-import PDFDocument = PDFKit.PDFDocument;
 import { DataParams } from '@sunvisor/super-leopard-core';
+import { PdfDocumentInterface } from '../pdfDriver/PdfDriverInterface';
 
 /**
  * Type
@@ -8,6 +8,6 @@ import { DataParams } from '@sunvisor/super-leopard-core';
  * Copyright (C) Sunvisor Lab. 2025.
  */
 export interface ReportDrawerInterface {
-  document: PDFDocument;
+  document: PdfDocumentInterface;
   draw(params: DataParams): void;
 }

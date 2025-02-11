@@ -8,8 +8,8 @@ import { PdfDrawer } from './PdfDrawer';
 import { createScale, Page } from '@sunvisor/super-leopard-core';
 import { GetPdfImagePath } from '../index';
 import { PdfFont } from '../font/pdfFont';
-import PdfDocument from 'pdfkit';
 import { Measurement } from '../shapeDrawer/Measurement';
+import { pdfKitDriver } from '../pdfDriver/PdfKitDriver';
 
 type CreatePdfDrawerParams = {
   page: Page;
@@ -20,9 +20,7 @@ type CreatePdfDrawerParams = {
 export function createPdfDrawer(params: CreatePdfDrawerParams): PdfDrawer {
   const { getImagePath, fonts, page } = params;
   const scale = createScale({ unit: page.unit }, page.margin);
-  const doc = new PdfDocument({
-    autoFirstPage: false,
-  });
+  const doc = pdfKitDriver.createDocument();
   fonts.registerFonts(doc);
   const measurement = new Measurement({ doc, fonts });
   return new PdfDrawer({ doc, getImagePath, scale, fonts, measurement });

@@ -5,30 +5,23 @@
  * Copyright (C) Sunvisor Lab. 2025.
  */
 import { PageReportDrawer } from "./PageReportDrawer";
-import { createAndRegisterTestFonts, getImagePath, mockMeasurement, testAssets } from '../__test_assets__';
+import { createAndRegisterTestFonts, getImagePath, mockDoc, mockMeasurement, testAssets } from '../__test_assets__';
 import { createPage, createScale, ReportData } from '@sunvisor/super-leopard-core';
-import PdfDocument from 'pdfkit';
 import { PdfDrawer } from './PdfDrawer';
-import { describe } from 'vitest';
+import { describe, Mock } from 'vitest';
 
 
 const { combinationTestData } = testAssets;
 
-const mockText = vi.fn();
-
 function createDrawer(report: ReportData) {
-  const doc = new PdfDocument({
-    autoFirstPage: false,
-  });
   const scale = createScale({
     unit: 'mm',
   });
-  doc.text = mockText;
   const drawer = new PdfDrawer({
-    doc,
+    doc: mockDoc,
     scale,
     getImagePath,
-    fonts: createAndRegisterTestFonts(doc),
+    fonts: createAndRegisterTestFonts(mockDoc),
     measurement: mockMeasurement,
   });
   const page = createPage(report.page);
@@ -58,11 +51,11 @@ describe('Tests for PageReportDrawer', () => {
     // Act
     drawer.draw({ values });
     // Assert
-    const result = mockText.mock.calls;
-    expect(result[0][0]).toBe('First Name');
-    expect(result[1][0]).toBe('Last Name');
-    expect(result[2][0]).toBe('Hisashi');
-    expect(result[3][0]).toBe('Nakamura');
+    const result = (mockDoc.text as Mock).mock.calls;
+    expect(result[0][0].text).toBe('First Name');
+    expect(result[1][0].text).toBe('Last Name');
+    expect(result[2][0].text).toBe('Hisashi');
+    expect(result[3][0].text).toBe('Nakamura');
   });
 
 });

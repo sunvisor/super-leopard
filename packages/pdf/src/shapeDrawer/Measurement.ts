@@ -5,33 +5,35 @@
  * Copyright (C) Sunvisor Lab. 2025.
  */
 import { MeasurementInterface, Text } from '@sunvisor/super-leopard-core';
-import PDFDocument = PDFKit.PDFDocument;
 import { PdfFont } from '../font/pdfFont';
+import { MeasurementParams, PdfDocumentInterface } from '../pdfDriver/PdfDriverInterface';
+import { applyFont } from './style';
 
 export class Measurement implements MeasurementInterface {
 
-  private readonly doc: PDFDocument;
+  private readonly doc: PdfDocumentInterface;
   private readonly fonts: PdfFont;
   constructor(
-    { doc, fonts }: { doc: PDFDocument, fonts: PdfFont }
+    { doc, fonts }: { doc: PdfDocumentInterface, fonts: PdfFont }
   ) {
     this.doc = doc;
     this.fonts = fonts;
   }
 
   measureHeight(text: Text): number {
-    this.applyFont(text);
-    return this.doc.heightOfString('X');
+    const params: MeasurementParams = {
+      text: text.text,
+    }
+    applyFont(params, text.font, this.fonts);
+    return this.doc.measureHeight(params);
   }
 
   measureWidth(text: Text): number {
-    this.applyFont(text);
-    return this.doc.widthOfString(text.text);
-  }
-
-  applyFont(text: Text) {
-    const fontName = this.fonts.fontName(text.font);
-    this.doc.font(fontName).fontSize(text.font.size);
+    const params: MeasurementParams = {
+      text: text.text,
+    }
+    applyFont(params, text.font, this.fonts);
+    return this.doc.measureWidth(params);
   }
 
 }

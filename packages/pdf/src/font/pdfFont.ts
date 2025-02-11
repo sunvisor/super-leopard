@@ -6,7 +6,7 @@
  */
 import { Font, FontStyleType } from '@sunvisor/super-leopard-core';
 import TextOptions = PDFKit.Mixins.TextOptions;
-import PDFDocument = PDFKit.PDFDocument;
+import { PdfDocumentInterface } from '../pdfDriver/PdfDriverInterface';
 
 export type StandardFontMapItem = {
   normal: string;
@@ -68,14 +68,17 @@ export class PdfFont {
     this.#options = options;
   }
 
-  registerFonts(doc: PDFDocument) {
+  registerFonts(doc: PdfDocumentInterface) {
     const { additionalFontMap, fontPath } = this.#options;
 
     for (const family in additionalFontMap) {
       const item = additionalFontMap[family];
       for (const style in item) {
         const font = item[style];
-        doc.registerFont(font.name, `${fontPath}/${font.fileName}`);
+        doc.registerFont({
+          name: font.name,
+          src: `${fontPath}/${font.fileName}`
+        });
       }
     }
     return doc;

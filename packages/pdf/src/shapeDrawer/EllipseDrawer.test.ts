@@ -5,13 +5,9 @@
  * Copyright (C) Sunvisor Lab. 2025.
  */
 import { EllipseDrawer } from "./EllipseDrawer";
-import { createEllipse, createScale, EllipseData, EllipseShape } from '@sunvisor/super-leopard-core';
-import PDFDocument = PDFKit.PDFDocument;
-import { applyStyle } from '../style/style';
+import { createEllipse, EllipseData, EllipseShape, Scale } from '@sunvisor/super-leopard-core';
+import { mockDoc } from '../__test_assets__';
 
-vi.mock('../style/style', () => ({
-  applyStyle: vi.fn(),
-}));
 
 describe('Tests for EllipseDrawer', () => {
 
@@ -22,10 +18,7 @@ describe('Tests for EllipseDrawer', () => {
     width: 40,
     height: 30,
   }
-  const mockDoc = {
-    ellipse: vi.fn().mockReturnThis(),
-  } as unknown as PDFDocument;
-  const scale = createScale({ unit: 'mm' });
+  const scale = { toPoint: vi.fn((value) => value) } as unknown as Scale;
 
   afterEach(() => vi.clearAllMocks());
 
@@ -43,17 +36,28 @@ describe('Tests for EllipseDrawer', () => {
     // Act
     drawer.draw(ellipse);
     // Assert
-    expect(mockDoc.ellipse).toHaveBeenCalledTimes(1);
-    expect(applyStyle).toHaveBeenCalledWith(mockDoc, ellipse.border, ellipse.fillColor, undefined);
-    expect(mockDoc.ellipse).toHaveBeenCalledWith(85.04, 70.87, 56.695, 42.52);
+    expect(mockDoc.ellipse).toHaveBeenCalledWith({
+      x: 10 + 40 / 2,
+      y: 10 + 30 / 2,
+      rx: 40 / 2,
+      ry: 30 / 2,
+      stroke: {
+        color: '#000000',
+        width: 0.25,
+        style: 'solid',
+        cap: 'butt',
+        join: 'miter',
+      }
+    });
   });
 
   test('opacity Ellipse', () => {
     // Arrange
     const ellipse = createEllipse({
       ...base,
+      fillColor: '#ff0000',
       border: {
-        width: 1,
+        width: 0.25,
         color: '#000000',
         style: 'solid',
       }
@@ -62,7 +66,21 @@ describe('Tests for EllipseDrawer', () => {
     // Act
     drawer.draw(ellipse, { opacity: 0.5 });
     // Assert
-    expect(applyStyle).toHaveBeenCalledWith(mockDoc, ellipse.border, ellipse.fillColor, 0.5);
+    expect(mockDoc.ellipse).toHaveBeenCalledWith({
+      x: 10 + 40 / 2,
+      y: 10 + 30 / 2,
+      rx: 40 / 2,
+      ry: 30 / 2,
+      stroke: {
+        color: '#000000',
+        width: 0.25,
+        style: 'solid',
+        cap: 'butt',
+        join: 'miter',
+      },
+      fillColor: '#ff0000',
+      opacity: 0.5
+    });
   });
 
 });

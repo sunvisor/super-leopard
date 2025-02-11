@@ -6,9 +6,9 @@
  */
 import { getImagePath, getWritePdf } from '../drawerTestHelper';
 import { ReportData } from '@sunvisor/super-leopard-core';
-import { createTestFonts, testAssets } from '../../__test_assets__';
+import { createTestFonts } from '../textTestHelper';
 import { createReportDrawer } from '../../reportDrawer/createReportDrawer';
-
+import { testAssets } from '@sunvisor/super-leopard-core';
 
 const { combinationTestData } = testAssets;
 const category = 'report';

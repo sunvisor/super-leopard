@@ -4,17 +4,15 @@
  * Created by sunvisor on 2025/02/02.
  * Copyright (C) Sunvisor Lab. 2025.
  */
-import fs from 'fs';
-import PdfDocument from 'pdfkit';
-import SVGtoPDF from 'svg-to-pdfkit';
 import { ImageDrawer } from './ImageDrawer';
 import * as imageType from './imageType';
-import PDFDocument = PDFKit.PDFDocument;
 import { createImage, ImageData, Scale } from '@sunvisor/super-leopard-core';
 import { GetPdfImagePath } from '../index';
+import { mockDoc } from '../__test_assets__';
+import fs from 'fs';
+
 
 vi.mock('fs');
-vi.mock('svg-to-pdfkit');
 vi.mock('./imageType', () => ({
   isJPEGFile: vi.fn(),
   isPngFile: vi.fn(),
@@ -22,22 +20,22 @@ vi.mock('./imageType', () => ({
 }));
 
 describe('ImageDrawer', () => {
-  let doc: PDFDocument;
   let scale: Scale;
   let getImagePath: GetPdfImagePath;
   let imageDrawer: ImageDrawer;
 
   beforeEach(() => {
-    doc = new PdfDocument();
-    doc.image = vi.fn();
-    doc.opacity = vi.fn();
-    scale = { toPoint: vi.fn((bbox) => bbox) } as unknown as Scale;
+    scale = { toPoint: vi.fn((value) => value) } as unknown as Scale;
     getImagePath = vi.fn((src) => `/mock/path/${src}`);
-    imageDrawer = new ImageDrawer({ doc, scale, getImagePath });
+    imageDrawer = new ImageDrawer({ doc: mockDoc, scale, getImagePath });
 
     vi.mocked(imageType.isPngFile).mockReturnValue(false);
     vi.mocked(imageType.isJPEGFile).mockReturnValue(false);
     vi.mocked(imageType.isSVGFile).mockReturnValue(false);
+  });
+
+  afterEach(() => {
+    vi.resetAllMocks();
   });
 
   it('should draw a PNG image', () => {
@@ -50,11 +48,13 @@ describe('ImageDrawer', () => {
     // Act
     imageDrawer.draw(image);
     // Assert
-    expect(doc.image).toHaveBeenCalledWith(
-      '/mock/path/test.png',
-      10, 20,
-      { fit: [100, 50], align: 'center', valign: 'center' }
-    );
+    expect(mockDoc.image).toHaveBeenCalledWith({
+      x: 10,
+      y: 20,
+      width: 100,
+      height: 50,
+      src: '/mock/path/test.png',
+    });
   });
 
   it('should draw a JPEG image', () => {
@@ -67,11 +67,13 @@ describe('ImageDrawer', () => {
     // Act
     imageDrawer.draw(image);
     // Assert
-    expect(doc.image).toHaveBeenCalledWith(
-      '/mock/path/test.jpg',
-      5, 15,
-      { fit: [80, 40], align: 'center', valign: 'center' }
-    );
+    expect(mockDoc.image).toHaveBeenCalledWith({
+      x: 5,
+      y: 15,
+      width: 80,
+      height: 40,
+      src: '/mock/path/test.jpg',
+    });
   });
 
   it('should draw an SVG image', () => {
@@ -85,7 +87,13 @@ describe('ImageDrawer', () => {
     // Act
     imageDrawer.draw(image);
     // Assert
-    expect(SVGtoPDF).toHaveBeenCalledWith(doc, '<svg></svg>', 0, 0, { width: 200, height: 100 });
+    expect(mockDoc.image).toHaveBeenCalledWith({
+      x: 0,
+      y: 0,
+      width: 200,
+      height: 100,
+      svg: '<svg></svg>',
+    });
   });
 
   it('should set opacity if specified', () => {
@@ -97,7 +105,14 @@ describe('ImageDrawer', () => {
     // Act
     imageDrawer.draw(image, { opacity: 0.5 });
     // Assert
-    expect(doc.opacity).toHaveBeenCalledWith(0.5);
+    expect(mockDoc.image).toHaveBeenCalledWith({
+      x: 0,
+      y: 0,
+      width: 100,
+      height: 50,
+      src: '/mock/path/test.png',
+      opacity: 0.5
+    });
   });
 
   it('should throw an error for unsupported formats', () => {

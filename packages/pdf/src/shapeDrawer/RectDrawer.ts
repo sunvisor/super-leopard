@@ -6,11 +6,11 @@
  */
 import { ShapeDrawerProps } from './ShapeDrawer';
 import { DrawerParams, Rect, RectDrawerInterface, Scale } from '@sunvisor/super-leopard-core';
-import { applyStyle } from '../style/style';
-import PDFDocument = PDFKit.PDFDocument;
+import { PdfDocumentInterface, RectParams } from '../pdfDriver/PdfDriverInterface';
+import { applyFillColor, applyOpacity, applyStroke } from './style';
 
 export class RectDrawer implements RectDrawerInterface {
-  readonly #doc: PDFDocument;
+  readonly #doc: PdfDocumentInterface;
   readonly #scale: Scale;
 
   constructor({ doc, scale }: ShapeDrawerProps) {
@@ -19,11 +19,11 @@ export class RectDrawer implements RectDrawerInterface {
   }
 
   draw(rect: Rect, params?: DrawerParams): void {
-    const box = this.#scale.toPoint({
-      x: rect.x, y: rect.y, width: rect.width, height: rect.height,
-    });
-    const doc = this.#doc.rect(box.x, box.y, box.width, box.height);
-    applyStyle(doc, rect.border, rect.fillColor, params?.opacity);
+    const rectParams: RectParams = this.#scale.toPoint(rect.bbox);
+    applyStroke(rectParams, rect.border);
+    applyFillColor(rectParams, rect.fillColor);
+    applyOpacity(rectParams, params?.opacity);
+    this.#doc.rect(rectParams);
   }
 
 }
