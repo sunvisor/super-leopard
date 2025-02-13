@@ -9,9 +9,9 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { within } from '@storybook/test';
 import { CircleDrawer } from './CircleDrawer';
-import { SVG } from '@svgdotjs/svg.js';
 import {createScale, createCircle, CircleData,CircleShape,  UnitType} from '@sunvisor/super-leopard-core';
 import { expect } from '@storybook/test';
+import { createTestSvgDrawer } from '../../__test_assets__';
 
 
 type CircleProps = {
@@ -44,7 +44,7 @@ const Template: Story = {
 function draw(canvasElement: HTMLElement, args: CircleProps) {
   const canvas = within(canvasElement);
   const el = canvas.getByTestId('test');
-  const svg = SVG().addTo(el).size(500, 500);
+  const svg = createTestSvgDrawer(el);
   const scale = createScale({ unit: UnitType.MILLIMETER, zoom: 1, precision: 2, pointPrecision: 2 });
   const circle = createCircle(args.circle);
   const drawer = new CircleDrawer({ svg, scale });

@@ -4,13 +4,13 @@
  * Created by sunvisor on 2023/12/27.
  * Copyright (C) Sunvisor Lab. 2023.
  */
-import { Svg } from '@svgdotjs/svg.js';
-import { applyBorder } from './applyStyle';
+import { borderToStroke } from '../utils';
 import { DrawerParams, Line, LineDrawerInterface, Scale } from '@sunvisor/super-leopard-core';
 import { ShapeDrawerProps } from './types';
+import { SvgDrawerInterface } from '../../svgDriver';
 
 export class LineDrawer implements LineDrawerInterface {
-  readonly #svg: Svg;
+  readonly #svg: SvgDrawerInterface;
   readonly #scale: Scale;
 
   constructor({ svg, scale }: ShapeDrawerProps) {
@@ -20,14 +20,13 @@ export class LineDrawer implements LineDrawerInterface {
 
   draw(line: Line, { opacity = 1 }: DrawerParams): void {
     const scale = this.#scale;
-    const pos1 = scale.toPixel({ x: line.x1, y: line.y1 });
-    const pos2 = scale.toPixel({ x: line.x2, y: line.y2 });
-    const lineElement = this.#svg.line(
-      pos1.x,
-      pos1.y,
-      pos2.x,
-      pos2.y,
-    );
-    applyBorder(scale, lineElement, line.border, opacity);
+    const pos = scale.toPixel({
+      x1: line.x1, y1: line.y1, x2: line.x2, y2: line.y2
+    });
+    this.#svg.line({
+      ...pos,
+      stroke: borderToStroke(scale, line.border),
+      opacity,
+    })
   }
 }

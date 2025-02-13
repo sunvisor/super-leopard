@@ -6,13 +6,15 @@
  */
 import { RectRubberBand } from "./RectRubberBand";
 import { Scale, UnitType } from '@sunvisor/super-leopard-core';
-import { Rect as SvgRect, Shape, SVG } from '@svgdotjs/svg.js';
 import { defaultStyle } from '../../style';
+import { createTestSvgDrawer } from '../../../__test_assets__';
+import { SvgRectInterface } from '../../../svgDriver';
+
 
 describe('Tests for RectRubberBand', () => {
   const scale = new Scale({ unit: UnitType.INCH });
   const styles = defaultStyle;
-  const svg = SVG();
+  const svg = createTestSvgDrawer();
 
   describe('Test for createElement', () => {
 
@@ -22,7 +24,7 @@ describe('Tests for RectRubberBand', () => {
       // Act
       const result = rectRubberBand.createElement();
       // Assert
-      expect(result).toBeInstanceOf(SvgRect)
+      expect(result.type).toBe('rect');
       expect(svg.find('rect')).toHaveLength(1);
     });
 
@@ -50,7 +52,7 @@ describe('Tests for RectRubberBand', () => {
         move: vi.fn(() => element),
         size: vi.fn()
       }
-      const element = e as Shape;
+      const element = e as unknown as SvgRectInterface;
       // Act
       rectRubberBand.moveElement({ x: 10, y: 10 }, { x: 110, y: 210 }, element);
       // Assert

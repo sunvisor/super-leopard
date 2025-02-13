@@ -5,28 +5,22 @@
  * Created by sunvisor on 2024/01/20.
  * Copyright (C) Sunvisor Lab. 2024.
  */
-import { Rect, StrokeData, Svg } from '@svgdotjs/svg.js';
 import { Box, normalizeBox, Position } from '@sunvisor/super-leopard-core';
-import { getClientRect } from './index';
 import { EditRubberBandInterface } from './EditRubberBand';
 import { RubberBandOptions } from '../setting';
+import { SvgDrawerInterface, SvgRectInterface } from '../../svgDriver';
 
 export type OnSelectHandler = (area: Box | Position) => void;
 
-type StrokeOptions = {
-  stroke: StrokeData;
-  attr: object;
-}
-
 export class SelectRubberBand implements EditRubberBandInterface {
-  readonly #svg: Svg;
+  readonly #svg: SvgDrawerInterface;
   readonly #onSelect?: OnSelectHandler;
   readonly #options: RubberBandOptions;
   #rubberBand: Box | undefined;
-  #rect: Rect | undefined;
+  #rect: SvgRectInterface | undefined;
 
   constructor({ svg, options, onSelect }: {
-    svg: Svg,
+    svg: SvgDrawerInterface,
     options: RubberBandOptions,
     onSelect?: OnSelectHandler
   }) {
@@ -43,7 +37,7 @@ export class SelectRubberBand implements EditRubberBandInterface {
   }
 
   start(x: number, y: number) {
-    const pos = getClientRect(this.#svg, x, y);
+    const pos = this.#svg.getClientPosition({ x, y });
     this.drawRubberBand({
       ...pos,
       width: 0,
@@ -55,7 +49,7 @@ export class SelectRubberBand implements EditRubberBandInterface {
 
   private onMouseMove(event: Event) {
     const e = event as MouseEvent;
-    const pos = getClientRect(this.#svg, e.clientX, e.clientY);
+    const pos = this.#svg.getClientPosition({ x: e.clientX, y: e.clientY });
 
     this.moveRubberBand(pos);
     e.preventDefault();
@@ -91,7 +85,7 @@ export class SelectRubberBand implements EditRubberBandInterface {
   private drawRubberBand(box: Box) {
     this.#svg.clear();
     this.#rubberBand = box;
-    this.#rect = this.drawRect(box, this.#options.stroke);
+    this.#rect = this.drawRect(box);
   }
 
   private moveRubberBand(pos: Position) {
@@ -112,11 +106,11 @@ export class SelectRubberBand implements EditRubberBandInterface {
     this.#rubberBand = undefined;
   }
 
-  private drawRect(box: Box, options: StrokeOptions) {
-    const { x, y, width, height } = box;
-    return this.#svg.rect(width, height).move(x, y)
-      .fill('none')
-      .stroke(options.stroke)
-      .attr(options.attr);
+  private drawRect(box: Box) {
+    const stroke = this.#options.stroke;
+    return this.#svg.rect({
+      ...box,
+      stroke
+    });
   }
 }

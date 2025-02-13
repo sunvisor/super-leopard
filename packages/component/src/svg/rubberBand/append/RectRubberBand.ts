@@ -5,41 +5,48 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import { adjustPosition, moveElement, ShapeRubberBandInterface } from '.';
-import { Shape as SvgShape, Svg } from '@svgdotjs/svg.js';
-import { applyBorder, applyFillColor } from '../../shapeDrawer/applyStyle';
+import { borderToStroke } from '../../utils';
 import { StylesData } from '../../style';
 import { createBorder, createColor, Position, Scale } from '@sunvisor/super-leopard-core';
+import {
+  StrokeOptions,
+  SvgDrawerInterface,
+  SvgShapeInterface
+} from '../../../svgDriver';
 
 export class RectRubberBand implements ShapeRubberBandInterface {
-  readonly #svg: Svg;
-  readonly #scale: Scale;
-  readonly #styles: StylesData;
+  readonly #svg: SvgDrawerInterface;
+  readonly #stroke: StrokeOptions | undefined;
+  readonly #fillColor: string | undefined;
 
   constructor({ svg, scale, styles }: {
-    svg: Svg,
+    svg: SvgDrawerInterface,
     scale: Scale,
     styles: StylesData
   }) {
     this.#svg = svg;
-    this.#scale = scale;
-    this.#styles = styles;
+    this.#stroke = borderToStroke(scale, createBorder(styles.border));
+    this.#fillColor = createColor(styles.fillColor)?.color;
   }
 
-  createElement(): SvgShape {
+  createElement(): SvgShapeInterface {
     const svg = this.#svg;
-    const element = svg.rect(0, 0);
-    const border = createBorder(this.#styles.border);
-    applyBorder(this.#scale, element, border);
-    applyFillColor(element, createColor(this.#styles.fillColor));
 
-    return element;
+    return svg.rect({
+      x: 0,
+      y: 0,
+      width: 0,
+      height: 0,
+      stroke: this.#stroke,
+      fillColor: this.#fillColor,
+    });
   }
 
   adjustPosition(start: Position, end: Position): Position {
     return adjustPosition(start, end);
   }
 
-  moveElement(start: Position, end: Position, element: SvgShape) {
+  moveElement(start: Position, end: Position, element: SvgShapeInterface) {
     moveElement(start, end, element);
   }
 

@@ -5,7 +5,6 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import React, { useCallback, useEffect, useMemo, useRef } from "react";
-import { SVG } from '@svgdotjs/svg.js';
 import { useAtomValue } from 'jotai';
 import {
   createEditingLayerDrawer,
@@ -18,6 +17,7 @@ import { ReadPageAtom, ReadScaleAtom } from '../../../atom/ReportAtom';
 import { SettingsAtom } from '../../../atom/SettingsAtom';
 import { SelectionAtom } from '../../../atom/SelectionAtom';
 import { LayerDiv } from '../../report/layer/Layer';
+import { SvgDriver } from '../../../svgDriver';
 
 type Props = {
   onSelect?: OnSelectHandler;
@@ -39,7 +39,7 @@ export default function EditingLayer(props: Props) {
   const page = useAtomValue(ReadPageAtom);
   const scale = useAtomValue(ReadScaleAtom);
   const ref = useRef<HTMLDivElement>(null);
-  const svg = useMemo(() => SVG(), []);
+  const svg = useMemo(() => SvgDriver.createDrawer(), []);
   const settings = useAtomValue(SettingsAtom);
   const { drawer, handler } = useMemo(
     () => createEditingLayerDrawer(

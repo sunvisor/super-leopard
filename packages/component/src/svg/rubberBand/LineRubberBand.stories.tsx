@@ -11,8 +11,8 @@ import { Meta, StoryObj } from '@storybook/react';
 import { HandleType } from '../boundingBox';
 import { PositionPair } from '@sunvisor/super-leopard-core';
 import { within } from '@storybook/test';
-import { SVG } from '@svgdotjs/svg.js';
-import { getClientRect } from './index';
+import { createTestSvgDrawer } from '../../__test_assets__';
+
 
 type LineRubberBandProps = {
   type: HandleType;
@@ -24,7 +24,6 @@ type Story = StoryObj<LineRubberBandProps>
 const meta: Meta<LineRubberBandProps> = {
   title: 'svg/rubberBand/LineRubberBand',
 };
-
 
 const Template: Story = {
 
@@ -42,17 +41,14 @@ const Template: Story = {
 function draw(canvasElement: HTMLElement, args: LineRubberBandProps) {
   const canvas = within(canvasElement);
   const el = canvas.getByTestId('test');
-  const svg = SVG().addTo(el).size(500, 500);
+  const svg = createTestSvgDrawer(el);
   const options = {
-    stroke: {
-      stroke: { color: 'gray', width: 1 },
-      attr: { 'stroke-dasharray': '1 2' }
-    },
+    stroke: { style: 'solid', color: 'gray', width: 1 },
     dragThreshold: 2,
   };
   const drawer = new LineRubberBand({ svg, options, onMovePosition: args.onMovePoint });
   el.addEventListener('mousedown', (e) => {
-    const pos = getClientRect(svg, e.clientX, e.clientY);
+    const pos = svg.getClientPosition({ x: e.clientX, y: e.clientY });
     const positions = {
       x1: pos.x - 50, y1: pos.y - 50, x2: pos.x, y2: pos.y
     }

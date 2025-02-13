@@ -8,7 +8,6 @@
  */
 import { Meta, StoryObj } from '@storybook/react';
 import { within } from "@storybook/test";
-import { SVG } from "@svgdotjs/svg.js";
 import { LineDrawer } from './LineDrawer';
 import { expect } from '@storybook/test';
 import {
@@ -18,6 +17,7 @@ import {
   LineShape,
   UnitType,
 } from '@sunvisor/super-leopard-core';
+import { createTestSvgDrawer } from '../../__test_assets__';
 
 type LineProps = {
   line: LineData;
@@ -46,7 +46,7 @@ const Template: Story = {
 function draw(canvasElement: HTMLElement, args: LineProps) {
   const canvas = within(canvasElement);
   const el = canvas.getByTestId('test');
-  const svg = SVG().addTo(el).size(500, 500);
+  const svg = createTestSvgDrawer(el);
   const scale = createScale({ unit: UnitType.MILLIMETER, zoom: 1, precision: 2, pointPrecision: 2 });
   const line = createLine(args.line);
   const drawer = new LineDrawer({ svg, scale });

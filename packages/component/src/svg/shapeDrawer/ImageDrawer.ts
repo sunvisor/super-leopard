@@ -4,7 +4,6 @@
  * Created by sunvisor on 2023/12/27.
  * Copyright (C) Sunvisor Lab. 2023.
  */
-import { Svg } from '@svgdotjs/svg.js';
 import {
   DrawerParams,
   Image,
@@ -13,10 +12,11 @@ import {
 } from '@sunvisor/super-leopard-core';
 import { GetSvgImagePath } from '../index';
 import { ImageDrawerProps } from './types';
+import { SvgDrawerInterface } from '../../svgDriver';
 
 export default class ImageDrawer implements ImageDrawerInterface {
 
-  readonly #svg: Svg;
+  readonly #svg: SvgDrawerInterface;
   readonly #scale: Scale;
   readonly #getImagePath: GetSvgImagePath;
 
@@ -31,6 +31,10 @@ export default class ImageDrawer implements ImageDrawerInterface {
     const { x, y, width, height } = scale.toPixel(image);
     const imagePath = this.#getImagePath(image.src)
 
-    this.#svg.image(imagePath).size(width, height).move(x, y).opacity(opacity);
+    this.#svg.image({
+      x, y, width, height,
+      src: imagePath,
+      opacity
+    });
   }
 }

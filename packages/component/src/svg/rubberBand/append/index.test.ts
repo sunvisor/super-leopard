@@ -5,7 +5,8 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import { adjustPosition, moveElement } from './';
-import { Shape } from '@svgdotjs/svg.js';
+import { SvgShapeInterface } from '../../../svgDriver';
+
 
 describe('Tests for append rubberBand functions', () => {
 
@@ -31,10 +32,10 @@ describe('Tests for append rubberBand functions', () => {
 
     test('Should move and resize element', () => {
       // Arrange
-      const element: Shape = {
+      const element: SvgShapeInterface = {
         move: vi.fn(() => element),
         size: vi.fn()
-      } as unknown as Shape;
+      } as unknown as SvgShapeInterface;
       // Act
       moveElement({ x: 10, y: 10 }, { x: 110, y: 210 }, element);
       // Assert

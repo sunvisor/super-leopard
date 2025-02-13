@@ -4,10 +4,10 @@
  * Created by sunvisor on 2024/01/25.
  * Copyright (C) Sunvisor Lab. 2024.
  */
-import { Svg } from '@svgdotjs/svg.js';
 import { DataParams, FieldValues, ListRecords, Page, Scale, Shapes, ShapesDrawer } from '@sunvisor/super-leopard-core';
 import { DrawerProps } from '../shapeDrawer/types';
 import { createLayerDataDrawer, createLayerDesignDrawer } from '../shapeDrawer/createDrawer';
+import { SvgDrawerInterface } from '../../svgDriver';
 
 
 export const DrawModeType = {
@@ -21,13 +21,20 @@ type DrawParams = DataParams & {
   pageNumber?: number;
 }
 
+type LayerDrawerProps = {
+  page: Page;
+  scale: Scale;
+  svg: SvgDrawerInterface;
+  drawer: ShapesDrawer;
+}
+
 class LayerDrawer {
   readonly #page: Page;
   readonly #scale: Scale;
-  readonly #svg: Svg;
+  readonly #svg: SvgDrawerInterface;
   readonly #drawer: ShapesDrawer;
 
-  constructor(svg: Svg, page: Page, scale: Scale, shapesDrawer: ShapesDrawer) {
+  constructor({ page, scale, svg, drawer: shapesDrawer }: LayerDrawerProps) {
     this.#page = page;
     this.#scale = scale;
     this.#svg = svg;
@@ -39,8 +46,7 @@ class LayerDrawer {
     const width = this.#scale.toPixel(this.#page.width);
     const height = this.#scale.toPixel(this.#page.height);
 
-    svg.addTo(el).size(width, height);
-    svg.clear();
+    svg.init(el, { width, height }).clear();
   }
 
   drawShapes(
@@ -78,5 +84,5 @@ export function createLayerDrawer({ svg, scale, page, getImagePath, settings, mo
     ? createLayerDesignDrawer({ svg, scale, getImagePath, settings })
     : createLayerDataDrawer({ svg, scale, getImagePath, settings });
 
-  return new LayerDrawer(svg, page, scale, drawer);
+  return new LayerDrawer({ svg, page, scale, drawer });
 }

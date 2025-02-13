@@ -7,21 +7,20 @@
  * Copyright (C) Sunvisor Lab. 2023.
  */
 import { Meta, StoryObj } from '@storybook/react';
-import { SVG } from "@svgdotjs/svg.js";
 import {
-  createScale,
-  UnitType,
   createImage,
-  ImageData,
   createRect,
-  RectData,
+  createScale,
+  ImageData,
   ImageShape,
+  RectData,
   RectShape,
+  UnitType,
 } from "@sunvisor/super-leopard-core";
-import { within } from "@storybook/test";
+import { expect, within } from "@storybook/test";
 import { RectDrawer } from './RectDrawer';
 import ImageDrawer from './ImageDrawer';
-import { expect } from '@storybook/test';
+import { createTestSvgDrawer } from '../../__test_assets__';
 
 type ImageProps = {
   image: ImageData;
@@ -55,7 +54,7 @@ function getImagePath(src: string) {
 function draw(canvasElement: HTMLElement, args: ImageProps) {
   const canvas = within(canvasElement);
   const el = canvas.getByTestId('test');
-  const svg = SVG().addTo(el).size(500, 500);
+  const svg = createTestSvgDrawer(el);
   const scale = createScale({ unit: UnitType.MILLIMETER, zoom: 1, precision: 2, pointPrecision: 2 });
   const config: ImageData = args.image;
   const rectConfig: RectData = {

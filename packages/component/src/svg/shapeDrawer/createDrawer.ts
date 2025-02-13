@@ -17,7 +17,6 @@ import {
   StaticShapeDrawers,
   TextShape
 } from '@sunvisor/super-leopard-core';
-import { Svg } from '@svgdotjs/svg.js';
 import { RectDrawer } from './RectDrawer';
 import { StaticDrawerProps } from './types';
 import { CircleDrawer } from './CircleDrawer';
@@ -29,10 +28,11 @@ import { SettingData } from '../setting';
 import { GetSvgImagePath } from '../index';
 import { LineDrawer } from './LineDrawer';
 import { WebFont } from './WebFont';
+import { SvgDrawerInterface } from '../../svgDriver';
 
 
 export type CreateDrawerParams = {
-  svg: Svg;
+  svg: SvgDrawerInterface;
   scale: Scale;
   getImagePath: GetSvgImagePath;
   settings: SettingData;

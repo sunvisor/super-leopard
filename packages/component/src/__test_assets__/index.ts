@@ -8,3 +8,4 @@ export * from './testTextDrawer';
 export * from './testLayer';
 export * from './testLayer';
 export * from './testLine';
+export * from './testSvgDrawer';

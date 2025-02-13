@@ -5,8 +5,8 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import { Scale, Box, PositionPair } from '@sunvisor/super-leopard-core';
-import { Rect, StrokeData, Svg } from '@svgdotjs/svg.js';
 import { BoundingBoxOptions } from '../setting';
+import { SvgDrawerInterface, SvgRectInterface } from '../../svgDriver';
 
 export type HandleType =
   'left-top' | 'right-top' | 'left-bottom' | 'right-bottom' |
@@ -14,7 +14,7 @@ export type HandleType =
   'position1' | 'position2' | 'center';
 
 type HandleKindType = 'move' | 'resize' | 'line';
-export const HandleCursor: Record<HandleType, string>  = {
+export const HandleCursor: Record<HandleType, string> = {
   'left-top': 'nwse-resize',
   'right-top': 'nesw-resize',
   'left-bottom': 'nesw-resize',
@@ -44,21 +44,16 @@ export const HandleKind: Record<HandleType, HandleKindType> = {
   'center': 'line',
 }
 
-type StrokeOptions = {
-  stroke: StrokeData;
-  attr: object;
-}
-
 type OnHandleMouseDownHandler = (event: MouseEvent, type: HandleType) => void;
 
 export class BoundingBox {
-  readonly #svg: Svg;
+  readonly #svg: SvgDrawerInterface;
   readonly #scale: Scale;
   readonly #options: BoundingBoxOptions;
   readonly #onHandleMouseDown: OnHandleMouseDownHandler | undefined;
 
   constructor({ svg, scale, options, onHandleMouseDown }: {
-    svg: Svg;
+    svg: SvgDrawerInterface;
     scale: Scale;
     options: BoundingBoxOptions;
     onHandleMouseDown?: OnHandleMouseDownHandler;
@@ -81,13 +76,10 @@ export class BoundingBox {
     box: Box,
     showCornerHandles: boolean = true,
     showEdgeHandles: boolean = true
-  ): Rect {
+  ): SvgRectInterface {
     const drawBox = this.getBox(box);
 
-    const rectElement = this.drawRect(
-      drawBox,
-      this.#options.stroke,
-    );
+    const rectElement = this.drawRect(drawBox);
     rectElement.on('mousedown', (event: Event) => {
       const e = event as MouseEvent;
       if (e.button !== 0) return;
@@ -110,9 +102,12 @@ export class BoundingBox {
     positions: PositionPair,
   ): void {
     const { x1, y1, x2, y2 } = positions;
-    this.#svg.line(x1, y1, x2, y2)
-      .stroke(this.#options.stroke.stroke)
-      .attr(this.#options.stroke.attr);
+    const stroke = this.#options.stroke;
+
+    this.#svg.line({
+      ...positions,
+      stroke,
+    });
     this.drawHandle(x1, y1, 'position1');
     this.drawHandle(x2, y2, 'position2');
     this.drawHandle((x1 + x2) / 2, (y1 + y2) / 2, 'center', 'grab');
@@ -124,13 +119,15 @@ export class BoundingBox {
     return { x, y, width, height };
   }
 
-  private drawRect(box: Box, options: StrokeOptions) {
-    const { x, y, width, height } = box;
-    return this.#svg.rect(width, height).move(x, y)
-      .fill({ color: 'white', opacity: 0 })
-      .css('cursor', 'grab')
-      .stroke(options.stroke)
-      .attr(options.attr);
+  private drawRect(box: Box) {
+    const stroke = this.#options.stroke;
+    return this.#svg.rect({
+      ...box,
+      fillColor: '#ffffff',
+      opacity: 0,
+      css: { cursor: 'grab' },
+      stroke
+    })
   }
 
   private drawHandles(
@@ -160,17 +157,24 @@ export class BoundingBox {
   private drawHandle(x: number, y: number, type: HandleType, handleCursor?: string) {
     const cursor = handleCursor ?? HandleCursor[type];
     const handleSize = this.#options.handleSize;
-    this.#svg.rect(handleSize, handleSize)
-      .move(x - handleSize / 2, y - handleSize / 2)
-      .fill('white')
-      .stroke({ color: 'black', width: 0.5, })
-      .addClass('handle')
-      .addClass(type)
-      .css('cursor', cursor)
-      .on('mousedown', (e: Event) => {
-        this.onHandleMouseDown(e as MouseEvent, type);
-        e.preventDefault();
-      })
+    const el = this.#svg.rect({
+      x: x - handleSize / 2,
+      y: y - handleSize / 2,
+      width: handleSize,
+      height: handleSize,
+      fillColor: '#ffffff',
+      stroke: {
+        style: 'solid',
+        color: '#000000',
+        width: 0.5,
+      },
+      css: { cursor },
+      classes: ['handle', type]
+    });
+    el.on('mousedown', (e: Event) => {
+      this.onHandleMouseDown(e as MouseEvent, type);
+      e.preventDefault();
+    });
   }
 
   private onHandleMouseDown(event: MouseEvent, type: HandleType) {

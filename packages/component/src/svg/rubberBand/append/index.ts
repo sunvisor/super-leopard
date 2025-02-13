@@ -1,4 +1,3 @@
-import { Shape as SvgShape, Svg } from '@svgdotjs/svg.js';
 import {
   Position,
   positionsToBox,
@@ -31,15 +30,16 @@ import { CreateImage } from './CreateImage';
 import { DefaultShapeSize, SettingData } from '../../setting';
 import { StylesData } from '../../style';
 import { AppendShapeType } from '../AppendShapeRubberBand';
+import { SvgDrawerInterface, SvgShapeInterface } from '../../../svgDriver';
 
 export type ShapeCreatorInterface = {
   create(start: Position, end: Position): Shape;
 }
 
 export type ShapeRubberBandInterface = {
-  createElement(): SvgShape;
+  createElement(): SvgShapeInterface;
   adjustPosition(start: Position, end: Position): Position;
-  moveElement(start: Position, end: Position, element: SvgShape): void;
+  moveElement(start: Position, end: Position, element: SvgShapeInterface): void;
 }
 
 export type DefaultShapeSizeInterface = {
@@ -82,7 +82,7 @@ export function createShapeCreator(type: AppendShapeType, params: {
 }
 
 export function createShapeRubberBand(type: AppendShapeType, params: {
-  svg: Svg,
+  svg: SvgDrawerInterface,
   scale: Scale,
   styles: StylesData,
   settings: SettingData,
@@ -110,7 +110,7 @@ export function adjustPosition(start: Position, end: Position): Position {
   };
 }
 
-export function moveElement(start: Position, end: Position, element: SvgShape) {
+export function moveElement(start: Position, end: Position, element: SvgShapeInterface) {
   const box = positionsToBox(start, end);
   element.move(box.x, box.y).size(box.width, box.height);
 }

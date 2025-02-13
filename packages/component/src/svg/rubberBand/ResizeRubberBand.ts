@@ -7,25 +7,24 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import { EditRubberBandInterface } from './EditRubberBand';
-import { Rect, Svg } from '@svgdotjs/svg.js';
-import { getClientRect } from './index';
 import { Box, Position } from '@sunvisor/super-leopard-core';
 import { HandleCursor, HandleType } from '../boundingBox';
-import { RubberBandOptions, StrokeOptions } from '../setting';
+import { RubberBandOptions } from '../setting';
+import { StrokeOptions, SvgDrawerInterface, SvgRectInterface } from '../../svgDriver';
 
 export type OnResizeHandler = (box: Box) => void;
 
 export class ResizeRubberBand implements EditRubberBandInterface {
-  readonly #svg: Svg;
+  readonly #svg: SvgDrawerInterface;
   readonly #onResize?: OnResizeHandler;
   readonly #options: RubberBandOptions;
   #originBox: Box | undefined;
   #rubberBand: Box | undefined;
-  #rect: Rect | undefined;
+  #rect: SvgRectInterface | undefined;
   #type: HandleType | undefined;
 
   constructor({ svg, options, onResize }: {
-    svg: Svg,
+    svg: SvgDrawerInterface,
     options: RubberBandOptions,
     onResize?: OnResizeHandler
   }) {
@@ -43,11 +42,11 @@ export class ResizeRubberBand implements EditRubberBandInterface {
     this.clear();
     this.#svg.clear();
     this.#type = type;
-    const pos = getClientRect(this.#svg, x, y);
+    const pos = this.#svg.getClientPosition({ x, y });
     this.#originBox = box;
     this.#rubberBand = resizeBox(type, box, pos);
     if (this.#rubberBand) this.drawRubberBand(this.#rubberBand);
-    this.#svg.css('cursor', HandleCursor[type]);
+    this.#svg.css({ cursor: HandleCursor[type] });
     this.#svg.on('mousemove', this.onMouseMove, this);
     this.#svg.on('mouseup', this.onMouseUp, this);
   }
@@ -55,8 +54,8 @@ export class ResizeRubberBand implements EditRubberBandInterface {
   private onMouseMove(event: Event) {
     if (!this.#type || !this.#originBox) return;
     const e = event as MouseEvent;
-    const pos = getClientRect(this.#svg, e.clientX, e.clientY);
-    const box= resizeBox(this.#type, this.#originBox, pos);
+    const pos = this.#svg.getClientPosition({ x: e.clientX, y: e.clientY });
+    const box = resizeBox(this.#type, this.#originBox, pos);
     if (box) {
       if (e.shiftKey && this.handleIsCorner()) {
         box.height = box.width / this.#originBox.width * this.#originBox.height;
@@ -72,12 +71,13 @@ export class ResizeRubberBand implements EditRubberBandInterface {
   }
 
   private onMouseUp(e: Event) {
-    this.#svg.css('cursor', 'default');
+    this.#svg.css({ cursor: 'default' });
     e.preventDefault();
     this.fireResize();
     this.clear();
     this.clearRubberBand();
   }
+
   private drawRubberBand(box: Box) {
     this.#rect?.remove();
     this.#rubberBand = box;
@@ -102,17 +102,16 @@ export class ResizeRubberBand implements EditRubberBandInterface {
     if (this.#onResize) this.#onResize(this.#rubberBand!);
   }
 
-  private drawRect(box: Box, options: StrokeOptions) {
-    const { x, y, width, height } = box;
-    return this.#svg.rect(width, height).move(x, y)
-      .fill('none')
-      .stroke(options.stroke)
-      .attr(options.attr);
+  private drawRect(box: Box, stroke: StrokeOptions) {
+    return this.#svg.rect({
+      ...box,
+      stroke,
+    });
   }
 }
 
 export function resizeBox(type: HandleType, box: Box, pos: Position): Box | undefined {
-  const positionPair = {x1: box.x, y1: box.y, x2: box.x + box.width, y2: box.y + box.height};
+  const positionPair = { x1: box.x, y1: box.y, x2: box.x + box.width, y2: box.y + box.height };
   if (type.includes('top')) {
     positionPair.y1 = pos.y;
   }
@@ -133,7 +132,7 @@ export function resizeBox(type: HandleType, box: Box, pos: Position): Box | unde
     x: positionPair.x1,
     y: positionPair.y1,
     width: positionPair.x2 - positionPair.x1,
-    height:positionPair.y2 - positionPair.y1,
+    height: positionPair.y2 - positionPair.y1,
   }
 
 }

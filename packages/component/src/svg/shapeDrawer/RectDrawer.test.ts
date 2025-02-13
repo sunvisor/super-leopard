@@ -5,11 +5,11 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import {RectDrawer} from "./RectDrawer";
-import { SVG } from '@svgdotjs/svg.js';
 import { createRect, RectData, Scale, UnitType } from '@sunvisor/super-leopard-core';
+import { createTestSvgDrawer } from '../../__test_assets__';
 
 describe('Tests for RectDrawer#draw', () => {
-  const svg = SVG().size(500, 500);
+  const svg = createTestSvgDrawer();
   const scale = new Scale({ unit: UnitType.INCH});
   const drawer = new RectDrawer({ svg, scale });
   const data: RectData = {

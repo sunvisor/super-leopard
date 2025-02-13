@@ -15,13 +15,13 @@ import {
   Shape,
   TextShapeType,
 } from '@sunvisor/super-leopard-core';
-import { SVG } from '@svgdotjs/svg.js';
 import { useAtomValue } from 'jotai';
 import { ReadPageAtom, ReadScaleAtom } from '../../../atom/ReportAtom';
 import { SettingsAtom } from '../../../atom/SettingsAtom';
 import { StylesAtom } from '../../../atom/StylesAtom';
 import { AppendShapeRubberBand } from '../../../svg';
 import { LayerDiv } from '../../report/layer/Layer';
+import { SvgDriver } from '../../../svgDriver';
 
 export type OnAppendHandler = (shape: Shape) => void;
 
@@ -41,7 +41,7 @@ type Props = {
 
 export default function AppendShapeLayer(props: Props) {
   const ref = useRef<HTMLDivElement>(null);
-  const svg = useMemo(() => SVG(), []);
+  const svg = useMemo(() => SvgDriver.createDrawer(), []);
   const { shapeType, onAppend } = props;
   const page = useAtomValue(ReadPageAtom);
   const scale = useAtomValue(ReadScaleAtom);
@@ -55,7 +55,7 @@ export default function AppendShapeLayer(props: Props) {
       styles,
       settings,
       onAppend
-    })
+    });
   }, [onAppend, scale, settings, styles, shapeType, svg])
 
 
@@ -71,8 +71,7 @@ export default function AppendShapeLayer(props: Props) {
       const width = scale.toPixel(page.width);
       const height = scale.toPixel(page.height);
 
-      svg.addTo(ref.current).size(width, height);
-      svg.clear();
+      svg.init(ref.current, { width, height }).clear();
     }
   }, [page.height, page.width, scale, svg]);
 

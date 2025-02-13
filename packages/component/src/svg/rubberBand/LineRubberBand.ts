@@ -6,25 +6,24 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import { EditRubberBandInterface } from './EditRubberBand';
-import { Line, Svg } from '@svgdotjs/svg.js';
-import { getClientRect } from './index';
 import { Position, PositionPair } from '@sunvisor/super-leopard-core'
 import { HandleCursor, HandleType } from '../boundingBox';
 import { RubberBandOptions } from '../setting';
+import { SvgDrawerInterface, SvgLineInterface } from '../../svgDriver';
 
 export type OnMovePositionHandler = (positions: PositionPair) => void;
 
 export class LineRubberBand implements EditRubberBandInterface {
-  readonly #svg: Svg;
+  readonly #svg: SvgDrawerInterface;
   readonly #options: RubberBandOptions;
   readonly #onMovePosition: OnMovePositionHandler | undefined;
   #type: HandleType | undefined;
   #originPositions: PositionPair | undefined;
   #rubberBand: PositionPair | undefined;
-  #line: Line | undefined;
+  #line: SvgLineInterface | undefined;
 
   constructor({ svg, options, onMovePosition }: {
-    svg: Svg,
+    svg: SvgDrawerInterface,
     options: RubberBandOptions,
     onMovePosition?: OnMovePositionHandler
   }) {
@@ -42,11 +41,11 @@ export class LineRubberBand implements EditRubberBandInterface {
     this.clear();
     this.#svg.clear();
     this.#type = type;
-    const pos = getClientRect(this.#svg, x, y);
+    const pos = this.#svg.getClientPosition({ x, y });
     this.#originPositions = positions;
     this.#rubberBand = this.movePosition(type, positions, pos);
     this.#line = this.drawRubberBand(this.#rubberBand);
-    this.#svg.css('cursor', HandleCursor[type]);
+    this.#svg.css({ cursor: HandleCursor[type] });
     this.#svg.on('mousemove', this.onMouseMove, this);
     this.#svg.on('mouseup', this.onMouseUp, this);
   }
@@ -54,7 +53,7 @@ export class LineRubberBand implements EditRubberBandInterface {
   private onMouseMove(event: Event) {
     if (!this.#type || !this.#originPositions) return;
     const e = event as MouseEvent;
-    const pos = getClientRect(this.#svg, e.clientX, e.clientY);
+    const pos = this.#svg.getClientPosition({ x: e.clientX, y: e.clientY });
     const positions = this.movePosition(this.#type, this.#originPositions, pos, e.shiftKey);
     this.#rubberBand = positions;
     this.moveRubberBand(positions);
@@ -62,19 +61,18 @@ export class LineRubberBand implements EditRubberBandInterface {
   }
 
   private onMouseUp(e: Event) {
-    this.#svg.css('cursor', 'default');
+    this.#svg.css({ cursor: 'default' });
     e.preventDefault();
     this.fireMovePoint();
     this.clear();
     this.clearRubberBand();
   }
 
-  private drawRubberBand(positions: PositionPair): Line {
-    const { x1, y1, x2, y2 } = positions;
-    const line = this.#svg.line(x1, y1, x2, y2);
-    line.stroke(this.#options.stroke.stroke)
-      .attr(this.#options.stroke.attr);
-    return line;
+  private drawRubberBand(positions: PositionPair): SvgLineInterface {
+    return this.#svg.line({
+      ...positions,
+      stroke: this.#options.stroke,
+    });
   }
 
   private moveRubberBand(positions: PositionPair): void {

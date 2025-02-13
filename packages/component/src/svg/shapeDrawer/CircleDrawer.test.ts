@@ -5,11 +5,12 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import { CircleDrawer } from "./CircleDrawer";
-import { SVG } from '@svgdotjs/svg.js';
 import { Scale, UnitType, createCircle, CircleData } from '@sunvisor/super-leopard-core';
+import { afterEach } from 'vitest';
+import { createTestSvgDrawer } from '../../__test_assets__';
 
 describe('Tests for CircleDrawer#draw', () => {
-  const svg = SVG().size(500, 500);
+  const svg = createTestSvgDrawer();
   const scale = new Scale({ unit: UnitType.INCH });
   const drawer = new CircleDrawer({ svg, scale });
   const r = 15;
@@ -19,6 +20,10 @@ describe('Tests for CircleDrawer#draw', () => {
     y: 20,
     diameter: r * 2,
   }
+
+  afterEach(() => {
+    vi.clearAllMocks();
+  });
 
   test('Should append a circle element with correct attributes to the SVG', () => {
     // Arrange

@@ -8,10 +8,9 @@
  */
 import { MoveRubberBand, OnMoveHandler } from "./MoveRubberBand";
 import { Meta, StoryObj } from '@storybook/react';
-import { getClientRect } from './index';
 import { within } from '@storybook/test';
-import { SVG } from '@svgdotjs/svg.js';
 import { Position } from '@sunvisor/super-leopard-core';
+import { createTestSvgDrawer } from '../../__test_assets__';
 
 type MoveRubberBandProps = {
   onMove: OnMoveHandler;
@@ -39,17 +38,14 @@ const Template: Story = {
 function draw(canvasElement: HTMLElement, args: MoveRubberBandProps) {
   const canvas = within(canvasElement);
   const el = canvas.getByTestId('test');
-  const svg = SVG().addTo(el).size(500, 500);
+  const svg = createTestSvgDrawer(el);
   const options = {
-    stroke: {
-      stroke: { color: 'gray', width: 1 },
-      attr: { 'stroke-dasharray': '1 2' }
-    },
+    stroke: { color: 'gray', width: 1, style: 'solid' },
     dragThreshold: 2,
   };
   const drawer = new MoveRubberBand({ svg, options: options, onMove: args.onMove });
   el.addEventListener('mousedown', (e) => {
-    const pos = getClientRect(svg, e.clientX, e.clientY);
+    const pos = svg.getClientPosition({ x: e.clientX, y: e.clientY });
     const box = {
       x: pos.x - 1, y: pos.y - 1, width: 100, height: 100
     }

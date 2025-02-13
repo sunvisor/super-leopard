@@ -6,13 +6,14 @@
  */
 import { CircleRubberBand } from "./CircleRubberBand";
 import { Scale, UnitType } from '@sunvisor/super-leopard-core';
-import { Circle as SvgCircle, SVG } from '@svgdotjs/svg.js';
 import { defaultStyle } from '../../style';
+import { createTestSvgDrawer } from '../../../__test_assets__';
+import { SvgCircleInterface } from '../../../svgDriver';
 
 describe('Tests for CircleRubberBand', () => {
   const scale = new Scale({ unit: UnitType.INCH });
   const styles = defaultStyle;
-  const svg = SVG();
+  const svg = createTestSvgDrawer();
 
   describe('Test for createElement', () => {
 
@@ -22,7 +23,7 @@ describe('Tests for CircleRubberBand', () => {
       // Act
       const result = circleRubberBand.createElement();
       // Assert
-      expect(result).toBeInstanceOf(SvgCircle);
+      expect(result.type).toBe('circle');
       expect(svg.find('circle')).toHaveLength(1);
     });
 
@@ -51,7 +52,7 @@ describe('Tests for CircleRubberBand', () => {
         size: vi.fn()
       }
       // Act
-      circleRubberBand.moveElement({ x: 10, y: 10 }, { x: 110, y: 110 }, element as unknown as SvgCircle);
+      circleRubberBand.moveElement({ x: 10, y: 10 }, { x: 110, y: 110 }, element as unknown as SvgCircleInterface);
       // Assert
       expect(element.move).toHaveBeenCalledWith(10, 10);
       expect(element.size).toHaveBeenCalledWith(100);

@@ -5,46 +5,48 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import { ShapeRubberBandInterface } from '../';
-import { Line as SvgLine, Shape as SvgShape, Svg } from '@svgdotjs/svg.js';
-import {
-  Scale,
-  createBorder,
-  Position,
-} from '@sunvisor/super-leopard-core';
-import { applyBorder } from '../../shapeDrawer/applyStyle';
+import { createBorder, Position, Scale, } from '@sunvisor/super-leopard-core';
+import { borderToStroke } from '../../utils';
 import { adjustLinePosition } from '../LineRubberBand';
 import { StylesData } from '../../style';
+import {
+  StrokeOptions,
+  SvgDrawerInterface,
+  SvgLineInterface,
+  SvgShapeInterface
+} from '../../../svgDriver';
 
 export class LineRubberBand implements ShapeRubberBandInterface {
-  readonly #svg: Svg;
-  readonly #scale: Scale;
-  readonly #styles: StylesData;
+  readonly #svg: SvgDrawerInterface;
+  readonly #stroke: StrokeOptions | undefined;
 
   constructor({ svg, scale, styles }: {
-    svg: Svg,
+    svg: SvgDrawerInterface,
     scale: Scale,
     styles: StylesData
   }) {
     this.#svg = svg;
-    this.#scale = scale;
-    this.#styles = styles;
+    this.#stroke = borderToStroke(scale, createBorder(styles.border));
   }
 
-  createElement(): SvgShape {
+  createElement(): SvgShapeInterface {
     const svg = this.#svg;
-    const element = svg.line();
-    const border = createBorder(this.#styles.border);
-    applyBorder(this.#scale, element, border);
 
-    return element;
+    return svg.line({
+      x1: 0,
+      y1: 0,
+      x2: 0,
+      y2: 0,
+      stroke: this.#stroke,
+    });
   }
 
   adjustPosition(start: Position, end: Position): Position {
     return adjustLinePosition(start, end);
   }
 
-  moveElement(start: Position, end: Position, element: SvgShape) {
-    (element as SvgLine).plot(start.x, start.y, end.x, end.y);
+  moveElement(start: Position, end: Position, element: SvgShapeInterface) {
+    (element as SvgLineInterface).plot(start.x, start.y, end.x, end.y);
   }
 
 }

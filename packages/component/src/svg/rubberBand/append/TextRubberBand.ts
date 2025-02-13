@@ -4,37 +4,41 @@
  * Created by sunvisor on 2024/01/30.
  * Copyright (C) Sunvisor Lab. 2024.
  */
-import { Shape as SvgShape, Svg } from '@svgdotjs/svg.js';
 import { Position } from '@sunvisor/super-leopard-core';
 import { adjustPosition, moveElement, ShapeRubberBandInterface } from '.';
 import { SettingData } from '../../setting';
+import { SvgDrawerInterface, SvgShapeInterface } from '../../../svgDriver';
 
 export class TextRubberBand implements ShapeRubberBandInterface {
-  readonly #svg: Svg;
+  readonly #svg: SvgDrawerInterface;
   readonly #settings: SettingData;
 
   constructor({ svg, settings }: {
-    svg: Svg,
+    svg: SvgDrawerInterface,
     settings: SettingData
   }) {
     this.#svg = svg;
     this.#settings = settings;
   }
 
-  createElement(): SvgShape {
+  createElement(): SvgShapeInterface {
     const svg = this.#svg;
-    const options = this.#settings.rubberBand.stroke;
-      const element = svg.rect(0, 0);
-    element.stroke(options.stroke).attr(options.attr).fill('none');
+    const stroke = this.#settings.rubberBand.stroke;
 
-    return element;
+    return svg.rect({
+      x: 0,
+      y: 0,
+      width: 0,
+      height: 0,
+      stroke,
+    });
   }
 
   adjustPosition(start: Position, end: Position): Position {
     return adjustPosition(start, end);
   }
 
-  moveElement(start: Position, end: Position, element: SvgShape) {
+  moveElement(start: Position, end: Position, element: SvgShapeInterface) {
     moveElement(start, end, element);
   }
 

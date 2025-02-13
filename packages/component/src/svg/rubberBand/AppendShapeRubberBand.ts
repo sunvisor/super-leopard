@@ -4,8 +4,6 @@
  * Created by sunvisor on 2024/01/26.
  * Copyright (C) Sunvisor Lab. 2024.
  */
-import { Shape as SvgShape, Svg } from '@svgdotjs/svg.js';
-import { getClientRect } from './index';
 import { Position, Scale, Shape } from '@sunvisor/super-leopard-core';
 import {
   createDefaultShapeSize,
@@ -26,6 +24,7 @@ import {
   RectShapeType,
   TextShapeType
 } from '@sunvisor/super-leopard-core';
+import { SvgDrawerInterface, SvgShapeInterface } from '../../svgDriver';
 
 export type AppendShapeType =
   RectShapeType |
@@ -43,7 +42,7 @@ export type AppendShapeRubberBandProps = {
 }
 
 export class AppendShapeRubberBand {
-  readonly #svg: Svg;
+  readonly #svg: SvgDrawerInterface;
   readonly #settings: SettingData;
   readonly #onAppend: OnAppendHandler | undefined;
   readonly #shapeCreator: ShapeCreatorInterface;
@@ -51,12 +50,12 @@ export class AppendShapeRubberBand {
   readonly #defaultShapeSize: DefaultShapeSizeInterface;
   #startAt: Position | undefined;
   #currentAt: Position | undefined;
-  #element: SvgShape | undefined;
+  #element: SvgShapeInterface | undefined;
 
 
   constructor(
     { svg, scale, type, settings, styles, onAppend }: {
-      svg: Svg,
+      svg: SvgDrawerInterface,
       scale: Scale,
       type: AppendShapeType,
       settings: SettingData,
@@ -85,7 +84,7 @@ export class AppendShapeRubberBand {
   start(x: number, y: number): void {
     this.clear();
     this.#svg.clear();
-    this.#startAt = this.#currentAt = getClientRect(this.#svg, x, y);
+    this.#startAt = this.#currentAt = this.#svg.getClientPosition({ x, y });
     this.#element = this.#shapeRB.createElement();
     this.#svg.on('mousemove', this.onMouseMove, this);
     this.#svg.on('mouseup', this.onMouseUp, this);
@@ -94,7 +93,7 @@ export class AppendShapeRubberBand {
   onMouseMove(event: Event): void {
     if (!this.#startAt || !this.#element) return;
     const e = event as MouseEvent;
-    this.#currentAt = getClientRect(this.#svg, e.clientX, e.clientY);
+    this.#currentAt = this.#svg.getClientPosition({ x: e.clientX, y: e.clientY });
     if (e.shiftKey) {
       this.#currentAt = this.#shapeRB.adjustPosition(this.#startAt, this.#currentAt);
     }
@@ -123,6 +122,7 @@ export class AppendShapeRubberBand {
     if (!this.#element) return;
     this.#element.remove();
   }
+
   private createShape(start: Position, end: Position): Shape {
     if (this.isClick(start, end)) {
       end = this.getDefaultEndPosition(start);

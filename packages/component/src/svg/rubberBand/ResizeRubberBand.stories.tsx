@@ -10,9 +10,8 @@ import { ResizeRubberBand } from "./ResizeRubberBand";
 import { Meta, StoryObj } from '@storybook/react';
 import { Box } from '@sunvisor/super-leopard-core';
 import { within } from '@storybook/test';
-import { SVG } from '@svgdotjs/svg.js';
-import { getClientRect } from './index';
 import { HandleType } from '../boundingBox';
+import { createTestSvgDrawer } from '../../__test_assets__';
 
 type ResizeRubberBandProps = {
   type: HandleType;
@@ -41,17 +40,14 @@ const Template: Story = {
 function draw(canvasElement: HTMLElement, args: ResizeRubberBandProps) {
   const canvas = within(canvasElement);
   const el = canvas.getByTestId('test');
-  const svg = SVG().addTo(el).size(500, 500);
+  const svg = createTestSvgDrawer(el);
   const options = {
-    stroke: {
-      stroke: { color: 'gray', width: 1 },
-      attr: { 'stroke-dasharray': '1 2' }
-    },
+    stroke: { style: 'solid', color: 'gray', width: 1 },
     dragThreshold: 2,
   };
   const drawer = new ResizeRubberBand({ svg, options: options, onResize: args.onResize });
   el.addEventListener('mousedown', (e) => {
-    const pos = getClientRect(svg, e.clientX, e.clientY);
+    const pos = svg.getClientPosition({x: e.clientX, y: e.clientY});
     const box = {
       x: pos.x - 50, y: pos.y - 50, width: 100, height: 100
     }

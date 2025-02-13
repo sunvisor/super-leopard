@@ -9,9 +9,9 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { createScale, Box, PositionPair, UnitType } from '@sunvisor/super-leopard-core';
 import { within } from "@storybook/test";
-import { SVG } from "@svgdotjs/svg.js";
 import { BoundingBox } from './BoundingBox';
 import { BoundingBoxOptions, defaultSettings } from '../setting';
+import { createTestSvgDrawer } from '../../__test_assets__';
 
 type BoundingBoxProps = {
   options: BoundingBoxOptions;
@@ -52,7 +52,7 @@ const Template: Story = {
 function draw(canvasElement: HTMLElement, args: BoundingBoxProps) {
   const canvas = within(canvasElement);
   const el = canvas.getByTestId('test');
-  const svg = SVG().addTo(el).size(500, 500);
+  const svg = createTestSvgDrawer(el);
   const scale = createScale({ unit: UnitType.MILLIMETER, zoom: 1, precision: 2, pointPrecision: 2 });
   const drawer = new BoundingBox({
     svg, scale, options: { ...args.options }, onHandleMouseDown: args.onMousedown
@@ -139,10 +139,7 @@ export const WithoutBorder: Story = {
   args: {
     options: {
       ...defaultSettings.boundingBox,
-      stroke: {
-        stroke: {},
-        attr: {}
-      }
+      stroke: undefined
     },
     boundingBox: {
       box: {

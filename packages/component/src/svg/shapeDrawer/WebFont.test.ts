@@ -4,7 +4,6 @@
  * Created by sunvisor on 2025/02/08.
  * Copyright (C) Sunvisor Lab. 2025.
  */
-import { Text as SvgText } from '@svgdotjs/svg.js';
 import { WebFont } from "./WebFont";
 import { describe } from 'vitest';
 import { webFontMap } from '../../__test_assets__';
@@ -18,52 +17,48 @@ describe('Tests for WebFont', () => {
   }
   const webFont = new WebFont(webFontMap);
 
-  describe('Tests for apply method', () => {
+  describe('Tests for svgFontParams method', () => {
 
-    it('should apply style to element', () => {
+    it('should return font style', () => {
       // Arrange
       const scale = createScale({ unit: 'mm' });
       const font = createFont(data);
-      const element = {
-        font: vi.fn().mockReturnThis(),
-        attr: vi.fn().mockReturnThis(),
-      } as unknown as SvgText;
       // Act
-      webFont.apply(element, font, scale);
+      const result = webFont.svgFontParams(font, scale);
       // Assert
-      expect(element.font).toHaveBeenCalledWith({
+      expect(result).toEqual({
         family: 'Times New Roman',
         size: 16,
         style: 'normal',
         weight: 'normal',
       });
-      expect(element.attr).not.toHaveBeenCalled();
     });
 
-    it('should apply text-decoration to element', () => {
+  });
+
+  describe('Tests for textDecoration method', () => {
+
+    it('should return text decoration', () => {
       // Arrange
-      const scale = createScale({ unit: 'mm' });
       const font = createFont({
         ...data,
         style: 'bold,underline'
       });
-      const element = {
-        font: vi.fn().mockReturnThis(),
-        attr: vi.fn().mockReturnThis(),
-      } as unknown as SvgText;
       // Act
-      webFont.apply(element, font, scale);
+      const result = webFont.textDecoration(font);
       // Assert
-      expect(element.font).toHaveBeenCalledWith({
-        family: 'Times New Roman',
-        size: 16,
-        style: 'normal',
-        weight: 'bold'
-      });
-      expect(element.attr).toHaveBeenCalledWith(
-        'text-decoration', 'underline'
-      );
+      expect(result).toEqual('underline');
+    });
 
+    it('should return undefined when text decoration is not specified', () => {
+      // Arrange
+      const font = createFont({
+        ...data,
+      });
+      // Act
+      const result = webFont.textDecoration(font);
+      // Assert
+      expect(result).toBeUndefined();
     });
 
   });

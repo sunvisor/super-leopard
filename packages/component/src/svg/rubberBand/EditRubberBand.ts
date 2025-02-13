@@ -5,13 +5,13 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import { Box, PositionPair } from '@sunvisor/super-leopard-core';
-import { Svg } from '@svgdotjs/svg.js';
 import { SelectRubberBand, OnSelectHandler } from './SelectRubberBand';
 import { MoveRubberBand, OnMoveHandler } from './MoveRubberBand';
 import { HandleType } from '../boundingBox';
 import { ResizeRubberBand, OnResizeHandler } from './ResizeRubberBand';
 import { LineRubberBand, OnMovePositionHandler } from './LineRubberBand';
 import { RubberBandOptions } from '../setting';
+import { SvgDrawerInterface } from '../../svgDriver';
 
 
 export type EditRubberBandInterface = {
@@ -29,14 +29,14 @@ export type RubberBandListeners = {
 type EditRubberBandType = 'select' | 'move' | 'resize' | 'line';
 
 export class EditRubberBand {
-  readonly #svg: Svg;
+  readonly #svg: SvgDrawerInterface;
   readonly #listeners: RubberBandListeners;
   readonly #options: RubberBandOptions;
   #rubberBand: EditRubberBandInterface | undefined;
 
   constructor(
     { svg, listeners, options }: {
-      svg: Svg,
+      svg: SvgDrawerInterface,
       listeners: RubberBandListeners,
       options: RubberBandOptions
     },

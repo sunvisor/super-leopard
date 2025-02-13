@@ -4,23 +4,23 @@
  * Created by sunvisor on 2024/01/25.
  * Copyright () Sunvisor Lab. 2024.
  */
-import { Svg } from '@svgdotjs/svg.js';
 import { Page, Shapes, Line, Scale, LineShape } from '@sunvisor/super-leopard-core';
 import { BoundingBox, HandleType } from '../boundingBox';
 import { EditRubberBand, RubberBandListeners } from '../rubberBand';
 import { SettingData } from '../setting';
 import MouseEventHandler from './MouseEventHandler';
+import { SvgDrawerInterface } from '../../svgDriver';
 
 export class EditingLayerDrawer {
   readonly #page: Page;
   readonly #scale: Scale;
-  readonly #svg: Svg;
+  readonly #svg: SvgDrawerInterface;
   readonly #selection: Shapes;
   readonly #rubberBand: EditRubberBand;
   #boundingBox: BoundingBox | undefined;
 
   constructor({ svg, page, scale, selection, rubberBand }: {
-    svg: Svg;
+    svg: SvgDrawerInterface;
     page: Page;
     scale: Scale,
     selection: Shapes;
@@ -42,8 +42,7 @@ export class EditingLayerDrawer {
     const width = this.#scale.toPixel(this.#page.width);
     const height = this.#scale.toPixel(this.#page.height);
 
-    svg.addTo(el).size(width, height);
-    svg.clear();
+    svg.init(el, { width, height }).clear();
   }
 
   clear() {
@@ -70,7 +69,7 @@ export class EditingLayerDrawer {
 }
 
 export function createEditingLayerDrawer({ svg, scale, page, selection, listeners, settings }: {
-  svg: Svg;
+  svg: SvgDrawerInterface;
   page: Page;
   scale: Scale,
   selection: Shapes;

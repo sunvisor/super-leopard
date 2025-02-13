@@ -5,11 +5,12 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import { TextRubberBand } from "./TextRubberBand";
-import { Rect as SvgRect, Shape, SVG } from '@svgdotjs/svg.js';
 import { defaultSettings } from '../../setting';
+import { createTestSvgDrawer } from '../../../__test_assets__';
+import { SvgShapeInterface } from '../../../svgDriver';
 
 describe('Tests for TextRubberBand', () => {
-  const svg = SVG();
+  const svg = createTestSvgDrawer();
   const settings = defaultSettings;
 
   describe('Test for createElement', () => {
@@ -20,7 +21,7 @@ describe('Tests for TextRubberBand', () => {
       // Act
       const result = textRubberBand.createElement();
       // Assert
-      expect(result).toBeInstanceOf(SvgRect)
+      expect(result.type).toBe('rect');
       expect(svg.find('rect')).toHaveLength(1);
       const element = svg.find('rect')[0];
       expect(element.attr('fill')).toBe('none');
@@ -46,10 +47,10 @@ describe('Tests for TextRubberBand', () => {
     test('Should move and resize svg element', () => {
       // Arrange
       const textRubberBand = new TextRubberBand({ svg, settings });
-      const element: Shape = {
+      const element: SvgShapeInterface = {
         move: vi.fn(() => element),
         size: vi.fn()
-      } as unknown as Shape;
+      } as unknown as SvgShapeInterface;
       // Act
       textRubberBand.moveElement({ x: 10, y: 10 }, { x: 110, y: 210 }, element);
       // Assert

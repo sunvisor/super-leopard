@@ -5,26 +5,26 @@
  * Created by sunvisor on 2024/01/20.
  * Copyright (C) Sunvisor Lab. 2024.
  */
-import { getClientRect } from './index';
-import { Rect, Svg } from '@svgdotjs/svg.js';
 import { Box, normalizeBox, Position } from '@sunvisor/super-leopard-core';
 import { EditRubberBandInterface } from './EditRubberBand';
 import { HandleCursor } from '../boundingBox';
-import { RubberBandOptions, StrokeOptions } from '../setting';
+import { RubberBandOptions } from '../setting';
+import { StrokeOptions, SvgDrawerInterface, SvgRectInterface } from '../../svgDriver';
+
 
 export type OnMoveHandler = (pos: Position) => void;
 
 export class MoveRubberBand implements EditRubberBandInterface {
-  readonly #svg: Svg;
+  readonly #svg: SvgDrawerInterface;
   readonly #onMove?: OnMoveHandler;
   readonly #options: RubberBandOptions;
   #originBox: Box | undefined;
   #rubberBand: Box | undefined;
-  #rect: Rect | undefined;
+  #rect: SvgRectInterface | undefined;
   #diff: Position = { x: 0, y: 0 };
 
   constructor({ svg, options, onMove }: {
-    svg: Svg,
+    svg: SvgDrawerInterface,
     options: RubberBandOptions,
     onMove?: OnMoveHandler
   }) {
@@ -39,7 +39,7 @@ export class MoveRubberBand implements EditRubberBandInterface {
   }
 
   start(x: number, y: number, box: Box): void {
-    const pos = getClientRect(this.#svg, x, y);
+    const pos = this.#svg.getClientPosition({ x, y });
     this.#originBox = this.#rubberBand = box;
     this.#svg.clear();
     this.drawRubberBand(this.#rubberBand);
@@ -47,7 +47,7 @@ export class MoveRubberBand implements EditRubberBandInterface {
       x: pos.x - box.x,
       y: pos.y - box.y,
     }
-    this.#svg.css('cursor', HandleCursor.body);
+    this.#svg.css({ cursor: HandleCursor.body });
     this.#svg.on('mousemove', this.onMouseMove, this);
     this.#svg.on('mouseup', this.onMouseUp, this);
   }
@@ -57,16 +57,16 @@ export class MoveRubberBand implements EditRubberBandInterface {
       return;
     }
     const e = event as MouseEvent;
-    const pos = getClientRect(this.#svg, e.clientX, e.clientY);
+    const pos = this.#svg.getClientPosition({ x: e.clientX, y: e.clientY });
 
     let box = {
-      x: pos.x - this.#diff.x ,
+      x: pos.x - this.#diff.x,
       y: pos.y - this.#diff.y,
       width: this.#rubberBand.width,
       height: this.#rubberBand.height,
     };
     if (e.shiftKey) {
-      box =this.adjustBox(box);
+      box = this.adjustBox(box);
     }
 
     this.#rubberBand = box;
@@ -83,12 +83,12 @@ export class MoveRubberBand implements EditRubberBandInterface {
     return {
       ...box,
       x: (diff.x < diff.y) ? this.#originBox.x : box.x,
-      y: (diff.x < diff.y) ? box.y :this.#originBox.y,
+      y: (diff.x < diff.y) ? box.y : this.#originBox.y,
     }
   }
 
   private onMouseUp(e: Event) {
-    this.#svg.css('cursor', 'default');
+    this.#svg.css({ cursor: 'default' });
     e.preventDefault();
     this.fireMove();
     this.clear();
@@ -124,11 +124,10 @@ export class MoveRubberBand implements EditRubberBandInterface {
     }
   }
 
-  private drawRect(box: Box, options: StrokeOptions) {
-    const { x, y, width, height } = box;
-    return this.#svg.rect(width, height).move(x, y)
-      .fill('none')
-      .stroke(options.stroke)
-      .attr(options.attr);
+  private drawRect(box: Box, stroke: StrokeOptions) {
+    return this.#svg.rect({
+      ...box,
+      stroke
+    });
   }
 }

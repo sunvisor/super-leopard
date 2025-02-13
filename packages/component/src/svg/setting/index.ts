@@ -1,15 +1,10 @@
-import { StrokeData } from '@svgdotjs/svg.js';
 import { WebFontMap } from '../../font';
 import { ColorConfig } from '@sunvisor/super-leopard-core';
-
-export type StrokeOptions = {
-  stroke: StrokeData;
-  attr: object;
-}
+import { StrokeOptions } from '../../svgDriver';
 
 export type BoundingBoxOptions = {
   handleSize: number;
-  stroke: StrokeOptions;
+  stroke?: StrokeOptions;
 }
 
 export type RubberBandOptions = {
@@ -47,14 +42,12 @@ export const defaultSettings: SettingData = {
   boundingBox: {
     handleSize: 6,
     stroke: {
-      stroke: { color: 'lightgray', width: 1 },
-      attr: { 'stroke-dasharray': '1 1' }
+      style: 'dotted', color: '#d3d3d3', width: 1,
     }
   },
   rubberBand: {
     stroke: {
-      stroke: { color: 'gray', width: 1 },
-      attr: { 'stroke-dasharray': '1 2' }
+      style: 'dashed', color: '#808080', width: 1,
     },
     dragThreshold: 2,
   },

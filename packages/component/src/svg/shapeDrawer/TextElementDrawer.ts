@@ -4,9 +4,10 @@
  * Created by sunvisor on 2025/02/07.
  * Copyright (C) Sunvisor Lab. 2025.
  */
-import { Svg, Text as SvgText } from '@svgdotjs/svg.js';
 import {
-  AlignType, AlignValue,
+  AlignType,
+  AlignValue,
+  Box,
   DrawerParams,
   MeasurementInterface,
   Scale,
@@ -14,10 +15,11 @@ import {
   TextDrawerInterface,
 } from '@sunvisor/super-leopard-core';
 import { WebFont } from './WebFont';
+import { SvgDrawerInterface } from '../../svgDriver';
 
 
 type TextDrawerProps = {
-  svg: Svg;
+  svg: SvgDrawerInterface;
   scale: Scale;
   webFont : WebFont;
   measurement: MeasurementInterface;
@@ -25,7 +27,7 @@ type TextDrawerProps = {
 
 export default class TextElementDrawer implements TextDrawerInterface {
 
-  readonly #svg: Svg;
+  readonly #svg: SvgDrawerInterface;
   readonly #scale: Scale;
   readonly #webFont: WebFont;
   readonly #measurement: MeasurementInterface
@@ -39,29 +41,35 @@ export default class TextElementDrawer implements TextDrawerInterface {
 
   draw(text: Text, params?: DrawerParams): void {
     const opacity = params?.opacity || 1;
-    const textElement = this.#svg.text(text.text).fill({
-      color: text.color.color,
+    const box = this.#scale.toPixel(this.position(text));
+    const font = this.#webFont.svgFontParams(text.font, this.#scale);
+    const letterSpacing = this.letterSpacing(text);
+    this.#svg.text({
+      ...box,
+      text: text.text,
+      font,
       opacity,
+      fillColor: text.color?.color || '#000000',
+      textDecoration: this.#webFont.textDecoration(text.font),
+      letterSpacing,
     });
-    this.#webFont.apply(textElement, text.font, this.#scale);
-    this.setPosition(textElement, text)
-    this.setLetterSpacing(text, textElement);
   }
 
-  private setLetterSpacing(text: Text, textElement: SvgText) {
+  private letterSpacing(text: Text) {
     if (text.align === AlignType.JUSTIFY_ALL) {
       const ls = getLetterSpacing(text.width, this.measureWidth(text), text.text.length);
-      textElement.attr('letter-spacing', this.#scale.toPixel(ls));
+      return this.#scale.toPixel(ls);
     }
+    return undefined;
   }
 
-  private setPosition(textElement: SvgText, text: Text) {
-    const { x, y } = text;
+  private position(text: Text): Box {
+    const { x, y, width, height } = text.bbox;
     const areaWidth = text.width;
-    const width = this.measureWidth(text);
-    const xPosition = align(text.align, x, width, areaWidth);
-    const position = this.#scale.toPixel({ x: xPosition, y });
-    textElement.move(position.x, position.y);
+    const textWidth = this.measureWidth(text);
+    const xPosition = align(text.align, x, textWidth, areaWidth);
+
+    return { x: xPosition, y, width, height };
   }
 
   private measureWidth(text: Text) {

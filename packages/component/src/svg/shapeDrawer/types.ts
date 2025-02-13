@@ -4,14 +4,14 @@
  * Created by sunvisor on 2025/02/06.
  * Copyright (C) Sunvisor Lab. 2025.
  */
-import { Svg } from '@svgdotjs/svg.js';
 import { MeasurementInterface, Scale } from '@sunvisor/super-leopard-core';
 import { GetSvgImagePath, SettingData } from '../index';
 import { WebFont } from './WebFont';
+import { SvgDrawerInterface } from '../../svgDriver';
 
 
 export type ShapeDrawerProps = {
-  svg: Svg;
+  svg: SvgDrawerInterface;
   scale: Scale;
 }
 

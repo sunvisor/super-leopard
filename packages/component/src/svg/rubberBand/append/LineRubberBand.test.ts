@@ -6,13 +6,14 @@
  */
 import { LineRubberBand } from "./LineRubberBand";
 import { Scale, UnitType } from '@sunvisor/super-leopard-core';
-import { Line as SvgLine, SVG, TextPath } from '@svgdotjs/svg.js';
 import { defaultStyle } from '../../style';
+import { createTestSvgDrawer } from '../../../__test_assets__';
+import { SvgLineInterface } from '../../../svgDriver';
 
 describe('Tests for LineRubberBand', () => {
   const scale = new Scale({ unit: UnitType.INCH });
   const styles = defaultStyle;
-  const svg = SVG();
+  const svg = createTestSvgDrawer();
 
   describe('Test for createElement', () => {
 
@@ -22,7 +23,7 @@ describe('Tests for LineRubberBand', () => {
       // Act
       const result = lineRubberBand.createElement();
       // Assert
-      expect(result).toBeInstanceOf(SvgLine);
+      expect(result.type).toBe('line');
       expect(svg.find('line')).toHaveLength(1);
     });
 
@@ -55,9 +56,9 @@ describe('Tests for LineRubberBand', () => {
     test('Should plot svg element', () => {
       // Arrange
       const lineRubberBand = new LineRubberBand({ svg, scale, styles });
-      const element: TextPath = {
+      const element: SvgLineInterface = {
         plot: vi.fn(() => element),
-      } as unknown as TextPath;
+      } as unknown as SvgLineInterface;
       // Act
       lineRubberBand.moveElement({ x: 10, y: 20 }, { x: 110, y: 210 }, element);
       // Assert

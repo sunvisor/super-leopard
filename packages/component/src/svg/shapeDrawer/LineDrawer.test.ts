@@ -5,11 +5,11 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import { LineDrawer } from "./LineDrawer";
-import { SVG } from '@svgdotjs/svg.js';
 import { createLine, LineData, Scale, UnitType } from '@sunvisor/super-leopard-core';
+import { createTestSvgDrawer } from '../../__test_assets__';
 
 describe('Tests for LineDrawer#draw', () => {
-  const svg = SVG().size(500, 500);
+  const svg = createTestSvgDrawer();
   const scale = new Scale({ unit: UnitType.INCH });
   const drawer = new LineDrawer({ svg, scale });
   const data: LineData = {
@@ -62,7 +62,7 @@ describe('Tests for LineDrawer#draw', () => {
       border: {
         width: 2,
         color: '#000000',
-      }
+      },
     });
     // Act
     drawer.draw(line, { opacity: 0.5 });

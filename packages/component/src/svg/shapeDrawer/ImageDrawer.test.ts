@@ -5,12 +5,11 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import ImageDrawer from "./ImageDrawer";
-import { SVG } from '@svgdotjs/svg.js';
 import { Scale, UnitType, createImage, ImageData } from '@sunvisor/super-leopard-core';
-import { getImagePath } from '../../__test_assets__';
+import { createTestSvgDrawer, getImagePath } from '../../__test_assets__';
 
 describe('Tests for ImageDrawer#draw', () => {
-  const svg = SVG().size(500, 500);
+  const svg = createTestSvgDrawer();
   const scale = new Scale({ unit: UnitType.INCH });
   const drawer = new ImageDrawer({ svg, scale, getImagePath });
   const data: ImageData = {

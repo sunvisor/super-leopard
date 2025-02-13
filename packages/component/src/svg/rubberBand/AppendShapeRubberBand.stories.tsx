@@ -8,7 +8,6 @@
  */
 import { AppendShapeRubberBand, AppendShapeRubberBandProps } from "./AppendShapeRubberBand";
 import { Meta, StoryObj } from '@storybook/react';
-import { SVG } from '@svgdotjs/svg.js';
 import { within } from '@storybook/test';
 import {
   CircleShape,
@@ -24,6 +23,7 @@ import {
 } from '@sunvisor/super-leopard-core';
 import { defaultSettings } from '../setting';
 import { defaultStyle } from '../style';
+import { createTestSvgDrawer } from '../../__test_assets__';
 
 type Story = StoryObj<AppendShapeRubberBandProps>
 
@@ -47,7 +47,7 @@ const Template: Story = {
 function draw(canvasElement: HTMLElement, args: AppendShapeRubberBandProps) {
   const canvas = within(canvasElement);
   const el = canvas.getByTestId('test');
-  const svg = SVG().addTo(el).size(500, 500);
+  const svg = createTestSvgDrawer(el);
   const scale = createScale({ unit: UnitType.MILLIMETER });
   const styles = defaultStyle;
   const settings = defaultSettings;

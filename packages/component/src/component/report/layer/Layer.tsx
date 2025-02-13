@@ -7,13 +7,13 @@
  * Copyright (C) Sunvisor Lab. 2023.
  */
 import { useEffect, useMemo, useRef } from "react";
-import { SVG } from '@svgdotjs/svg.js';
 import { createLayerDrawer, DrawModeValue, GetSvgImagePath } from '../../../svg';
 import { FieldValues, Shapes } from '@sunvisor/super-leopard-core';
 import { useAtomValue } from 'jotai';
 import { ReadPageAtom, ReadScaleAtom } from '../../../atom/ReportAtom';
 import { SettingsAtom } from '../../../atom/SettingsAtom';
 import styled from '@emotion/styled';
+import { SvgDriver } from '../../../svgDriver';
 
 type Props = {
   name: string;
@@ -42,7 +42,7 @@ export default function Layer(props: Props) {
   } = props;
   const settings = useAtomValue(SettingsAtom);
   const wrapperEl = useRef(null);
-  const svg = useMemo(() => SVG(), []);
+  const svg = useMemo(() => SvgDriver.createDrawer(), []);
   const page = useAtomValue(ReadPageAtom);
   const scale = useAtomValue(ReadScaleAtom);
   const drawer = useMemo(() => createLayerDrawer({

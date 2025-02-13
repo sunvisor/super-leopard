@@ -1,13 +1,13 @@
 import { createScale, TextDrawer } from '@sunvisor/super-leopard-core';
 import { UnitType } from '@sunvisor/super-leopard-core';
 import {createText,  TextData } from '@sunvisor/super-leopard-core';
-import { SVG } from '@svgdotjs/svg.js';
 import { within } from '@storybook/test';
 import { webFontMap } from './font';
 import TextElementDrawer from '../svg/shapeDrawer/TextElementDrawer';
 import { Measurement } from '../svg/shapeDrawer/Measurement';
 import { RectDrawer } from '../svg/shapeDrawer/RectDrawer';
 import { WebFont } from '../svg/shapeDrawer/WebFont';
+import { SvgJsDriver } from '../svgDriver/SvgJsDriver';
 
 
 export type TextProps = {
@@ -21,7 +21,7 @@ export function draw(canvasElement: HTMLElement, args: TextProps) {
   const scale = createScale({unit: UnitType.MILLIMETER, zoom:1, precision:2, pointPrecision: 2});
   const webFont = new WebFont(webFontMap)
   const text = createText(args.text);
-  const svg = SVG().addTo(el).size(scale.toPixel(200), scale.toPixel(200));
+  const svg = SvgJsDriver.createDrawer().init(el, { width: scale.toPixel(200), height: scale.toPixel(200) });
   const measurement = new Measurement({ scale, webFont });
   const textElementDrawer = new TextElementDrawer({ svg, scale, webFont, measurement });
   const rectDrawer = new RectDrawer({ svg, scale });
