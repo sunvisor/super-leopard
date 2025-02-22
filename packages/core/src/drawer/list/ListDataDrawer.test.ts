@@ -36,7 +36,7 @@ describe('Tests for ListDataDrawer', () => {
     expect(() => drawer.draw(list)).toThrow('data is required');
   });
 
-  test('Should throw error when data.listRecords are not provided', () => {
+  it('should throw error when data.listRecords are not provided', () => {
     // Arrange
     const drawer = new ListDataDrawer(groupDrawer, shapeDrawer);
     const list = createList(listData);
@@ -44,7 +44,7 @@ describe('Tests for ListDataDrawer', () => {
     expect(() => drawer.draw(list, {})).toThrow('listRecords is required');
   });
 
-  test('Should draw field specified times', () => {
+  it('should draw field specified times', () => {
     // Arrange
     const drawer = new ListDataDrawer(groupDrawer, shapeDrawer);
     const list = createList(listData);
@@ -63,7 +63,7 @@ describe('Tests for ListDataDrawer', () => {
     );
   });
 
-  test('Should draw group specified times', () => {
+  it('should draw group specified times', () => {
     // Arrange
     const drawer = new ListDataDrawer(groupDrawer, shapeDrawer);
     const list = createList(listWithGroupData);

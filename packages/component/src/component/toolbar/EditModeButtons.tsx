@@ -11,6 +11,7 @@ import CircleOutlinedIcon from '@mui/icons-material/CircleOutlined';
 import PhotoSizeSelectActualIcon from '@mui/icons-material/PhotoSizeSelectActual';
 import TitleIcon from '@mui/icons-material/Title';
 import TextFieldsIcon from '@mui/icons-material/TextFields';
+import QrCodeIcon from '@mui/icons-material/QrCode';
 import { EditMode } from '../reportEditor/ReportWorkArea';
 import EllipseIcon from '../toolbar/EllipseIcon';
 import LineIcon from '../toolbar/LineIcon';
@@ -47,7 +48,8 @@ export default function EditModeButtons(props: Props) {
     { value: "image", icon: <PhotoSizeSelectActualIcon /> , title: captions.image },
     { value: "text", icon: <TitleIcon /> , title: captions.text },
     { value: "field", icon: <TextFieldsIcon /> , title: captions.field },
-  ], [captions.edit, captions.rect, captions.circle, captions.ellipse, captions.line, captions.image, captions.text, captions.field]);
+    { value: "barcode", icon: <QrCodeIcon /> , title: captions.barcode },
+  ], [captions.edit, captions.rect, captions.circle, captions.ellipse, captions.line, captions.image, captions.text, captions.field, captions.barcode]);
 
   return (
     <ToggleTools

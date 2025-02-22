@@ -14,14 +14,15 @@ import {
   RectShapeType,
   Shape,
   TextShapeType,
+  BarcodeShapeType,
 } from '@sunvisor/super-leopard-core';
 import { useAtomValue } from 'jotai';
 import { ReadPageAtom, ReadScaleAtom } from '../../../atom/ReportAtom';
-import { SettingsAtom } from '../../../atom/SettingsAtom';
 import { StylesAtom } from '../../../atom/StylesAtom';
 import { AppendShapeRubberBand } from '../../../svg';
 import { LayerDiv } from '../../report/layer/Layer';
 import { SvgDriver } from '../../../svgDriver';
+import { getSettings } from '../../../settings';
 
 export type OnAppendHandler = (shape: Shape) => void;
 
@@ -32,7 +33,8 @@ export type AppendShapeType =
   LineShapeType |
   TextShapeType |
   FieldShapeType |
-  ImageShapeType;
+  ImageShapeType |
+  BarcodeShapeType;
 
 type Props = {
   shapeType: AppendShapeType;
@@ -45,7 +47,7 @@ export default function AppendShapeLayer(props: Props) {
   const { shapeType, onAppend } = props;
   const page = useAtomValue(ReadPageAtom);
   const scale = useAtomValue(ReadScaleAtom);
-  const settings = useAtomValue(SettingsAtom);
+  const settings = getSettings();
   const styles = useAtomValue(StylesAtom);
   const rubberBand = useMemo(() => {
     return new AppendShapeRubberBand({

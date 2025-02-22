@@ -7,7 +7,7 @@
 import { createReportDrawer } from "./createReportDrawer";
 import { ReportData } from '@sunvisor/super-leopard-core';
 import { PageReportDrawer } from './PageReportDrawer';
-import { createTestFonts, getImagePath, testAssets } from '../__test_assets__';
+import { createTestFonts, getImagePath, loadErrorImage, testAssets } from '../__test_assets__';
 import { ListReportDrawer } from './ListReportDrawer';
 
 
@@ -32,6 +32,7 @@ describe('Tests for createReportDrawer', () => {
     const drawer = createReportDrawer({
       report,
       getImagePath,
+      loadErrorImage,
       fonts: createTestFonts(),
     })
     // Assert
@@ -57,7 +58,9 @@ describe('Tests for createReportDrawer', () => {
       }],
     };
     // Act
-    const drawer = createReportDrawer({ report, getImagePath, fonts: createTestFonts() });
+    const drawer = createReportDrawer({
+      report, getImagePath, loadErrorImage, fonts: createTestFonts()
+    });
     // Assert
     expect(drawer).toBeInstanceOf(ListReportDrawer);
   });

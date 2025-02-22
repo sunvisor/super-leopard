@@ -5,7 +5,13 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import { useCallback, useEffect, useMemo } from "react";
-import { contractRect, expandRect, Rect, RectPropertyValue, UnitValue } from '@sunvisor/super-leopard-core';
+import {
+  createRect,
+  Rect,
+  RectData,
+  serializeRect,
+  UnitValue
+} from '@sunvisor/super-leopard-core';
 import usePropertyStates from '../usePropertyStates';
 import PropertyBox from './PropertyBox';
 import RectPanel from '../panel/RectPanel';
@@ -20,18 +26,18 @@ type Props = {
 export default function RectProperty(props: Props) {
   const { unit, shape, onUpdate } = props;
   const rectProperty = useMemo(
-    () => expandRect(shape), [shape]
+    () => serializeRect(shape), [shape]
   );
 
   const doUpdate = useCallback(
-    (values: RectPropertyValue) => {
-      const updated = contractRect(values);
+    (values: RectData) => {
+      const updated = createRect(values);
       onUpdate(shape, updated);
     },
     [shape, onUpdate]
   );
 
-  const { values, setValues, handleChangeValue } = usePropertyStates<RectPropertyValue>(
+  const { values, setValues, handleChangeValue } = usePropertyStates<RectData>(
     rectProperty,
     values => doUpdate(values)
   );

@@ -1,0 +1,47 @@
+/**
+ * Test for PdfDrawer
+ *
+ * Created by sunvisor on 2025/02/21.
+ * Copyright (C) Sunvisor Lab. 2025.
+ */
+import { PdfDrawer } from "./PdfDrawer";
+import { describe } from 'vitest';
+import {
+  createAndRegisterTestFonts,
+  getImagePath,
+  loadErrorImage,
+  mockDoc,
+  mockMeasurement,
+  testAssets
+} from '../__test_assets__';
+import { createScale, createShapes } from '@sunvisor/super-leopard-core';
+const { shapeTestData } = testAssets;
+
+describe('Tests for PdfDrawer', () => {
+
+  const scale = createScale({
+    unit: 'mm',
+  });
+  const drawer = new PdfDrawer({
+    doc: mockDoc,
+    scale,
+    getImagePath,
+    loadErrorImage,
+    fonts: createAndRegisterTestFonts(mockDoc),
+    measurement: mockMeasurement,
+  });
+
+  describe('Tests for draw', () => {
+
+    it('should draw shapes', () => {
+      // Arrange
+      const shapes = createShapes(shapeTestData);
+      // Act
+      drawer.draw(shapes);
+      // Assert
+      expect(mockDoc.circle).toBeCalledTimes(1);
+    });
+
+  });
+
+});

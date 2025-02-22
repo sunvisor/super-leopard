@@ -60,22 +60,22 @@ describe('Tests for border', () => {
       expect(border.join).toBe('miter');
     });
 
-    test('Should throw an error when specified invalid border style', () => {
+    it('should throw an error when specified invalid border style', () => {
       expect(() => new Border({ width: 1, color, style: 'invalid' })).toThrow('Invalid border style');
     });
 
-    test('Should throw an error when specified invalid border cap', () => {
+    it('should throw an error when specified invalid border cap', () => {
       expect(() => new Border({ width: 1, color, cap: 'invalid' })).toThrow('Invalid border cap');
     });
 
-    test('Should throw an error when specified invalid border join', () => {
+    it('should throw an error when specified invalid border join', () => {
       expect(() => new Border({ width: 1, color, join: 'invalid' })).toThrow('Invalid border join');
     });
 
   });
   describe('Test for config', () => {
 
-    test('Should return config values', () => {
+    it('should return config values', () => {
       // Act
       const border = new Border({ width: 1, color, style: 'solid', cap: 'butt', join: 'miter' });
       // Assert
@@ -86,7 +86,7 @@ describe('Tests for border', () => {
 
   describe('Tests for equals', () => {
 
-    test('Should return true when borders are equal', () => {
+    it('should return true when borders are equal', () => {
       // Arrange
       const border1 = new Border({ width: 1, color, style: 'solid', cap: 'butt', join: 'miter' });
       const border2 = new Border({ width: 1, color, style: 'solid', cap: 'butt', join: 'miter' });
@@ -96,7 +96,7 @@ describe('Tests for border', () => {
       expect(result).toBe(true);
     });
 
-    test('Should return false when width are not equal', () => {
+    it('should return false when width are not equal', () => {
       // Arrange
       const border1 = new Border({ width: 1, color, style: 'solid', cap: 'butt', join: 'miter' });
       const border2 = new Border({ width: 2, color, style: 'solid', cap: 'butt', join: 'miter' });
@@ -106,7 +106,7 @@ describe('Tests for border', () => {
       expect(result).toBe(false);
     });
 
-    test('Should return false when color are not equal', () => {
+    it('should return false when color are not equal', () => {
       // Arrange
       const border1 = new Border({ width: 1, color, style: 'solid', cap: 'butt', join: 'miter' });
       const border2 = new Border({ width: 1, color: new Color('#ffffff'), style: 'solid', cap: 'butt', join: 'miter' });
@@ -116,7 +116,7 @@ describe('Tests for border', () => {
       expect(result).toBe(false);
     });
 
-    test('Should return false when style are not equal', () => {
+    it('should return false when style are not equal', () => {
       // Arrange
       const border1 = new Border({ width: 1, color, style: 'solid', cap: 'butt', join: 'miter' });
       const border2 = new Border({ width: 1, color, style: 'dashed', cap: 'butt', join: 'miter' });
@@ -126,7 +126,7 @@ describe('Tests for border', () => {
       expect(result).toBe(false);
     });
 
-    test('Should return false when cap are not equal', () => {
+    it('should return false when cap are not equal', () => {
       // Arrange
       const border1 = new Border({ width: 1, color, style: 'solid', cap: 'butt', join: 'miter' });
       const border2 = new Border({ width: 1, color, style: 'solid', cap: 'round', join: 'miter' });
@@ -136,7 +136,7 @@ describe('Tests for border', () => {
       expect(result).toBe(false);
     });
 
-    test('Should return false when join are not equal', () => {
+    it('should return false when join are not equal', () => {
       // Arrange
       const border1 = new Border({ width: 1, color, style: 'solid', cap: 'butt', join: 'miter' });
       const border2 = new Border({ width: 1, color, style: 'solid', cap: 'butt', join: 'bevel' });
@@ -146,7 +146,7 @@ describe('Tests for border', () => {
       expect(result).toBe(false);
     });
 
-    test('Should return false when border is undefined', () => {
+    it('should return false when border is undefined', () => {
       // Arrange
       const border1 = new Border({ width: 1, color, style: 'solid', cap: 'butt', join: 'miter' });
       // Act

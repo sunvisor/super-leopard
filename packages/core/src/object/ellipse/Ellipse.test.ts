@@ -10,6 +10,7 @@ import { Box, Position } from "../../value";
 import { EllipseShape } from '../shape';
 import { describe } from 'vitest';
 
+
 describe('Tests for Ellipse', () => {
 
   describe('Tests for create Ellipse', () => {
@@ -66,7 +67,7 @@ describe('Tests for Ellipse', () => {
 
   describe('Tests for bbox', () => {
 
-    test('Should return bounding box', () => {
+    it('should return bounding box', () => {
       // Arrange
       const ellipse = new Ellipse({ x: 10, y: 20, width: 10, height: 20 });
       // Act
@@ -82,7 +83,7 @@ describe('Tests for Ellipse', () => {
 
   describe('Test for config', () => {
 
-    test('Should return config values', () => {
+    it('should return config values', () => {
       // Arrange
       const border = new Border({ width: 1, color: new Color('#0000ff') });
       const fillColor = new Color('#ff0000');
@@ -106,7 +107,7 @@ describe('Tests for Ellipse', () => {
 
   describe('Test for set', () => {
 
-    test('Should return a new instance with changed x', () => {
+    it('should return a new instance with changed x', () => {
       // Arrange
       const border = new Border({ width: 1, color: new Color('#0000ff') });
       const fillColor = new Color('#ff0000');
@@ -124,7 +125,7 @@ describe('Tests for Ellipse', () => {
       assertOtherProperties(ellipse, newEllipse, ['x']);
     });
 
-    test('Should return new instance with changed y', () => {
+    it('should return new instance with changed y', () => {
       // Arrange
       const border = new Border({ width: 1, color: new Color('#0000ff') });
       const fillColor = new Color('#ff0000');
@@ -142,7 +143,7 @@ describe('Tests for Ellipse', () => {
       assertOtherProperties(ellipse, newEllipse, ['y']);
     });
 
-    test('Should return new instance with changed width', () => {
+    it('should return new instance with changed width', () => {
       // Arrange
       const border = new Border({ width: 1, color: new Color('#0000ff') });
       const fillColor = new Color('#ff0000');
@@ -160,7 +161,7 @@ describe('Tests for Ellipse', () => {
       assertOtherProperties(ellipse, newEllipse, ['width']);
     });
 
-    test('Should return new instance with changed height', () => {
+    it('should return new instance with changed height', () => {
       // Arrange
       const border = new Border({ width: 1, color: new Color('#0000ff') });
       const fillColor = new Color('#ff0000');
@@ -178,7 +179,7 @@ describe('Tests for Ellipse', () => {
       assertOtherProperties(ellipse, newEllipse, ['height']);
     });
 
-    test('Should return new instance with changed border', () => {
+    it('should return new instance with changed border', () => {
       // Arrange
       const border = new Border({ width: 1, color: new Color('#0000ff') });
       const fillColor = new Color('#ff0000');
@@ -196,7 +197,7 @@ describe('Tests for Ellipse', () => {
       assertOtherProperties(ellipse, newEllipse, ['border']);
     });
 
-    test('Should return new instance with changed fillColor', () => {
+    it('should return new instance with changed fillColor', () => {
       // Arrange
       const border = new Border({ width: 1, color: new Color('#0000ff') });
       const fillColor = new Color('#ff0000');
@@ -218,7 +219,7 @@ describe('Tests for Ellipse', () => {
 
   describe('Test for moveTo', () => {
 
-    test('Should return a new moved instance', () => {
+    it('should return a new moved instance', () => {
       // Arrange
       const border = new Border({ width: 1, color: new Color('#0000ff') });
       const fillColor = new Color('#ff0000');
@@ -241,7 +242,7 @@ describe('Tests for Ellipse', () => {
 
   describe('Test for resize', () => {
 
-    test('Should return new resized instance', () => {
+    it('should return new resized instance', () => {
       // Arrange
       const border = new Border({ width: 1, color: new Color('#0000ff') });
       const fillColor = new Color('#ff0000');
@@ -271,7 +272,7 @@ describe('Tests for Ellipse', () => {
 
   describe('Test for equals', () => {
 
-    test('Should return true when two Ellipse are same', () => {
+    it('should return true when two Ellipse are same', () => {
       // Arrange
       const border = new Border({ width: 1, color: new Color('#0000ff') });
       const fillColor = new Color('#ff0000');
@@ -291,7 +292,7 @@ describe('Tests for Ellipse', () => {
       expect(equals).toBe(true);
     });
 
-    test('Should return true when two Ellipse where border is undefined', () => {
+    it('should return true when two Ellipse where border is undefined', () => {
       // Arrange
       const fillColor = new Color('#ff0000');
       const ellipse1 = new Ellipse({
@@ -308,7 +309,7 @@ describe('Tests for Ellipse', () => {
       expect(equals).toBe(true);
     });
 
-    test('Should return false when border are different', () => {
+    it('should return false when border are different', () => {
       // Arrange
       const border1 = new Border({ width: 1, color: new Color('#0000ff') });
       const border2 = new Border({ width: 2, color: new Color('#0000ff') });

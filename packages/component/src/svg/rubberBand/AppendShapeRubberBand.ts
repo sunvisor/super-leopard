@@ -4,7 +4,7 @@
  * Created by sunvisor on 2024/01/26.
  * Copyright (C) Sunvisor Lab. 2024.
  */
-import { Position, Scale, Shape } from '@sunvisor/super-leopard-core';
+import { BarcodeShapeType, Position, Scale, Shape } from '@sunvisor/super-leopard-core';
 import {
   createDefaultShapeSize,
   createShapeCreator,
@@ -13,7 +13,7 @@ import {
   ShapeCreatorInterface,
   ShapeRubberBandInterface
 } from './append';
-import { SettingData } from '../setting';
+import { SettingData } from '../../settings';
 import { StylesData } from '../style';
 import {
   CircleShapeType,
@@ -33,13 +33,10 @@ export type AppendShapeType =
   LineShapeType |
   TextShapeType |
   FieldShapeType |
-  ImageShapeType;
+  ImageShapeType |
+  BarcodeShapeType;
 
 export type OnAppendHandler = (shape: Shape) => void;
-
-export type AppendShapeRubberBandProps = {
-  type: AppendShapeType;
-}
 
 export class AppendShapeRubberBand {
   readonly #svg: SvgDrawerInterface;

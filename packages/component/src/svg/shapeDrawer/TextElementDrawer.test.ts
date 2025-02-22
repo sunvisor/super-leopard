@@ -5,7 +5,7 @@
  * Copyright (C) Sunvisor Lab. 2025.
  */
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import TextElementDrawer from './TextElementDrawer';
+import { TextElementDrawer } from './TextElementDrawer';
 import {
   createScale,
   createText,
@@ -33,7 +33,7 @@ describe('TextElementDrawer', () => {
     },
     color: '#000000',
   }
-  const scale = createScale({ unit: 'mm'});
+  const scale = createScale({ unit: 'mm' });
   const dummyFont = { name: 'Arial', size: 12, weight: 'normal', style: 'normal' }
   let mockSvg: SvgDrawerInterface;
   let mockTextElement: SvgTextInterface;

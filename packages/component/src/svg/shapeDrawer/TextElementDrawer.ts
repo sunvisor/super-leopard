@@ -25,7 +25,7 @@ type TextDrawerProps = {
   measurement: MeasurementInterface;
 }
 
-export default class TextElementDrawer implements TextDrawerInterface {
+export class TextElementDrawer implements TextDrawerInterface {
 
   readonly #svg: SvgDrawerInterface;
   readonly #scale: Scale;

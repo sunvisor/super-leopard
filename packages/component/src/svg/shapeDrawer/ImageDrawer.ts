@@ -10,30 +10,32 @@ import {
   ImageDrawerInterface,
   Scale
 } from '@sunvisor/super-leopard-core';
-import { GetSvgImagePath } from '../index';
+import { GetImageUrl } from '../../settings';
 import { ImageDrawerProps } from './types';
 import { SvgDrawerInterface } from '../../svgDriver';
 
-export default class ImageDrawer implements ImageDrawerInterface {
+export class ImageDrawer implements ImageDrawerInterface {
 
   readonly #svg: SvgDrawerInterface;
   readonly #scale: Scale;
-  readonly #getImagePath: GetSvgImagePath;
+  readonly #getImageUrl: GetImageUrl;
+  readonly #noImageUrl: string;
 
-  constructor({ svg, scale, getImagePath }: ImageDrawerProps) {
+  constructor({ svg, scale, imageOptions }: ImageDrawerProps) {
     this.#svg = svg;
     this.#scale = scale;
-    this.#getImagePath = getImagePath
+    this.#getImageUrl = imageOptions.getImageUrl
+    this.#noImageUrl = imageOptions.noImageUrl;
   }
 
   draw(image: Image, { opacity = 1 }: DrawerParams): void {
     const scale = this.#scale;
     const { x, y, width, height } = scale.toPixel(image);
-    const imagePath = this.#getImagePath(image.src)
+    const url = image.src.length ? this.#getImageUrl(image.src) : this.#noImageUrl;
 
     this.#svg.image({
       x, y, width, height,
-      src: imagePath,
+      src: url,
       opacity
     });
   }

@@ -8,9 +8,10 @@ import { afterEach, Mock } from 'vitest';
 import { createDataDrawer } from './createDataDrawer';
 import { mockShapeDrawers } from '../../__test_assets__/drawerTest';
 import { ShapeData } from '../../data';
-import { createScale, createShapes } from '../../creator';
-import { TextShape } from '../../object';
+import { createShapes } from '../../creator';
+import { createScale, TextShape } from '../../object';
 import { MeasurementInterface } from '../types';
+
 
 describe('Tests for dataDrawer', () => {
 
@@ -33,7 +34,7 @@ describe('Tests for dataDrawer', () => {
     scale,
   });
 
-  test('Should draw text when shape type is text', () => {
+  it('should draw text when shape type is text', () => {
     // Arrange
     const shapesData: ShapeData[] = [{
       type: 'text',
@@ -55,7 +56,7 @@ describe('Tests for dataDrawer', () => {
     expect(textDrawer.draw).toHaveBeenCalledTimes(1);
   });
 
-  test('Should draw field with given values when shape type is field', () => {
+  it('should draw field with given values when shape type is field', () => {
     // Arrange
     const shapesData: ShapeData[] = [{
       type: 'field',
@@ -82,7 +83,7 @@ describe('Tests for dataDrawer', () => {
     expect(text.text).toBe('Hello, World!');
   });
 
-  test('Should draw group groupCount times', () => {
+  it('should draw group groupCount times', () => {
     // Arrange
     const shapesData: ShapeData[] = [{
       type: 'group',
@@ -107,7 +108,7 @@ describe('Tests for dataDrawer', () => {
     expect(textDrawer.draw).toHaveBeenCalledTimes(3);
   });
 
-  test('Should draw list number of listRecords', () => {
+  it('should draw list number of listRecords', () => {
     // Arrange
     const shapesData: ShapeData[] = [{
       type: 'list',

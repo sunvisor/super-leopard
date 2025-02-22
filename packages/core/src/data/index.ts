@@ -16,3 +16,4 @@ export * from './borderData';
 export * from './circleData';
 export * from './reportData';
 export * from './ellipseData';
+export * from './barcodeData';

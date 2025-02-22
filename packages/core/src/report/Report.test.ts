@@ -15,7 +15,7 @@ describe('Tests for Report', () => {
 
   describe('Tests for updateLayers', () => {
 
-    test('Should return new updated instance', () => {
+    it('should return new updated instance', () => {
       // Arrange
       const report: ReportData = {
         page: {
@@ -48,7 +48,7 @@ describe('Tests for Report', () => {
       expect(result.layers).toEqual(layers);
     });
 
-    test('Should throw error when layers has multiple List', () => {
+    it('should throw error when layers has multiple List', () => {
       // Arrange
       const report: ReportData = {
         page: {
@@ -76,7 +76,7 @@ describe('Tests for Report', () => {
 
   describe('Tests for reportHasList', () => {
 
-    test('Should return true when report has List', () => {
+    it('should return true when report has List', () => {
       // Arrange
       const report: ReportData = {
         page: {
@@ -95,7 +95,7 @@ describe('Tests for Report', () => {
       expect(result).toBe(true);
     });
 
-    test('Should return false when report does not have List', () => {
+    it('should return false when report does not have List', () => {
       // Arrange
       const report: ReportData = {
         page: {
@@ -118,7 +118,7 @@ describe('Tests for Report', () => {
 
   describe('Tests for layersHasMultipleList', () => {
 
-    test('Should return true when layers has multiple List', () => {
+    it('should return true when layers has multiple List', () => {
       // Arrange
       const layers: LayerData[] = [{
         name: 'test',
@@ -130,7 +130,7 @@ describe('Tests for Report', () => {
       expect(result).toBe(true);
     });
 
-    test('Should return false when layers does not have multiple List', () => {
+    it('should return false when layers does not have multiple List', () => {
       // Arrange
       const layers: LayerData[] = [{
         name: 'test',
@@ -146,7 +146,7 @@ describe('Tests for Report', () => {
 
   describe('Tests for getListFromReport', () => {
 
-    test('Should return the List for Report', () => {
+    it('should return the List for Report', () => {
       // Act
       const result = getListFromReport(billTestData);
       // Assert
@@ -158,7 +158,7 @@ describe('Tests for Report', () => {
 
   describe('Tests for getReportSchema', () => {
 
-    test('Should return the required data structure when ReportData is provided', () => {
+    it('should return the required data structure when ReportData is provided', () => {
       // Arrange
       // Act
       const result = getReportSchema(billTestData);

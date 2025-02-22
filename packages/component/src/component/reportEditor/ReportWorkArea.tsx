@@ -20,21 +20,17 @@ import useKeyboard from '../reportEditor/hooks/useKeyboard';
 import useEventHandler from '../reportEditor/hooks/useEventHandler';
 import { isMac } from '../environment';
 import contractShapes from '../report/layer/contractShapes';
-import { GetSvgImagePath } from '../../svg';
 
-export type EditMode =
-  AppendShapeType | 'edit';
+
+export type EditMode = AppendShapeType | 'edit';
 
 type Props = {
   mode: EditMode;
   zoom: number;
-  getImageUrl: GetSvgImagePath;
 }
 
 export default function ReportWorkArea(props: Props) {
-  const {
-    mode, zoom, getImageUrl
-  } = props;
+  const { mode, zoom } = props;
   const report = useAtomValue(ReadReportAtom)
   const activeLayerIndex = useAtomValue(ReadActiveLayerIndexAtom);
   const layers = useMemo(
@@ -77,7 +73,6 @@ export default function ReportWorkArea(props: Props) {
                 name={name}
                 shapes={layerShapes}
                 mode={DrawModeType.DESIGN}
-                getImageUrl={getImageUrl}
               />
             );
           })

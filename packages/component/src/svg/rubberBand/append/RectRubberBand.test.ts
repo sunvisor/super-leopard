@@ -18,7 +18,7 @@ describe('Tests for RectRubberBand', () => {
 
   describe('Test for createElement', () => {
 
-    test('Should return Svg rect element', () => {
+    it('should return Svg rect element', () => {
       // Arrange
       const rectRubberBand = new RectRubberBand({ svg, scale, styles });
       // Act
@@ -32,7 +32,7 @@ describe('Tests for RectRubberBand', () => {
 
   describe('Test for adjustPosition', () => {
 
-    test('Should return end position adjusted to match the width and height', () => {
+    it('should return end position adjusted to match the width and height', () => {
       // Arrange
       const rectRubberBand = new RectRubberBand({ svg, scale, styles });
       // Act
@@ -45,7 +45,7 @@ describe('Tests for RectRubberBand', () => {
 
   describe('Test for moveElement', () => {
 
-    test('Should move and resize svg element', () => {
+    it('should move and resize svg element', () => {
       // Arrange
       const rectRubberBand = new RectRubberBand({ svg, scale, styles });
       const e: unknown = {

@@ -10,7 +10,7 @@ import {
   RectShape,
   Shape,
   TextShape,
-  Scale,
+  Scale, BarcodeShape,
 } from '@sunvisor/super-leopard-core';
 import { CreateRect } from './CreateRect';
 import { CreateCircle } from './CreateCircle';
@@ -27,10 +27,11 @@ import { DefaultRectSize } from './DefaultRectSize';
 import { DefaultLineSize } from './DefaultLineSize';
 import { CreateField } from './CreateField';
 import { CreateImage } from './CreateImage';
-import { DefaultShapeSize, SettingData } from '../../setting';
+import { DefaultShapeSize, SettingData } from '../../../settings';
 import { StylesData } from '../../style';
 import { AppendShapeType } from '../AppendShapeRubberBand';
 import { SvgDrawerInterface, SvgShapeInterface } from '../../../svgDriver';
+import { CreateBarcode } from './CreateBarcode';
 
 export type ShapeCreatorInterface = {
   create(start: Position, end: Position): Shape;
@@ -76,6 +77,7 @@ export function createShapeCreator(type: AppendShapeType, params: {
     [TextShape]: CreateText,
     [FieldShape]: CreateField,
     [ImageShape]: CreateImage,
+    [BarcodeShape]: CreateBarcode,
   };
 
   return new creators[type](params);
@@ -95,6 +97,7 @@ export function createShapeRubberBand(type: AppendShapeType, params: {
     [TextShape]: TextRubberBand,
     [FieldShape]: TextRubberBand,
     [ImageShape]: TextRubberBand,
+    [BarcodeShape]: TextRubberBand,
   };
 
   return new rubberBands[type](params);

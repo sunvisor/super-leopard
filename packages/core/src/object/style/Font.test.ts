@@ -73,7 +73,7 @@ describe('Tests for Font', () => {
 
   describe('Tests for config', () => {
 
-    test('Should return config values', () => {
+    it('should return config values', () => {
       // Arrange
       const config = {
         family: 'serif',
@@ -90,7 +90,7 @@ describe('Tests for Font', () => {
 
   describe('Tests for set', () => {
 
-    test('Should return a new instance with changed family', () => {
+    it('should return a new instance with changed family', () => {
       // Arrange
       const font = new Font({
         family: 'serif',
@@ -105,7 +105,7 @@ describe('Tests for Font', () => {
       expect(result.size).toBe(font.size);
     });
 
-    test('Should return a new instance with changed style', () => {
+    it('should return a new instance with changed style', () => {
       // Arrange
       const font = new Font({
         family: 'serif',
@@ -120,7 +120,7 @@ describe('Tests for Font', () => {
       expect(result.size).toBe(font.size);
     });
 
-    test('Should return a new instance with changed size', () => {
+    it('should return a new instance with changed size', () => {
       // Arrange
       const font = new Font({
         family: 'serif',
@@ -139,7 +139,7 @@ describe('Tests for Font', () => {
 
   describe('Tests for equals', () => {
 
-    test('Should return true when font is equal', () => {
+    it('should return true when font is equal', () => {
       // Arrange
       const font1 = new Font({
         family: 'serif',
@@ -157,7 +157,7 @@ describe('Tests for Font', () => {
       expect(result).toBe(true);
     });
 
-    test('Should return true when even if style order is different', () => {
+    it('should return true when even if style order is different', () => {
       // Arrange
       const font1 = new Font({
         family: 'serif',
@@ -175,7 +175,7 @@ describe('Tests for Font', () => {
       expect(result).toBe(true);
     });
 
-    test('Should return false when family are not equal', () => {
+    it('should return false when family are not equal', () => {
       // Arrange
       const font1 = new Font({
         family: 'serif',

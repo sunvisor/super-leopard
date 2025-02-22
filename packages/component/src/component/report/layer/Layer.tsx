@@ -7,13 +7,13 @@
  * Copyright (C) Sunvisor Lab. 2023.
  */
 import { useEffect, useMemo, useRef } from "react";
-import { createLayerDrawer, DrawModeValue, GetSvgImagePath } from '../../../svg';
+import { createLayerDrawer, DrawModeValue } from '../../../svg';
 import { FieldValues, Shapes } from '@sunvisor/super-leopard-core';
 import { useAtomValue } from 'jotai';
 import { ReadPageAtom, ReadScaleAtom } from '../../../atom/ReportAtom';
-import { SettingsAtom } from '../../../atom/SettingsAtom';
 import styled from '@emotion/styled';
 import { SvgDriver } from '../../../svgDriver';
+import { getSettings } from '../../../settings';
 
 type Props = {
   name: string;
@@ -22,7 +22,6 @@ type Props = {
   values?: FieldValues;
   listRecords?: FieldValues[];
   pageNumber?: number;
-  getImageUrl: GetSvgImagePath;
 };
 
 export const LayerDiv = styled('div')({
@@ -38,16 +37,15 @@ export default function Layer(props: Props) {
     values,
     listRecords,
     pageNumber,
-    getImageUrl,
   } = props;
-  const settings = useAtomValue(SettingsAtom);
+  const settings = getSettings();
   const wrapperEl = useRef(null);
   const svg = useMemo(() => SvgDriver.createDrawer(), []);
   const page = useAtomValue(ReadPageAtom);
   const scale = useAtomValue(ReadScaleAtom);
   const drawer = useMemo(() => createLayerDrawer({
-    svg, page, scale, settings, getImagePath: getImageUrl, mode
-  }), [svg, page, scale, settings, getImageUrl, mode]);
+    svg, page, scale, settings, mode
+  }), [svg, page, scale, settings, mode]);
 
   useEffect(() => {
     if (

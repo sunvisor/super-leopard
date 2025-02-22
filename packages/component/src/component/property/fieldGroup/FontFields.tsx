@@ -8,41 +8,79 @@ import { useCallback, useEffect, useState } from "react";
 import { Box } from '@mui/material';
 import FontFamilyField from '../field/FontFamilyField';
 import getCaptions from '../../../captions/getCaptions';
-import { FontStyleValue } from '@sunvisor/super-leopard-core';
+import { FontData, FontStyleValue, toStyleString, toStyleValues } from '@sunvisor/super-leopard-core';
 import { ChangeValueHandler } from '../usePropertyStates';
 import { FontList } from '../../../font';
 import FontStyleButtons from '../field/FontStyleButtons';
 import GroupBox from '../fieldGroup/GroupBox';
 import NumberField from '../field/NumberField';
-import { FontListItem } from '../../../font/font';
+import { adjustFontStyle, FontListItem } from '../../../font/font';
+
 
 const MAX_FONT_SIZE = 512;
 
-export type FontFieldType = string|number|FontStyleValue[];
+export type FontValueType = Omit<FontData, 'style'> & {
+  style: FontStyleValue[];
+}
+
+export type FontFieldType = FontValueType | undefined;
+type ChangeValueType = number | string | FontStyleValue[] | undefined;
 
 type Props = {
-  fontFamily: string;
-  fontSize: number;
-  fontStyle: FontStyleValue[];
+  font: FontData;
   fontList: FontList;
   multiLine?: boolean;
-  onChangeValue: ChangeValueHandler<FontFieldType>;
+  onChangeValue: ChangeValueHandler<FontData>;
+}
+
+function toFontValue(font: FontData): FontValueType {
+  return {
+    ...font,
+    style: toStyleValues(font.style) || [],
+  }
+}
+
+function toFontData(font: FontValueType): FontData {
+  return {
+    ...font,
+    style: toStyleString(font.style),
+  }
 }
 
 export default function FontFields(props: Props) {
-  const { fontFamily, fontSize, fontStyle, fontList, multiLine, onChangeValue } = props;
+  const { fontList, multiLine, onChangeValue } = props;
   const captions = getCaptions('fontProperty');
   const [ enabledStyles, setEnabledStyles ] = useState<FontStyleValue[]>([]);
 
+  const adjustFont = useCallback((font: FontValueType) => {
+    return {
+      ...font,
+      style: adjustFontStyle({
+        family: font.family,
+        style: font.style,
+        multiLine: multiLine ?? false,
+        fontList,
+      })
+    }
+  }, [multiLine, fontList]);
+
+  const font = adjustFont(toFontValue(props.font) );
+
   useEffect(() => {
-    const styles = fontList.find(item => item.id === fontFamily)?.styles ?? [];
+    const styles = fontList.find(item => item.id === font.family)?.styles ?? [];
     setEnabledStyles(styles);
-  }, [fontFamily, fontList]);
+  }, [font.family, fontList]);
 
   const handleChangeFamily = useCallback((value: FontListItem) => {
     setEnabledStyles(value.styles);
-    onChangeValue('fontFamily', value.id, true);
-  }, [onChangeValue]);
+    const newFont =adjustFont({ ...font, family: value.id });
+    onChangeValue('font', toFontData(newFont), true);
+  }, [onChangeValue, font, adjustFont]);
+
+  const handleChange = useCallback((key: string, value: ChangeValueType, update?: boolean) => {
+    const newFont = adjustFont({ ...font, [key.split('.').pop() || '']: value });
+    onChangeValue('font', toFontData(newFont), update);
+  }, [onChangeValue, font, adjustFont]);
 
   return (
     <>
@@ -50,10 +88,10 @@ export default function FontFields(props: Props) {
         <FontFamilyField
           sx={{ flex: 1 }}
           label={captions.fontFamily}
-          name="fontFamily"
-          value={fontFamily}
+          name="font.family"
+          value={font.family}
           fontList={fontList}
-          onChangeValue={onChangeValue}
+          onChangeValue={handleChange}
           onChangeFamily={handleChangeFamily}
         />
       </GroupBox>
@@ -61,20 +99,20 @@ export default function FontFields(props: Props) {
         <NumberField
           sx={{ flex: 1 }}
           label={captions.fontSize}
-          name="fontSize"
-          value={fontSize.toString()}
+          name="font.size"
+          value={font.size.toString()}
           unit="pt"
           decimalPlace={1}
           minValue={1}
           maxValue={MAX_FONT_SIZE}
-          onChangeValue={onChangeValue}
+          onChangeValue={handleChange}
         />
         <Box>
           <FontStyleButtons
-            name="fontStyle"
-            value={fontStyle}
+            name="font.style"
+            value={font.style}
             multiLine={multiLine}
-            onChangeValue={onChangeValue}
+            onChangeValue={handleChange}
             enabledStyles={enabledStyles}
           />
         </Box>

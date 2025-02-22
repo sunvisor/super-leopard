@@ -14,16 +14,18 @@ import getCaptions from '../../../captions/getCaptions';
 import ToggleTools, { ToggleToolButton } from '../ToggleTools';
 import { ChangeValueHandler } from '../usePropertyStates';
 
+
 type Props = {
   name: string;
-  value: FontStyleValue[];
+  value: FontStyleValue[] | undefined;
   multiLine?: boolean;
   onChangeValue: ChangeValueHandler<FontStyleValue[]>;
   enabledStyles: StyleValue[];
 }
 
 export default function FontStyleButtons(props: Props) {
-  const { name, value, multiLine, enabledStyles, onChangeValue } = props;
+  const { name, multiLine, enabledStyles, onChangeValue } = props;
+  const value = props.value || [];
   const captions = getCaptions('fontProperty');
 
   const handleChange = useCallback(

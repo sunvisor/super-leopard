@@ -3,7 +3,7 @@ import { BorderData } from './borderData';
 import { ColorData } from './colorData';
 
 export type RectData = {
-  type: RectShapeType;
+  type?: RectShapeType;
   border?: BorderData;
   fillColor?: ColorData;
 } & RectConfigValue;

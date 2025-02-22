@@ -5,13 +5,7 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import { atom } from 'jotai';
-import {
-  defaultSettings,
-  BoundingBoxOptions,
-  DefaultShapeSize,
-  RubberBandOptions,
-  SettingData
-} from '../svg';
+import { BoundingBoxOptions, defaultSettings, DefaultShapeSize, RubberBandOptions, SettingData } from '../settings';
 import { LineSelectOptions } from '@sunvisor/super-leopard-core';
 import { WebFontMap } from '../font';
 

@@ -5,6 +5,8 @@
  * Copyright (C) Sunvisor Lab. 2025.
  */
 import {
+  Barcode,
+  BarcodeShape,
   Circle,
   CircleShape,
   Ellipse,
@@ -69,6 +71,10 @@ export interface TextDrawerInterface {
   draw(text: Text, params?: DrawerParams): void;
 }
 
+export interface BarcodeDrawerInterface {
+  draw(barcode: Barcode, params?: DrawerParams): void;
+}
+
 export type StaticShapeDrawerInterface = ShapeDrawerInterface;
 
 export interface FieldDrawerInterface {
@@ -87,6 +93,10 @@ export interface ListDrawerInterface {
   draw(list: List, data?: ListDataParams): void;
 }
 
+export interface BarcodeDrawerInterface {
+  draw(barcode: Barcode, params?: DrawerParams): void;
+}
+
 export interface ShapesDrawerInterface {
   draw(shapes: Shapes, params: DataParams): void;
 }
@@ -98,6 +108,7 @@ export type StaticShapeDrawers = {
   [EllipseShape]: EllipseDrawerInterface,
   [TextShape]: TextDrawerInterface,
   [ImageShape]: ImageDrawerInterface,
+  [BarcodeShape]: BarcodeDrawerInterface,
 };
 
 export interface MeasurementInterface {

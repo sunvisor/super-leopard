@@ -22,7 +22,7 @@ describe('Tests for ListDesignDrawer', () => {
     vi.clearAllMocks();
   });
 
-  test('Should draw shapes for specified number of rows and columns', () => {
+  it('should draw shapes for specified number of rows and columns', () => {
     // Arrange
     const listDrawer = new ListDesignDrawer(mockGroupDrawer, mockShapeDrawer);
     const list = createList(listData);
@@ -32,7 +32,7 @@ describe('Tests for ListDesignDrawer', () => {
     expect(mockShapeDrawer.draw).toHaveBeenCalledTimes(10);
   });
 
-  test('Should draw groups for specified number of rows and columns', () => {
+  it('should draw groups for specified number of rows and columns', () => {
     // Arrange
     const listDrawer = new ListDesignDrawer(mockGroupDrawer, mockShapeDrawer);
     const list = createList(listWithGroupData);
@@ -42,7 +42,7 @@ describe('Tests for ListDesignDrawer', () => {
     expect(mockGroupDrawer.draw).toHaveBeenCalledTimes(10);
   });
 
-  test('Should repeated parts are displayed in a lighter color', () => {
+  it('should repeated parts are displayed in a lighter color', () => {
     // Arrange
     const listDrawer = new ListDesignDrawer(mockGroupDrawer, mockShapeDrawer);
     const list = createList(listData);

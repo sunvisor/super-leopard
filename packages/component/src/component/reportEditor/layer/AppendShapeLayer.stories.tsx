@@ -17,6 +17,8 @@ import {
   RectShape,
   TextShape
 } from '@sunvisor/super-leopard-core';
+import { fn } from '@storybook/test';
+
 
 type Story = StoryObj<typeof AppendShapeLayer>
 
@@ -29,6 +31,9 @@ const meta: Meta<typeof AppendShapeLayer> = {
       </div>
     ),
   ],
+  args: {
+    onAppend: fn(),
+  }
 };
 
 export const Rect: Story = {

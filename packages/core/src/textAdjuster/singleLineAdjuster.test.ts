@@ -4,9 +4,8 @@
  * Created by sunvisor on 2025/01/13.
  * Copyright (C) Sunvisor Lab. 2025.
  */
-import { Scale, Text } from '../object';
+import { createText, Scale, Text } from '../object';
 import singleLineAdjuster from "./singleLineAdjuster";
-import { createText } from '../creator';
 import { TextData } from '../data';
 
 
@@ -38,7 +37,7 @@ describe('Tests for singleLineAdjuster', () => {
 
   describe('When fitCell is false', () => {
 
-    test('Should return same text when text is not too long', () => {
+    it('should return same text when text is not too long', () => {
       // Arrange
       const text = createText({
         ...textConfig,
@@ -50,7 +49,7 @@ describe('Tests for singleLineAdjuster', () => {
       expect(result.text).toBe('A'.repeat(40));
     });
 
-    test('Should return truncated text when text is too long', () => {
+    it('should return truncated text when text is too long', () => {
       // Arrange
       const text = createText({
         ...textConfig,
@@ -65,7 +64,7 @@ describe('Tests for singleLineAdjuster', () => {
 
   describe('When fitCell is true', () => {
 
-    test('Should return same text when text is not too long', () => {
+    it('should return same text when text is not too long', () => {
       // Arrange
       const text = createText({
         ...textConfig,
@@ -77,7 +76,7 @@ describe('Tests for singleLineAdjuster', () => {
       expect(result.text).toBe('A'.repeat(40));
     });
 
-    test('Should return text with adjusted font size when text is too long', () => {
+    it('should return text with adjusted font size when text is too long', () => {
       // Arrange
       const text = createText({
         ...textConfig,
@@ -94,7 +93,7 @@ describe('Tests for singleLineAdjuster', () => {
 
   describe('When valign is specified', () => {
 
-    test('Should return text with adjusted y position when valign is bottom', () => {
+    it('should return text with adjusted y position when valign is bottom', () => {
       // Arrange
       const text = createText({
         ...textConfig,
@@ -108,7 +107,7 @@ describe('Tests for singleLineAdjuster', () => {
       expect(result.y).toBe(6.472);
     });
 
-    test('Should return text with adjusted y position when valign is middle', () => {
+    it('should return text with adjusted y position when valign is middle', () => {
       // Arrange
       const text = createText({
         ...textConfig,

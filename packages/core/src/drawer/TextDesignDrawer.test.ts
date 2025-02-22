@@ -6,8 +6,8 @@
  */
 import { TextDesignDrawer } from "./TextDesignDrawer";
 import { afterEach } from 'vitest';
-import { createText } from '../creator';
-import { Rect, Text } from '../object';
+import { createText, Rect, Text } from '../object';
+
 
 describe('Tests for TextDesignDrawer', () => {
 

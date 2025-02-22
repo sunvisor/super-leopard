@@ -24,14 +24,13 @@ const meta: Meta<typeof FillColorField> = {
 
 export const Active: Story = {
   args: {
-    useFillColor: true,
     fillColor: "#ffffff",
   }
 };
 
 export const Inactive: Story = {
   args: {
-    useFillColor: false,
+    fillColor: undefined
   }
 }
 

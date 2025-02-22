@@ -7,7 +7,7 @@
 import { useCallback, useEffect, useMemo } from "react";
 import PropertyBox from './PropertyBox';
 import { UpdateHandler } from './ShapeProperty';
-import { expandGroup, GroupPropertyValue, contractGroup, Group, UnitValue } from '@sunvisor/super-leopard-core';
+import { Group, GroupData, createGroup, serializeGroup,  UnitValue } from '@sunvisor/super-leopard-core';
 import usePropertyStates from '../usePropertyStates';
 import SizeFields from '../fieldGroup/SizeFields';
 import GroupFields from '../fieldGroup/GroupFields';
@@ -21,18 +21,18 @@ type Props = {
 export default function GroupProperty(props: Props) {
   const { unit, shape, onUpdate } = props;
   const groupProperty = useMemo(
-    () => expandGroup(shape), [shape]
+    () => serializeGroup(shape), [shape]
   );
 
   const doUpdate = useCallback(
-    (values: GroupPropertyValue) => {
-      const updated = contractGroup(values, shape.shapes);
+    (values: GroupData) => {
+      const updated = createGroup(values);
       onUpdate(shape, updated);
     },
     [shape, onUpdate]
   );
 
-  const { values, setValues, handleChangeValue } = usePropertyStates<GroupPropertyValue>(
+  const { values, setValues, handleChangeValue } = usePropertyStates<GroupData>(
     groupProperty,
     values => doUpdate(values),
   );
@@ -52,8 +52,8 @@ export default function GroupProperty(props: Props) {
         onChangeValue={handleChangeValue}
       />
       <GroupFields
-        direction={values.direction}
-        repeatCount={values.repeatCount}
+        direction={values.direction || 'vertical'}
+        repeatCount={values.repeatCount || 1}
         onChangeValue={handleChangeValue}
       />
     </PropertyBox>

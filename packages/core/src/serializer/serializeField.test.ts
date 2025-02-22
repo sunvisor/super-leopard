@@ -11,7 +11,7 @@ import { FieldData, TextData } from '../data';
 
 describe('Test for serializeField', () => {
 
-  test('Should return serialized FieldData', () => {
+  it('should return serialized FieldData', () => {
     // Arrange
     const data: FieldData<TextData> = {
       type: 'field',

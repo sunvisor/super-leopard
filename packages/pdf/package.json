@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "author": "Sunvisor <hisashi@sunvisor.net> (https://www.sunvisor.net/)",
   "description": "PDF generator for Super Leopard",
+  "repository": "https://github.com/sunvisor/super-leopard",
   "type": "module",
   "exports": {
     ".": {
@@ -18,9 +19,10 @@
     "makePdf": "tsx src/__test_assets__/makePdf.ts"
   },
   "dependencies": {
-    "@sunvisor/super-leopard-core": "^0.1.0",
-    "dotenv": "^16.4.7",
-    "dotenv-expand": "^12.0.1",
+    "@sunvisor/super-leopard-barcode": "^0.1.0",
+    "@sunvisor/super-leopard-core": "^0.1.0"
+  },
+    "peerDependencies": {
     "pdfkit": "^0.15.2",
     "svg-to-pdfkit": "^0.1.8"
   },

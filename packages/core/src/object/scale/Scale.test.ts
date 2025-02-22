@@ -69,7 +69,7 @@ describe('Tests for Scale', () => {
     const precision = 0;
     const pointPrecision = 2;
 
-    test('Should return pixel value when unit is inch', () => {
+    it('should return pixel value when unit is inch', () => {
       // Arrange
       const scale = new Scale({ unit, zoom, precision, pointPrecision });
       // Act
@@ -78,7 +78,7 @@ describe('Tests for Scale', () => {
       expect(pixel).toBe(1920);
     });
 
-    test('Should return (pixel * zoom) when zoom is set', () => {
+    it('should return (pixel * zoom) when zoom is set', () => {
       // Arrange
       const scale = new Scale({ unit, zoom: 2, precision, pointPrecision });
       // Act
@@ -87,7 +87,7 @@ describe('Tests for Scale', () => {
       expect(pixel).toBe(2 * DPPX);
     });
 
-    test('Should return pixel value when unit is millimeter', () => {
+    it('should return pixel value when unit is millimeter', () => {
       // Arrange
       const unit = UnitType.MILLIMETER;
       const scale = new Scale({ unit, zoom, precision, pointPrecision });
@@ -97,7 +97,7 @@ describe('Tests for Scale', () => {
       expect(pixel).toBe(DPPX / 25.4);
     });
 
-    test('Should return pixel Box value when parameter is Box', () => {
+    it('should return pixel Box value when parameter is Box', () => {
       // Arrange
       const scale = new Scale({ unit, zoom, precision, pointPrecision });
       // Act
@@ -106,7 +106,7 @@ describe('Tests for Scale', () => {
       expect(pixel).toStrictEqual({ x: DPPX, y: 2 * DPPX, width: 3 * DPPX, height: 4 * DPPX });
     });
 
-    test('Should return pixel Position value when parameter is Position', () => {
+    it('should return pixel Position value when parameter is Position', () => {
       // Arrange
       const scale = new Scale({ unit, zoom, precision, pointPrecision });
       // Act
@@ -115,7 +115,7 @@ describe('Tests for Scale', () => {
       expect(pixel).toStrictEqual({ x: DPPX, y: 2 * DPPX });
     });
 
-    test('Should return pixel PositionPair value when parameter is PositionPair', () => {
+    it('should return pixel PositionPair value when parameter is PositionPair', () => {
       // Arrange
       const scale = new Scale({ unit, zoom, precision, pointPrecision });
       // Act
@@ -124,7 +124,7 @@ describe('Tests for Scale', () => {
       expect(pixel).toStrictEqual({ x1: DPPX, y1: 2 * DPPX, x2: 3 * DPPX, y2: 4 * DPPX });
     });
 
-    test('Should add margin to x,y when margin is set', () => {
+    it('should add margin to x,y when margin is set', () => {
       // Arrange
       const scale = new Scale({
           unit, zoom, precision, pointPrecision,
@@ -139,7 +139,7 @@ describe('Tests for Scale', () => {
       );
     });
 
-    test('Should be added to x,y when margin is set', () => {
+    it('should be added to x,y when margin is set', () => {
       // Arrange
       const unit = UnitType.INCH;
       const zoom = 1;
@@ -158,7 +158,7 @@ describe('Tests for Scale', () => {
       );
     });
 
-    test('Should be added to the x1, y1, x2, y2 when margin is set', () => {
+    it('should be added to the x1, y1, x2, y2 when margin is set', () => {
       // Arrange
       const scale = new Scale({
           unit, zoom, precision, pointPrecision,
@@ -194,7 +194,7 @@ describe('Tests for Scale', () => {
     const precision = 2;
     const pointPrecision = 2;
 
-    test('Should return inch value', () => {
+    it('should return inch value', () => {
       // Arrange
       const scale = new Scale({ unit, zoom, precision, pointPrecision });
       // Act
@@ -203,7 +203,7 @@ describe('Tests for Scale', () => {
       expect(value).toBe(1);
     });
 
-    test('Should return rounded value', () => {
+    it('should return rounded value', () => {
       // Arrange
       const scale = new Scale({ unit, zoom, precision, pointPrecision });
       // Act
@@ -212,7 +212,7 @@ describe('Tests for Scale', () => {
       expect(value).toBe(1.04); // rounded
     });
 
-    test('Should return mm value', () => {
+    it('should return mm value', () => {
       // Arrange
       const scale = new Scale({ unit: UnitType.MILLIMETER, zoom, pointPrecision });
       // Act
@@ -221,7 +221,7 @@ describe('Tests for Scale', () => {
       expect(value).toBe(26.5); // default precision for mm is 1
     });
 
-    test('Should return (unit value / zoom) when zoom is set', () => {
+    it('should return (unit value / zoom) when zoom is set', () => {
       // Arrange
       const scale = new Scale({ unit, zoom: 2, precision, pointPrecision });
       // Act
@@ -230,7 +230,7 @@ describe('Tests for Scale', () => {
       expect(value).toBe(1);
     });
 
-    test('Should return Box value when parameter is Box', () => {
+    it('should return Box value when parameter is Box', () => {
       // Arrange
       const scale = new Scale({ unit, zoom, precision, pointPrecision });
       // Act
@@ -239,7 +239,7 @@ describe('Tests for Scale', () => {
       expect(value).toStrictEqual({ x: 1, y: 2, width: 3, height: 4 });
     });
 
-    test('Should return Position value when parameter is Position', () => {
+    it('should return Position value when parameter is Position', () => {
       // Arrange
       const scale = new Scale({ unit, zoom, precision, pointPrecision });
       // Act
@@ -248,7 +248,7 @@ describe('Tests for Scale', () => {
       expect(value).toStrictEqual({ x: 1, y: 2 });
     });
 
-    test('Should return PositionPair value when parameter is PositionPair', () => {
+    it('should return PositionPair value when parameter is PositionPair', () => {
       // Arrange
       const scale = new Scale({ unit, zoom, precision, pointPrecision });
       // Act
@@ -257,7 +257,7 @@ describe('Tests for Scale', () => {
       expect(value).toStrictEqual({ x1: 1, y1: 2, x2: 3, y2: 4 });
     });
 
-    test('Should be subtracted from the x,y when margin is set', () => {
+    it('should be subtracted from the x,y when margin is set', () => {
       // Arrange
       const scale = new Scale({
           unit, zoom, precision, pointPrecision,
@@ -270,7 +270,7 @@ describe('Tests for Scale', () => {
       expect(value).toStrictEqual({ x: 10, y: 20 });
     });
 
-    test('Should be subtracted from the x,y when margin is set', () => {
+    it('should be subtracted from the x,y when margin is set', () => {
       // Arrange
       const scale = new Scale({
           unit, zoom, precision, pointPrecision,
@@ -283,7 +283,7 @@ describe('Tests for Scale', () => {
       expect(value).toStrictEqual({ x: 10, y: 20, width: 30, height: 40 });
     });
 
-    test('should be subtracted from the x1,y1,x2,y2 when margin is set', () => {
+    it('should be subtracted from the x1,y1,x2,y2 when margin is set', () => {
       // Arrange
       const scale = new Scale({
           unit, zoom, precision, pointPrecision,
@@ -304,7 +304,7 @@ describe('Tests for Scale', () => {
     const precision = 0;
     const pointPrecision = 2;
 
-    test('Should return point value when unit is inch', () => {
+    it('should return point value when unit is inch', () => {
       // Arrange
       const scale = new Scale({ unit, zoom, precision, pointPrecision });
       // Act
@@ -313,7 +313,7 @@ describe('Tests for Scale', () => {
       expect(pixel).toBe(PointParInch);
     });
 
-    test('Should return point value when unit is millimeter', () => {
+    it('should return point value when unit is millimeter', () => {
       // Arrange
       const unit = UnitType.MILLIMETER;
       const scale = new Scale({ unit, zoom, precision, pointPrecision });
@@ -323,7 +323,7 @@ describe('Tests for Scale', () => {
       expect(pixel).toBe(283.46); // rounded by pointPrecision
     });
 
-    test('Should return rounded point value', () => {
+    it('should return rounded point value', () => {
       // Arrange
       const scale = new Scale({ unit, zoom, precision, pointPrecision });
       // Act
@@ -332,7 +332,7 @@ describe('Tests for Scale', () => {
       expect(pixel).toBe(PointParInch);
     });
 
-    test('Should return Box value when parameter is Box', () => {
+    it('should return Box value when parameter is Box', () => {
       // Arrange
       const scale = new Scale({ unit, zoom, precision, pointPrecision });
       // Act
@@ -346,7 +346,7 @@ describe('Tests for Scale', () => {
       });
     });
 
-    test('Should return Position value when parameter is Position', () => {
+    it('should return Position value when parameter is Position', () => {
       // Arrange
       const scale = new Scale({ unit, zoom, precision, pointPrecision });
       // Act
@@ -355,7 +355,7 @@ describe('Tests for Scale', () => {
       expect(pixel).toStrictEqual({ x: PointParInch, y: 2 * PointParInch });
     });
 
-    test('Should return PositionPair value when parameter is PositionPair', () => {
+    it('should return PositionPair value when parameter is PositionPair', () => {
       // Arrange
       const scale = new Scale({ unit, zoom, precision, pointPrecision });
       // Act
@@ -422,7 +422,7 @@ describe('Tests for Scale', () => {
 
   describe('Tests for fromPoint', () => {
 
-    test('Should return inch value when unit is inch', () => {
+    it('should return inch value when unit is inch', () => {
       // Arrange
       const unit = UnitType.INCH;
       const zoom = 1;
@@ -435,7 +435,7 @@ describe('Tests for Scale', () => {
       expect(value).toBe(1);
     });
 
-    test('Should return mm value when unit is millimeter', () => {
+    it('should return mm value when unit is millimeter', () => {
       // Arrange
       const unit = UnitType.MILLIMETER;
       const zoom = 1;
@@ -448,7 +448,7 @@ describe('Tests for Scale', () => {
       expect(value).toBeCloseTo(100, 0);
     });
 
-    test('Should return not rounded unit value', () => {
+    it('should return not rounded unit value', () => {
       // Arrange
       const unit = UnitType.MILLIMETER;
       const zoom = 1;
@@ -465,7 +465,7 @@ describe('Tests for Scale', () => {
 
   describe('Tests for pointToPixel', () => {
 
-    test('Should return pixel value', () => {
+    it('should return pixel value', () => {
       // Arrange
       const unit = UnitType.INCH;
       const zoom = 1;
@@ -482,7 +482,7 @@ describe('Tests for Scale', () => {
 
   describe('Tests for pointFromPixel', () => {
 
-    test('Should return point value', () => {
+    it('should return point value', () => {
       // Arrange
       const unit = UnitType.INCH;
       const zoom = 1;
@@ -495,7 +495,7 @@ describe('Tests for Scale', () => {
       expect(value).toBe(10);
     });
 
-    test('Should return rounded point value', () => {
+    it('should return rounded point value', () => {
       // Arrange
       const unit = UnitType.INCH;
       const zoom = 1;
@@ -512,7 +512,7 @@ describe('Tests for Scale', () => {
 
   describe('Tests for round', () => {
 
-    test('Should return rounded value', () => {
+    it('should return rounded value', () => {
       // Arrange
       const unit = UnitType.INCH;
       const zoom = 1;
@@ -529,7 +529,7 @@ describe('Tests for Scale', () => {
 
   describe('Test for setZoom', () => {
 
-    test('Should set zoom', () => {
+    it('should set zoom', () => {
       // Arrange
       const unit = UnitType.INCH;
       const zoom = 1;

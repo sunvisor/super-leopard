@@ -18,6 +18,8 @@ export type Captions = {
   alignTool: AlignTool;
   fontProperty: FontProperty;
   imageProperty: ImageProperty;
+  barcodeProperty: BarcodeProperty;
+  barcodeRotateName: BarcodeRotateName;
   fieldProperty: FieldProperty;
   groupProperty: GroupProperty;
   listProperty: ListProperty;
@@ -73,6 +75,7 @@ export type StaticShapeTypeName = {
   line: string;
   image: string;
   text: string;
+  barcode: string;
 }
 
 export type ShapeTypeName = StaticShapeTypeName & {
@@ -168,6 +171,20 @@ export type ImageProperty = {
   selectMessage: string;
   decide: string;
   close: string;
+}
+
+export type BarcodeProperty = {
+  format: string;
+  value: string;
+  rotate: string;
+  includeText: string;
+}
+
+export type BarcodeRotateName = {
+  N: string;
+  R: string;
+  L: string;
+  I: string;
 }
 
 export type FieldProperty = {

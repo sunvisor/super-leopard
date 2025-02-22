@@ -6,7 +6,7 @@
  */
 import { Position } from '@sunvisor/super-leopard-core';
 import { adjustPosition, moveElement, ShapeRubberBandInterface } from '.';
-import { SettingData } from '../../setting';
+import { SettingData } from '../../../settings';
 import { SvgDrawerInterface, SvgShapeInterface } from '../../../svgDriver';
 
 export class TextRubberBand implements ShapeRubberBandInterface {

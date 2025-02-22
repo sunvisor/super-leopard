@@ -6,7 +6,7 @@
  */
 import { Scale, Size } from '@sunvisor/super-leopard-core';
 import { DefaultShapeSizeInterface, DefaultSizeParams } from '.';
-import { DefaultShapeSize } from '../../setting';
+import { DefaultShapeSize } from '../../../settings';
 
 export class DefaultRectSize implements DefaultShapeSizeInterface {
   readonly #scale: Scale;

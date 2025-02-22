@@ -8,13 +8,13 @@ import PositionFields from '../fieldGroup/PositionFields';
 import SizeFields from '../fieldGroup/SizeFields';
 import FillColorField from '../field/FillColorField';
 import BorderFields from '../fieldGroup/BorderFields';
-import { UnitValue, EllipsePropertyValue } from '@sunvisor/super-leopard-core';
+import { UnitValue, EllipseData, BorderData } from '@sunvisor/super-leopard-core';
 import { ChangeValueHandler } from '../usePropertyStates';
 
-export type EllipsePanelValueType = number|string|boolean;
+export type EllipsePanelValueType = number | string | BorderData | undefined;
 type Props = {
   unit: UnitValue,
-  values: EllipsePropertyValue;
+  values: EllipseData;
   onChangeValue: ChangeValueHandler<EllipsePanelValueType>;
 }
 export default function EllipsePanel(props: Props) {
@@ -35,17 +35,11 @@ export default function EllipsePanel(props: Props) {
         onChangeValue={onChangeValue}
       />
       <FillColorField
-        useFillColor={values.useFillColor}
         fillColor={values.fillColor}
         onChangeValue={onChangeValue}
       />
       <BorderFields
-        useStroke={values.useStroke}
-        borderColor={values.borderColor}
-        borderWidth={values.borderWidth}
-        borderStyle={values.borderStyle}
-        borderCap={values.borderCap}
-        borderJoin={values.borderJoin}
+        border={values.border}
         onChangeValue={onChangeValue}
       />
     </>

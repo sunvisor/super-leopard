@@ -12,7 +12,7 @@ describe('Tests for CreateCircle#create', () => {
   const scale = new Scale({ unit: UnitType.INCH });
   const styles = defaultStyle;
 
-    test('Should return Circle object', () => {
+    it('should return Circle object', () => {
       // Arrange
       const createCircle = new CreateCircle({ scale, styles });
       // Act

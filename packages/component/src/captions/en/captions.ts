@@ -8,6 +8,8 @@
  */
 import {
   AlignTool,
+  BarcodeProperty,
+  BarcodeRotateName,
   BorderProperty,
   Captions,
   CapTool,
@@ -17,11 +19,22 @@ import {
   EditTool,
   FieldProperty,
   FillColorProperty,
-  FontProperty, GroupOperation, GroupProperty,
+  FontProperty,
+  GroupOperation,
+  GroupProperty,
   ImageProperty,
-  JoinTool, LayerOperation, ListProperty, NumberErrorMessage, ObjectManipulation, Operation, PageProperty,
-  PositionProperty, ReportObject, ShapeTypeName,
-  SizeProperty, StaticShapeTypeName,
+  JoinTool,
+  LayerOperation,
+  ListProperty,
+  NumberErrorMessage,
+  ObjectManipulation,
+  Operation,
+  PageProperty,
+  PositionProperty,
+  ReportObject,
+  ShapeTypeName,
+  SizeProperty,
+  StaticShapeTypeName,
   TextProperty
 } from '../CaptionsType';
 
@@ -71,6 +84,7 @@ const staticShapeType: StaticShapeTypeName = {
   line: "Line",
   image: "Image",
   text: "Text",
+  barcode: "Barcode",
 }
 
 const shapeType: ShapeTypeName = {
@@ -176,6 +190,20 @@ const imageProperty: ImageProperty = {
   close: 'Close',
 }
 
+const barcodeProperty: BarcodeProperty = {
+  format: "Format",
+  value: "Value",
+  rotate: 'Rotate',
+  includeText: 'Include Text',
+}
+
+const barcodeRotateName: BarcodeRotateName = {
+  N: 'None',
+  L: 'Clockwise',
+  R: 'Anti-Clockwise',
+  I: 'Invert',
+}
+
 const fieldProperty: FieldProperty = {
   name: 'Field Name',
   shapeType: 'Shape Type',
@@ -249,6 +277,8 @@ export const captions: Captions = {
   alignTool,
   editModeTool,
   imageProperty,
+  barcodeProperty,
+  barcodeRotateName,
   fieldProperty,
   groupProperty,
   listProperty,

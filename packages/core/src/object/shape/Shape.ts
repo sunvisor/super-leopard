@@ -15,6 +15,7 @@ export type ImageShapeType = 'image';
 export type GroupShapeType = 'group';
 export type FieldShapeType = 'field';
 export type ListShapeType = 'list';
+export type BarcodeShapeType = 'barcode';
 
 export const RectShape: RectShapeType = 'rect';
 export const CircleShape: CircleShapeType = 'circle';
@@ -25,6 +26,8 @@ export const ImageShape: ImageShapeType = 'image';
 export const GroupShape: GroupShapeType = 'group';
 export const FieldShape: FieldShapeType = 'field';
 export const ListShape: ListShapeType = 'list';
+export const BarcodeShape: BarcodeShapeType = 'barcode';
+
 
 export type StaticShapeType =
   RectShapeType |
@@ -32,7 +35,8 @@ export type StaticShapeType =
   EllipseShapeType |
   LineShapeType |
   TextShapeType |
-  ImageShapeType;
+  ImageShapeType |
+  BarcodeShapeType;
 
 export type CompositeShapeType = GroupShapeType | ListShapeType;
 export type ShapeType =

@@ -8,6 +8,7 @@
  */
 import {
   AlignTool,
+  BarcodeProperty, BarcodeRotateName,
   BorderProperty,
   Captions,
   CapTool,
@@ -17,10 +18,19 @@ import {
   EditTool,
   FieldProperty,
   FillColorProperty,
-  FontProperty, GroupOperation, GroupProperty,
+  FontProperty,
+  GroupOperation,
+  GroupProperty,
   ImageProperty,
-  JoinTool, LayerOperation, ListProperty, NumberErrorMessage, ObjectManipulation, Operation, PageProperty,
-  PositionProperty, ReportObject,
+  JoinTool,
+  LayerOperation,
+  ListProperty,
+  NumberErrorMessage,
+  ObjectManipulation,
+  Operation,
+  PageProperty,
+  PositionProperty,
+  ReportObject,
   ShapeTypeName,
   SizeProperty,
   TextProperty
@@ -71,6 +81,7 @@ const staticShapeType = {
   line: '直線',
   image: '画像',
   text: '文字',
+  barcode: 'バーコード',
 }
 
 const shapeType: ShapeTypeName = {
@@ -176,6 +187,20 @@ const imageProperty: ImageProperty = {
   close: '閉じる',
 }
 
+const barcodeProperty: BarcodeProperty = {
+  format: '形式',
+  value: '値',
+  rotate: '回転',
+  includeText: '文字を表示',
+}
+
+const barcodeRotateName: BarcodeRotateName = {
+  N: 'なし',
+  L: '時計回り',
+  R: '反時計回り',
+  I: '180度回転',
+}
+
 const fieldProperty: FieldProperty = {
   name: 'フィールド名',
   shapeType: '図形タイプ',
@@ -249,6 +274,8 @@ export const captions: Captions = {
   alignTool,
   fontProperty,
   imageProperty,
+  barcodeProperty,
+  barcodeRotateName,
   fieldProperty,
   groupProperty,
   listProperty,

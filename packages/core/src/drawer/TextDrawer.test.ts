@@ -5,9 +5,9 @@
  * Copyright (C) Sunvisor Lab. 2025.
  */
 import { TextDrawer } from "./TextDrawer";
-import { Scale, Text } from '../object';
-import { createText } from '../creator';
+import { createText, Scale, Text } from '../object';
 import { Mock } from 'vitest';
+
 
 describe('Tests for TextDrawer', () => {
 
@@ -27,7 +27,7 @@ describe('Tests for TextDrawer', () => {
     draw: vi.fn()
   }
 
-  test('should draw text', () => {
+  it('should draw text', () => {
     // Arrange
     const drawer = new TextDrawer({
       textElementDrawer: textDrawer,

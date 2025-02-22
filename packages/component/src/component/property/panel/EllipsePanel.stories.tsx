@@ -8,7 +8,7 @@
  */
 import EllipsePanel from "./EllipsePanel";
 import { Meta, StoryObj } from '@storybook/react';
-import { UnitType, EllipsePropertyValue  } from '@sunvisor/super-leopard-core';
+import { EllipseData, UnitType } from '@sunvisor/super-leopard-core';
 import { Box } from '@mui/material';
 import { fn } from '@storybook/test';
 
@@ -29,19 +29,19 @@ const meta: Meta<typeof EllipsePanel> = {
   ]
 };
 
-const values: EllipsePropertyValue = {
+const values: EllipseData = {
   x: 1,
   y: 2,
   width: 3,
   height: 4,
-  useFillColor: false,
   fillColor: undefined,
-  useStroke: true,
-  borderStyle: 'solid',
-  borderWidth: 1,
-  borderColor: '#000000',
-  borderCap: 'butt',
-  borderJoin: 'miter',
+  border: {
+    style: 'solid',
+    width: 1,
+    color: '#000000',
+    cap: 'butt',
+    join: 'miter',
+  }
 }
 
 export const UnitMillimeter: Story = {

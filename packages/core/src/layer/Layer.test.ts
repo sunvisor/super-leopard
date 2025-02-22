@@ -14,7 +14,7 @@ describe('Tests for Layer', () => {
 
   describe('Test for updateLayerShapes', () => {
 
-    test('Should return the new instance with updated shapes', () => {
+    it('should return the new instance with updated shapes', () => {
       // Arrange
       const layer: LayerData = {
         name: 'test',
@@ -32,7 +32,7 @@ describe('Tests for Layer', () => {
 
   describe('Test for updateLayerName', () => {
 
-    test('Should return new instance with updated name', () => {
+    it('should return new instance with updated name', () => {
       // Arrange
       const layer: LayerData = {
         name: 'test',
@@ -49,7 +49,7 @@ describe('Tests for Layer', () => {
 
   describe('Test for updateLayer', () => {
 
-    test('Should return new instance with updated layer', () => {
+    it('should return new instance with updated layer', () => {
       // Arrange
       const layers: LayerData[] = [{
         name: 'test1',
@@ -77,7 +77,7 @@ describe('Tests for Layer', () => {
 
   describe('Test for addLayer', () => {
 
-    test('Should return new instance with added layer', () => {
+    it('should return new instance with added layer', () => {
       // Arrange
       const layers: LayerData[] = [
         {
@@ -101,7 +101,7 @@ describe('Tests for Layer', () => {
 
   describe('Test for removeLayer', () => {
 
-    test('Should return new instance with removed layer', () => {
+    it('should return new instance with removed layer', () => {
       // Arrange
       const layers: LayerData[] = [
         {

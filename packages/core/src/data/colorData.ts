@@ -1,3 +1,3 @@
-import { ColorConfig } from '../object';
+import { HexColorConfig } from '../object';
 
-export type ColorData = ColorConfig;
+export type ColorData = HexColorConfig;

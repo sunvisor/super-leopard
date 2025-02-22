@@ -42,7 +42,7 @@ describe('Tests for convertList', () => {
 
   describe('Test for shapesToList', () => {
 
-    test('Should return new shapes', () => {
+    it('should return new shapes', () => {
       // Arrange
       const shapes = createShapes(shapesData);
       const targets = new Shapes([shapes.get(1)]);
@@ -94,7 +94,7 @@ describe('Tests for convertList', () => {
       listData,
     ];
 
-    test('Should return new shapes', () => {
+    it('should return new shapes', () => {
       // Arrange
       const shapes = createShapes(shapesData);
       const list = shapes.get(1) as List;

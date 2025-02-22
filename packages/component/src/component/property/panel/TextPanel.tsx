@@ -6,20 +6,26 @@
  */
 import PositionFields from '../fieldGroup/PositionFields';
 import SizeFields from '../fieldGroup/SizeFields';
-import FontFields, { FontFieldType } from '../fieldGroup/FontFields';
+import FontFields from '../fieldGroup/FontFields';
 import TextColorFields, { TextColorFieldType } from '../fieldGroup/TextColorFields';
 import AlignFields, { AlignFieldType } from '../fieldGroup/AlignFields';
 import MultiLineFields, { MultiLineFieldType } from '../fieldGroup/MultiLineFields';
 import { ChangeValueHandler } from '../usePropertyStates';
-import { UnitValue, TextStyleValue } from '@sunvisor/super-leopard-core';
+import { AlignType, FontData, TextData, UnitValue, ValignType } from '@sunvisor/super-leopard-core';
 import { FontList } from '../../../font';
 import SvCheckboxField from '../field/SvCheckboxField';
 import getCaptions from '../../../captions/getCaptions';
 
-export type TextPanelValueType  = number|FontFieldType|TextColorFieldType|AlignFieldType|MultiLineFieldType|boolean;
+export type TextPanelValueType =
+  number
+  | FontData
+  | TextColorFieldType
+  | AlignFieldType
+  | MultiLineFieldType;
+
 type Props = {
   unit: UnitValue;
-  values: TextStyleValue;
+  values: TextData;
   fontList: FontList;
   onChangeValue: ChangeValueHandler<TextPanelValueType>;
 }
@@ -43,34 +49,31 @@ export default function TextPanel(props: Props) {
         onChangeValue={onChangeValue}
       />
       <FontFields
-        fontFamily={values.fontFamily}
-        fontSize={values.fontSize}
-        fontStyle={values.fontStyle}
+        font={values.font}
         fontList={fontList}
         multiLine={values.multiLine}
         onChangeValue={onChangeValue}
       />
       <TextColorFields
-        useFillColor={values.useFillColor}
         fillColor={values.fillColor}
-        color={values.color}
+        color={values.color || '#000000'}
         onChangeValue={onChangeValue}
       />
       <AlignFields
-        align={values.align}
-        valign={values.valign}
+        align={values.align || AlignType.LEFT}
+        valign={values.valign || ValignType.TOP}
         onChangeValue={onChangeValue}
       />
       <MultiLineFields
-        multiLine={values.multiLine}
-        linePitch={values.linePitch}
+        multiLine={values.multiLine || false}
+        linePitch={values.linePitch || 0}
         unit={unit}
         onChangeValue={onChangeValue}
       />
       <SvCheckboxField
         name="fitCell"
         label={captions.fitCell}
-        value={values.fitCell}
+        value={values.fitCell || false}
         onChangeValue={onChangeValue}
       />
     </>

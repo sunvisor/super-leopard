@@ -5,14 +5,14 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import PositionPairFields from '../fieldGroup/PositionPairFields';
-import BorderFields, { BorderFieldType } from '../fieldGroup/BorderFields';
-import { LinePropertyValue, UnitValue } from '@sunvisor/super-leopard-core';
+import BorderFields from '../fieldGroup/BorderFields';
+import { BorderData, LineData, UnitValue } from '@sunvisor/super-leopard-core';
 import { ChangeValueHandler } from '../usePropertyStates';
 
-export type LinePanelValueType = number|BorderFieldType;
+export type LinePanelValueType = number | BorderData | undefined;
 type Props = {
   unit: UnitValue;
-  values: LinePropertyValue;
+  values: LineData;
   onChangeValue: ChangeValueHandler<LinePanelValueType>;
 }
 
@@ -30,12 +30,7 @@ export default function LinePanel(props: Props) {
         onChangeValue={onChangeValue}
       />
       <BorderFields
-        useStroke={values.useStroke}
-        borderColor={values.borderColor}
-        borderWidth={values.borderWidth}
-        borderStyle={values.borderStyle}
-        borderCap={values.borderCap}
-        borderJoin={values.borderJoin}
+        border={values.border}
         onChangeValue={onChangeValue}
       />
     </>

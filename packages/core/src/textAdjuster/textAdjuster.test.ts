@@ -7,9 +7,8 @@
 import { textAdjuster, TextAdjusterParams } from ".";
 import multilineAdjuster from './multilineAdjuster';
 import singleLineAdjuster from './singleLineAdjuster';
-import { Rect, Scale, Shapes } from '../object';
+import { createText, Rect, Scale, Shapes } from '../object';
 import { TextData } from '../data';
-import { createText } from '../creator';
 
 
 vi.mock('./multilineAdjuster');
@@ -31,7 +30,7 @@ describe('Tests for textAdjuster', () => {
     }
   }
 
-  test('Should call multilineAdjuster when multiLine is true', () => {
+  it('should call multilineAdjuster when multiLine is true', () => {
     // Arrange
     const text = createText({ ...textConfig, multiLine: true, text: 'Test' });
     const mockMultilineAdjuster = vi.fn(() => new Shapes([]));
@@ -58,7 +57,7 @@ describe('Tests for textAdjuster', () => {
       scale,
     };
 
-    test('Should call singleLineAdjuster when multiLine is false', () => {
+    it('should call singleLineAdjuster when multiLine is false', () => {
       // Arrange
       const text = createText({ ...textConfig, multiLine: false, text: 'Test' });
       const mockSingleLineAdjuster = vi.fn(() => text);
@@ -72,7 +71,7 @@ describe('Tests for textAdjuster', () => {
       expect(result.get(0)).toEqual(text);
     });
 
-    test('Should add rect object when fillColor is specified', () => {
+    it('should add rect object when fillColor is specified', () => {
       // Arrange
       const text = createText({ ...textConfig, multiLine: false, text: 'Test', fillColor: '#FF0000' });
       const mockSingleLineAdjuster = vi.fn(() => text);

@@ -7,7 +7,7 @@
 import { Page, Shapes, Line, Scale, LineShape } from '@sunvisor/super-leopard-core';
 import { BoundingBox, HandleType } from '../boundingBox';
 import { EditRubberBand, RubberBandListeners } from '../rubberBand';
-import { SettingData } from '../setting';
+import { SettingData } from '../../settings';
 import MouseEventHandler from './MouseEventHandler';
 import { SvgDrawerInterface } from '../../svgDriver';
 

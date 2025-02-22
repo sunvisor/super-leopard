@@ -27,8 +27,7 @@ import {
   Rect, Shape, Shapes,
   UnitType
 } from '@sunvisor/super-leopard-core';
-import { NO_IMAGE } from '../../../svg';
-import { testAssets, fontList } from '../../../__test_assets__';
+import { testAssets, testFontList, testImageOptions } from '../../../__test_assets__';
 import { Provider } from 'jotai';
 import { createStore } from 'jotai/index';
 import { SelectionAtom } from '../../../atom/SelectionAtom';
@@ -111,7 +110,7 @@ const image: Image= createImage( {
   y: 0,
   width: 100,
   height: 100,
-  src: NO_IMAGE,
+  src: '',
 });
 
 const line: Line = createLine({
@@ -211,7 +210,7 @@ export const FieldProperty: Story = {
   args: {
     unit: UnitType.MILLIMETER,
     shape: textField,
-    fontList,
+    fontList: testFontList,
   },
   decorators: [getDecorator(textField)]
 }
@@ -228,6 +227,7 @@ export const ImageProperty: Story = {
   args: {
     unit: UnitType.MILLIMETER,
     shape: image,
+    imageOptions: testImageOptions,
   },
   decorators: [getDecorator(image)]
 }
@@ -260,7 +260,7 @@ export const TextProperty: Story = {
   args: {
     unit: UnitType.MILLIMETER,
     shape: text,
-    fontList,
+    fontList: testFontList,
   },
   decorators: [getDecorator(text)]
 }

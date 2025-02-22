@@ -13,6 +13,7 @@ import singleLineTextDrawer from './pdf_makers/singleLineTextDrawer';
 import multiLineTextDrawer from './pdf_makers/multiLineTextDrawer';
 import pageReportDrawer from './pdf_makers/pageReportDrawer';
 import listReportDrawer from './pdf_makers/listReportDrawer';
+import barcodeDrawer from './pdf_makers/barcodeDrawer';
 
 console.log('Make PDF');
 
@@ -26,6 +27,7 @@ async function main() {
   await multiLineTextDrawer();
   await pageReportDrawer();
   await listReportDrawer();
+  await barcodeDrawer();
 }
 
 main().then(() => console.log('Done'));

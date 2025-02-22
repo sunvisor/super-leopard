@@ -5,19 +5,18 @@
  * Copyright (C) Sunvisor Lab. 2025.
  */
 import { createPage, ReportData, reportHasList } from '@sunvisor/super-leopard-core';
-import { GetPdfImagePath } from '../index';
 import { PdfFont } from '../font/pdfFont';
 import { PageReportDrawer } from './PageReportDrawer';
 import { createPdfDrawer } from './createPdfDrawer';
 import { ListReportDrawer } from './ListReportDrawer';
 import { ReportDrawerInterface } from './type';
+import { ImageHandlerProps } from '../shapeDrawer/ShapeDrawer';
 
 
 type CreateReportDrawerParams = {
   report: ReportData;
-  getImagePath: GetPdfImagePath;
   fonts: PdfFont;
-}
+} & ImageHandlerProps;
 
 export function createReportDrawer(params: CreateReportDrawerParams): ReportDrawerInterface {
   const { report } = params;
@@ -25,15 +24,15 @@ export function createReportDrawer(params: CreateReportDrawerParams): ReportDraw
 }
 
 function createListReportDrawer(params: CreateReportDrawerParams): ListReportDrawer {
-  const { report, getImagePath, fonts } = params;
+  const { report, fonts, ...rest } = params;
   const page = createPage(report.page);
-  const drawer = createPdfDrawer({ getImagePath, fonts, page });
+  const drawer = createPdfDrawer({ fonts, page, ...rest });
   return new ListReportDrawer({ report, drawer, page });
 }
 
 function createPageReportDrawer(params: CreateReportDrawerParams): PageReportDrawer {
-  const { report, getImagePath, fonts } = params;
+  const { report, fonts, ...rest } = params;
   const page = createPage(report.page);
-  const drawer = createPdfDrawer({ getImagePath, fonts, page });
+  const drawer = createPdfDrawer({ fonts, page, ...rest });
   return new PageReportDrawer({ report, page, drawer });
 }

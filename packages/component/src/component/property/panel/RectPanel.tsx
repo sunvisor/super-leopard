@@ -8,13 +8,13 @@ import PositionFields from '../fieldGroup/PositionFields';
 import SizeFields from '../fieldGroup/SizeFields';
 import FillColorField from '../field/FillColorField';
 import BorderFields from '../fieldGroup/BorderFields';
-import { UnitValue, RectPropertyValue } from '@sunvisor/super-leopard-core';
+import { UnitValue, RectData, BorderData } from '@sunvisor/super-leopard-core';
 import { ChangeValueHandler } from '../usePropertyStates';
 
-export type RectPanelValueType = number | boolean | string;
+export type RectPanelValueType = number | string | BorderData | undefined;
 type Props = {
-  unit: UnitValue,
-  values: RectPropertyValue;
+  unit: UnitValue;
+  values: RectData;
   onChangeValue: ChangeValueHandler<RectPanelValueType>;
 }
 
@@ -36,17 +36,11 @@ export default function RectPanel(props: Props) {
         onChangeValue={onChangeValue}
       />
       <FillColorField
-        useFillColor={values.useFillColor}
         fillColor={values.fillColor}
         onChangeValue={onChangeValue}
       />
       <BorderFields
-        useStroke={values.useStroke}
-        borderColor={values.borderColor}
-        borderWidth={values.borderWidth}
-        borderStyle={values.borderStyle}
-        borderCap={values.borderCap}
-        borderJoin={values.borderJoin}
+        border={values.border}
         onChangeValue={onChangeValue}
       />
     </>

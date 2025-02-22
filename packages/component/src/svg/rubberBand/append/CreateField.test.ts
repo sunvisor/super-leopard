@@ -12,7 +12,7 @@ describe('Tests for CreateField#create', () => {
   const scale = new Scale({unit: UnitType.INCH});
   const styles = defaultStyle;
 
-  test('Should return Field object', () => {
+  it('should return Field object', () => {
     // Arrange
     const createField = new CreateField({ scale, styles });
     // Act

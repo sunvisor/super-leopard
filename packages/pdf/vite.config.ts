@@ -10,9 +10,14 @@ export default defineConfig({
       fileName: (format) => `index.${format}.js`,
     },
     rollupOptions: {
-      external: [/\.test\.ts$/],
+      external: [
+        'fs',
+        /\.test\.ts$/,
+        'pdfkit',
+        'svg-to-pdfkit',
+      ],
       output: {
-        preserveModules: true,
+        preserveModules: false,
         preserveModulesRoot: 'src',
         entryFileNames: '[name].[format].js',
       }

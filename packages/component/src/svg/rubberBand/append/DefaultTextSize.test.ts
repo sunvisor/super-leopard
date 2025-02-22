@@ -6,12 +6,12 @@
  */
 import { DefaultTextSize } from "./DefaultTextSize";
 import { DPPX, UnitType, Scale } from '@sunvisor/super-leopard-core';
-import { defaultSettings } from '../../setting';
+import { defaultSettings } from '../../../settings';
 import { defaultStyle } from '../../style';
 
 describe('Test for DefaultTextSize#size', () => {
 
-  test('Should return default size', () => {
+  it('should return default size', () => {
     // Arrange
     const scale = new Scale({ unit: UnitType.INCH });
     const styles = defaultStyle;

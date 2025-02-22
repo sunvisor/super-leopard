@@ -21,7 +21,7 @@ describe('Tests for ShapesSelector', () => {
 
   describe('Tests for selectByPosition', () => {
 
-    test('Should retrieve the Shape located at the specified position', () => {
+    it('should retrieve the Shape located at the specified position', () => {
       // Arrange
       const shapes = createTestShapes();
       const collection = new Shapes(shapes);
@@ -32,7 +32,7 @@ describe('Tests for ShapesSelector', () => {
       expect(result!.get(0)).toBe(shapes[0]);
     });
 
-    test('Should retrieve the topmost Shape when overlapping Shapes are present', () => {
+    it('should retrieve the topmost Shape when overlapping Shapes are present', () => {
       // Arrange
       const collection = createShapes([
         { type: 'rect', x: 10, y: 10, width: 20, height: 20, border: { color: '#000000' } },
@@ -50,7 +50,7 @@ describe('Tests for ShapesSelector', () => {
 
   describe('Tests for selectByBox', () => {
 
-    test('Should retrieve the Shapes located in the specified box', () => {
+    it('should retrieve the Shapes located in the specified box', () => {
       // Arrange
       const shapes = createTestShapes();
       const collection = new Shapes(shapes);

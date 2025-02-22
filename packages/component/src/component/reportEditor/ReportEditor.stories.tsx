@@ -14,7 +14,10 @@ import { expect, waitFor, within } from '@storybook/test';
 import { emptyReport } from '../emptyReport';
 import { SetReportAtom } from '../../atom/ReportAtom';
 import imageHandlers from '../../__test_assets__/msw/imageHandlers';
-import { fontList, testAssets, testImageListData, webFontMap } from '../../__test_assets__';
+import { testAssets, testImageListData } from '../../__test_assets__';
+import { fn } from '@storybook/test';
+import { testSettings } from '../../__test_assets__/settings';
+
 
 const { billTestData, en } = testAssets;
 
@@ -50,23 +53,17 @@ const meta: Meta<typeof ReportEditor> = {
       await expect(el.querySelectorAll(".layer")).toHaveLength(2);
     });
   },
+  args: {
+    settings: testSettings,
+    onSave: fn(),
+  }
 };
-
-const getImageUrl = (src: string) => {
-  return `/api/images/${src}`;
-}
-
-const apiBaseUrl = '/api/images';
 
 export const Bill: Story = {
   args: {
     title: 'Bill',
-    data: billTestData,
+    report: billTestData,
     reportId: 1,
-    getImageUrl,
-    webFontMap,
-    fontList,
-    apiBaseUrl,
     language: 'ja',
   }
 }
@@ -74,12 +71,8 @@ export const Bill: Story = {
 export const InEnglish: Story = {
   args: {
     title: 'Bill',
-    data: en.billTestData,
+    report: en.billTestData,
     reportId: 1,
-    getImageUrl,
-    webFontMap,
-    fontList,
-    apiBaseUrl,
     language: 'en',
   }
 }
@@ -88,10 +81,34 @@ export const Empty: Story = {
   args: {
     title: 'Empty',
     reportId: 1,
-    getImageUrl,
-    webFontMap,
-    apiBaseUrl,
     language: 'ja',
+  }
+}
+
+export const AnotherSettings: Story = {
+  args: {
+    title: 'Bill',
+    report: billTestData,
+    reportId: 1,
+    language: 'ja',
+    settings: {
+      ...testSettings,
+      boundingBox: {
+        handleSize: 8,
+        stroke: {
+          color: '#ff8888',
+          width: 2,
+          cap: 'round',
+          join: 'round',
+          style: 'solid'
+        }
+      },
+      designMode: {
+        ...testSettings.designMode,
+        fieldBorder: '#88ff88',
+        textBorder: '#8080ff',
+      }
+    },
   }
 }
 

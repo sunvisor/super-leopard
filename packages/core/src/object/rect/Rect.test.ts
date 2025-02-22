@@ -65,7 +65,7 @@ describe('Tests for Rect', () => {
 
   describe('Test for bbox', () => {
 
-    test('Should return bounding box', () => {
+    it('should return bounding box', () => {
       // Arrange
       const rect = new Rect({ x: 1, y: 2, width: 3, height: 4 });
       // Act
@@ -81,7 +81,7 @@ describe('Tests for Rect', () => {
 
   describe('Test for config', () => {
 
-    test('Should return config values', () => {
+    it('should return config values', () => {
       // Arrange
       const border = new Border({ width: 1, color: new Color('#0000ff') });
       const fillColor = new Color('#ff0000');
@@ -104,7 +104,7 @@ describe('Tests for Rect', () => {
 
   describe('Tests for set', () => {
 
-    test('Should return a new instance with updated x', () => {
+    it('should return a new instance with updated x', () => {
       // Arrange
       const border = new Border({ width: 1, color: new Color('#0000ff') });
       const fillColor = new Color('#ff0000');
@@ -122,7 +122,7 @@ describe('Tests for Rect', () => {
       assertOtherProperties(newRect, rect, ['x']);
     });
 
-    test('Should return a new instance with updated y', () => {
+    it('should return a new instance with updated y', () => {
       // Arrange
       const border = new Border({ width: 1, color: new Color('#0000ff') });
       const fillColor = new Color('#ff0000');
@@ -140,7 +140,7 @@ describe('Tests for Rect', () => {
       assertOtherProperties(newRect, rect, ['y']);
     });
 
-    test('Should return a new instance with updated width', () => {
+    it('should return a new instance with updated width', () => {
       // Arrange
       const border = new Border({ width: 1, color: new Color('#0000ff') });
       const fillColor = new Color('#ff0000');
@@ -158,7 +158,7 @@ describe('Tests for Rect', () => {
       assertOtherProperties(newRect, rect, ['width']);
     });
 
-    test('Should return a new instance with updated height ', () => {
+    it('should return a new instance with updated height ', () => {
       // Arrange
       const border = new Border({ width: 1, color: new Color('#0000ff') });
       const fillColor = new Color('#ff0000');
@@ -176,7 +176,7 @@ describe('Tests for Rect', () => {
       assertOtherProperties(newRect, rect, ['height']);
     });
 
-    test('Should return a new instance with updated border ', () => {
+    it('should return a new instance with updated border ', () => {
       // Arrange
       const fillColor = new Color('#ff0000');
       const border = new Border({ width: 1, color: new Color('#0000ff') });
@@ -194,7 +194,7 @@ describe('Tests for Rect', () => {
       assertOtherProperties(newRect, rect, ['border']);
     });
 
-    test('Should return a new instance with updated fillColor ', () => {
+    it('should return a new instance with updated fillColor ', () => {
       // Arrange
       const fillColor = new Color('#ff0000');
       const border = new Border({ width: 1, color: new Color('#0000ff') });
@@ -216,7 +216,7 @@ describe('Tests for Rect', () => {
 
   describe('Tests for moveTo', () => {
 
-    test('Should return a new moved instance', () => {
+    it('should return a new moved instance', () => {
       // Arrange
       const border = new Border({ width: 1, color: new Color('#0000ff') });
       const fillColor = new Color('#ff0000');
@@ -240,7 +240,7 @@ describe('Tests for Rect', () => {
 
   describe('Tests for resize', () => {
 
-    test('Should return a new resized instance', () => {
+    it('should return a new resized instance', () => {
       // Arrange
       const border = new Border({ width: 1, color: new Color('#0000ff') });
       const fillColor = new Color('#ff0000');
@@ -264,7 +264,7 @@ describe('Tests for Rect', () => {
       assertOtherProperties(newRect, rect, ['x', 'y', 'width', 'height']);
     });
 
-    test('Should return a new instance with height 0 when resize with height 0', () => {
+    it('should return a new instance with height 0 when resize with height 0', () => {
       // Arrange
       const rect = new Rect({ x: 1, y: 2, width: 3, height: 4 });
       const box: Box = { x: 11, y: 12, width: 13, height: 0 };
@@ -274,7 +274,7 @@ describe('Tests for Rect', () => {
       expect(newRect.height).toBe(0);
     });
 
-    test('Should return a new instance with specified height even if original height is 0', () => {
+    it('should return a new instance with specified height even if original height is 0', () => {
       // Arrange
       const rect = new Rect({ x: 1, y: 2, width: 3, height: 0 });
       const box: Box = { x: 11, y: 12, width: 13, height: 14 };
@@ -288,7 +288,7 @@ describe('Tests for Rect', () => {
 
   describe('Tests for equals', () => {
 
-    test('Should return true when two Rect are same', () => {
+    it('should return true when two Rect are same', () => {
       // Arrange
       const rect1 = new Rect({ x: 1, y: 2, width: 3, height: 4 });
       const rect2 = new Rect({ x: 1, y: 2, width: 3, height: 4 });
@@ -299,7 +299,7 @@ describe('Tests for Rect', () => {
 
     });
 
-    test('Should return false when two Rect are different', () => {
+    it('should return false when two Rect are different', () => {
       // Arrange
       const rect1 = new Rect({ x: 1, y: 2, width: 3, height: 4 });
       const rect2 = new Rect({ x: 2, y: 3, width: 4, height: 5 });

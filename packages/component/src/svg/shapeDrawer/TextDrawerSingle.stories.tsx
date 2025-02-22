@@ -323,9 +323,10 @@ export const RedText: Story = {
   args: {
     text: {
       ...baseData,
+      height: 10,
       text: '赤い文字 Red Text',
       font: {
-        family: 'TimesRoman',
+        family: 'NotoSerifJP',
         size: 24
       },
       color: '#ff0000',
@@ -342,10 +343,10 @@ export const RedBackSimpleText: Story = {
   args: {
     text: {
       ...baseData,
-      height: 10,
+      height: 9,
       text: '赤背景のシンプルな文字 Red Back Simple Text',
       font: {
-        family: 'Helvetica',
+        family: 'NotoSansJP',
         size: 20
       },
       color: '#eee',
@@ -363,7 +364,7 @@ export const RedBackAlignJustifyText: Story = {
   args: {
     text: {
       ...baseData,
-      height: 10,
+      height: 9,
       text: '赤背景の均等割付 Red Back Justify-All Text',
       font: {
         family: 'Helvetica',

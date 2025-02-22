@@ -5,7 +5,7 @@
  * Copyright (C) Sunvisor Lab. 2025.
  */
 import { MeasurementInterface, Scale } from '@sunvisor/super-leopard-core';
-import { GetSvgImagePath, SettingData } from '../index';
+import { BarcodeOptions, ImageOptions, SettingData } from '../../settings';
 import { WebFont } from './WebFont';
 import { SvgDrawerInterface } from '../../svgDriver';
 
@@ -15,8 +15,8 @@ export type ShapeDrawerProps = {
   scale: Scale;
 }
 
-export type ImageDrawerProps =  ShapeDrawerProps & {
-  getImagePath: GetSvgImagePath;
+export type ImageDrawerProps = ShapeDrawerProps & {
+  imageOptions: ImageOptions;
 }
 
 export type TextDrawerProps = ShapeDrawerProps & {
@@ -24,9 +24,12 @@ export type TextDrawerProps = ShapeDrawerProps & {
   measurement: MeasurementInterface;
 }
 
-export type StaticDrawerProps = TextDrawerProps & ImageDrawerProps;
+export type BarcodeDrawerProps = ShapeDrawerProps & {
+  barcodeOptions: BarcodeOptions;
+}
 
-export type DrawerProps = ImageDrawerProps & {
+
+export type DrawerProps = ShapeDrawerProps &{
   settings: SettingData;
 }
 

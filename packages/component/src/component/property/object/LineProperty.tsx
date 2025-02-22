@@ -5,9 +5,7 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import { useCallback, useMemo } from "react";
-import {
-  Line, UnitValue, expandLine, LinePropertyValue, contractLine
-} from '@sunvisor/super-leopard-core';
+import { createLine, Line, LineData, serializeLine, UnitValue } from '@sunvisor/super-leopard-core';
 import usePropertyStates from '../usePropertyStates';
 import PropertyBox from './PropertyBox';
 import LinePanel from '../panel/LinePanel';
@@ -22,18 +20,18 @@ type Props = {
 export default function LineProperty(props: Props) {
   const { unit, shape, onUpdate } = props;
   const lineProperty = useMemo(
-    () => expandLine(shape), [shape]
+    () => serializeLine(shape), [shape]
   );
 
   const doUpdate = useCallback(
-    (values: LinePropertyValue) => {
-      const updated = contractLine(values);
+    (values: LineData) => {
+      const updated = createLine(values);
       onUpdate(shape, updated);
     },
     [shape, onUpdate]
   );
 
-  const { values, handleChangeValue } = usePropertyStates<LinePropertyValue>(
+  const { values, handleChangeValue } = usePropertyStates<LineData>(
     lineProperty,
     values => doUpdate(values)
   );

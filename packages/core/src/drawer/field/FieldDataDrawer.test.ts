@@ -7,7 +7,7 @@
 import { createField } from '../../creator';
 import { FieldDataDrawer } from './FieldDataDrawer';
 import { FieldDrawerParams, StaticShapeDrawerInterface } from '../types';
-import { rectFieldData, textFieldData } from '../../__test_assets__/drawerTest';
+import { barcodeFieldData, rectFieldData, textFieldData } from '../../__test_assets__/drawerTest';
 
 describe('FieldDataDrawer', () => {
   const mockShapeDrawer: StaticShapeDrawerInterface = {
@@ -18,7 +18,7 @@ describe('FieldDataDrawer', () => {
     vi.clearAllMocks();
   });
 
-  it('Should throw an error if values are not provided', () => {
+  it('should throw an error if values are not provided', () => {
     // Arrange
     const fieldDataDrawer = new FieldDataDrawer(mockShapeDrawer);
     const field = createField(textFieldData);
@@ -28,7 +28,7 @@ describe('FieldDataDrawer', () => {
     ).toThrowError('values is required');
   });
 
-  it('Should draw text shape when field shape is text', () => {
+  it('should draw text shape when field shape is text', () => {
     // Arrange
     const fieldDataDrawer = new FieldDataDrawer(mockShapeDrawer);
     const field = createField(textFieldData);
@@ -44,7 +44,23 @@ describe('FieldDataDrawer', () => {
     );
   });
 
-  it('Should draw shape when field shape is not text', () => {
+  it('should draw barcode shape when field shape is barcode', () => {
+    // Arrange
+    const fieldDataDrawer = new FieldDataDrawer(mockShapeDrawer);
+    const field = createField(barcodeFieldData);
+    const mockValue = 'https://www.sunvisor.net';
+    const opacity = 0.8;
+    const mockParams: FieldDrawerParams = { values: { myField: mockValue }, opacity };
+    // Act
+    fieldDataDrawer.draw(field, mockParams);
+    // Assert
+    expect(mockShapeDrawer.draw).toHaveBeenCalledWith(
+      expect.objectContaining({ value: mockValue }),
+      { opacity }
+    )
+  })
+
+  it('should draw shape when field shape is not text', () => {
     // Arrange
     const fieldDataDrawer = new FieldDataDrawer(mockShapeDrawer);
     const field = createField(rectFieldData);
@@ -57,7 +73,7 @@ describe('FieldDataDrawer', () => {
     expect(mockShapeDrawer.draw).toHaveBeenCalledWith(field.shape, { opacity });
   });
 
-  it('Should not draw shape when field shape is not text and value is falsy', () => {
+  it('should not draw shape when field shape is not text and value is falsy', () => {
     // Arrange
     const fieldDataDrawer = new FieldDataDrawer(mockShapeDrawer);
     const field = createField(rectFieldData);

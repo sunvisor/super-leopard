@@ -36,7 +36,7 @@ describe('Tests for ShapeSelector', () => {
 
     describe('Tests for hitTest', () => {
 
-      test('Should return true when point is in the rect', () => {
+      it('should return true when point is in the rect', () => {
         // Arrange
         const pos: Position = { x: 5 * DPPX, y: 2 * DPPX };
         // Act
@@ -45,7 +45,7 @@ describe('Tests for ShapeSelector', () => {
         expect(isHit).toBe(true);
       });
 
-      test('Should return false when point is not in the rect', () => {
+      it('should return false when point is not in the rect', () => {
         // Arrange
         const pos: Position = { x: DPPX - 1, y: DPPX - 1 };
         // Act
@@ -58,7 +58,7 @@ describe('Tests for ShapeSelector', () => {
 
     describe('Tests for inTheBox', () => {
 
-      test('Should return true when the shape is in the box', () => {
+      it('should return true when the shape is in the box', () => {
         // Arrange
         const box = { x: DPPX - 1, y: DPPX - 1, width: DPPX * 11, height: DPPX * 6 };
         // Act
@@ -67,7 +67,7 @@ describe('Tests for ShapeSelector', () => {
         expect(isInBox).toBe(true);
       });
 
-      test('Should return false when the shape is not in the box', () => {
+      it('should return false when the shape is not in the box', () => {
         // Arrange
         const box = { x: DPPX + 1, y: DPPX + 1, width: DPPX * 10, height: DPPX * 5 };
         // Act
@@ -83,7 +83,7 @@ describe('Tests for ShapeSelector', () => {
   describe('Tests for Circle', () => {
     const circle = new Circle({ x: 1, y: 1, diameter: 10 });
 
-    test('Should return true when point is in the shape', () => {
+    it('should return true when point is in the shape', () => {
       // Arrange
       const pos: Position = { x: 5 * DPPX, y: 5 * DPPX };
       // Act
@@ -92,7 +92,7 @@ describe('Tests for ShapeSelector', () => {
       expect(isHit).toBe(true);
     });
 
-    test('Should return false when point is not in the shape', () => {
+    it('should return false when point is not in the shape', () => {
       // Arrange
       const pos: Position = { x: DPPX, y: DPPX };
       // Act
@@ -108,7 +108,7 @@ describe('Tests for ShapeSelector', () => {
 
     const ellipse = new Ellipse({ x: 1, y: 1, width: 10, height: 5 });
 
-    test('Should return true when point is in the shape', () => {
+    it('should return true when point is in the shape', () => {
       // Arrange
       const pos: Position = { x: 5 * DPPX, y: 5 * DPPX };
       // Act
@@ -116,7 +116,7 @@ describe('Tests for ShapeSelector', () => {
       // Assert
       expect(isHit).toBe(true);
     });
-    test('Should return false when point is not in the shape', () => {
+    it('should return false when point is not in the shape', () => {
       // Arrange
       const pos: Position = { x: DPPX, y: DPPX };
       // Act
@@ -130,7 +130,7 @@ describe('Tests for ShapeSelector', () => {
   describe('Test for Line', () => {
     const border = new Border({ width: 1, color: new Color('#000000') });
 
-    test('Should return true when hit occurs on a line', () => {
+    it('should return true when hit occurs on a line', () => {
       // Arrange
       const line = new Line({ x1: 1, y1: 1, x2: 100, y2: 100, border });
       const pos: Position = { x: 50 * DPPX, y: 50 * DPPX };
@@ -140,7 +140,7 @@ describe('Tests for ShapeSelector', () => {
       expect(hit).toBe(true);
     });
 
-    test('Should return false when hit does not occur on a line', () => {
+    it('should return false when hit does not occur on a line', () => {
       // Arrange
       const line = new Line({ x1: 1, y1: 1, x2: 100, y2: 100, border });
       const pos: Position = { x: 50 * DPPX, y: 55 * DPPX };
@@ -162,7 +162,7 @@ describe('Tests for ShapeSelector', () => {
       height: 110,
     });
 
-    test('Should return true when hit occurs on a group', () => {
+    it('should return true when hit occurs on a group', () => {
       // Arrange
       const pos: Position = { x: 5 * DPPX, y: 2 * DPPX };
       // Act
@@ -171,7 +171,7 @@ describe('Tests for ShapeSelector', () => {
       expect(isHit).toBe(true);
     });
 
-    test('Should return false when hit does not occur on a group', () => {
+    it('should return false when hit does not occur on a group', () => {
       // Arrange
       const pos: Position = { x: DPPX - 1, y: DPPX - 1 };
       // Act

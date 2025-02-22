@@ -10,7 +10,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { createScale, Box, PositionPair, UnitType } from '@sunvisor/super-leopard-core';
 import { within } from "@storybook/test";
 import { BoundingBox } from './BoundingBox';
-import { BoundingBoxOptions, defaultSettings } from '../setting';
+import { BoundingBoxOptions, defaultSettings } from '../../settings';
 import { createTestSvgDrawer } from '../../__test_assets__';
 
 type BoundingBoxProps = {

@@ -5,6 +5,7 @@
  * Copyright (C) Sunvisor Lab. 2025.
  */
 import {
+  BarcodeShape,
   CircleShape,
   createDataDrawer,
   createDesignDrawer,
@@ -18,33 +19,35 @@ import {
   TextShape
 } from '@sunvisor/super-leopard-core';
 import { RectDrawer } from './RectDrawer';
-import { StaticDrawerProps } from './types';
+import { BarcodeDrawerProps, ImageDrawerProps, TextDrawerProps } from './types';
 import { CircleDrawer } from './CircleDrawer';
 import { EllipseDrawer } from './EllipseDrawer';
-import ImageDrawer from './ImageDrawer';
-import TextElementDrawer from './TextElementDrawer';
+import { ImageDrawer } from './ImageDrawer';
+import { TextElementDrawer } from './TextElementDrawer';
 import { Measurement } from './Measurement';
-import { SettingData } from '../setting';
-import { GetSvgImagePath } from '../index';
+import { SettingData } from '../../settings';
 import { LineDrawer } from './LineDrawer';
 import { WebFont } from './WebFont';
 import { SvgDrawerInterface } from '../../svgDriver';
+import { BarcodeDrawer } from './BarcodeDrawer';
 
 
-export type CreateDrawerParams = {
+type CreateDrawerParams = {
   svg: SvgDrawerInterface;
   scale: Scale;
-  getImagePath: GetSvgImagePath;
   settings: SettingData;
 }
 
+export type StaticDrawerProps = TextDrawerProps & ImageDrawerProps & BarcodeDrawerProps;
 
-export function createLayerDesignDrawer({ svg, scale, settings, getImagePath }: CreateDrawerParams): ShapesDrawer {
+export function createLayerDesignDrawer(
+  { svg, scale, settings }: CreateDrawerParams
+): ShapesDrawer {
   const { fontMap, designMode } = settings;
   const webFont = new WebFont(fontMap);
   const measurement = new Measurement({ scale, webFont });
   const staticShapeDrawers = createStaticShapeDrawers({
-    svg, scale, webFont, measurement, getImagePath
+    svg, scale, webFont, measurement, imageOptions: settings.image, barcodeOptions: settings.barcode
   });
   return createDesignDrawer({
     staticShapeDrawers,
@@ -55,12 +58,14 @@ export function createLayerDesignDrawer({ svg, scale, settings, getImagePath }: 
   });
 }
 
-export function createLayerDataDrawer({ svg, scale, settings, getImagePath }: CreateDrawerParams): ShapesDrawer {
+export function createLayerDataDrawer(
+  { svg, scale, settings }: CreateDrawerParams
+): ShapesDrawer {
   const { fontMap } = settings;
   const webFont = new WebFont(fontMap);
   const measurement = new Measurement({ scale, webFont });
   const staticShapeDrawers = createStaticShapeDrawers({
-    svg, scale, webFont, measurement, getImagePath
+    svg, scale, webFont, measurement, imageOptions: settings.image, barcodeOptions: settings.barcode
   });
   return createDataDrawer({
     staticShapeDrawers,
@@ -77,5 +82,6 @@ function createStaticShapeDrawers(props: StaticDrawerProps): StaticShapeDrawers 
     [LineShape]: new LineDrawer(props),
     [RectShape]: new RectDrawer(props),
     [TextShape]: new TextElementDrawer(props),
+    [BarcodeShape]: new BarcodeDrawer(props),
   }
 }

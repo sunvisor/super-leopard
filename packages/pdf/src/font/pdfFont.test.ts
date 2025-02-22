@@ -14,7 +14,7 @@ describe('Tests for PdfFont', () => {
 
   describe('Tests for registerFonts', () => {
 
-    test('Should register additional fonts to PdfDocument', () => {
+    it('should register additional fonts to PdfDocument', () => {
       // Arrange
       const options = {
         additionalFontMap: additionalPdfFontMap,
@@ -183,7 +183,7 @@ describe('Tests for PdfFont', () => {
       });
     });
 
-    test('Should not change original options', () => {
+    it('should not change original options', () => {
       // Arrange
       const font = createFont({
         family: 'NotoSerifJP',

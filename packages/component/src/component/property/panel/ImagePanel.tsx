@@ -8,58 +8,39 @@ import { useCallback, useEffect, useState } from "react";
 import PositionFields from '../fieldGroup/PositionFields';
 import SizeFields from '../fieldGroup/SizeFields';
 import { Box, Button } from '@mui/material';
-import UploadButton from '../field/UploadButton';
-import { ImagePropertyValue, UnitValue } from '@sunvisor/super-leopard-core';
+import { UnitValue, ImageData } from '@sunvisor/super-leopard-core';
 import { ChangeValueHandler } from '../usePropertyStates';
 import getCaptions from '../../../captions/getCaptions';
 import SvImage from '../field/SvImage';
 import CollectionsIcon from '@mui/icons-material/Collections';
 import { ImageListData } from '../../index';
 import ImageListPanel from '../panel/ImageListPanel';
+import { ImageOptions } from '../../../settings';
 
 export type ImagePanelValueType = string | number;
 type Props = {
-  apiBaseUrl: string;
+  imageOptions: ImageOptions;
   unit: UnitValue;
-  values: ImagePropertyValue;
+  values: ImageData;
   onChangeValue: ChangeValueHandler<ImagePanelValueType>;
 }
 
-async function doUpload(apiBaseUrl: string ,file: File) {
-  const data = new FormData()
-  data.set('file', file);
-  const res = await fetch(apiBaseUrl, {
-    method: 'POST',
-    body: data
-  });
-  const result = await res.json();
-  return result.image;
-}
-
 export default function ImagePanel(props: Props) {
-  const { apiBaseUrl,unit, values, onChangeValue } = props;
+  const { imageOptions, unit, values, onChangeValue } = props;
+  const { getImageList, getImageUrl, noImageUrl }  = imageOptions;
   const captions = getCaptions('imageProperty');
   const [openSelect, setOpenSelect] = useState(false);
   const [imageList, setImageList] = useState<ImageListData[]>([]);
-  const srcUrl = `${apiBaseUrl}/${values.src}`;
+  const srcUrl = values.src.length ? getImageUrl(values.src) : noImageUrl;
 
   useEffect(() => {
     const fetchImageList = async () => {
-      const res = await fetch(apiBaseUrl);
-      const imageList = await res.json();
+      const imageList = await getImageList();
       setImageList(imageList);
     }
     // noinspection JSIgnoredPromiseFromCall
     fetchImageList();
-  }, [apiBaseUrl]);
-
-  const handleChangeFile = useCallback(
-    async (_: string, file: File) => {
-      const newSrc = await doUpload(apiBaseUrl, file);
-      onChangeValue('src', newSrc, true);
-    },
-    [onChangeValue, apiBaseUrl]
-  );
+  }, []);
 
   const handleOpenSelect = useCallback(
     async () => {
@@ -100,11 +81,6 @@ export default function ImagePanel(props: Props) {
             >
               {captions.select}
             </Button>
-            <UploadButton
-              name="upload"
-              label={captions.upload}
-              onChangeFile={handleChangeFile}
-            />
           </Box>
           <Box sx={{ height: 200 }}>
             <SvImage
@@ -116,7 +92,7 @@ export default function ImagePanel(props: Props) {
       }
       {
         openSelect && <ImageListPanel
-          baseUrl={apiBaseUrl}
+          getImageUrl={getImageUrl}
           imageList={imageList}
           onSelect={handleImageListPanelSelect}
         />

@@ -35,25 +35,32 @@ The workspace structure is as follows.
 - packages/component: Super Leopard GUI library
 - packages/pdf: PDF output library
 
+### core library
+
+This provides a model that defines each element of a report template (called a Report).
+Reports can be defined in JSON. The syntax is described in the [core documentation](packages/core/README.md).
+However, there is no need to memorize the syntax.
+The reports can be generated using the GUI defined in the component library.
+
+This library basically prints reports (templates) defined in JSON by providing data.
+The core library defines the format and basic behavior of the underlying reports.
+If you need a report that outputs something other than web or PDF, you can create it using the core library.
+
+### pdf library
+
+This provides a library for outputting PDF.
+You can output PDFs using HTTP servers such as Express or Fastify, or desktop apps such as Electron.
+This library uses PDFKit for creating PDF.
+
 ### component library
 
 This provides a function to display forms on a web screen and a GUI for editing form templates.
 You can edit templates on a web screen.
 The component is implemented using React and MUI.
+We also use jotai for state management.
 
 ![report editor](docs/en/images/report_editor.png)
 
-### pdf library
-
-This provides a library for outputting PDF.
-You can output PDF using HTTP servers such as Express or Fastify.
-This library uses PDFKit for creating PDF.
-
-### core library
-
-This provides a model for defining each element of the report template.
-The processing common to the component library and pdf library is mainly placed here.
-If you need a report that outputs something other than web or PDF, you can create it using the core library.
 
 License
 -------

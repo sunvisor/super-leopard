@@ -5,10 +5,7 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import {
-  Circle,
-  CirclePropertyValue,
-  contractCircle,
-  expandCircle,
+  Circle, CircleData, createCircle, serializeCircle,
   UnitValue
 } from '@sunvisor/super-leopard-core';
 import { useCallback, useEffect, useMemo } from "react";
@@ -26,18 +23,18 @@ type Props = {
 export default function CircleProperty(props: Props) {
   const { unit, onUpdate, shape } = props;
   const circleProperty = useMemo(
-    () => expandCircle(shape), [shape]
+    () => serializeCircle(shape), [shape]
   );
 
   const doUpdate = useCallback(
-    (values: CirclePropertyValue) => {
-      const updated = contractCircle(values);
+    (values: CircleData) => {
+      const updated = createCircle(values);
       onUpdate(shape, updated);
     },
     [shape, onUpdate]
   );
 
-  const { values, setValues, handleChangeValue } = usePropertyStates<CirclePropertyValue>(
+  const { values, setValues, handleChangeValue } = usePropertyStates<CircleData>(
     circleProperty,
     values => doUpdate(values)
   );

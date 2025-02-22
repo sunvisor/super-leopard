@@ -4,13 +4,13 @@
  * Created by sunvisor on 2024/01/31.
  * Copyright (C) Sunvisor Lab. 2024.
  */
-import { CreateImage, NO_IMAGE } from "./CreateImage";
+import { CreateImage } from "./CreateImage";
 import { Image, ImageShape, Scale, UnitType } from '@sunvisor/super-leopard-core';
 
 describe('Test for CreateImage#create', () => {
   const scale = new Scale({ unit: UnitType.INCH });
 
-  test('Should return Image object', () => {
+  it('should return Image object', () => {
     // Arrange
     const createImage = new CreateImage({ scale });
     // Act
@@ -23,7 +23,7 @@ describe('Test for CreateImage#create', () => {
     expect(image.y).toBe(scale.fromPixel(10));
     expect(image.width).toBe(scale.fromPixel(90));
     expect(image.height).toBe(scale.fromPixel(100));
-    expect(image.src).toBe(NO_IMAGE);
+    expect(image.src).toBe('');
   });
 
 });

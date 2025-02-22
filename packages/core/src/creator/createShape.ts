@@ -5,7 +5,15 @@
  * Copyright (C) Sunvisor Lab. 2023.
  */
 import {
+  BarcodeShape,
   CircleShape,
+  createBarcode,
+  createCircle,
+  createEllipse,
+  createImage,
+  createLine,
+  createRect,
+  createText,
   EllipseShape,
   Field,
   FieldShape,
@@ -21,13 +29,8 @@ import {
   Shapes,
   TextShape
 } from "../object";
-import { createCircle } from "./createCircle";
-import { createEllipse } from "./createEllipse";
-import { createRect } from "./createRect";
-import { createLine } from "./createLine";
-import { createText } from "./createText";
-import { createImage } from './createImage';
 import {
+  BarcodeData,
   CircleData,
   EllipseData,
   FieldData,
@@ -68,6 +71,8 @@ export function createStaticShape(data: StaticShapeData): Shape {
       return createText(data as TextData);
     case ImageShape:
       return createImage(data as ImageData);
+    case BarcodeShape:
+      return createBarcode(data as BarcodeData);
     default:
       // @ts-expect-error Unknown type
       throw new Error(`Unknown shape type: ${data.type}`);

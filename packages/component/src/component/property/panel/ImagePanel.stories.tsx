@@ -8,10 +8,9 @@
  */
 import ImagePanel from "./ImagePanel";
 import { Meta, StoryObj } from '@storybook/react';
-import { UnitType, ImagePropertyValue } from '@sunvisor/super-leopard-core';
-import imageHandlers from '../../../__test_assets__/msw/imageHandlers';
+import { UnitType, ImageData } from '@sunvisor/super-leopard-core';
 import { Box } from '@mui/material';
-import { testImageListData } from '../../../__test_assets__';
+import { testImageOptions } from '../../../__test_assets__';
 import { fn } from '@storybook/test';
 
 
@@ -29,15 +28,10 @@ const meta: Meta<typeof ImagePanel> = {
       </Box>
     ),
   ],
-  parameters: {
-    msw: {
-      handlers: imageHandlers(testImageListData),
-    }
-  }
 };
 
-const apiBaseUrl= '/api/images'
-const values: ImagePropertyValue = {
+const imageOptions = testImageOptions;
+const values: ImageData = {
   x: 0,
   y: 0,
   width: 100,
@@ -49,7 +43,7 @@ export const UnitMillimeter: Story = {
   args: {
     unit: UnitType.MILLIMETER,
     values,
-    apiBaseUrl,
+    imageOptions,
   },
 };
 
@@ -57,7 +51,7 @@ export const UnitInch: Story = {
   args: {
     unit: UnitType.INCH,
     values,
-    apiBaseUrl,
+    imageOptions,
   },
 }
 
@@ -65,7 +59,7 @@ export const EmptyImageList: Story = {
   args: {
     unit: UnitType.INCH,
     values,
-    apiBaseUrl,
+    imageOptions,
   },
 }
 

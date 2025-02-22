@@ -1,4 +1,3 @@
-import { ImageListData } from '../component';
 
 /**
  * TestImages
@@ -6,6 +5,10 @@ import { ImageListData } from '../component';
  * Created by sunvisor on 2024/03/09.
  * Copyright (C) Sunvisor Lab. 2024.
  */
+import { ImageListData } from '../component';
+
+
+export const testNoImageUrl = '/api/images/no_image.svg';
 export const testImageListData: ImageListData[] = [
 
   {
@@ -29,3 +32,13 @@ export const testImageListData: ImageListData[] = [
     "name": "sample05.jpg"
   },
 ]
+
+export const testImageOptions = {
+  getImageUrl: (name: string) => {
+    return `/api/images/${name}`
+  },
+  noImageUrl: testNoImageUrl,
+  getImageList: async () => {
+    return testImageListData;
+  },
+}

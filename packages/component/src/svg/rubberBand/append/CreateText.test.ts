@@ -13,7 +13,7 @@ describe('Tests for CreateText#create', () => {
   const scale = new Scale({unit: UnitType.INCH});
   const styles = defaultStyle;
 
-  test('Should return Text object', () => {
+  it('should return Text object', () => {
     // Arrange
     const createText = new CreateText({ scale, styles });
     // Act

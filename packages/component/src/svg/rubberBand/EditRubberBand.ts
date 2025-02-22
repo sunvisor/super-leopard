@@ -10,7 +10,7 @@ import { MoveRubberBand, OnMoveHandler } from './MoveRubberBand';
 import { HandleType } from '../boundingBox';
 import { ResizeRubberBand, OnResizeHandler } from './ResizeRubberBand';
 import { LineRubberBand, OnMovePositionHandler } from './LineRubberBand';
-import { RubberBandOptions } from '../setting';
+import { RubberBandOptions } from '../../settings';
 import { SvgDrawerInterface } from '../../svgDriver';
 
 

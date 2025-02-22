@@ -8,10 +8,9 @@
  */
 import { SelectRubberBand, OnSelectHandler } from "./SelectRubberBand";
 import { Meta, StoryObj } from '@storybook/react';
-import { within } from '@storybook/test';
-import { Box, Position } from '@sunvisor/super-leopard-core';
+import { fn, within } from '@storybook/test';
 import { createTestSvgDrawer } from '../../__test_assets__';
-import { RubberBandOptions } from '../setting';
+import { RubberBandOptions } from '../../settings';
 
 type SelectRubberBandProps = {
   onSelect: OnSelectHandler;
@@ -21,6 +20,9 @@ type Story = StoryObj<SelectRubberBandProps>
 
 const meta: Meta<SelectRubberBandProps> = {
   title: 'svg/rubberBand/SelectRubberBand',
+  args: {
+    onSelect: fn(),
+  }
 };
 
 const Template: Story = {
@@ -58,11 +60,6 @@ function draw(canvasElement: HTMLElement, args: SelectRubberBandProps) {
 
 export const Select: Story = {
   ...Template,
-  args: {
-    onSelect: (area: Box | Position) => {
-      console.log(area);
-    }
-  }
 };
 
 export default meta;

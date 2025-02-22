@@ -99,6 +99,8 @@ function getIcon(shape: Shape) {
       return <LineIcon />
     case ImageShape:
       return <PhotoSizeSelectActualIcon />
+    default:
+      throw new Error(`Unknown shape type: ${shape.type}`);
   }
 }
 

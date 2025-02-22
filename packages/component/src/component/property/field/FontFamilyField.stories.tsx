@@ -9,7 +9,7 @@
 import FontFamilyField from "./FontFamilyField";
 import { Meta, StoryObj } from "@storybook/react";
 import  { fieldDecorator } from "../../../__test_assets__";
-import { fontList } from '../../../__test_assets__';
+import { testFontList } from '../../../__test_assets__';
 import { fn } from '@storybook/test';
 
 type Story = StoryObj<typeof FontFamilyField>;
@@ -27,7 +27,7 @@ export const Normal: Story = {
   args: {
     label: "Font",
     name: "fontFamily",
-    fontList,
+    fontList: testFontList,
   },
 };
 

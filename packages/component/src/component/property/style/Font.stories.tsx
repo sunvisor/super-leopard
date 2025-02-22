@@ -12,7 +12,7 @@ import { createStore } from 'jotai/index';
 import { defaultStyle, FontStyleAtom } from '../../../atom/StylesAtom';
 import { Provider } from 'jotai';
 import { fieldDecorator } from '../../../__test_assets__';
-import { fontList } from '../../../__test_assets__';
+import { testFontList } from '../../../__test_assets__';
 
 type Story = StoryObj<typeof Font>
 
@@ -35,7 +35,7 @@ const store = createStore();
 
 export const Normal: Story = {
   args: {
-    fontList,
+    fontList: testFontList,
   },
 };
 

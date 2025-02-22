@@ -8,7 +8,7 @@
 import { EditRubberBandInterface } from './EditRubberBand';
 import { Position, PositionPair } from '@sunvisor/super-leopard-core'
 import { HandleCursor, HandleType } from '../boundingBox';
-import { RubberBandOptions } from '../setting';
+import { RubberBandOptions } from '../../settings';
 import { SvgDrawerInterface, SvgLineInterface } from '../../svgDriver';
 
 export type OnMovePositionHandler = (positions: PositionPair) => void;

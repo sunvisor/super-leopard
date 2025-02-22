@@ -30,7 +30,7 @@ type BoxData = {
 
 describe('Tests for createShape', () => {
 
-  test('Should return Circle if type is circle', () => {
+  it('should return Circle if type is circle', () => {
     // Arrange
     const data: CircleData = { type: CircleShape, x: 1, y: 2, diameter: 3 };
     // Act
@@ -49,7 +49,7 @@ describe('Tests for createShape', () => {
     expect(shape.height).toEqual(data.height);
   }
 
-  test('Should return Ellipse if type is ellipse', () => {
+  it('should return Ellipse if type is ellipse', () => {
     // Arrange
     const data: EllipseData = { type: EllipseShape, x: 1, y: 2, width: 3, height: 4 };
     // Act
@@ -59,7 +59,7 @@ describe('Tests for createShape', () => {
     assertBox(shape, data);
   });
 
-  test('Should return Rect if type is rect', () => {
+  it('should return Rect if type is rect', () => {
     // Arrange
     const data: RectData = { type: RectShape, x: 1, y: 2, width: 3, height: 4 };
     // Act
@@ -69,7 +69,7 @@ describe('Tests for createShape', () => {
     assertBox(shape, data);
   });
 
-  test('Should return Line if type is line', () => {
+  it('should return Line if type is line', () => {
     // Arrange
     const data: LineData = { type: LineShape, x1: 1, y1: 2, x2: 3, y2: 4 };
     // Act
@@ -82,7 +82,7 @@ describe('Tests for createShape', () => {
     expect(shape.y2).toEqual(data.y2);
   });
 
-  test('Should return Text if type is text', () => {
+  it('should return Text if type is text', () => {
     // Arrange
     const font: FontData = { family: 'serif', size: 12 };
     const data: TextData = { type: TextShape, x: 1, y: 2, width: 100, height: 7, text: 'text', font };
@@ -97,7 +97,7 @@ describe('Tests for createShape', () => {
     expect(shape.text).toEqual(data.text);
   });
 
-  test('Should return Image if type is image', () => {
+  it('should return Image if type is image', () => {
     // Arrange
     const data = { type: ImageShape, x: 1, y: 2, width: 3, height: 4, src: 'image.png' };
     // Act

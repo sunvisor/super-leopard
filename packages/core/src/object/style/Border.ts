@@ -124,3 +124,13 @@ export class Border {
   }
 
 }
+
+export function compareBorder(a: Border | undefined, b: Border | undefined): boolean {
+  if (!a && !b) {
+    return true;
+  }
+  if (!a || !b) {
+    return false;
+  }
+  return a.equals(b);
+}

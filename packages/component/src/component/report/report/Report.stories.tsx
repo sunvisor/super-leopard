@@ -11,6 +11,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { PaperSize, UnitType } from '@sunvisor/super-leopard-core';
 import { createStore, Provider } from "jotai/index";
 import { testAssets, layerTestData } from '../../../__test_assets__';
+import { testSettings } from '../../../__test_assets__/settings';
 
 const {
   billTestData, billListRecords, billValues,
@@ -35,11 +36,10 @@ const meta: Meta<typeof Report> = {
       );
     },
   ],
+  args: {
+    settings: testSettings,
+  }
 };
-
-const getImageUrl = (src: string) => {
-  return `/api/images/${src}`;
-}
 
 export const Shapes: Story = {
   args: {
@@ -56,7 +56,6 @@ export const Shapes: Story = {
       myTextField: "value1",
       myTextWithEmptyShapeField: "value2",
     },
-    getImageUrl,
     zoom: 1,
   },
 };
@@ -66,7 +65,6 @@ export const Bill: Story = {
     report: billTestData,
     values: billValues,
     listRecords: billListRecords,
-    getImageUrl,
     zoom: 1,
   },
 };
@@ -77,7 +75,6 @@ export const BillLargeData: Story = {
     values: billValues,
     listRecords: dummyBillRecords(25),
     pageNumber: 2,
-    getImageUrl,
     zoom: 1,
   },
 };
@@ -87,7 +84,6 @@ export const BillEmptyData: Story = {
     report: billTestData,
     values: {},
     listRecords: [],
-    getImageUrl,
     zoom: 1,
   },
 };
@@ -97,7 +93,6 @@ export const BillEmptyList: Story = {
     report: billTestData,
     values: billValues,
     listRecords: [],
-    getImageUrl,
     zoom: 1,
   },
 };

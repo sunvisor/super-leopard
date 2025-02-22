@@ -11,10 +11,9 @@ import ColorPickerField from '../field/ColorPickerField';
 import getCaptions from '../../../captions/getCaptions';
 import GroupBox from '../fieldGroup/GroupBox';
 
-export type TextColorFieldType = boolean|string;
+export type TextColorFieldType = boolean | string | undefined;
 
 type Props = {
-  useFillColor: boolean;
   fillColor?: string;
   color: string;
   onChangeValue: ChangeValueHandler<TextColorFieldType>;
@@ -22,7 +21,6 @@ type Props = {
 
 export default function TextColorFields(props: Props) {
   const {
-    useFillColor,
     fillColor,
     color,
     onChangeValue,
@@ -41,7 +39,6 @@ export default function TextColorFields(props: Props) {
       </Box>
       <Box sx={{ flex: 1 }}>
         <FillColorField
-          useFillColor={useFillColor}
           fillColor={fillColor}
           onChangeValue={onChangeValue}
         />

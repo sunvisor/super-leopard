@@ -8,9 +8,9 @@
  */
 import TextPanel from "./TextPanel";
 import { Meta, StoryObj } from "@storybook/react";
-import { UnitType, TextStyleValue } from '@sunvisor/super-leopard-core';
+import { TextData, UnitType } from '@sunvisor/super-leopard-core';
 import { Box } from "@mui/material";
-import { fontList } from '../../../__test_assets__';
+import { testFontList } from '../../../__test_assets__';
 import { fn } from '@storybook/test';
 
 
@@ -38,17 +38,17 @@ const meta: Meta<typeof TextPanel> = {
   ],
 };
 
-const values: TextStyleValue = {
+const values: TextData = {
   x: 0,
   y: 0,
   width: 0,
   height: 0,
-  fontFamily: "Helvetica",
-  fontSize: 12,
-  fontStyle: ["bold"],
-  useFillColor: false,
+  font: {
+    family: "Helvetica",
+    size: 12,
+    style: "bold",
+  },
   color: "#000000",
-  fillColor: undefined,
   align: "left",
   valign: "middle",
   multiLine: true,
@@ -59,7 +59,7 @@ const values: TextStyleValue = {
 export const UnitMillimeter: Story = {
   args: {
     unit: UnitType.MILLIMETER,
-    fontList,
+    fontList: testFontList,
     values,
   },
 };
@@ -67,7 +67,7 @@ export const UnitMillimeter: Story = {
 export const UnitInch: Story = {
   args: {
     unit: UnitType.INCH,
-    fontList,
+    fontList: testFontList,
     values,
   },
 };

@@ -20,7 +20,7 @@ describe('Tests for LineDrawer#draw', () => {
     y1: 40,
   }
 
-  test('Should append a line element with correct attributes to the SVG', () => {
+  it('should append a line element with correct attributes to the SVG', () => {
     // Arrange
     svg.clear();
     const line = createLine(data);

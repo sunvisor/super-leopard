@@ -4,6 +4,7 @@
   "description": "Visual components for Super Leopard",
   "license": "MIT",
   "author": "Sunvisor <hisashi@sunvisor.net> (https://www.sunvisor.net/)",
+  "repository": "https://github.com/sunvisor/super-leopard",
   "main": "dist/index.js",
   "type": "module",
   "scripts": {

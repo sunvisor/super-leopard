@@ -8,7 +8,7 @@
  */
 import DefaultStyle from "./DefaultStyle";
 import { Meta, StoryObj } from '@storybook/react';
-import { fontList} from '../../../__test_assets__';
+import { testFontList} from '../../../__test_assets__';
 
 type Story = StoryObj<typeof DefaultStyle>
 
@@ -25,14 +25,14 @@ export const Line: Story = {
 export const Text: Story = {
   args: {
     mode: 'text',
-    fontList,
+    fontList: testFontList,
   }
 }
 
 export const Field: Story = {
   args: {
     mode: 'field',
-    fontList,
+    fontList: testFontList,
   }
 }
 

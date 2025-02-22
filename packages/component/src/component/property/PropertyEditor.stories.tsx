@@ -15,7 +15,7 @@ import { SetReportAtom } from '../../atom/ReportAtom';
 import { emptyReport } from '../emptyReport';
 import { Provider } from 'jotai';
 import { ClipboardAtom } from '../../atom/ClipboardAtom';
-import { testAssets } from '../../__test_assets__';
+import { testAssets, testImageOptions } from '../../__test_assets__';
 
 type Story = StoryObj<typeof PropertyEditor>
 
@@ -43,7 +43,11 @@ const getDecorator = (selection: Shapes, clipboard: Shapes) =>
   }
 
 export const NotSelected: Story = {
-  args: {},
+  args: {
+    imageOptions: testImageOptions,
+    errorImageUrl: '/api/images/barcode_error.svg',
+    fontList: [],
+  },
   decorators: [getDecorator(
     createShapes([]),
     createShapes([]),
@@ -51,7 +55,11 @@ export const NotSelected: Story = {
 };
 
 export const CanPaste: Story = {
-  args: {},
+  args: {
+    imageOptions: testImageOptions,
+    errorImageUrl: '/api/images/barcode_error.svg',
+    fontList: [],
+  },
   decorators: [getDecorator(
     createShapes([]),
     createShapes([shapeTestData[0]]),
@@ -59,7 +67,11 @@ export const CanPaste: Story = {
 }
 
 export const SingleObject: Story = {
-  args: {},
+  args: {
+    imageOptions: testImageOptions,
+    errorImageUrl: '/api/images/barcode_error.svg',
+    fontList: [],
+  },
   decorators: [getDecorator(
     createShapes([shapeTestData[0]]),
     createShapes([]),
@@ -67,7 +79,11 @@ export const SingleObject: Story = {
 };
 
 export const MultipleObjects: Story = {
-  args: {},
+  args: {
+    imageOptions: testImageOptions,
+    errorImageUrl: '/api/images/barcode_error.svg',
+    fontList: [],
+  },
   decorators: [getDecorator(
     createShapes(shapeTestData),
     createShapes([]),
@@ -75,7 +91,11 @@ export const MultipleObjects: Story = {
 }
 
 export const GroupObject: Story = {
-  args: {},
+  args: {
+    imageOptions: testImageOptions,
+    errorImageUrl: '/api/images/barcode_error.svg',
+    fontList: [],
+  },
   decorators: [getDecorator(
     createShapes([shapeTestData[4]]),
     createShapes([]),

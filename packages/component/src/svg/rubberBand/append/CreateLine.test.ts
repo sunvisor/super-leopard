@@ -12,7 +12,7 @@ describe('Tests for CreateLine#create', () => {
   const scale = new Scale({ unit: UnitType.INCH });
   const styles = defaultStyle;
 
-  test('Should return Line object', () => {
+  it('should return Line object', () => {
     // Arrange
     const createLine = new CreateLine({ scale, styles });
     // Act

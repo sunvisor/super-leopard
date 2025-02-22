@@ -8,19 +8,19 @@ import { convertUnit } from "./convert";
 
 describe('Tests for convertUnit', () => {
 
-  test('Should return same value if units are the same', () => {
+  it('should return same value if units are the same', () => {
     expect(convertUnit(1, 'mm', 'mm')).toBe(1);
     expect(convertUnit(1, 'in', 'in')).toBe(1);
     expect(convertUnit(1, 'pt', 'pt')).toBe(1);
   });
 
-  test('Should return converted value', () => {
+  it('should return converted value', () => {
     expect(convertUnit(25.4, 'mm', 'in')).toBe(1);
     expect(convertUnit(1, 'in', 'pt')).toBe(72);
     expect(convertUnit(72, 'pt', 'mm')).toBe(25.4);
   });
 
-  test('Should throw error for invalid units', () => {
+  it('should throw error for invalid units', () => {
     expect(() => convertUnit(1, 'cm', 'mm')).toThrow('Invalid units provided.');
     expect(() => convertUnit(1, 'in', 'cm')).toThrow('Invalid units provided.');
   });

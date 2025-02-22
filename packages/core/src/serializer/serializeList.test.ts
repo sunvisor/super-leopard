@@ -76,7 +76,7 @@ describe('Tests for serializeList', () => {
     ],
   };
 
-  test('Should return serialized ListData', () => {
+  it('should return serialized ListData', () => {
     // Arrange
     const data = baseData;
     const list = createList(data);

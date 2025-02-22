@@ -66,5 +66,6 @@ function createShapeSelectors(scale: Scale, options: LineSelectOptions): ShapeSe
     group: rectSelector,
     list: rectSelector,
     field: rectSelector,
+    barcode: rectSelector,
   };
 }

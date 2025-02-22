@@ -3,7 +3,7 @@ import { BorderData } from './borderData';
 import { ColorData } from './colorData';
 
 export type EllipseData = {
-  type: EllipseShapeType;
+  type?: EllipseShapeType;
   border?: BorderData;
   fillColor?: ColorData;
 } & EllipseConfigValue;

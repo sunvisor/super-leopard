@@ -5,10 +5,7 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import { useCallback, useEffect, useMemo } from "react";
-import {
-  Text, UnitValue,
-  expandText, TextPropertyValue, contractText
-} from '@sunvisor/super-leopard-core';
+import { createText, serializeText, Text, TextData, UnitValue } from '@sunvisor/super-leopard-core';
 import usePropertyStates from '../usePropertyStates';
 import { FontList } from '../../../font';
 import { Box } from '@mui/material';
@@ -17,7 +14,6 @@ import TextPanel from '../panel/TextPanel';
 import SvTextField from '../field/SvTextField';
 import { UpdateHandler } from './ShapeProperty';
 import PropertyBox from './PropertyBox';
-import { adjustFontStyle } from '../../../font/font';
 
 
 type Props = {
@@ -29,43 +25,27 @@ type Props = {
 
 export default function TextProperty(props: Props) {
   const { unit, shape, fontList, onUpdate } = props;
-  const textProperty = useMemo(
-    () => expandText(shape), [shape]
+  const textValue = useMemo(
+    () => serializeText(shape), [shape]
   );
 
   const doUpdate = useCallback(
-    (values: TextPropertyValue) => {
-      const newValues = {
-        ...values,
-        fontStyle: adjustFontStyle({
-          family: values.fontFamily,
-          style: values.fontStyle,
-          multiLine: values.multiLine,
-          fontList,
-        }),
-      };
-      const updated = contractText(newValues);
+    (values: TextData) => {
+      const updated = createText(values);
       onUpdate(shape, updated);
     },
-    [fontList, onUpdate, shape]
+    [onUpdate, shape]
   );
 
-  const { values, setValues, handleChangeValue } = usePropertyStates<TextPropertyValue>(
-    textProperty,
+  const { values, setValues, handleChangeValue } = usePropertyStates<TextData>(
+    textValue,
     values => doUpdate(values)
   );
   const captions = getCaptions('textProperty');
 
   useEffect(() => {
-    const { multiLine, fontFamily: family, fontStyle: style } = textProperty;
-    const fontStyle = adjustFontStyle({
-      family,
-      style,
-      multiLine,
-      fontList,
-    });
-    setValues({ ...textProperty, fontStyle });
-  }, [fontList, setValues, textProperty]);
+    setValues(textValue);
+  }, [setValues, textValue]);
 
   return (
     <PropertyBox

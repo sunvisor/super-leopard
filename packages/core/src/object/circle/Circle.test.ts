@@ -61,7 +61,7 @@ describe('Tests for Circle', () => {
 
   describe('Test for bbox', () => {
 
-    test('Should return bounding box', () => {
+    it('should return bounding box', () => {
       // Arrange
       const circle = new Circle({ x: 10, y: 10, diameter: 20 });
       // Act
@@ -77,7 +77,7 @@ describe('Tests for Circle', () => {
 
   describe('Test for config', () => {
 
-    test('Should return config values', () => {
+    it('should return config values', () => {
       // Arrange
       const border = new Border({ width: 1, color: new Color('#0000ff') });
       const fillColor = new Color('#ff0000');
@@ -100,7 +100,7 @@ describe('Tests for Circle', () => {
 
   describe('Test for moveTo', () => {
 
-    test('Should return new moved instance', () => {
+    it('should return new moved instance', () => {
       // Arrange
       const circle = new Circle({
         x: 1, y: 2, diameter: 3,
@@ -122,7 +122,7 @@ describe('Tests for Circle', () => {
 
   describe('Test for resize', () => {
 
-    test('Should return new resized instance', () => {
+    it('should return new resized instance', () => {
       // Arrange
       const circle = new Circle({ x: 1, y: 2, diameter: 3 });
       const box: Box = { x: 11, y: 12, width: 10, height: 11 };
@@ -143,7 +143,7 @@ describe('Tests for Circle', () => {
 
   describe('Test for set', () => {
 
-    test('Should return new instance with updated x', () => {
+    it('should return new instance with updated x', () => {
       // Arrange
       const circle = new Circle({ x: 1, y: 2, diameter: 3 });
       const newX = 5;
@@ -155,7 +155,7 @@ describe('Tests for Circle', () => {
       assertOtherProperties(circle, newCircle, ['x']);
     });
 
-    test('Should return a new instance with updated y', () => {
+    it('should return a new instance with updated y', () => {
       // Arrange
       const circle = new Circle({ x: 1, y: 2, diameter: 3 });
       const newY = 5;
@@ -167,7 +167,7 @@ describe('Tests for Circle', () => {
       assertOtherProperties(circle, newCircle, ['y']);
     });
 
-    test('Should return new instance with updated width', () => {
+    it('should return new instance with updated width', () => {
       // Arrange
       const circle = new Circle({ x: 1, y: 2, diameter: 3 });
       const newD = 5;
@@ -179,7 +179,7 @@ describe('Tests for Circle', () => {
       assertOtherProperties(circle, newCircle, ['diameter']);
     });
 
-    test('Should return new instance with updated border', () => {
+    it('should return new instance with updated border', () => {
       // Arrange
       const border = new Border({ width: 1, color: new Color('#0000ff') });
       const circle = new Circle({ x: 1, y: 2, diameter: 3, border });
@@ -192,7 +192,7 @@ describe('Tests for Circle', () => {
       assertOtherProperties(circle, newCircle, ['border']);
     });
 
-    test('Should return new instance with updated fillColor', () => {
+    it('should return new instance with updated fillColor', () => {
       // Arrange
       const fillColor = new Color('#ff0000');
       const circle = new Circle({ x: 1, y: 2, diameter: 3, fillColor });
@@ -209,7 +209,10 @@ describe('Tests for Circle', () => {
 
   describe('Test for equals', () => {
 
-    test('Should return true when two Circle are same', () => {
+    const border1 = new Border({ width: 1, color: new Color('#0000ff') });
+    const border2 = new Border({ width: 2, color: new Color('#ff0000') });
+
+    it('should return true when two Circle are same', () => {
       // Arrange
       const circle1 = new Circle({ x: 1, y: 2, diameter: 3 });
       const circle2 = new Circle({ x: 1, y: 2, diameter: 3 });
@@ -219,19 +222,19 @@ describe('Tests for Circle', () => {
       expect(result).toBe(true);
     });
 
-    test('Should return false when border are different', () => {
+    it('should return false when border are different', () => {
       // Arrange
       const circle1 = new Circle({
         x: 1,
         y: 2,
         diameter: 3,
-        border: new Border({ width: 1, color: new Color('#0000ff') })
+        border: border1,
       });
       const circle2 = new Circle({
         x: 1,
         y: 2,
         diameter: 3,
-        border: new Border({ width: 2, color: new Color('#ff0000') })
+        border: border2,
       });
       // Act
       const result = circle1.equals(circle2);
@@ -239,13 +242,13 @@ describe('Tests for Circle', () => {
       expect(result).toBe(false);
     });
 
-    test('Should return false when border of one Circle', () => {
+    it('should return false when other border are undefined', () => {
       // Arrange
       const circle1 = new Circle({
         x: 1,
         y: 2,
         diameter: 3,
-        border: new Border({ width: 1, color: new Color('#0000ff') })
+        border: border1
       });
       const circle2 = new Circle({ x: 1, y: 2, diameter: 3 });
       // Act
@@ -254,7 +257,21 @@ describe('Tests for Circle', () => {
       expect(result).toBe(false);
     });
 
-    test('Should return false when type are different', () => {
+    it('should return false when own border are undefined', () => {
+      // Arrange
+      const circle1 = new Circle({
+        x: 1,
+        y: 2,
+        diameter: 3,
+      });
+      const circle2 = new Circle({ x: 1, y: 2, diameter: 3, border: border2 });
+      // Act
+      const result = circle1.equals(circle2);
+      // Assert
+      expect(result).toBe(false);
+    });
+
+    it('should return false when type are different', () => {
       // Arrange
       const circle1 = new Circle({ x: 1, y: 2, diameter: 3 });
       const rect = new Rect({ x: 1, y: 2, width: 3, height: 4 });

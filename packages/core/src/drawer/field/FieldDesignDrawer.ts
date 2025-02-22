@@ -4,27 +4,28 @@
  * Created by sunvisor on 2025/01/23.
  * Copyright (C) Sunvisor Lab. 2025.
  */
-import { ColorConfig, Field, Text, TextShape } from '../../object';
+import { Field, Text, TextShape } from '../../object';
 import { DrawerParams, FieldDrawerInterface, FieldDrawerParams, ShapeDrawerInterface } from '../types';
 import { Box } from '../../value';
 import createBoundingBox from '../creator/createBoundingBox';
+import { ColorData } from '../../data';
 
 
 export class FieldDesignDrawer implements FieldDrawerInterface {
 
   constructor(
     private readonly shapeDrawer: ShapeDrawerInterface,
-    private readonly borderColor: ColorConfig,
+    private readonly borderColor: ColorData,
   ) {
   }
 
   draw(field: Field, params: DrawerParams): void {
-    this.drawRect(field.bbox, params)
     if (field.shape.type === TextShape) {
       this.drawText(field.shape as Text, field.name, params);
-      return;
+    } else {
+      this.shapeDrawer.draw(field.shape, params);
     }
-    this.shapeDrawer.draw(field.shape, params);
+    this.drawRect(field.bbox, params)
   }
 
   private drawRect(box: Box, params: FieldDrawerParams) {

@@ -6,7 +6,8 @@
  */
 import { SingleShapeDrawer } from "./SingleShapeDrawer";
 import { describe } from 'vitest';
-import { createField, createGroup, createList, createRect } from '../creator';
+import { createField, createGroup, createList } from '../creator';
+import { createRect } from '../object';
 
 describe('Tests for SingleShapeDrawer', () => {
 
@@ -18,7 +19,7 @@ describe('Tests for SingleShapeDrawer', () => {
   }
   const params = { opacity: 1 };
 
-  test('Should call draw method of StaticShapeDrawer when shape type is static shape', () => {
+  it('should call draw method of StaticShapeDrawer when shape type is static shape', () => {
     // Arrange
     const drawer = new SingleShapeDrawer(shapeDrawer, fieldDrawer)
     const rect = createRect({
@@ -38,7 +39,7 @@ describe('Tests for SingleShapeDrawer', () => {
     expect(shapeDrawer.draw).toHaveBeenCalledWith(rect, params);
   });
 
-  test('Should call draw method of FieldDrawer when shape type is field', () => {
+  it('should call draw method of FieldDrawer when shape type is field', () => {
     // Arrange
     const drawer = new SingleShapeDrawer(shapeDrawer, fieldDrawer);
     const field = createField({
@@ -63,7 +64,7 @@ describe('Tests for SingleShapeDrawer', () => {
     expect(fieldDrawer.draw).toHaveBeenCalledWith(field, params);
   });
 
-  test('Should throw error when shape type is group', () => {
+  it('should throw error when shape type is group', () => {
     // Arrange
     const drawer = new SingleShapeDrawer(shapeDrawer, fieldDrawer)
     const group = createGroup({
@@ -87,7 +88,7 @@ describe('Tests for SingleShapeDrawer', () => {
     expect(() => drawer.draw(group, params)).toThrowError('Unsupported shape: group');
   });
 
-  test('Should throw error when shape type is list', () => {
+  it('should throw error when shape type is list', () => {
     // Arrange
     const drawer = new SingleShapeDrawer(shapeDrawer, fieldDrawer)
     const list = createList({

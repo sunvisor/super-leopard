@@ -31,14 +31,13 @@ const meta: Meta<typeof TextColorFields> = {
 export const WithoutFillColor: Story = {
   args: {
     color: '#000000',
-    useFillColor: false,
+    fillColor: undefined,
   }
 };
 
 export const WithFillColor: Story = {
   args: {
     color: '#000000',
-    useFillColor: true,
     fillColor: '#ffffff',
   }
 }

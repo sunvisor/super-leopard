@@ -15,14 +15,14 @@ import { SelectionAtom } from '../../../atom/SelectionAtom';
 import PropertyTab from './PropertyTab';
 import LayerPanel from './LayerPanel';
 import ObjectListPanel from '../../objectList/ObjectListPanel';
-import { FontList } from '../../../font';
+import { getSettings } from '../../../settings';
+import { getFontList } from '../../../font/font';
+
 
 type Props = {
   mode: EditMode;
   open: boolean;
   onClosePanel: (value: boolean) => void;
-  apiBaseUrl: string;
-  fontList: FontList;
 }
 
 function getAddModeTitle(mode: EditMode): string {
@@ -51,10 +51,13 @@ function getTitle(selection: Shapes, mode: EditMode): string {
 
 
 export default function SidePanel(props: Props) {
-  const { mode, open, onClosePanel, apiBaseUrl, fontList } = props;
+  const { mode, open, onClosePanel } = props;
   const selection = useAtomValue(SelectionAtom);
+  const settings = getSettings();
   const [tabIndex, setTabIndex] = React.useState(0);
   const captions = getCaptions('reportObject');
+  const { image: imageOptions, barcode: barcodeOptions } = settings;
+  const fontList = getFontList(settings.fontMap);
 
   const handleDrawerClose = useCallback(() => {
     onClosePanel(false)
@@ -91,8 +94,9 @@ export default function SidePanel(props: Props) {
         {
           tabIndex === 0 && <PropertyTab
             mode={mode}
-            apiBaseUrl={apiBaseUrl}
             fontList={fontList}
+            imageOptions={imageOptions}
+            errorImageUrl={barcodeOptions.errorImageUrl}
           />
         }
         {

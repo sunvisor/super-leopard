@@ -13,7 +13,7 @@ import { createTestShapes } from '../../__test_assets__';
 
 describe('Tests for grouping', () => {
 
-  test('Should return Shapes that group the specified elements', () => {
+  it('should return Shapes that group the specified elements', () => {
     // Arrange
     const shapes = new Shapes(createTestShapes());
     const targets = new Shapes([shapes.get(1), shapes.get(2)]);
@@ -31,7 +31,7 @@ describe('Tests for grouping', () => {
 
 describe('Tests for ungrouping', () => {
 
-  test('Should return Shapes that ungroup the specified Group', () => {
+  it('should return Shapes that ungroup the specified Group', () => {
     // Arrange
     const shapes = new Shapes(createTestShapes());
     const target = shapes.get(4) as Group;

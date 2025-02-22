@@ -6,16 +6,14 @@
  */
 import {
   createDataDrawer,
-  DataParams, MeasurementInterface,
+  DataParams,
   Page,
   Scale,
   Shapes,
   ShapesDrawerInterface,
   StaticShapeDrawers
 } from '@sunvisor/super-leopard-core';
-import { GetPdfImagePath } from '../index';
-import { PdfFont } from '../font/pdfFont';
-import { CreateShapeDrawerParams } from '../shapeDrawer/ShapeDrawer';
+import { CreateShapeDrawerParams, PdfDrawerProps } from '../shapeDrawer/ShapeDrawer';
 import { CircleDrawer } from '../shapeDrawer/CircleDrawer';
 import { EllipseDrawer } from '../shapeDrawer/EllipseDrawer';
 import { RectDrawer } from '../shapeDrawer/RectDrawer';
@@ -23,15 +21,8 @@ import { LineDrawer } from '../shapeDrawer/LineDrawer';
 import { ImageDrawer } from '../shapeDrawer/ImageDrawer';
 import { TextElementDrawer } from '../shapeDrawer/TextElementDrawer';
 import { PdfDocumentInterface } from '../pdfDriver/PdfDriverInterface';
+import { BarcodeDrawer } from '../shapeDrawer/BarcodeDrawer';
 
-
-type PdfDrawerProps = {
-  doc: PdfDocumentInterface;
-  scale: Scale;
-  getImagePath: GetPdfImagePath;
-  fonts: PdfFont;
-  measurement: MeasurementInterface;
-}
 
 export class PdfDrawer {
 
@@ -39,16 +30,14 @@ export class PdfDrawer {
   private readonly drawer: ShapesDrawerInterface;
   private readonly scale: Scale;
 
-  constructor({ doc, getImagePath, scale, fonts, measurement }: PdfDrawerProps) {
+  constructor({ doc, scale, ...rest }: PdfDrawerProps) {
     this.doc = doc;
     this.scale = scale;
     this.drawer = createDrawer({
       doc: this.doc,
       scale,
-      getImagePath,
-      fonts,
-      measurement,
-    })
+      ...rest
+    });
   }
 
   get document(): PdfDocumentInterface {
@@ -86,6 +75,7 @@ function createDrawer(params: CreateShapeDrawerParams) {
     line: new LineDrawer(params),
     image: new ImageDrawer(params),
     text: new TextElementDrawer(params),
+    barcode: new BarcodeDrawer(params),
   }
 
   return createDataDrawer({

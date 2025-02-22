@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 import ColorPickerField from '../field/ColorPickerField';
 import BorderWidthField from '../field/BorderWidthField';
-import { CapValue, JoinValue, StyleValue } from '@sunvisor/super-leopard-core';
+import { BorderData, CapValue, JoinValue, StyleValue } from '@sunvisor/super-leopard-core';
 import CapButtons from '../field/CapButtons';
 import JoinButtons from '../field/JoinButtons';
 import { ChangeValueHandler } from '../usePropertyStates';
@@ -10,16 +10,12 @@ import getCaptions from '../../../captions/getCaptions';
 import Caption from '../Caption';
 import SvCheckboxField from '../field/SvCheckboxField';
 import GroupBox from '../fieldGroup/GroupBox';
+import { useCallback, useState } from 'react';
 
-export type BorderFieldType = boolean|string|number|CapValue|JoinValue|StyleValue;
+export type BorderFieldType = string|number|CapValue|JoinValue|StyleValue;
 type Props = {
-  useStroke: boolean;
-  borderColor?: string;
-  borderWidth?: number;
-  borderStyle?: StyleValue;
-  borderCap?: CapValue;
-  borderJoin?: JoinValue;
-  onChangeValue: ChangeValueHandler<BorderFieldType>;
+  border: BorderData | undefined;
+  onChangeValue: ChangeValueHandler<BorderData | undefined>;
 }
 
 /**
@@ -29,16 +25,29 @@ type Props = {
  * Copyright (C) Sunvisor Lab. 2024.
  */
 export default function BorderFields(props: Props) {
-  const {
-    useStroke,
-    borderColor,
-    borderWidth,
-    borderStyle,
-    borderCap,
-    borderJoin,
-    onChangeValue,
-  } = props;
+  const { onChangeValue } = props;
   const captions = getCaptions('borderProperty');
+  const [border, setBorder] = useState<BorderData | undefined>(props.border);
+  const [useStroke, setUseStroke] = useState(border !== undefined);
+
+  const handleChangeValue = useCallback((key: string, value: BorderFieldType, update?: boolean) => {
+    const newBorder = {...border, [key.split('.').pop() || '']: value};
+    setBorder(newBorder);
+    onChangeValue('border', newBorder, update);
+  }, [border, onChangeValue])
+
+  const handleChangeUseStroke = useCallback((_: string, value: boolean) => {
+    setUseStroke(value);
+    const newBorder: BorderData | undefined = value ? {
+      color: '#000000',
+      width: 1,
+      style: 'solid',
+      cap: 'butt',
+      join: 'miter'
+    } : undefined;
+    setBorder(newBorder);
+    onChangeValue('border', newBorder, true);
+  }, [onChangeValue])
 
   return (
     <>
@@ -47,43 +56,43 @@ export default function BorderFields(props: Props) {
           name="useStroke"
           label={!useStroke ? captions.border : ''}
           value={useStroke}
-          onChangeValue={onChangeValue}
+          onChangeValue={handleChangeUseStroke}
         />
         {
-          useStroke && <>
+          border && <>
             <Box sx={{ flex: 1, mr: 1 }}>
               <BorderWidthField
                 label={captions.width}
-                name="borderWidth"
-                value={(borderWidth ?? 1).toString()}
-                onChangeValue={onChangeValue}
+                name="border.width"
+                value={(border.width ?? 1).toString()}
+                onChangeValue={handleChangeValue}
               />
             </Box>
             <Box sx={{ flex: 1 }}>
               <BorderStyleField
                 sx={{ width: '100%' }}
                 label={captions.style}
-                name="borderStyle"
-                value={borderStyle ?? 'solid'}
-                onChangeValue={onChangeValue}
+                name="border.style"
+                value={border.style ?? 'solid'}
+                onChangeValue={handleChangeValue}
               />
             </Box>
           </>
         }
       </GroupBox>
       {
-        useStroke && <Box sx={{ ml: 6 }}>
+        border && <Box sx={{ ml: 6 }}>
           <ColorPickerField
             sx={{ flex: 1 }}
             label={captions.color}
-            name="borderColor"
-            value={borderColor ?? '#000000'}
-            onChangeValue={onChangeValue}
+            name="border.color"
+            value={border.color ?? '#000000'}
+            onChangeValue={handleChangeValue}
           />
         </Box>
       }
       {
-        useStroke &&
+        border &&
         <GroupBox sx={{ ml: 6 }}>
           <GroupBox sx={{ flex: 1 }}>
             <Box sx={{ mr: 2, display: 'flex', alignItems: 'center' }}>
@@ -92,9 +101,9 @@ export default function BorderFields(props: Props) {
               </Caption>
             </Box>
             <CapButtons
-              name="borderCap"
-              value={borderCap ?? 'butt'}
-              onChangeValue={onChangeValue}
+              name="border.cap"
+              value={border.cap ?? 'butt'}
+              onChangeValue={handleChangeValue}
             />
           </GroupBox>
           <GroupBox sx={{ flex: 1 }}>
@@ -104,9 +113,9 @@ export default function BorderFields(props: Props) {
               </Caption>
             </Box>
             <JoinButtons
-              name="borderJoin"
-              value={borderJoin ?? 'miter'}
-              onChangeValue={onChangeValue}
+              name="border.join"
+              value={border.join ?? 'miter'}
+              onChangeValue={handleChangeValue}
             />
           </GroupBox>
         </GroupBox>

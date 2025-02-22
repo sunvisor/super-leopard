@@ -79,10 +79,11 @@ type CreateLayerDrawerParams = DrawerProps & {
   mode: DrawModeValue;
 }
 
-export function createLayerDrawer({ svg, scale, page, getImagePath, settings, mode }: CreateLayerDrawerParams) {
+export function createLayerDrawer(params: CreateLayerDrawerParams) {
+  const { svg, scale, page, mode } = params;
   const drawer = (mode === DrawModeType.DESIGN)
-    ? createLayerDesignDrawer({ svg, scale, getImagePath, settings })
-    : createLayerDataDrawer({ svg, scale, getImagePath, settings });
+    ? createLayerDesignDrawer(params)
+    : createLayerDataDrawer(params);
 
   return new LayerDrawer({ svg, page, scale, drawer });
 }

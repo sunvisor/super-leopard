@@ -12,7 +12,7 @@ describe('Tests for CreateRect#create', () => {
   const scale = new Scale({ unit: UnitType.INCH });
   const styles = defaultStyle;
 
-  test('Should return Rect object', () => {
+  it('should return Rect object', () => {
     // Arrange
     const createRect = new CreateRect({ scale, styles });
     // Act

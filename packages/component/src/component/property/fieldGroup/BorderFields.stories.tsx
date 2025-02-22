@@ -30,29 +30,19 @@ const meta: Meta<typeof BorderFields> = {
 
 export const Active: Story = {
   args: {
-    useStroke: true,
-    borderColor: "#000000",
-    borderWidth: 1,
-    borderStyle: "solid",
-    borderCap: "round",
-    borderJoin: "round",
+    border: {
+      color: "#000000",
+      width: 1,
+      style: "solid",
+      cap: "round",
+      join: "round",
+    }
   }
 };
 
 export const Inactive: Story = {
   args: {
-    useStroke: false,
-  }
-}
-
-export const Ja: Story = {
-  args: {
-    useStroke: true,
-    borderColor: "#000000",
-    borderWidth: 1,
-    borderStyle: "solid",
-    borderCap: "round",
-    borderJoin: "round",
+    border: undefined
   }
 }
 

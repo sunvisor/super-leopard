@@ -12,7 +12,7 @@ describe('Tests for append rubberBand functions', () => {
 
   describe('Tests for adjustPosition', () => {
 
-    test('Should returns the end position adjusted to match the width and height', () => {
+    it('should returns the end position adjusted to match the width and height', () => {
       // Act
       const result = adjustPosition({ x: 10, y: 10 }, { x: 100, y: 200 });
       // Assert
@@ -30,7 +30,7 @@ describe('Tests for append rubberBand functions', () => {
 
   describe('Test for moveElement', () => {
 
-    test('Should move and resize element', () => {
+    it('should move and resize element', () => {
       // Arrange
       const element: SvgShapeInterface = {
         move: vi.fn(() => element),

@@ -19,8 +19,8 @@ import {
 } from "@sunvisor/super-leopard-core";
 import { expect, within } from "@storybook/test";
 import { RectDrawer } from './RectDrawer';
-import ImageDrawer from './ImageDrawer';
-import { createTestSvgDrawer } from '../../__test_assets__';
+import { ImageDrawer } from './ImageDrawer';
+import { createTestSvgDrawer, testImageOptions } from '../../__test_assets__';
 
 type ImageProps = {
   image: ImageData;
@@ -47,10 +47,6 @@ const Template: Story = {
   }
 }
 
-function getImagePath(src: string) {
-  return `api/images/${src}`;
-}
-
 function draw(canvasElement: HTMLElement, args: ImageProps) {
   const canvas = within(canvasElement);
   const el = canvas.getByTestId('test');
@@ -71,7 +67,8 @@ function draw(canvasElement: HTMLElement, args: ImageProps) {
   const image = createImage(config);
   const rect = createRect(rectConfig);
   const rectDrawer = new RectDrawer({ svg, scale });
-  const imageDrawer = new ImageDrawer({ svg, scale, getImagePath });
+  const imageOptions = testImageOptions;
+  const imageDrawer = new ImageDrawer({ svg, scale, imageOptions });
   rectDrawer.draw(rect, {});
   imageDrawer.draw(image, { opacity: args.opacity ?? 1 });
   return el;

@@ -18,7 +18,7 @@ describe('Tests for WrappedText', () => {
 
   describe('Tests for push', () => {
 
-    test('Should append text as a line with endOfLine is true', () => {
+    it('should append text as a line with endOfLine is true', () => {
       // Arrange
       const wrappedText = new WrappedText();
       // Act
@@ -28,7 +28,7 @@ describe('Tests for WrappedText', () => {
       toMatchWrappedText(wrappedText, ['first', 'second'], [true, true]);
     });
 
-    test('Should append text as a line with endOfLine is false', () => {
+    it('should append text as a line with endOfLine is false', () => {
       // Arrange
       const wrappedText = new WrappedText();
       // Act
@@ -42,7 +42,7 @@ describe('Tests for WrappedText', () => {
 
   describe('Tests for join', () => {
 
-    test('Should return joined text', () => {
+    it('should return joined text', () => {
       // Arrange
       const wrappedText = new WrappedText();
       // Act
@@ -56,7 +56,7 @@ describe('Tests for WrappedText', () => {
 
   describe('Test for each', () => {
 
-    test('Should call callback for each line', () => {
+    it('should call callback for each line', () => {
       // Arrange
       const wrappedText = new WrappedText();
       const callback = vi.fn();
@@ -74,7 +74,7 @@ describe('Tests for WrappedText', () => {
 
   describe('Test for length', () => {
 
-    test('Should return the number of lines', () => {
+    it('should return the number of lines', () => {
       // Arrange
       const wrappedText = new WrappedText();
       // Act
@@ -88,7 +88,7 @@ describe('Tests for WrappedText', () => {
 
   describe('Test for cutOff', () => {
 
-    test('Should return a new instance with the first n lines', () => {
+    it('should return a new instance with the first n lines', () => {
       // Arrange
       const wrappedText = new WrappedText();
       wrappedText.push('test1', true);
@@ -107,7 +107,7 @@ describe('Tests for WrappedText', () => {
 
   describe('Test for getText', () => {
 
-    test('Should return the text of the line', () => {
+    it('should return the text of the line', () => {
       // Arrange
       const wrappedText = new WrappedText();
       wrappedText.push('test1', true);
@@ -125,7 +125,7 @@ describe('Tests for WrappedText', () => {
 
   describe('Test for getEndOfLine', () => {
 
-    test('Should return the endOfLine of the line', () => {
+    it('should return the endOfLine of the line', () => {
       // Arrange
       const wrappedText = new WrappedText();
       wrappedText.push('test1', false);

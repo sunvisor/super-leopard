@@ -1,4 +1,3 @@
-'use client';
 /**
  * Editor
  *
@@ -17,43 +16,37 @@ import { ApplyShapesToReportAtom, ReadReportAtom, SetReportAtom } from '../../at
 import { ClearSelectionAtom } from '../../atom/SelectionAtom';
 import DrawToolbar from '../toolbar/DrawToolbar';
 import SidePanel from './side/SidePanel';
-import { SetFontMapAtom } from '../../atom/SettingsAtom';
-import { GetSvgImagePath } from '../../svg';
-import { FontList, WebFontMap } from '../../font';
 import { setLanguage } from '../../captions/getCaptions';
+import { setSettings, SettingData } from '../../settings';
 
 export type OnSaveHandler = (id: ReportId, title: string, report: ReportData) => void;
 export type ReportId = number | 'new';
 
 type Props = {
-  data?: ReportData;
+  report?: ReportData;
   reportId: ReportId;
   title: string;
-  onSave: OnSaveHandler;
-  webFontMap: WebFontMap;
-  getImageUrl: GetSvgImagePath;
-  apiBaseUrl: string;
   language?: string;
-  fontList: FontList;
+  onSave: OnSaveHandler;
+  settings?: SettingData;
 }
 
 export default function ReportEditor(props: Props) {
-  const { data, reportId, onSave, webFontMap, getImageUrl, apiBaseUrl, language, fontList } = props;
+  const { report: data, reportId, onSave, language, settings } = props;
   const [title, setTitle] = useState<string>(props.title);
   const applyShapes = useSetAtom(ApplyShapesToReportAtom);
   const clearSelection = useSetAtom(ClearSelectionAtom);
   const report = useAtomValue(ReadReportAtom);
   const setReport = useSetAtom(SetReportAtom);
-  const setFontMap = useSetAtom(SetFontMapAtom);
   const [mode, setMode] = React.useState<EditMode>("edit");
   const [zoom, setZoom] = useState<number>(100);
   const [open, setOpen] = useState<boolean>(true);
 
   useEffect(() => {
-    setFontMap(webFontMap);
     if (data) setReport(data);
     if (language) setLanguage(language);
-  }, [data, setFontMap, setReport, language, webFontMap]);
+    if (settings) setSettings(settings);
+  }, [data, setReport, language]);
 
   const handleChangeTool = useCallback((_: React.MouseEvent<HTMLElement>, newMode: EditMode) => {
     setMode(newMode);
@@ -88,7 +81,6 @@ export default function ReportEditor(props: Props) {
         <ReportWorkArea
           mode={mode}
           zoom={zoom / 100}
-          getImageUrl={getImageUrl}
         />
       </Box>
       <AppBar position="sticky" sx={{ top: 'auto', bottom: 0 }} color="default">
@@ -99,9 +91,7 @@ export default function ReportEditor(props: Props) {
       <SidePanel
         mode={mode}
         open={open}
-        apiBaseUrl={apiBaseUrl}
         onClosePanel={() => setOpen(false)}
-        fontList={fontList}
       />
     </Box>
 

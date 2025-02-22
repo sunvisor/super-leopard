@@ -20,7 +20,7 @@ describe('Tests for RectDrawer#draw', () => {
     height: 40,
   }
 
-  test('Should append a rect element with correct attributes to the SVG', () => {
+  it('should append a rect element with correct attributes to the SVG', () => {
     // Arrange
     svg.clear();
     const rect = createRect(data);

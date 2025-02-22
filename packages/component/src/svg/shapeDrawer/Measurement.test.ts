@@ -7,7 +7,7 @@
 import { Measurement } from "./Measurement";
 import { describe } from 'vitest';
 import { createScale, createText, TextData } from '@sunvisor/super-leopard-core';
-import { webFontMap } from '../../__test_assets__';
+import { testFontMap } from '../../__test_assets__';
 import { WebFont } from './WebFont';
 
 describe('Tests for Measurement', () => {
@@ -27,7 +27,7 @@ describe('Tests for Measurement', () => {
   }
   const scale = createScale({ unit: 'in'});
   const text= createText(textData);
-  const webFont = new WebFont(webFontMap);
+  const webFont = new WebFont(testFontMap);
   const measurement = new Measurement({
     scale,
     webFont,

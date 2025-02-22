@@ -34,7 +34,7 @@ describe('Tests for useShapes', () => {
     result.current(layer);
   }
 
-  test('Should add a new shape when addShape is called', () => {
+  it('should add a new shape when addShape is called', () => {
     // Arrange
     setReport();
     setActiveLayer(0);
@@ -53,7 +53,7 @@ describe('Tests for useShapes', () => {
     expect(shapes.get(shapes.count - 1).type).toEqual(newShape.type);
   });
 
-  test('Should remove the shape when removeShapes is called', () => {
+  it('should remove the shape when removeShapes is called', () => {
     // Arrange
     setReport();
     setActiveLayer(0);
@@ -69,7 +69,7 @@ describe('Tests for useShapes', () => {
     expect(shapes.count).toBe(count - 1);
   });
 
-  test('Should update the shape when updateShapes is called', () => {
+  it('should update the shape when updateShapes is called', () => {
     // Arrange
     setReport();
     setActiveLayer(0);

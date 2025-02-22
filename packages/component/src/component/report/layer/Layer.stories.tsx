@@ -12,8 +12,9 @@ import { Meta, StoryObj } from "@storybook/react";
 import { DrawModeType } from '../../../svg';
 import { Shapes, ShapeData } from '@sunvisor/super-leopard-core';
 import { expect, waitFor, within } from "@storybook/test";
-import { SetFontMapAtom } from '../../../atom/SettingsAtom';
-import { testAssets, webFontMap } from '../../../__test_assets__';
+import { testAssets } from '../../../__test_assets__';
+import { testSettings } from '../../../__test_assets__/settings';
+import { setSettings } from '../../../settings';
 
 const {
   billTestLayerData, shapeTestData, createTestShapes, fieldTestData,
@@ -29,7 +30,7 @@ const meta: Meta<typeof Layer> = {
   title: 'component/report/layer/Layer',
   decorators: [
     (Story) => {
-      store.set(SetFontMapAtom, webFontMap);
+      setSettings(testSettings);
       return (
         <Provider store={store}>
           <div data-testid="test">
@@ -43,10 +44,6 @@ const meta: Meta<typeof Layer> = {
 
 function getShapes(items: ShapeData[]) {
   return new Shapes(createTestShapes(items));
-}
-
-function getImageUrl(src: string) {
-  return `/api/images/${src}`;
 }
 
 export const ShapesOnly: Story = {
@@ -71,7 +68,6 @@ export const ShapesAndFieldsDesignMode: Story = {
     shapes: getShapes([...shapeTestData, ...fieldTestData]),
     mode: DrawModeType.DESIGN,
     values: {},
-    getImageUrl,
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
@@ -91,7 +87,6 @@ export const ShapesAndFieldsPrintMode: Story = {
       myTextField: "value1",
       myLineField: true,
     },
-    getImageUrl,
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
@@ -107,7 +102,6 @@ export const BillDesignMode: Story = {
     name: billTestLayerData.name,
     shapes: getShapes(billTestLayerData.shapes),
     mode: DrawModeType.DESIGN,
-    getImageUrl,
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
@@ -125,7 +119,6 @@ export const BillPrintMode: Story = {
     mode: DrawModeType.PRINT,
     values: billValues,
     listRecords: billListRecords,
-    getImageUrl,
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);

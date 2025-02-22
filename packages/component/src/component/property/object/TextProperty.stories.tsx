@@ -9,7 +9,7 @@
 import TextProperty from "./TextProperty";
 import { Meta, StoryObj } from "@storybook/react";
 import { createText, UnitType } from '@sunvisor/super-leopard-core';
-import { fontList } from '../../../__test_assets__';
+import { testFontList } from '../../../__test_assets__';
 import { fn } from '@storybook/test';
 
 
@@ -47,7 +47,7 @@ export const UnitMillimeter: Story = {
   args: {
     unit: UnitType.MILLIMETER,
     shape: text,
-    fontList,
+    fontList: testFontList,
   },
 };
 
@@ -55,7 +55,7 @@ export const UnitInch: Story = {
   args: {
     unit: UnitType.INCH,
     shape: text,
-    fontList,
+    fontList: testFontList,
   },
 };
 

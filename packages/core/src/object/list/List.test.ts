@@ -92,7 +92,7 @@ describe('Tests for List', () => {
       expect(() => new List(config)).toThrow('height must be positive');
     });
 
-    test('Should throw error when List contains List', () => {
+    it('should throw error when List contains List', () => {
       // Arrange
       const config = {
         ...baseConfig,
@@ -103,7 +103,7 @@ describe('Tests for List', () => {
       expect(() => new List(config)).toThrow('List can not have List');
     });
 
-    test('Should throw error when List does not contains Field', () => {
+    it('should throw error when List does not contains Field', () => {
       // Arrange
       const config = {
         ...baseConfig,
@@ -114,7 +114,7 @@ describe('Tests for List', () => {
       expect(() => new List(config)).toThrow('List must have at least one Field');
     });
 
-    test('Should throw error when columns is less than 1', () => {
+    it('should throw error when columns is less than 1', () => {
       // Arrange
       const config = {
         ...baseConfig,
@@ -125,7 +125,7 @@ describe('Tests for List', () => {
       expect(() => new List(config)).toThrow('columns must be more than 0');
     });
 
-    test('Should throw error when rows is less than 1', () => {
+    it('should throw error when rows is less than 1', () => {
       // Arrange
       const config = {
         ...baseConfig,
@@ -167,7 +167,7 @@ describe('Tests for List', () => {
 
   describe('Test for config', () => {
 
-    test('Should return config values', () => {
+    it('should return config values', () => {
       // Arrange
       const config = baseConfig;
       // Act
@@ -180,7 +180,7 @@ describe('Tests for List', () => {
 
   describe('Test for bbox', () => {
 
-    test('Should return bounding box', () => {
+    it('should return bounding box', () => {
       // Arrange
       const list = new List(baseConfig);
       // Act
@@ -217,7 +217,7 @@ describe('Tests for List', () => {
 
   describe('Test for set', () => {
 
-    test('Should return a new instance with updated width', () => {
+    it('should return a new instance with updated width', () => {
       // Arrange
       const list = new List(baseConfig);
       const newWidth = 100;
@@ -228,7 +228,7 @@ describe('Tests for List', () => {
       assertOtherProperties(list, newList, ['width']);
     });
 
-    test('Should return a new instance with updated height', () => {
+    it('should return a new instance with updated height', () => {
       // Arrange
       const list = new List(baseConfig);
       const newHeight = 100;
@@ -239,7 +239,7 @@ describe('Tests for List', () => {
       assertOtherProperties(list, newList, ['height']);
     });
 
-    test('Should return a new instance with updated rows', () => {
+    it('should return a new instance with updated rows', () => {
       // Arrange
       const list = new List(baseConfig);
       const newRows = 100;
@@ -250,7 +250,7 @@ describe('Tests for List', () => {
       assertOtherProperties(list, newList, ['rows']);
     });
 
-    test('Should return a new instance with updated columns', () => {
+    it('should return a new instance with updated columns', () => {
       // Arrange
       const list = new List(baseConfig);
       const newColumns = 100;
@@ -261,7 +261,7 @@ describe('Tests for List', () => {
       assertOtherProperties(list, newList, ['columns']);
     });
 
-    test('Should return a new instance with updated direction', () => {
+    it('should return a new instance with updated direction', () => {
       // Arrange
       const list = new List(baseConfig);
       const newDirection = 'horizontal';
@@ -272,7 +272,7 @@ describe('Tests for List', () => {
       assertOtherProperties(list, newList, ['direction']);
     });
 
-    test('Should return a new instance with updated shapes', () => {
+    it('should return a new instance with updated shapes', () => {
       // Arrange
       const list = new List(baseConfig);
       const newShapes = createShapes([{
@@ -303,7 +303,7 @@ describe('Tests for List', () => {
 
   describe('Test for moveTo', () => {
 
-    test('Should return a new moved instance', () => {
+    it('should return a new moved instance', () => {
       // Arrange
       const list = new List(baseConfig);
       const pos = { x: 100, y: 100 };
@@ -319,7 +319,7 @@ describe('Tests for List', () => {
 
   describe('Test for resize', () => {
 
-    test('Should return a new resized instance', () => {
+    it('should return a new resized instance', () => {
       // Arrange
       const list = new List(baseConfig);
       const box = { x: 100, y: 100, width: 100, height: 100 };
@@ -337,7 +337,7 @@ describe('Tests for List', () => {
 
   describe('Test for equals', () => {
 
-    test('Should return true when two List are same', () => {
+    it('should return true when two List are same', () => {
       // Arrange
       const list = new List(baseConfig);
       const list2 = new List(baseConfig);
@@ -347,7 +347,7 @@ describe('Tests for List', () => {
       expect(result).toBe(true);
     });
 
-    test('Should return false when two List are different', () => {
+    it('should return false when two List are different', () => {
       // Arrange
       const list = new List(baseConfig);
       const list2 = new List({ ...baseConfig, width: 100 });

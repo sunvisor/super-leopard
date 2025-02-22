@@ -15,8 +15,7 @@ import {
   TextDrawerInterface
 } from '@sunvisor/super-leopard-core';
 import { PdfFont } from '../font/pdfFont';
-import TextOptions = PDFKit.Mixins.TextOptions;
-import { PdfDocumentInterface, TextParams } from '../pdfDriver/PdfDriverInterface';
+import { PdfDocumentInterface, TextOptions, TextParams } from '../pdfDriver/PdfDriverInterface';
 import { applyFont } from './style';
 
 function pdfAlign(align: AlignValue) {

@@ -9,7 +9,7 @@
 import FontFields from "./FontFields";
 import { Meta, StoryObj } from "@storybook/react";
 import { Box } from "@mui/material";
-import { fontList } from '../../../__test_assets__';
+import { testFontList } from '../../../__test_assets__';
 import { fn } from '@storybook/test';
 
 
@@ -39,10 +39,12 @@ const meta: Meta<typeof FontFields> = {
 
 export const UnitMillimeter: Story = {
   args: {
-    fontFamily: "Helvetica",
-    fontSize: 12,
-    fontStyle: ["bold"],
-    fontList,
+    font: {
+      family: "Helvetica",
+      size: 12,
+      style: "bold",
+    },
+    fontList: testFontList,
   },
 };
 

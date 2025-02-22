@@ -143,7 +143,7 @@ describe('Tests for ListBlocks', () => {
       expect(callback).toHaveBeenLastCalledWith(records[9], dummyShape, 4, 1);
     });
 
-    test('should not call callback when records is empty', () => {
+    it('should not call callback when records is empty', () => {
       // Arrange
       const records: FieldValues[] = [];
       const list = createList({

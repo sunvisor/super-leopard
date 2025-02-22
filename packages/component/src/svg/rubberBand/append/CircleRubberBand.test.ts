@@ -17,7 +17,7 @@ describe('Tests for CircleRubberBand', () => {
 
   describe('Test for createElement', () => {
 
-    test('Should return Svg circle element', () => {
+    it('should return Svg circle element', () => {
       // Arrange
       const circleRubberBand = new CircleRubberBand({ svg, scale, styles });
       // Act
@@ -31,7 +31,7 @@ describe('Tests for CircleRubberBand', () => {
 
   describe('Test for adjustPosition', () => {
 
-    test('Should return original position when CircleRubberBand', () => {
+    it('should return original position when CircleRubberBand', () => {
       // Arrange
       const circleRubberBand = new CircleRubberBand({ svg, scale, styles });
       // Act
@@ -44,7 +44,7 @@ describe('Tests for CircleRubberBand', () => {
 
   describe('Test for moveElement', () => {
 
-    test('Should move and resize svg element', () => {
+    it('should move and resize svg element', () => {
       // Arrange
       const circleRubberBand = new CircleRubberBand({ svg, scale, styles });
       const element = {

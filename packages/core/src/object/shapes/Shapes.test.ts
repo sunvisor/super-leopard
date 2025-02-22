@@ -5,12 +5,13 @@
  * Copyright (C) Sunvisor Lab. 2023.
  */
 import { Shapes } from "./Shapes";
-import { createRect, createShape, createShapes } from '../../creator';
+import { createShape, createShapes } from '../../creator';
 import { CircleShape, ListShape, RectShape } from '../shape';
 import { Group } from '../group';
 import { ShapeData } from '../../data';
 import { describe, expect } from 'vitest';
 import { createTestShapes, listTestData, shapeTestData } from '../../__test_assets__';
+import { createRect } from '../rect';
 
 
 const nestedShapesData: ShapeData[] = [
@@ -65,7 +66,7 @@ describe('Tests for Shapes', () => {
 
   describe('Test for count', () => {
 
-    test('Should return shape count', () => {
+    it('should return shape count', () => {
       // Arrange
       const shapes = new Shapes(createTestShapes());
       // Act
@@ -78,7 +79,7 @@ describe('Tests for Shapes', () => {
 
   describe('Tests for get', () => {
 
-    test('Should return shape', () => {
+    it('should return shape', () => {
       // Arrange
       const items = createTestShapes();
       const shapes = new Shapes(items);
@@ -88,7 +89,7 @@ describe('Tests for Shapes', () => {
       expect(item).toEqual(items[1]);
     });
 
-    test('Should throw error when index is out of range', () => {
+    it('should throw error when index is out of range', () => {
       // Arrange
       const items = createTestShapes();
       const shapes = new Shapes(items);
@@ -102,7 +103,7 @@ describe('Tests for Shapes', () => {
 
   describe('Tests for add', () => {
 
-    test('Should return a new instance with added shape', () => {
+    it('should return a new instance with added shape', () => {
       // Arrange
       const shapes = new Shapes(createTestShapes());
       const newShape = createShape({
@@ -120,7 +121,7 @@ describe('Tests for Shapes', () => {
       expect(result.get(shapeCount)).toEqual(newShape);
     });
 
-    test('Should return a new instance with added shapes', () => {
+    it('should return a new instance with added shapes', () => {
       // Arrange
       const shapes = new Shapes(createTestShapes());
       const shape1 = createShape({
@@ -149,7 +150,7 @@ describe('Tests for Shapes', () => {
 
   describe('Tests for insert', () => {
 
-    test('Should return a new instance with inserted shape at the specified index', () => {
+    it('should return a new instance with inserted shape at the specified index', () => {
       // Arrange
       const items = createTestShapes();
       const shapes = new Shapes(items);
@@ -167,7 +168,7 @@ describe('Tests for Shapes', () => {
       expect(result.get(3)).toEqual(newShape);
     });
 
-    test('Should return return a new instance with inserted shapes at the specified index', () => {
+    it('should return return a new instance with inserted shapes at the specified index', () => {
       // Arrange
       const items = createTestShapes();
       const shapes = new Shapes(items);
@@ -198,7 +199,7 @@ describe('Tests for Shapes', () => {
 
   describe('Tests for contains', () => {
 
-    test('Should return true when specified shape exists', () => {
+    it('should return true when specified shape exists', () => {
       // Arrange
       const items = createTestShapes();
       const shapes = new Shapes(items);
@@ -208,7 +209,7 @@ describe('Tests for Shapes', () => {
       expect(result).toBe(true);
     });
 
-    test('Should return false when specified shape does not exist', () => {
+    it('should return false when specified shape does not exist', () => {
       // Arrange
       const items = createTestShapes();
       const shapes = new Shapes(items);
@@ -229,7 +230,7 @@ describe('Tests for Shapes', () => {
 
   describe('Tests for remove', () => {
 
-    test('Should return a new instance with removed shape', () => {
+    it('should return a new instance with removed shape', () => {
       // Arrange
       const items = createTestShapes();
       const shapes = new Shapes(items);
@@ -243,7 +244,7 @@ describe('Tests for Shapes', () => {
       expect(result.get(2)).toEqual(items[3]);
     });
 
-    test('Should return a new instance with removed shapes', () => {
+    it('should return a new instance with removed shapes', () => {
       // Arrange
       const items = createTestShapes();
       const shapes = new Shapes(items);
@@ -261,7 +262,7 @@ describe('Tests for Shapes', () => {
 
   describe('Test for each', () => {
 
-    test('Should call callback for each shape', () => {
+    it('should call callback for each shape', () => {
       // Arrange
       const shapes = new Shapes(createTestShapes());
       const result: string[] = [];
@@ -277,7 +278,7 @@ describe('Tests for Shapes', () => {
 
   describe('Test for map', () => {
 
-    test('Should call callback for each shape and return result as array', () => {
+    it('should call callback for each shape and return result as array', () => {
       // Arrange
       const shapes = new Shapes(createTestShapes());
       // Act
@@ -290,7 +291,7 @@ describe('Tests for Shapes', () => {
 
   describe('Test for some', () => {
 
-    test('Should return true when callback returns true', () => {
+    it('should return true when callback returns true', () => {
       // Arrange
       const items = createTestShapes();
       const shapes = new Shapes(items);
@@ -303,7 +304,7 @@ describe('Tests for Shapes', () => {
 
   describe('Test for filter', () => {
 
-    test('Should return filtered shapes', () => {
+    it('should return filtered shapes', () => {
       // Arrange
       const items = createTestShapes();
       const shapes = new Shapes(items);
@@ -318,7 +319,7 @@ describe('Tests for Shapes', () => {
 
   describe('Test for indexOf', () => {
 
-    test('Should return index of specified shape', () => {
+    it('should return index of specified shape', () => {
       // Arrange
       const items = createTestShapes();
       const shapes = new Shapes(items);
@@ -331,7 +332,7 @@ describe('Tests for Shapes', () => {
 
   describe('Tests for bbox', () => {
 
-    test('Should return bounding box', () => {
+    it('should return bounding box', () => {
       // Arrange
       const shapes = createTestShapes();
       const collection = new Shapes(shapes);
@@ -344,7 +345,7 @@ describe('Tests for Shapes', () => {
       expect(bbox.height).toEqual(19);
     });
 
-    test('Should return Box with all properties 0 when shapes are empty', () => {
+    it('should return Box with all properties 0 when shapes are empty', () => {
       // Arrange
       const collection = new Shapes([]);
       // Act
@@ -357,7 +358,7 @@ describe('Tests for Shapes', () => {
 
   describe('Tests for moveTo', () => {
 
-    test('Should return a new moved instance', () => {
+    it('should return a new moved instance', () => {
       // Arrange
       const shapes = createTestShapes();
       const collection = new Shapes(shapes);
@@ -376,7 +377,7 @@ describe('Tests for Shapes', () => {
 
   describe('Tests for resize', () => {
 
-    test('Should return a new resized instance', () => {
+    it('should return a new resized instance', () => {
       // Arrange
       const shapes = createTestShapes();
       const collection = new Shapes(shapes);
@@ -407,7 +408,7 @@ describe('Tests for Shapes', () => {
       { type: 'rect', x: 13, y: 23, width: 33, height: 43 },
     ];
 
-    test('Should return a new instance with align to top', () => {
+    it('should return a new instance with align to top', () => {
       // Arrange
       const shapes = createTestShapes(shapesForAlign);
       const collection = new Shapes(shapes);
@@ -422,7 +423,7 @@ describe('Tests for Shapes', () => {
       expect(result.get(3).bbox.y).toEqual(20);
     });
 
-    test('Should return a new instance with align to bottom', () => {
+    it('should return a new instance with align to bottom', () => {
       // Arrange
       const shapes = createTestShapes(shapesForAlign);
       const collection = new Shapes(shapes);
@@ -437,7 +438,7 @@ describe('Tests for Shapes', () => {
       expect(result.get(3).bbox.y).toEqual(23);
     });
 
-    test('Should return a new instance with align to middle', () => {
+    it('should return a new instance with align to middle', () => {
       // Arrange
       const shapes = createTestShapes(shapesForAlign);
       const collection = new Shapes(shapes);
@@ -452,7 +453,7 @@ describe('Tests for Shapes', () => {
       expect(result.get(3).bbox.y).toEqual(23);
     })
 
-    test('Should return a new instance with align to left', () => {
+    it('should return a new instance with align to left', () => {
       // Arrange
       const shapes = createTestShapes(shapesForAlign);
       const collection = new Shapes(shapes);
@@ -467,7 +468,7 @@ describe('Tests for Shapes', () => {
       expect(result.get(3).bbox.x).toEqual(10);
     });
 
-    test('Should return a new instance with align to right', () => {
+    it('should return a new instance with align to right', () => {
       // Arrange
       const shapes = createTestShapes(shapesForAlign);
       const collection = new Shapes(shapes);
@@ -482,7 +483,7 @@ describe('Tests for Shapes', () => {
       expect(result.get(3).bbox.x).toEqual(13);
     });
 
-    test('Should return a new instance with align to center', () => {
+    it('should return a new instance with align to center', () => {
       // Arrange
       const shapes = createTestShapes(shapesForAlign);
       const collection = new Shapes(shapes);
@@ -501,7 +502,7 @@ describe('Tests for Shapes', () => {
 
   describe('Tests for distribute methods', () => {
 
-    test('Should return a new instance with distribute horizontally', () => {
+    it('should return a new instance with distribute horizontally', () => {
       // Arrange
       const data: ShapeData[] = [
         { type: 'rect', x: 10, y: 20, width: 10, height: 40 },
@@ -522,7 +523,7 @@ describe('Tests for Shapes', () => {
       expect(result.get(3).bbox.x).toEqual(70);
     });
 
-    test('Should return a new instance with distribute vertically', () => {
+    it('should return a new instance with distribute vertically', () => {
       // Arrange
       const data: ShapeData[] = [
         { type: 'rect', x: 10, y: 10, width: 10, height: 10 },
@@ -546,7 +547,7 @@ describe('Tests for Shapes', () => {
 
   describe('Tests for ZOrder methods', () => {
 
-    test('Should return a new instance with specified shape bring to front', () => {
+    it('should return a new instance with specified shape bring to front', () => {
       // Arrange
       const shapes = createTestShapes();
       const collection = new Shapes(shapes);
@@ -561,7 +562,7 @@ describe('Tests for Shapes', () => {
       expect(result.get(3)).toEqual(shapes[3]);
     });
 
-    test('Should return a new instance with specified shape send to back', () => {
+    it('should return a new instance with specified shape send to back', () => {
       // Arrange
       const shapes = createTestShapes();
       const collection = new Shapes(shapes);
@@ -576,7 +577,7 @@ describe('Tests for Shapes', () => {
       expect(result.get(3)).toEqual(shapes[2]);
     });
 
-    test('Should return a new instance with specified shape send to backward', () => {
+    it('should return a new instance with specified shape send to backward', () => {
       // Arrange
       const shapes = createTestShapes();
       const collection = new Shapes(shapes);
@@ -591,7 +592,7 @@ describe('Tests for Shapes', () => {
       expect(result.get(3)).toEqual(shapes[3]);
     });
 
-    test('Should return a new instance with specified shape bring to forward', () => {
+    it('should return a new instance with specified shape bring to forward', () => {
       // Arrange
       const shapes = createTestShapes();
       const collection = new Shapes(shapes);
@@ -610,7 +611,7 @@ describe('Tests for Shapes', () => {
 
   describe('Tests for update', () => {
 
-    test('Should return a new updated instance', () => {
+    it('should return a new updated instance', () => {
       // Arrange
       const shapes = createTestShapes();
       const collection = new Shapes(shapes);
@@ -625,7 +626,7 @@ describe('Tests for Shapes', () => {
       expect(result.get(3)).toBe(updated.get(1));
     });
 
-    test('Should throw error when targets and updated does not have same count', () => {
+    it('should throw error when targets and updated does not have same count', () => {
       // Arrange
       const shapes = createTestShapes();
       const collection = new Shapes(shapes);
@@ -638,7 +639,7 @@ describe('Tests for Shapes', () => {
       }).toThrow('targets and updated should be same count');
     });
 
-    test('Should return updated Shapes when nested shapes are specified', () => {
+    it('should return updated Shapes when nested shapes are specified', () => {
       // Arrange
       const shapes = createShapes(nestedShapesData)
       const item1 = shapes.get(4) as Group;
@@ -657,7 +658,7 @@ describe('Tests for Shapes', () => {
 
   describe('Tests for updateShape', () => {
 
-    test('Should return a new instance with updated single shape', () => {
+    it('should return a new instance with updated single shape', () => {
       // Arrange
       const shapes = createTestShapes();
       const collection = new Shapes(shapes);
@@ -672,7 +673,7 @@ describe('Tests for Shapes', () => {
       expect(result.get(0)).toBe(updated);
     });
 
-    test('Should return a new instance with updated single shape when nested shape are specified', () => {
+    it('should return a new instance with updated single shape when nested shape are specified', () => {
       // Arrange
       const shapes = createShapes(nestedShapesData)
       const item1 = shapes.get(4) as Group;
@@ -692,7 +693,7 @@ describe('Tests for Shapes', () => {
 
   describe('Tests for equals', () => {
 
-    test('Should return true when shapes are equal', () => {
+    it('should return true when shapes are equal', () => {
       // Arrange
       const shapes = createTestShapes();
       const collection = new Shapes(shapes);
@@ -703,7 +704,7 @@ describe('Tests for Shapes', () => {
       expect(result).toBe(true);
     });
 
-    test('Should return false when shapes are not equal', () => {
+    it('should return false when shapes are not equal', () => {
       // Arrange
       const shapes = createTestShapes();
       const collection = new Shapes(shapes);
@@ -717,7 +718,7 @@ describe('Tests for Shapes', () => {
   });
   describe('Tests for getList', () => {
 
-    test('Should return list', () => {
+    it('should return list', () => {
       // Arrange
       const shapes = createShapes([
         ...shapeTestData,
@@ -729,7 +730,7 @@ describe('Tests for Shapes', () => {
       expect(result!.type).toBe(ListShape);
     });
 
-    test('Should return undefined when shapes does not have list', () => {
+    it('should return undefined when shapes does not have list', () => {
       // Arrange
       const shapes = createShapes(shapeTestData);
       // Act

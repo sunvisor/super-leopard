@@ -5,7 +5,7 @@
  * Copyright (C) Sunvisor Lab. 2023.
  */
 import { EllipseShape, Shape, ShapeType } from "../shape";
-import {Border, Color} from "../style";
+import { Border, Color, compareBorder } from "../style";
 import { Box, Position } from "../../value";
 import { externalValue, internalValue } from '../../precision';
 import validate from '../shape/validator';
@@ -121,7 +121,7 @@ export class Ellipse implements Shape {
       && this.width === other.width
       && this.height === other.height
       && this.fillColor?.color === other.fillColor?.color
-      && this.border ? this.border.equals(other.border) : !other.border
+      && compareBorder(this.border, other.border);
     }
     return false;
   }

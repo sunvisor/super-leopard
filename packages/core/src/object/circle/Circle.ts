@@ -7,7 +7,7 @@
  * Copyright (C) Sunvisor Lab. 2023.
  */
 import { CircleShape, Shape, ShapeType } from "../shape";
-import { Color, Border } from "../style";
+import { Color, Border, compareBorder } from "../style";
 import { Box, Position } from "../../value";
 import { externalValue, internalValue } from '../../precision';
 import validate from '../shape/validator';
@@ -123,10 +123,10 @@ export class Circle implements Shape {
   equals(other: Shape): boolean {
     if (other instanceof Circle) {
       return this.x === other.x
-      && this.y === other.y
-      && this.diameter === other.diameter
-      && this.fillColor?.color === other.fillColor?.color
-      && this.border ? this.border.equals(other.border) : !other.border
+        && this.y === other.y
+        && this.diameter === other.diameter
+        && this.fillColor?.color === other.fillColor?.color
+        && compareBorder(this.border, other.border);
     }
     return false;
   }

@@ -16,13 +16,17 @@ import ObjectAlignTool from './tool/ObjectAlignTool';
 import GroupTool from './tool/GroupTool';
 import PageProperty from './page/PageProperty';
 import { FontList } from '../../font';
+import { ImageOptions } from '../../settings';
+
 
 type Props = {
-  apiBaseUrl: string;
+  imageOptions: ImageOptions;
+  errorImageUrl: string;
   fontList: FontList;
 }
 
 export default function PropertyEditor(props: Props) {
+  const { imageOptions, errorImageUrl, fontList } = props;
   const selection = useAtomValue(SelectionAtom);
   const scale = useAtomValue(ReadScaleAtom);
   const page = useAtomValue(ReadPageAtom);
@@ -36,8 +40,9 @@ export default function PropertyEditor(props: Props) {
         selection.count === 1 && <ShapeProperty
           unit={scale.unit}
           shape={selection.get(0)}
-          apiBaseUrl={props.apiBaseUrl}
-          fontList={props.fontList}
+          imageOptions={imageOptions}
+          errorImageUrl={errorImageUrl}
+          fontList={fontList}
         />
       }
       {

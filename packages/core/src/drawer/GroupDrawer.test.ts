@@ -32,7 +32,7 @@ describe('Tests for GroupDrawer', () => {
     shapeDrawer.draw.mockReset();
   });
 
-  test('Should call draw method of static shape drawer each group item', () => {
+  it('should call draw method of static shape drawer each group item', () => {
     // Arrange
     const drawer = new GroupDrawer(shapeDrawer)
     const group = createGroup({
@@ -47,7 +47,7 @@ describe('Tests for GroupDrawer', () => {
     expect(shapeDrawer.draw).toHaveBeenCalledTimes(3);
   });
 
-  test('Should call draw method of static shape drawer whenever nested group', () => {
+  it('should call draw method of static shape drawer whenever nested group', () => {
     // Arrange
     const drawer = new GroupDrawer(shapeDrawer)
     const group = createGroup({
@@ -75,7 +75,7 @@ describe('Tests for GroupDrawer', () => {
       shapeDrawer.draw.mockReset();
     });
 
-    test('Should call draw method of static shape drawer repeat count times', () => {
+    it('should call draw method of static shape drawer repeat count times', () => {
       // Arrange
       const drawer = new GroupDrawer(shapeDrawer)
       const group = createGroup({

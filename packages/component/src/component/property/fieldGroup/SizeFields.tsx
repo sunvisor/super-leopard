@@ -13,8 +13,8 @@ import { MAX_SCALE_VALUE } from '@sunvisor/super-leopard-core';
 
 export type SizeFieldValueType = number;
 type Props = {
-  width: number;
-  height: number;
+  width?: number;
+  height?: number;
   unit: UnitValue;
   onChangeValue: ChangeValueHandler<SizeFieldValueType>;
 }

@@ -6,11 +6,11 @@
  */
 import { DefaultRectSize } from "./DefaultRectSize";
 import { Scale, DPPX, UnitType } from '@sunvisor/super-leopard-core';
-import { defaultSettings } from '../../setting';
+import { defaultSettings } from '../../../settings';
 
 describe('Test for DefaultRectSize#size', () => {
 
-  test('Should return default size', () => {
+  it('should return default size', () => {
     // Arrange
     const scale = new Scale({ unit: UnitType.INCH });
     const defaultSize = defaultSettings.defaultShapeSize;

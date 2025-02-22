@@ -66,7 +66,7 @@ describe('Tests for Page', () => {
       expect(() => new Page({ size, unit })).toThrow('height must be positive');
     });
 
-    test('Should set default orientation to PORTRAIT', () => {
+    it('should set default orientation to PORTRAIT', () => {
       // Arrange
       const size = "A4";
       // Act
@@ -114,7 +114,7 @@ describe('Tests for Page', () => {
       expect(page.orientation).toBe(orientation);
     });
 
-    test('Should throw error when size is invalid', () => {
+    it('should throw error when size is invalid', () => {
       // Arrange
       const size = "unknown";
       const orientation = OrientationType.PORTRAIT;
@@ -141,7 +141,7 @@ describe('Tests for Page', () => {
 
   describe('Test for config', () => {
 
-    test('Should return config values', () => {
+    it('should return config values', () => {
       // Arrange
       const size = "A4";
       const orientation = OrientationType.PORTRAIT;

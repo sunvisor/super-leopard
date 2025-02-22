@@ -13,3 +13,4 @@ export * from './style';
 export * from './circle';
 export * from './shapes';
 export * from './ellipse';
+export * from './barcode';

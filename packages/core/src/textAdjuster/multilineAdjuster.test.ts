@@ -5,8 +5,7 @@
  * Copyright (C) Sunvisor Lab. 2025.
  */
 import multilineAdjuster from "./multilineAdjuster";
-import { createText } from '../creator';
-import { Scale, Text, ValignType } from '../object';
+import { createText, Scale, Text, ValignType } from '../object';
 import { TextData } from '../data';
 import { expect } from 'vitest';
 
@@ -41,7 +40,7 @@ describe('Tests for multilineAdjuster when fitCell is false', () => {
 
   describe('When without linePitch', () => {
 
-    test('Should return same text when text is very short', () => {
+    it('should return same text when text is very short', () => {
       // Arrange
       const text = createText({
         ...textConfig,
@@ -54,7 +53,7 @@ describe('Tests for multilineAdjuster when fitCell is false', () => {
       expect((result.get(0) as Text).text).toBe('A'.repeat(10));
     });
 
-    test('Should return same text when text is not too long', () => {
+    it('should return same text when text is not too long', () => {
       // Arrange
       const text = createText({
         ...textConfig,
@@ -67,7 +66,7 @@ describe('Tests for multilineAdjuster when fitCell is false', () => {
 
     });
 
-    test('Should return truncated texts when text is too long', () => {
+    it('should return truncated texts when text is too long', () => {
       // Arrange
       const text = createText({
         ...textConfig,
@@ -84,7 +83,7 @@ describe('Tests for multilineAdjuster when fitCell is false', () => {
 
     describe('When valign is specified', () => {
 
-      test('Should return texts with adjusted y position when valign is bottom', () => {
+      it('should return texts with adjusted y position when valign is bottom', () => {
         // Arrange
         const text = createText({
           ...textConfig,
@@ -100,7 +99,7 @@ describe('Tests for multilineAdjuster when fitCell is false', () => {
         expect((result.get(0) as Text).y).toBeCloseTo(13, 0);
       });
 
-      test('Should return texts with adjusted y position when valign is middle', () => {
+      it('should return texts with adjusted y position when valign is middle', () => {
         // Arrange
         const text = createText({
           ...textConfig,
@@ -121,7 +120,7 @@ describe('Tests for multilineAdjuster when fitCell is false', () => {
 
   describe('When with linePitch', () => {
 
-    test('Should return same text when text is very short', () => {
+    it('should return same text when text is very short', () => {
       // Arrange
       const text = createText({
         ...textConfig,
@@ -135,7 +134,7 @@ describe('Tests for multilineAdjuster when fitCell is false', () => {
       expect((result.get(0) as Text).text).toBe('A'.repeat(10));
     });
 
-    test('Should return same text when text is not too long', () => {
+    it('should return same text when text is not too long', () => {
       // Arrange
       const text = createText({
         ...textConfig,
@@ -150,7 +149,7 @@ describe('Tests for multilineAdjuster when fitCell is false', () => {
 
     });
 
-    test('Should return truncated texts when text is too long', () => {
+    it('should return truncated texts when text is too long', () => {
       // Arrange
       const text = createText({
         ...textConfig,
@@ -168,7 +167,7 @@ describe('Tests for multilineAdjuster when fitCell is false', () => {
 
     describe('When valign is specified', () => {
 
-      test('Should return texts with adjusted y position when valign is bottom', () => {
+      it('should return texts with adjusted y position when valign is bottom', () => {
         const text = createText({
           ...textConfig,
           height: 80,
@@ -183,7 +182,7 @@ describe('Tests for multilineAdjuster when fitCell is false', () => {
         expect((result.get(0) as Text).y).toBeCloseTo(20, 0);
       });
 
-      test('Should return texts with adjusted y position when valign is middle', () => {
+      it('should return texts with adjusted y position when valign is middle', () => {
         // Arrange
         const text = createText({
           ...textConfig,

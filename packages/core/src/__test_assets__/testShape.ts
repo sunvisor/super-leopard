@@ -1,4 +1,5 @@
 import {
+  BarcodeShape,
   CircleShape,
   DirectionType,
   EllipseShape,
@@ -94,6 +95,15 @@ export const shapeTestData2 = [
     src: 'sunvisorlab_icon.png',
     width: 20,
     height: 20,
+  },
+  {
+    type: BarcodeShape,
+    x: 30,
+    y: 40,
+    width: 20,
+    height: 20,
+    format: 'qr',
+    value: 'https://www.sunvisor.net',
   }
 ]
 

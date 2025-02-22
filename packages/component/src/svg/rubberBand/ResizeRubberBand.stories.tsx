@@ -9,7 +9,7 @@
 import { ResizeRubberBand } from "./ResizeRubberBand";
 import { Meta, StoryObj } from '@storybook/react';
 import { Box } from '@sunvisor/super-leopard-core';
-import { within } from '@storybook/test';
+import { fn, within } from '@storybook/test';
 import { HandleType } from '../boundingBox';
 import { createTestSvgDrawer } from '../../__test_assets__';
 
@@ -22,6 +22,9 @@ type Story = StoryObj<ResizeRubberBandProps>
 
 const meta: Meta<ResizeRubberBandProps> = {
   title: 'svg/rubberBand/ResizeRubberBand',
+  args: {
+    onResize: fn()
+  }
 };
 
 const Template: Story = {
@@ -60,14 +63,12 @@ function draw(canvasElement: HTMLElement, args: ResizeRubberBandProps) {
 export const LeftTop: Story = {
   ...Template,
   args: {
-    onResize: (box: Box) => console.log(box),
     type: 'left-top'
   }
 };
 export const Top: Story = {
   ...Template,
   args: {
-    onResize: (box: Box) => console.log(box),
     type: 'top'
   }
 };
@@ -75,7 +76,6 @@ export const Top: Story = {
 export const RightTop: Story = {
   ...Template,
   args: {
-    onResize: (box: Box) => console.log(box),
     type: 'right-top'
   }
 }
@@ -83,7 +83,6 @@ export const RightTop: Story = {
 export const Left: Story = {
   ...Template,
   args: {
-    onResize: (box: Box) => console.log(box),
     type: 'left'
   }
 }
@@ -91,7 +90,6 @@ export const Left: Story = {
 export const Right: Story = {
   ...Template,
   args: {
-    onResize: (box: Box) => console.log(box),
     type: 'right'
   }
 }
@@ -99,7 +97,6 @@ export const Right: Story = {
 export const LeftBottom: Story = {
   ...Template,
   args: {
-    onResize: (box: Box) => console.log(box),
     type: 'left-bottom'
   }
 }
@@ -107,7 +104,6 @@ export const LeftBottom: Story = {
 export const Bottom: Story = {
   ...Template,
   args: {
-    onResize: (box: Box) => console.log(box),
     type: 'bottom'
   }
 }
@@ -115,7 +111,6 @@ export const Bottom: Story = {
 export const RightBottom: Story = {
   ...Template,
   args: {
-    onResize: (box: Box) => console.log(box),
     type: 'right-bottom'
   }
 }

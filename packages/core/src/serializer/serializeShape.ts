@@ -1,4 +1,6 @@
 import {
+  Barcode,
+  BarcodeShape,
   Circle,
   CircleShape,
   Ellipse,
@@ -15,18 +17,19 @@ import {
   ListShape,
   Rect,
   RectShape,
+  serializeBarcode,
+  serializeCircle,
+  serializeEllipse,
+  serializeImage,
+  serializeLine,
+  serializeRect,
+  serializeText,
   Shape,
   Shapes,
   Text,
   TextShape
 } from "../object";
 import { FieldData, GroupData, ListData, ShapeData, StaticShapeData } from "../data";
-import { serializeCircle } from './serializeCircle';
-import { serializeEllipse } from './serializeEllipse';
-import { serializeRect } from './serializeRect';
-import { serializeLine } from './serializeLine';
-import { serializeText } from './serializeText';
-import { serializeImage } from './serializeImage';
 
 /**
  * SerializeShape
@@ -54,6 +57,8 @@ export function serializeShape(shape: Shape): ShapeData {
       return serializeField(shape as Field);
     case ListShape:
       return serializeList(shape as List);
+    case BarcodeShape:
+      return serializeBarcode(shape as Barcode);
     default:
       throw new Error(`Unknown shape type: ${shape.type}`);
   }

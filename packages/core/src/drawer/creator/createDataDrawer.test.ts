@@ -6,8 +6,8 @@
  */
 import { createDataDrawer, } from "./createDataDrawer";
 import { mockShapeDrawers } from '../../__test_assets__/drawerTest';
-import { createScale } from '../../creator';
 import { MeasurementInterface } from '../types';
+import { createScale } from '../../object';
 
 
 describe('Tests for createDataDrawer', () => {
@@ -21,7 +21,7 @@ describe('Tests for createDataDrawer', () => {
     unit: 'mm',
   });
 
-  test('Should create shapes data drawer', () => {
+  it('should create shapes data drawer', () => {
     // Arrange
     // Act
     const drawer = createDataDrawer({

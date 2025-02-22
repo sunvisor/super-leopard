@@ -5,7 +5,14 @@
  * Copyright (C) Sunvisor Lab. 2025.
  */
 import { PageReportDrawer } from "./PageReportDrawer";
-import { createAndRegisterTestFonts, getImagePath, mockDoc, mockMeasurement, testAssets } from '../__test_assets__';
+import {
+  createAndRegisterTestFonts,
+  getImagePath,
+  loadErrorImage,
+  mockDoc,
+  mockMeasurement,
+  testAssets
+} from '../__test_assets__';
 import { createPage, createScale, ReportData } from '@sunvisor/super-leopard-core';
 import { PdfDrawer } from './PdfDrawer';
 import { describe, Mock } from 'vitest';
@@ -21,6 +28,7 @@ function createDrawer(report: ReportData) {
     doc: mockDoc,
     scale,
     getImagePath,
+    loadErrorImage,
     fonts: createAndRegisterTestFonts(mockDoc),
     measurement: mockMeasurement,
   });

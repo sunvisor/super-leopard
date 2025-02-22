@@ -8,17 +8,17 @@
  */
 import { EditRubberBand } from "./EditRubberBand";
 import { Meta, StoryObj } from '@storybook/react';
-import { within } from '@storybook/test';
-import { Box, Position } from '@sunvisor/super-leopard-core'
+import { fn, within } from '@storybook/test';
 import { OnSelectHandler } from './SelectRubberBand';
 import { OnMoveHandler } from './MoveRubberBand';
-import { defaultSettings } from '../setting';
+import { defaultSettings } from '../../settings';
 import { createTestSvgDrawer } from '../../__test_assets__';
 
 type EditRubberBandProps = {
   listeners: {
     onSelect: OnSelectHandler;
     onMove: OnMoveHandler;
+    onResize: OnMoveHandler;
   }
 }
 
@@ -38,12 +38,9 @@ const Template: Story = {
   },
   args: {
     listeners: {
-      onSelect: (area: Box | Position) => {
-        console.log('onSelect', area);
-      },
-      onMove: (pos: Position) => {
-        console.log('onMove', pos);
-      }
+      onSelect: fn(),
+      onMove: fn(),
+      onResize: fn(),
     }
   },
   play: async ({ canvasElement, args }) => {

@@ -15,7 +15,7 @@ describe('Tests for CircleSelector', () => {
 
   describe('Tests for hitTest', () => {
 
-    test('Should return true when point is in the circle', () => {
+    it('should return true when point is in the circle', () => {
       // Arrange
       const pos: Position = { x: 5 * DPPX, y: 5 * DPPX };
       // Act
@@ -24,7 +24,7 @@ describe('Tests for CircleSelector', () => {
       expect(isHit).toBe(true);
     });
 
-    test('Should return false when point is not in the circle', () => {
+    it('should return false when point is not in the circle', () => {
       // Arrange
       const pos: Position = { x: DPPX, y: DPPX };
       // Act
@@ -45,7 +45,7 @@ describe('Tests for CircleSelector', () => {
 
   describe('Tests for inTheBox', () => {
 
-    test('Should return true when the circle is in the box', () => {
+    it('should return true when the circle is in the box', () => {
       // Arrange
       const box = { x: DPPX - 1, y: DPPX - 1, width: DPPX * 11, height: DPPX * 11 };
       // Act
@@ -54,7 +54,7 @@ describe('Tests for CircleSelector', () => {
       expect(isInBox).toBe(true);
     });
 
-    test('Should return false when the circle is not in the box', () => {
+    it('should return false when the circle is not in the box', () => {
       // Arrange
       const box = { x: DPPX + 1, y: DPPX + 1, width: DPPX * 10, height: DPPX * 10 };
       // Act

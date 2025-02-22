@@ -6,7 +6,7 @@
  */
 import { DrawerParams, FieldDrawerInterface, FieldDrawerParams, StaticShapeDrawerInterface } from '../types';
 import { FieldValueType, getValue } from '../../data';
-import { Field, Text, TextShape } from '../../object';
+import { Barcode, BarcodeShape, Field, Text, TextShape } from '../../object';
 
 
 export class FieldDataDrawer implements FieldDrawerInterface {
@@ -25,6 +25,13 @@ export class FieldDataDrawer implements FieldDrawerInterface {
     if (field.shape.type === TextShape) {
       this.drawText(field.shape as Text, value, { opacity });
       return;
+    }
+    if (field.shape.type === BarcodeShape) {
+      if (typeof value !== 'string') {
+        return;
+      }
+      const barcode = (field.shape as Barcode).set('value', value);
+      this.shapeDrawer.draw(barcode, { opacity });
     }
     if (value) {
       this.shapeDrawer.draw(field.shape, { opacity });

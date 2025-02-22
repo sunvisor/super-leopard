@@ -5,20 +5,21 @@
  * Copyright (C) Sunvisor Lab. 2025.
  */
 import { DrawerParams, RectDrawerInterface, TextDrawerInterface } from './types';
-import { ColorConfig, Shape, Text } from '../object';
+import { Shape, Text } from '../object';
 import createBoundingBox from './creator/createBoundingBox';
+import { ColorData } from '../data';
 
 type TextDesignDrawerParams = {
   textDrawer: TextDrawerInterface;
   rectDrawer: RectDrawerInterface;
-  borderColor: ColorConfig;
+  borderColor: ColorData;
 }
 
 export class TextDesignDrawer implements TextDrawerInterface {
 
   private readonly textDrawer: TextDrawerInterface;
   private readonly rectDrawer: RectDrawerInterface;
-  private readonly borderColor: ColorConfig;
+  private readonly borderColor: ColorData;
   constructor(
     { textDrawer, rectDrawer, borderColor }: TextDesignDrawerParams
   ) {

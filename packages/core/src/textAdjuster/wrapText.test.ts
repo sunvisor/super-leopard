@@ -4,9 +4,8 @@
  * Created by sunvisor on 2025/01/12.
  * Copyright (C) Sunvisor Lab. 2025.
  */
-import { Scale, Text } from '../object';
+import { createText, Scale, Text } from '../object';
 import { wrapText } from "./wrapText";
-import { createText } from '../creator';
 import { TextData } from '../data';
 import { expect } from 'vitest';
 
@@ -53,7 +52,7 @@ describe('Tests for wrapText', () => {
   });
 
 
-  test('Should line feed with LF', () => {
+  it('should line feed with LF', () => {
     // Arrange
     const content = '愛'.repeat(30) + '\n' + '愛'.repeat(2);
     const text = createText({

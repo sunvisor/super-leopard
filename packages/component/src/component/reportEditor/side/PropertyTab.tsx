@@ -8,21 +8,24 @@ import { EditMode } from '../ReportWorkArea';
 import PropertyEditor from '../../property/PropertyEditor';
 import DefaultStyle from '../../property/style/DefaultStyle';
 import { FontList } from '../../../font';
+import { ImageOptions } from '../../../settings';
 
 type Props = {
   mode: EditMode;
-  apiBaseUrl: string;
+  imageOptions: ImageOptions;
+  errorImageUrl: string;
   fontList: FontList
 }
 
-export default function PropertyTab({ mode, apiBaseUrl, fontList }: Props) {
+export default function PropertyTab({ mode, imageOptions, fontList, errorImageUrl }: Props) {
   return (
     <>
       {
 
         mode === "edit" && <PropertyEditor
-          apiBaseUrl={apiBaseUrl}
+          imageOptions={imageOptions}
           fontList={fontList}
+          errorImageUrl={errorImageUrl}
         />
       }
       {

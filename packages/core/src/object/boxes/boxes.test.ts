@@ -30,14 +30,14 @@ describe('Tests for boxes', () => {
 
   describe('Tests for mergeBoxes', () => {
 
-    test('Should return box that contains all boxes when passed multiple boxes', () => {
+    it('should return box that contains all boxes when passed multiple boxes', () => {
       // Act
       const result = mergeBoxes(items);
       // Assert
       expect(result).toEqual({ x: 0, y: 0, width: 25, height: 25 });
     });
 
-    test('Should return same box when passed one box', () => {
+    it('should return same box when passed one box', () => {
       // Arrange
       const box1: Box = { x: 0, y: 0, width: 10, height: 10 };
       const items: Boxable[] = [
@@ -53,7 +53,7 @@ describe('Tests for boxes', () => {
 
   describe('Test for moveBoxes', () => {
 
-    test('Should move all boxes when passed multiple boxes', () => {
+    it('should move all boxes when passed multiple boxes', () => {
       // Arrange
       const pos: Position = { x: 10, y: 10 };
       // Act
@@ -68,7 +68,7 @@ describe('Tests for boxes', () => {
 
   describe('Tests for resizeBoxes', () => {
 
-    test('Should resize all boxes when passed multiple boxes', () => {
+    it('should resize all boxes when passed multiple boxes', () => {
       // Arrange
       const newBox: Box = { x: 0, y: 0, width: 100, height: 100 };
       // Act
@@ -101,7 +101,7 @@ describe('Tests for boxes', () => {
       expect(items[2].resize).toHaveBeenCalledWith({ x: 0, y: 60, width: 0, height: 40 });
     });
 
-    test('Should resize correctly when original height is 0', () => {
+    it('should resize correctly when original height is 0', () => {
       // Arrange
       const box1: Box = { x: 0, y: 0, width: 10, height: 0 };
       const items: Boxable[] = [
@@ -113,7 +113,7 @@ describe('Tests for boxes', () => {
       expect(items[0].resize).toHaveBeenCalledWith({ x: 0, y: 0, width: 100, height: 100 });
     });
 
-    test('Should resize correctly when original width is 0', () => {
+    it('should resize correctly when original width is 0', () => {
       // Arrange
       const box1: Box = { x: 0, y: 0, width: 0, height: 10 };
       const items: Boxable[] = [
@@ -129,7 +129,7 @@ describe('Tests for boxes', () => {
 
   describe('Tests for boxIsInTheBox', () => {
 
-    test('Should return true when box1 is in box2', () => {
+    it('should return true when box1 is in box2', () => {
       // Arrange
       const box1: Box = { x: 10, y: 10, width: 20, height: 20 };
       const box2: Box = { x: 0, y: 0, width: 100, height: 100 };
@@ -139,7 +139,7 @@ describe('Tests for boxes', () => {
       expect(result).toBeTruthy();
     });
 
-    test('Should return false when box1 is not in box2', () => {
+    it('should return false when box1 is not in box2', () => {
       // Arrange
       const box1: Box = { x: 0, y: 0, width: 100, height: 100 };
       const box2: Box = { x: 110, y: 110, width: 20, height: 20 };
@@ -149,7 +149,7 @@ describe('Tests for boxes', () => {
       expect(result).toBeFalsy();
     });
 
-    test('Should return false when box1 is slightly overlapping the right side of box2', () => {
+    it('should return false when box1 is slightly overlapping the right side of box2', () => {
       // Arrange
       const box1: Box = { x: 50, y: 50, width: 100, height: 100 };
       const box2: Box = { x: 0, y: 0, width: 100, height: 100 };
@@ -159,7 +159,7 @@ describe('Tests for boxes', () => {
       expect(result).toBeFalsy();
     });
 
-    test('Should return false when box1 is slightly overlapping the left side of box2', () => {
+    it('should return false when box1 is slightly overlapping the left side of box2', () => {
       // Arrange
       const box1: Box = { x: 0, y: 0, width: 100, height: 100 };
       const box2: Box = { x: 50, y: 50, width: 100, height: 100 };
@@ -173,7 +173,7 @@ describe('Tests for boxes', () => {
 
   describe('Tests for positionIsInTheBox', () => {
 
-    test('Should return true when pos is in box', () => {
+    it('should return true when pos is in box', () => {
       // Arrange
       const pos: Position = { x: 10, y: 10 };
       const box: Box = { x: 0, y: 0, width: 100, height: 100 };
@@ -183,7 +183,7 @@ describe('Tests for boxes', () => {
       expect(result).toBeTruthy();
     });
 
-    test('Should return false when pos is not in box', () => {
+    it('should return false when pos is not in box', () => {
       // Arrange
       const pos: Position = { x: 0, y: 0 };
       const box: Box = { x: 10, y: 10, width: 100, height: 100 };

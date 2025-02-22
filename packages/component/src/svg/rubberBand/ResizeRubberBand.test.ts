@@ -11,7 +11,7 @@ describe('Tests for ResizeRubberBand', () => {
 
   describe('Tests for resizeBox', () => {
 
-    test('Should resize using the top-left handle when type is left-top', () => {
+    it('should resize using the top-left handle when type is left-top', () => {
       // Arrange
       const originalBox = {
         x: 0, y: 0, width: 100, height: 100
@@ -26,7 +26,7 @@ describe('Tests for ResizeRubberBand', () => {
       });
     });
 
-    test('Should resize using the right-bottom handle when type is right-bottom', () => {
+    it('should resize using the right-bottom handle when type is right-bottom', () => {
       // Arrange
       const originalBox = {
         x: 0, y: 0, width: 100, height: 100
@@ -41,7 +41,7 @@ describe('Tests for ResizeRubberBand', () => {
       });
     });
 
-    test('Should resize using the right-top handle when type is right-top', () => {
+    it('should resize using the right-top handle when type is right-top', () => {
       // Arrange
       const originalBox = {
         x: 0, y: 0, width: 100, height: 100
@@ -56,7 +56,7 @@ describe('Tests for ResizeRubberBand', () => {
       });
     });
 
-    test('Should resize using the left-bottom handle when type is left-bottom', () => {
+    it('should resize using the left-bottom handle when type is left-bottom', () => {
       // Arrange
       const originalBox = {
         x: 0, y: 0, width: 100, height: 100
@@ -71,7 +71,7 @@ describe('Tests for ResizeRubberBand', () => {
       });
     });
 
-    test('Should resize using the top handle when type is top', () => {
+    it('should resize using the top handle when type is top', () => {
       // Arrange
       const originalBox = {
         x: 0, y: 0, width: 100, height: 100
@@ -86,7 +86,7 @@ describe('Tests for ResizeRubberBand', () => {
       });
     });
 
-    test('Should resize using the bottom handle when type is bottom', () => {
+    it('should resize using the bottom handle when type is bottom', () => {
       // Arrange
       const originalBox = {
         x: 0, y: 0, width: 100, height: 100
@@ -101,7 +101,7 @@ describe('Tests for ResizeRubberBand', () => {
       });
     });
 
-    test('Should resize using the left handle when type is left', () => {
+    it('should resize using the left handle when type is left', () => {
       // Arrange
       const originalBox = {
         x: 0, y: 0, width: 100, height: 100
@@ -116,7 +116,7 @@ describe('Tests for ResizeRubberBand', () => {
       });
     });
 
-    test('Should resize using the right handle when type is right', () => {
+    it('should resize using the right handle when type is right', () => {
       // Arrange
       const originalBox = {
         x: 0, y: 0, width: 100, height: 100
@@ -131,7 +131,7 @@ describe('Tests for ResizeRubberBand', () => {
       });
     });
 
-    test('Should return undefined for horizontal position beyond the opposite side of the box', () => {
+    it('should return undefined for horizontal position beyond the opposite side of the box', () => {
       // Arrange
       const originalBox = {
         x: 0, y: 0, width: 100, height: 100
@@ -144,7 +144,7 @@ describe('Tests for ResizeRubberBand', () => {
       expect(resultBox).toBeUndefined();
     });
 
-    test('Should return undefined for vertical position beyond the opposite side of the box', () => {
+    it('should return undefined for vertical position beyond the opposite side of the box', () => {
       // Arrange
       const originalBox = {
         x: 0, y: 0, width: 100, height: 100

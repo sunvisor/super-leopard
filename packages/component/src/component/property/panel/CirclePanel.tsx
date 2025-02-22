@@ -9,16 +9,16 @@ import { Box } from '@mui/material';
 import NumberField from '../field/NumberField';
 import FillColorField from '../field/FillColorField';
 import BorderFields from '../fieldGroup/BorderFields';
-import { UnitValue } from '@sunvisor/super-leopard-core';
+import { BorderData, CircleData, UnitValue } from '@sunvisor/super-leopard-core';
 import { ChangeValueHandler } from '../usePropertyStates';
 import getCaptions from '../../../captions/getCaptions';
 import GroupBox from '../fieldGroup/GroupBox';
-import { MAX_SCALE_VALUE, CirclePropertyValue  } from '@sunvisor/super-leopard-core';
+import { MAX_SCALE_VALUE } from '@sunvisor/super-leopard-core';
 
-export type CirclePanelValueType = number|string | boolean;
+export type CirclePanelValueType = number|string | BorderData | undefined;
 type Props = {
   unit: UnitValue;
-  values: CirclePropertyValue;
+  values: CircleData;
   onChangeValue: ChangeValueHandler<CirclePanelValueType>;
 }
 
@@ -49,17 +49,11 @@ export default function CirclePanel(props: Props) {
         <Box sx={{ flex: 1 }}/>
       </GroupBox>
       <FillColorField
-        useFillColor={values.useFillColor}
         fillColor={values.fillColor}
         onChangeValue={onChangeValue}
       />
       <BorderFields
-        useStroke={values.useStroke}
-        borderColor={values.borderColor}
-        borderWidth={values.borderWidth}
-        borderStyle={values.borderStyle}
-        borderCap={values.borderCap}
-        borderJoin={values.borderJoin}
+        border={values.border}
         onChangeValue={onChangeValue}
       />
     </>

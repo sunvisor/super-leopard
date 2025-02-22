@@ -13,15 +13,16 @@ import Caption from '../Caption';
 import getCaptions from '../../../captions/getCaptions';
 import CloseIcon from '@mui/icons-material/Close';
 import { ImageListData } from '../../index';
+import { GetImageUrl } from '../../../settings';
 
 type Props = {
   imageList: ImageListData[];
-  baseUrl: string;
+  getImageUrl: GetImageUrl;
   onSelect: (image: ImageListData | undefined) => void;
 }
 
 export default function ImageListPanel(props: Props) {
-  const { imageList, baseUrl, onSelect } = props;
+  const { imageList, getImageUrl, onSelect } = props;
   const [selected, setSelected] = useState<ImageListData | undefined>();
   const captions = getCaptions('imageProperty');
 
@@ -93,7 +94,7 @@ export default function ImageListPanel(props: Props) {
                 >
                   <Box
                     component="img"
-                    src={`${baseUrl}/${image.name}`}
+                    src={getImageUrl(name)}
                     alt={image.name}
                     sx={{
                       objectFit: "contain",

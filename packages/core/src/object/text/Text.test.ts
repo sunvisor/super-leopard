@@ -80,7 +80,7 @@ describe('Tests for Text', () => {
       expect(text.fitCell).toBeFalsy();
     });
 
-    test('Should not be possible to specify linePitch when multiLine is false', () => {
+    it('should not be possible to specify linePitch when multiLine is false', () => {
       // Arrange
       const [color, font] = prepare();
       const config: TextConfig = {
@@ -110,7 +110,7 @@ describe('Tests for Text', () => {
       expect(() => new Text(config)).toThrow('height must be positive');
     });
 
-    test('Should not be possible to specify underline when multiLine is true', () => {
+    it('should not be possible to specify underline when multiLine is true', () => {
       // Arrange
       const [color] = prepare();
       const font = new Font({
@@ -123,7 +123,7 @@ describe('Tests for Text', () => {
       expect(() => new Text(config)).toThrow('underline is not supported in multiLine mode');
     });
 
-    test('Should not be possible to specify strike to style when multiLine is true', () => {
+    it('should not be possible to specify strike to style when multiLine is true', () => {
       // Arrange
       const [color] = prepare();
       const font = new Font({
@@ -136,7 +136,7 @@ describe('Tests for Text', () => {
       expect(() => new Text(config)).toThrow('strike is not supported in multiLine mode');
     });
 
-    test('Should not be possible to specify linePitch when fitCell is true', () => {
+    it('should not be possible to specify linePitch when fitCell is true', () => {
       // Arrange
       const [color, font] = prepare();
       const config: TextConfig = {
@@ -150,7 +150,7 @@ describe('Tests for Text', () => {
 
   describe('Test for bbox', () => {
 
-    test('Should return bounding box', () => {
+    it('should return bounding box', () => {
       // Arrange
       const [color, font] = prepare();
       const config: TextConfig = {
@@ -167,7 +167,7 @@ describe('Tests for Text', () => {
 
   describe('Test for config', () => {
 
-    test('Should return config values', () => {
+    it('should return config values', () => {
       // Arrange
       const [color, font] = prepare();
       const config: TextConfig = {
@@ -182,7 +182,7 @@ describe('Tests for Text', () => {
 
   describe('Tests for moveTo', () => {
 
-    test('Should return a new moved instance', () => {
+    it('should return a new moved instance', () => {
       // Arrange
       const [color, font] = prepare();
       const config: TextConfig = {
@@ -204,7 +204,7 @@ describe('Tests for Text', () => {
 
   describe('Tests for resize', () => {
 
-    test('Should return a new resized instance', () => {
+    it('should return a new resized instance', () => {
       // Arrange
       const [color, font] = prepare();
       const config: TextConfig = {
@@ -229,7 +229,7 @@ describe('Tests for Text', () => {
 
   describe('Tests for set', () => {
 
-    test('Should return a new instance with changed x', () => {
+    it('should return a new instance with changed x', () => {
       // Arrange
       const [color, font] = prepare();
       const config: TextConfig = {
@@ -245,7 +245,7 @@ describe('Tests for Text', () => {
       assertOtherProperties(newText, text, ['x']);
     });
 
-    test('Should return a new instance with changed y', () => {
+    it('should return a new instance with changed y', () => {
       // Arrange
       const [color, font] = prepare();
       const config: TextConfig = {
@@ -261,7 +261,7 @@ describe('Tests for Text', () => {
       assertOtherProperties(newText, text, ['y']);
     });
 
-    test('Should return a new instance with changed text', () => {
+    it('should return a new instance with changed text', () => {
       // Arrange
       const [color, font] = prepare();
       const config: TextConfig = {
@@ -277,7 +277,7 @@ describe('Tests for Text', () => {
       assertOtherProperties(newText, text, ['text']);
     });
 
-    test('Should return a new instance with changed width', () => {
+    it('should return a new instance with changed width', () => {
       // Arrange
       const [color, font] = prepare();
       const config: TextConfig = {
@@ -293,7 +293,7 @@ describe('Tests for Text', () => {
       assertOtherProperties(newText, text, ['width']);
     });
 
-    test('Should return a new instance with changed height', () => {
+    it('should return a new instance with changed height', () => {
       // Arrange
       const [color, font] = prepare();
       const config: TextConfig = {
@@ -309,7 +309,7 @@ describe('Tests for Text', () => {
       assertOtherProperties(newText, text, ['height']);
     });
 
-    test('Should return a new instance with changed font', () => {
+    it('should return a new instance with changed font', () => {
       // Arrange
       const [color, font] = prepare();
       const config: TextConfig = {
@@ -325,7 +325,7 @@ describe('Tests for Text', () => {
       assertOtherProperties(newText, text, ['font']);
     });
 
-    test('Should return a new instance with changed color', () => {
+    it('should return a new instance with changed color', () => {
       // Arrange
       const [color, font] = prepare();
       const config: TextConfig = {
@@ -341,7 +341,7 @@ describe('Tests for Text', () => {
       assertOtherProperties(newText, text, ['color']);
     });
 
-    test('Should return a new instance with changed fillColor', () => {
+    it('should return a new instance with changed fillColor', () => {
       // Arrange
       const [color, font] = prepare();
       const config: TextConfig = {
@@ -357,7 +357,7 @@ describe('Tests for Text', () => {
       assertOtherProperties(newText, text, ['fillColor']);
     });
 
-    test('Should return a new instance with changed align', () => {
+    it('should return a new instance with changed align', () => {
       // Arrange
       const [color, font] = prepare();
       const align = AlignType.LEFT;
@@ -374,7 +374,7 @@ describe('Tests for Text', () => {
       assertOtherProperties(newText, text, ['align']);
     });
 
-    test('Should return a new instance with changed valign', () => {
+    it('should return a new instance with changed valign', () => {
       // Arrange
       const [color, font] = prepare();
       const valign = ValignType.TOP;
@@ -391,7 +391,7 @@ describe('Tests for Text', () => {
       assertOtherProperties(newText, text, ['valign']);
     });
 
-    test('Should return a new instance with changed linePitch', () => {
+    it('should return a new instance with changed linePitch', () => {
       // Arrange
       const [color, font] = prepare();
       const config: TextConfig = {
@@ -407,7 +407,7 @@ describe('Tests for Text', () => {
       assertOtherProperties(newText, text, ['linePitch']);
     });
 
-    test('Should return a new instance with changed multiLine', () => {
+    it('should return a new instance with changed multiLine', () => {
       // Arrange
       const [color, font] = prepare();
       const config: TextConfig = {
@@ -423,7 +423,7 @@ describe('Tests for Text', () => {
       assertOtherProperties(newText, text, ['multiLine']);
     });
 
-    test('Should return a new instance with changed fitCell', () => {
+    it('should return a new instance with changed fitCell', () => {
       // Arrange
       const [color, font] = prepare();
       const config: TextConfig = {
@@ -443,7 +443,7 @@ describe('Tests for Text', () => {
 
   describe('Tests for equals', () => {
 
-    test('Should return true when Text is equal', () => {
+    it('should return true when Text is equal', () => {
       // Arrange
       const [color, font] = prepare();
       const config: TextConfig = {
@@ -457,7 +457,7 @@ describe('Tests for Text', () => {
       expect(result).toBe(true);
     });
 
-    test('Should return false when Text is not equal', () => {
+    it('should return false when Text is not equal', () => {
       // Arrange
       const [color, font] = prepare();
       const config1: TextConfig = {

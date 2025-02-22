@@ -5,7 +5,7 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import { TextRubberBand } from "./TextRubberBand";
-import { defaultSettings } from '../../setting';
+import { defaultSettings } from '../../../settings';
 import { createTestSvgDrawer } from '../../../__test_assets__';
 import { SvgShapeInterface } from '../../../svgDriver';
 
@@ -15,7 +15,7 @@ describe('Tests for TextRubberBand', () => {
 
   describe('Test for createElement', () => {
 
-    test('Should return Svg rect element', () => {
+    it('should return Svg rect element', () => {
       // Arrange
       const textRubberBand = new TextRubberBand({ svg, settings });
       // Act
@@ -31,7 +31,7 @@ describe('Tests for TextRubberBand', () => {
 
   describe('Test for adjustPosition', () => {
 
-    test('Should return end position adjusted to match the width and height', () => {
+    it('should return end position adjusted to match the width and height', () => {
       // Arrange
       const textRubberBand = new TextRubberBand({ svg, settings });
       // Act
@@ -44,7 +44,7 @@ describe('Tests for TextRubberBand', () => {
 
   describe('Test for moveElement', () => {
 
-    test('Should move and resize svg element', () => {
+    it('should move and resize svg element', () => {
       // Arrange
       const textRubberBand = new TextRubberBand({ svg, settings });
       const element: SvgShapeInterface = {

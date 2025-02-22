@@ -9,9 +9,8 @@
 import ImageProperty from "./ImageProperty";
 import { Meta, StoryObj } from '@storybook/react';
 import { createImage, Image, UnitType } from '@sunvisor/super-leopard-core';
-import { NO_IMAGE } from '../../../svg';
 import imageHandlers from '../../../__test_assets__/msw/imageHandlers';
-import { testImageListData } from '../../../__test_assets__';
+import { testImageListData, testImageOptions } from '../../../__test_assets__';
 import { fn } from '@storybook/test';
 
 type Story = StoryObj<typeof ImageProperty>
@@ -34,12 +33,12 @@ const image: Image= createImage( {
   y: 0,
   width: 100,
   height: 100,
-  src: NO_IMAGE,
+  src: '',
 });
 
 export const UnitMillimeter: Story = {
   args: {
-    apiBaseUrl: '/api/images',
+    imageOptions: testImageOptions,
     unit: UnitType.MILLIMETER,
     shape: image,
   }
@@ -47,7 +46,7 @@ export const UnitMillimeter: Story = {
 
 export const UnitInch: Story = {
   args: {
-    apiBaseUrl: '/api/images',
+    imageOptions: testImageOptions,
     unit: UnitType.INCH,
     shape: image,
   }

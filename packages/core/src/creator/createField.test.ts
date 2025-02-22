@@ -10,7 +10,30 @@ import { FieldData, LineData, TextData } from '../data';
 
 describe('Tests for createField', () => {
 
-  test('Create Text Field', () => {
+  it('type is optional', () => {
+    // Arrange
+    const data: FieldData = {
+      name: 'myField',
+      shape: {
+        type: 'text',
+        x: 1,
+        y: 2,
+        width: 100,
+        height: 7,
+        font: {
+          family: 'serif',
+          size: 12
+        }
+      }
+    };
+    // Act
+    const field = createField(data);
+    // Assert
+    expect(field).toBeInstanceOf(Field);
+    expect(field.type).toBe('field');
+  })
+
+  it('should create Text Field', () => {
     // Arrange
     const data: FieldData<TextData> = {
       name: 'myField',
@@ -40,7 +63,7 @@ describe('Tests for createField', () => {
     expect(text.font.size).toBe(data.shape.font.size);
   });
 
-  test('Create Line Field', () => {
+  it('should create Line Field', () => {
     // Arrange
     const data: FieldData<LineData> = {
       name: 'myField',

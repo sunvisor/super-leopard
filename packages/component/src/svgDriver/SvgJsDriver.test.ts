@@ -320,7 +320,7 @@ describe('Tests for SvgJsDrawer', () => {
       // Arrange
       const drawer = new SvgJsDrawer(mockSvg)
       const font = {
-        name: 'Arial',
+        family: 'Arial',
         size: 12,
         weight: 'normal',
         style: 'normal'
@@ -338,7 +338,7 @@ describe('Tests for SvgJsDrawer', () => {
       // Arrange
       const drawer = new SvgJsDrawer(mockSvg)
       const font = {
-        name: 'Arial',
+        family: 'Arial',
         size: 12,
         weight: 'normal',
         style: 'normal'
@@ -355,7 +355,7 @@ describe('Tests for SvgJsDrawer', () => {
       // Arrange
       const drawer = new SvgJsDrawer(mockSvg)
       const font = {
-        name: 'Arial',
+        family: 'Arial',
         size: 12,
         weight: 'normal',
         style: 'normal'

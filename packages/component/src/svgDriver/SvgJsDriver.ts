@@ -85,8 +85,7 @@ export class SvgJsDrawer implements SvgDrawerInterface {
   text(params: TextParams): SvgTextInterface {
     const { x, y, font, letterSpacing, textDecoration, fillColor, opacity } = params;
     const text = this.svg.text(params.text)
-      .move(x, y)
-      .font(font);
+      .font(font)
     if (letterSpacing) {
       text.attr('letter-spacing', letterSpacing);
     }
@@ -96,6 +95,7 @@ export class SvgJsDrawer implements SvgDrawerInterface {
     text.fill(fillColor);
     text.opacity(opacity || 1);
     this.applyDecoration(text, params);
+    text.move(x, y);
 
     return new SvgJsText(text);
   }

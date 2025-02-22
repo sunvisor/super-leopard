@@ -8,7 +8,7 @@
  */
 import RectPanel from "./RectPanel";
 import { Meta, StoryObj } from '@storybook/react';
-import { UnitType, RectPropertyValue  } from '@sunvisor/super-leopard-core';
+import { UnitType, RectData } from '@sunvisor/super-leopard-core';
 import { Box } from '@mui/material';
 import { fn } from '@storybook/test';
 
@@ -23,25 +23,25 @@ const meta: Meta<typeof RectPanel> = {
   decorators: [
     (Story) => (
       <Box sx={{ width: 400, display: 'flex', flexDirection: 'column', gap: 2, m: 2 }}>
-        <Story />
+        <Story/>
       </Box>
     ),
   ],
 };
 
-const values: RectPropertyValue = {
+const values: RectData = {
   x: 1,
   y: 2,
   width: 3,
   height: 4,
-  useFillColor: false,
   fillColor: undefined,
-  useStroke: true,
-  borderStyle: 'solid',
-  borderWidth: 1,
-  borderColor: '#000000',
-  borderCap: 'butt',
-  borderJoin: 'miter',
+  border: {
+    style: 'solid',
+    width: 1,
+    color: '#000000',
+    cap: 'butt',
+    join: 'miter',
+  }
 }
 
 export const UnitMillimeter: Story = {

@@ -9,6 +9,7 @@ import { ImageShape } from '../shape';
 import { Box, Position } from '../../value';
 import { describe } from 'vitest';
 
+
 describe('Tests for Image', () => {
   const config = {
     x: 10,
@@ -56,7 +57,7 @@ describe('Tests for Image', () => {
 
   describe('Test for bbox', () => {
 
-    test('Should return bounding box', () => {
+    it('should return bounding box', () => {
       // Arrange
       const image = new Image(config);
       // Act
@@ -72,7 +73,7 @@ describe('Tests for Image', () => {
 
   describe('Test for config', () => {
 
-    test('Should return config values', () => {
+    it('should return config values', () => {
       // Arrange
       const image = new Image(config);
       // Act
@@ -89,7 +90,7 @@ describe('Tests for Image', () => {
 
   describe('Test for set', () => {
 
-    test('Should return new instance with updated x', () => {
+    it('should return new instance with updated x', () => {
       // Arrange
       const image = new Image(config);
       // Act
@@ -100,7 +101,7 @@ describe('Tests for Image', () => {
       assertOtherProperties(newImage, image, ['x']);
     });
 
-    test('Should return a new instance with updated y', () => {
+    it('should return a new instance with updated y', () => {
       // Arrange
       const image = new Image(config);
       // Act
@@ -111,7 +112,7 @@ describe('Tests for Image', () => {
       assertOtherProperties(newImage, image, ['y']);
     });
 
-    test('Should return a new instance with updated src', () => {
+    it('should return a new instance with updated src', () => {
       // Arrange
       const image = new Image(config);
       // Act
@@ -122,7 +123,7 @@ describe('Tests for Image', () => {
       assertOtherProperties(newImage, image, ['src']);
     });
 
-    test('Should return a new instance with updated width', () => {
+    it('should return a new instance with updated width', () => {
       // Arrange
       const image = new Image(config);
       const newWidth = 11; // 10w
@@ -134,7 +135,7 @@ describe('Tests for Image', () => {
       assertOtherProperties(newImage, image, ['width']);
     });
 
-    test('Should return a new instance with updated height', () => {
+    it('should return a new instance with updated height', () => {
       // Arrange
       const image = new Image(config);
       const newHeight = 12; // 10h
@@ -150,7 +151,7 @@ describe('Tests for Image', () => {
 
   describe('Test for moveTo', () => {
 
-    test('Should return a new moved instance', () => {
+    it('should return a new moved instance', () => {
       // Arrange
       const image = new Image(config);
       const pos: Position = { x: 11, y: 12 };
@@ -168,7 +169,7 @@ describe('Tests for Image', () => {
 
   describe('Test for resize', () => {
 
-    test('Should return a resized instance', () => {
+    it('should return a resized instance', () => {
       // Arrange
       const image = new Image(config);
       const box: Box = { x: 11, y: 12, width: 13, height: 14 };
@@ -189,7 +190,7 @@ describe('Tests for Image', () => {
 
   describe('Test for equals', () => {
 
-    test('Should return true when two Image are same', () => {
+    it('should return true when two Image are same', () => {
       // Arrange
       const image1 = new Image(config);
       const image2 = new Image(config);
@@ -199,7 +200,7 @@ describe('Tests for Image', () => {
       expect(result).toBe(true);
     });
 
-    test('Should return false when two Image are different', () => {
+    it('should return false when two Image are different', () => {
       // Arrange
       const image1 = new Image(config);
       const image2 = new Image({ ...config, x: 11 });

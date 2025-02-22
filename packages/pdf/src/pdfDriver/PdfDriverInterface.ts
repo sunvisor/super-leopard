@@ -76,6 +76,15 @@ export type RegisterFontParams = {
   src: string
 };
 
+export type TextOptions = {
+  oblique?: boolean;
+  underline?: boolean;
+  strike?: boolean;
+  characterSpacing?: number;
+  align?: string;
+  width?: number;
+}
+
 export interface PdfDocumentInterface {
   addPage(params: Record<string, any>): void;
 

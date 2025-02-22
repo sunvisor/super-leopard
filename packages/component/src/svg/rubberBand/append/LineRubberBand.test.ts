@@ -17,7 +17,7 @@ describe('Tests for LineRubberBand', () => {
 
   describe('Test for createElement', () => {
 
-    test('Should return Svg line element', () => {
+    it('should return Svg line element', () => {
       // Arrange
       const lineRubberBand = new LineRubberBand({ svg, scale, styles });
       // Act
@@ -31,7 +31,7 @@ describe('Tests for LineRubberBand', () => {
 
   describe('Tests for adjustPosition', () => {
 
-    test('Should return end position adjusted vertically when end.x is less than end.y', () => {
+    it('should return end position adjusted vertically when end.x is less than end.y', () => {
       // Arrange
       const lineRubberBand = new LineRubberBand({ svg, scale, styles });
       // Act
@@ -40,7 +40,7 @@ describe('Tests for LineRubberBand', () => {
       expect(result).toEqual({ x: 10, y: 200 });
     });
 
-    test('Should return end position adjusted horizontally when end.x is greater than end.y', () => {
+    it('should return end position adjusted horizontally when end.x is greater than end.y', () => {
       // Arrange
       const lineRubberBand = new LineRubberBand({ svg, scale, styles });
       // Act
@@ -53,7 +53,7 @@ describe('Tests for LineRubberBand', () => {
 
   describe('Test for moveElement', () => {
 
-    test('Should plot svg element', () => {
+    it('should plot svg element', () => {
       // Arrange
       const lineRubberBand = new LineRubberBand({ svg, scale, styles });
       const element: SvgLineInterface = {

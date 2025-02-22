@@ -6,6 +6,7 @@
  */
 import { useCallback, useMemo } from "react";
 import {
+  Barcode,
   Circle,
   Ellipse,
   Field,
@@ -32,6 +33,8 @@ import { useAtomValue, useSetAtom } from 'jotai/index';
 import { SelectionAtom } from '../../../atom/SelectionAtom';
 import useShapes from '../../reportEditor/hooks/useShapes';
 import { FontList } from '../../../font';
+import BarcodeProperty from './BarcodeProperty';
+import { ImageOptions } from '../../../settings';
 
 
 export type UpdateHandler = (target: Shape, updated: Shape) => void;
@@ -39,12 +42,13 @@ export type UpdateHandler = (target: Shape, updated: Shape) => void;
 type Props = {
   unit: UnitValue;
   shape: Shape;
-  apiBaseUrl: string;
+  imageOptions: ImageOptions;
+  errorImageUrl: string;
   fontList: FontList;
 }
 
 export default function ShapeProperty(props: Props) {
-  const { unit, shape, apiBaseUrl, fontList } = props;
+  const { unit, shape, imageOptions, fontList, errorImageUrl } = props;
   const selection = useAtomValue(SelectionAtom);
   const setSelection = useSetAtom(SelectionAtom);
   const { updateShapes } = useShapes();
@@ -66,11 +70,11 @@ export default function ShapeProperty(props: Props) {
         case 'ellipse':
           return <EllipseProperty unit={unit} shape={shape as Ellipse} onUpdate={handleUpdate}/>;
         case 'field':
-          return <FieldProperty unit={unit} shape={shape as Field} fontList={fontList} apiBaseUrl={apiBaseUrl} onUpdate={handleUpdate}/>;
+          return <FieldProperty unit={unit} shape={shape as Field} fontList={fontList} imageOptions={imageOptions} onUpdate={handleUpdate}/>;
         case 'group':
           return <GroupProperty unit={unit} shape={shape as Group} onUpdate={handleUpdate}/>;
         case 'image':
-          return <ImageProperty unit={unit} shape={shape as Image} onUpdate={handleUpdate} apiBaseUrl={apiBaseUrl} />;
+          return <ImageProperty unit={unit} shape={shape as Image} onUpdate={handleUpdate} imageOptions={imageOptions} />;
         case 'line':
           return <LineProperty unit={unit} shape={shape as Line} onUpdate={handleUpdate}/>;
         case 'list':
@@ -79,10 +83,12 @@ export default function ShapeProperty(props: Props) {
           return <RectProperty unit={unit} shape={shape as Rect} onUpdate={handleUpdate}/>;
         case 'text':
           return <TextProperty unit={unit} shape={shape as Text} fontList={fontList} onUpdate={handleUpdate}/>;
+        case 'barcode':
+          return <BarcodeProperty unit={unit} shape={shape as Barcode} onUpdate={handleUpdate} errorImageUrl={errorImageUrl}/>
         default:
           return null;
       }
     },
-    [shape, unit, handleUpdate, fontList, apiBaseUrl]
+    [shape, unit, handleUpdate, fontList, imageOptions, errorImageUrl]
   );
 }

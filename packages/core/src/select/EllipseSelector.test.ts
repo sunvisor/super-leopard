@@ -16,7 +16,7 @@ describe('Tests for EllipseSelector', () => {
 
   describe('Tests for hitTest', () => {
 
-    test('Should return true when point is in the ellipse', () => {
+    it('should return true when point is in the ellipse', () => {
       // Arrange
       const pos: Position = { x: 5 * DPPX, y: 5 * DPPX };
       // Act
@@ -25,7 +25,7 @@ describe('Tests for EllipseSelector', () => {
       expect(isHit).toBe(true);
     });
 
-    test('Should return false when point is not in the ellipse', () => {
+    it('should return false when point is not in the ellipse', () => {
       // Arrange
       const pos: Position = { x: DPPX, y: DPPX };
       // Act
@@ -46,7 +46,7 @@ describe('Tests for EllipseSelector', () => {
   });
   describe('Tests for inTheBox', () => {
 
-    test('Should return true when the ellipse is in the box', () => {
+    it('should return true when the ellipse is in the box', () => {
       // Arrange
       const box = { x: DPPX - 1, y: DPPX - 1, width: DPPX * 11, height: DPPX * 6 };
       // Act
@@ -54,7 +54,7 @@ describe('Tests for EllipseSelector', () => {
       // Assert
       expect(isInBox).toBe(true);
     });
-    test('Should return false when the ellipse is not in the box', () => {
+    it('should return false when the ellipse is not in the box', () => {
       // Arrange
       const box = { x: DPPX + 1, y: DPPX + 1, width: DPPX * 10, height: DPPX * 5 };
       // Act

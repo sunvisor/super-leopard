@@ -20,7 +20,7 @@ describe('Tests for useKeyboard', () => {
 
   describe('Case of not macOS', () => {
 
-    test('Should call onCut when ctrl + x is pressed', () => {
+    it('should call onCut when ctrl + x is pressed', () => {
       // Arrange
       renderHook(() => useKeyboard(listeners));
       // Act
@@ -29,7 +29,7 @@ describe('Tests for useKeyboard', () => {
       expect(listeners.onCut).toBeCalled();
     });
 
-    test('Should call onCopy when ctrl + c is pressed', () => {
+    it('should call onCopy when ctrl + c is pressed', () => {
       // Arrange
       renderHook(() => useKeyboard(listeners));
       // Act
@@ -38,7 +38,7 @@ describe('Tests for useKeyboard', () => {
       expect(listeners.onCopy).toBeCalled();
     });
 
-    test('Should call onPaste when ctrl + v is pressed', () => {
+    it('should call onPaste when ctrl + v is pressed', () => {
       // Arrange
       renderHook(() => useKeyboard(listeners));
       // Act
@@ -47,7 +47,7 @@ describe('Tests for useKeyboard', () => {
       expect(listeners.onPaste).toBeCalled();
     });
 
-    test('Should call onRemove when Delete is pressed', () => {
+    it('should call onRemove when Delete is pressed', () => {
       // Arrange
       renderHook(() => useKeyboard(listeners));
       // Act
@@ -56,7 +56,7 @@ describe('Tests for useKeyboard', () => {
       expect(listeners.onRemove).toBeCalled();
     });
 
-    test('Should call onUndo when ctrl + z is pressed', () => {
+    it('should call onUndo when ctrl + z is pressed', () => {
       // Arrange
       renderHook(() => useKeyboard(listeners));
       // Act
@@ -65,7 +65,7 @@ describe('Tests for useKeyboard', () => {
       expect(listeners.onUndo).toBeCalled();
     });
 
-    test('Should call onRedo when ctrl + shift + z is pressed', () => {
+    it('should call onRedo when ctrl + shift + z is pressed', () => {
       // Arrange
       renderHook(() => useKeyboard(listeners));
       // Act
@@ -78,7 +78,7 @@ describe('Tests for useKeyboard', () => {
 
   describe('Case of macOS', () => {
 
-    test('Should call onCut when cmd + x is pressed', () => {
+    it('should call onCut when cmd + x is pressed', () => {
       // Arrange
       renderHook(() => useKeyboard(listeners, true));
       // Act
@@ -87,7 +87,7 @@ describe('Tests for useKeyboard', () => {
       expect(listeners.onCut).toBeCalled();
     });
 
-    test('Should call onCopy when cmd + c is pressed', () => {
+    it('should call onCopy when cmd + c is pressed', () => {
       // Arrange
       renderHook(() => useKeyboard(listeners, true));
       // Act
@@ -96,7 +96,7 @@ describe('Tests for useKeyboard', () => {
       expect(listeners.onCopy).toBeCalled();
     });
 
-    test('Should call onPaste when cmd + v is pressed', () => {
+    it('should call onPaste when cmd + v is pressed', () => {
       // Arrange
       renderHook(() => useKeyboard(listeners, true));
       // Act
@@ -105,7 +105,7 @@ describe('Tests for useKeyboard', () => {
       expect(listeners.onPaste).toBeCalled();
     });
 
-    test('Should call onUndo when cmd + z is pressed', () => {
+    it('should call onUndo when cmd + z is pressed', () => {
       // Arrange
       renderHook(() => useKeyboard(listeners, true));
       // Act
@@ -114,7 +114,7 @@ describe('Tests for useKeyboard', () => {
       expect(listeners.onUndo).toBeCalled();
     });
 
-    test('Should call onRedo when cmd + shift + z is pressed', () => {
+    it('should call onRedo when cmd + shift + z is pressed', () => {
       // Arrange
       renderHook(() => useKeyboard(listeners, true));
       // Act

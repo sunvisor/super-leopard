@@ -1,21 +1,22 @@
 import { ShapesDrawer } from '../ShapesDrawer';
 import { TextDesignDrawer } from '../TextDesignDrawer';
 import { StaticShapeDrawer } from '../StaticShapeDrawer';
-import { ColorConfig, Scale, TextShape } from '../../object';
+import { Scale, TextShape } from '../../object';
 import { FieldDesignDrawer } from '../field/FieldDesignDrawer';
 import { SingleShapeDrawer } from '../SingleShapeDrawer';
 import { GroupDrawer } from '../GroupDrawer';
 import { ListDesignDrawer } from '../list/ListDesignDrawer';
 import { MeasurementInterface, StaticShapeDrawers } from '../types';
 import { TextDrawer } from '../TextDrawer';
+import { ColorData } from '../../data';
 
 
 type CreateDesignDrawerParams = {
   staticShapeDrawers: StaticShapeDrawers
   measurement: MeasurementInterface;
   scale: Scale;
-  fieldBorderColor: ColorConfig;
-  textBorderColor: ColorConfig;
+  fieldBorderColor: ColorData;
+  textBorderColor: ColorData;
 }
 
 export function createDesignDrawer(params: CreateDesignDrawerParams): ShapesDrawer {

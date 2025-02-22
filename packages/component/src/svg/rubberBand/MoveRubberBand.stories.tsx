@@ -8,8 +8,7 @@
  */
 import { MoveRubberBand, OnMoveHandler } from "./MoveRubberBand";
 import { Meta, StoryObj } from '@storybook/react';
-import { within } from '@storybook/test';
-import { Position } from '@sunvisor/super-leopard-core';
+import { fn, within } from '@storybook/test';
 import { createTestSvgDrawer } from '../../__test_assets__';
 
 type MoveRubberBandProps = {
@@ -20,6 +19,9 @@ type Story = StoryObj<MoveRubberBandProps>
 
 const meta: Meta<MoveRubberBandProps> = {
   title: 'svg/rubberBand/MoveRubberBand',
+  args: {
+    onMove: fn()
+  }
 };
 
 const Template: Story = {
@@ -57,9 +59,6 @@ function draw(canvasElement: HTMLElement, args: MoveRubberBandProps) {
 
 export const Move: Story = {
   ...Template,
-  args: {
-    onMove: (pos: Position) => console.log(pos)
-  }
 }
 
 export default meta;

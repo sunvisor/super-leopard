@@ -3,6 +3,6 @@ import { StaticShapeData } from './shapeData';
 
 export type FieldData<T = StaticShapeData> = {
   name: string;
-  type: FieldShapeType;
+  type?: FieldShapeType;
   shape: T;
 };

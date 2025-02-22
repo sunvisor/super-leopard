@@ -1,4 +1,5 @@
-import { LayerData, PageData } from './index';
+import { PageData } from './pageData';
+import { LayerData } from './layerData';
 
 export type ReportData = {
   page: PageData;

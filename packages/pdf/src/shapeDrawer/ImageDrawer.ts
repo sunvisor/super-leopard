@@ -51,8 +51,8 @@ export class ImageDrawer implements ImageDrawerInterface {
   }
 
   private drawSvg(path: string, image: Image, opacity?: number): void {
-    const box = this.#scale.toPoint(image.bbox);
     const content = fs.readFileSync(path, 'utf8');
+    const box = this.#scale.toPoint(image.bbox);
     const imageParams: ImageParams = {
       ...box,
       svg: content,

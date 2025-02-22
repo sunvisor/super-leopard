@@ -5,7 +5,7 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import { Scale, Box, PositionPair } from '@sunvisor/super-leopard-core';
-import { BoundingBoxOptions } from '../setting';
+import { BoundingBoxOptions } from '../../settings';
 import { SvgDrawerInterface, SvgRectInterface } from '../../svgDriver';
 
 export type HandleType =
@@ -123,8 +123,7 @@ export class BoundingBox {
     const stroke = this.#options.stroke;
     return this.#svg.rect({
       ...box,
-      fillColor: '#ffffff',
-      opacity: 0,
+      fillColor: '#ffffff00',
       css: { cursor: 'grab' },
       stroke
     })

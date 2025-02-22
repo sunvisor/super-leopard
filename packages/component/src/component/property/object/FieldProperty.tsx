@@ -5,7 +5,15 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { contractField, expandShape, Field, ShapePropertyValue, StaticShapeType, UnitValue } from '@sunvisor/super-leopard-core';
+import {
+  createField,
+  Field,
+  FieldData,
+  serializeShape,
+  ShapeData,
+  StaticShapeType,
+  UnitValue
+} from '@sunvisor/super-leopard-core';
 import usePropertyStates from '../usePropertyStates';
 import PropertyBox from './PropertyBox';
 import FieldNameFields from '../fieldGroup/FieldNameFields';
@@ -16,38 +24,50 @@ import EllipsePanel from '../panel/EllipsePanel';
 import ImagePanel from '../panel/ImagePanel';
 import LinePanel from '../panel/LinePanel';
 import RectPanel from '../panel/RectPanel';
-import ShapeState from '../ShapeState';
 import { useAtomValue } from 'jotai';
-import { FontStyleAtom } from '../../../atom/StylesAtom';
+import { StylesAtom } from '../../../atom/StylesAtom';
 import { UpdateHandler } from './ShapeProperty';
+import BarcodePanel from '../panel/BarcodePanel';
+import ShapeState from '../ShapeState';
+import { ImageOptions } from '../../../settings';
 
 type Props = {
   unit: UnitValue;
   shape: Field;
   fontList: FontList;
-  apiBaseUrl: string;
+  imageOptions: ImageOptions;
   onUpdate: UpdateHandler;
 }
 
-type PanelType = typeof TextPanel | typeof CirclePanel | typeof EllipsePanel | typeof ImagePanel | typeof LinePanel | typeof RectPanel;
+type PanelType =
+  typeof TextPanel
+  | typeof CirclePanel
+  | typeof EllipsePanel
+  | typeof ImagePanel
+  | typeof LinePanel
+  | typeof RectPanel
+  | typeof BarcodePanel;
 const panels: Record<StaticShapeType, PanelType> = {
   text: TextPanel,
   circle: CirclePanel,
   ellipse: EllipsePanel,
   image: ImagePanel,
   line: LinePanel,
-  rect: RectPanel
+  rect: RectPanel,
+  barcode: BarcodePanel,
 };
 
+
 export default function FieldProperty(props: Props) {
-  const { unit, fontList, shape, apiBaseUrl, onUpdate } = props;
+  const { unit, fontList, shape, imageOptions, onUpdate } = props;
   const [fieldName, setFieldName] = useState(shape.name);
   const [shapeType, setShapeType] = useState<StaticShapeType>(shape.shape.type as StaticShapeType);
   const PanelComponent: PanelType = useMemo(() => panels[shapeType] as PanelType, [shapeType]);
-  const defaultFont = useAtomValue(FontStyleAtom);
+  const defaultStyle = useAtomValue(StylesAtom);
   const shapeProperty = useMemo(
-    () => expandShape(shape.shape), [shape.shape]
+    () => serializeShape(shape.shape), [shape.shape]
   );
+  const shapeState = new ShapeState(shapeProperty, defaultStyle);
 
   useEffect(() => {
     setShapeType(shape.shape.type as StaticShapeType);
@@ -55,23 +75,31 @@ export default function FieldProperty(props: Props) {
   }, [shape.shape.type, shape.name]);
 
   const doUpdate = useCallback(
-    (name: string, type: StaticShapeType, values: ShapePropertyValue) => {
-      const updated = contractField(name, type, values);
+    (name: string, type: StaticShapeType, values: ShapeData) => {
+      shapeState.setPreviousState(values);
+      const updated = createField({
+        name,
+        shape: {
+          type,
+          ...values
+        }
+      } as FieldData);
       onUpdate(shape, updated);
     },
     [shape, onUpdate]
   );
-  const { values: shapeValues, setValues, handleChangeValue } = usePropertyStates<ShapePropertyValue>(
+
+  const { values: shapeValues, setValues, handleChangeValue } = usePropertyStates<ShapeData>(
     shapeProperty,
     values => doUpdate(fieldName, shapeType, values),
   );
 
-  const changeShapeType = useCallback((value: StaticShapeType) => {
-    setShapeType(value);
-    const states = new ShapeState(shapeValues, defaultFont);
-    setValues(states.states(value));
-    doUpdate(fieldName, value, shapeValues);
-  }, [defaultFont, doUpdate, fieldName, setValues, shapeValues]);
+  const changeShapeType = useCallback((shapeType: StaticShapeType) => {
+    setShapeType(shapeType);
+    const newShapes = shapeState.states(shapeType);
+    setValues(newShapes);
+    doUpdate(fieldName, shapeType, newShapes);
+  }, [doUpdate, fieldName, setValues]);
 
   const handleChangeName = useCallback(
     (_: string, value: string, update?: boolean) => {
@@ -91,9 +119,12 @@ export default function FieldProperty(props: Props) {
     [changeShapeType]
   );
 
-  useEffect(() => {
-    setValues(shapeProperty);
-  }, [setValues, shapeProperty]);
+  const handle = useCallback(
+    (name: string, value: any, update?: boolean) => {
+      handleChangeValue(name, value, update);
+    },
+    [handleChangeValue]
+  );
 
   return (
     <PropertyBox>
@@ -109,8 +140,8 @@ export default function FieldProperty(props: Props) {
           unit={unit}
           values={shapeValues as any}
           fontList={fontList}
-          apiBaseUrl={apiBaseUrl}
-          onChangeValue={handleChangeValue as any}
+          imageOptions={imageOptions}
+          onChangeValue={handle}
         />
       }
     </PropertyBox>

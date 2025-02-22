@@ -20,6 +20,7 @@ export type StylesData = {
 const defaultFont: FontData = {
   family: "NotoSerifJP",
   size: 12,
+  style: '',
 }
 
 export const defaultStyle: StylesData = {
@@ -28,9 +29,9 @@ export const defaultStyle: StylesData = {
   font: defaultFont,
 }
 
-export const BorderAtom = atom<BorderData | undefined>({});
-export const FillColorAtom = atom<ColorData | undefined>(undefined);
-export const FontStyleAtom = atom<FontData>(defaultFont);
+export const BorderAtom = atom<BorderData | undefined>(defaultStyle.border);
+export const FillColorAtom = atom<ColorData | undefined>(defaultStyle.fillColor);
+export const FontStyleAtom = atom<FontData>(defaultStyle.font);
 
 export const StylesAtom = atom<StylesData>(get => {
   return {

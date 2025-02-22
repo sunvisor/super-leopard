@@ -41,7 +41,7 @@ describe('Tests for Field', () => {
 
   describe('Tests for bbox', () => {
 
-    test('Should return bounding box', () => {
+    it('should return bounding box', () => {
       // Arrange
       const field = new Field('myField', shape);
       // Act
@@ -53,7 +53,7 @@ describe('Tests for Field', () => {
 
   describe('Tests for setName', () => {
 
-    test('Should return new instance with updated name', () => {
+    it('should return new instance with updated name', () => {
       // Arrange
       const field = new Field('myField', shape);
       const newName = 'newName';
@@ -69,7 +69,7 @@ describe('Tests for Field', () => {
 
   describe('Tests for setShape', () => {
 
-    test('Should return new instance with updated shape', () => {
+    it('should return new instance with updated shape', () => {
       // Arrange
       const field = new Field('myField', shape);
       const newShape = createShape({
@@ -91,7 +91,7 @@ describe('Tests for Field', () => {
 
   describe('Tests for moveTo', () => {
 
-    test('Should return a new moved instance', () => {
+    it('should return a new moved instance', () => {
       // Arrange
       const field = new Field('myField', shape);
       const point = { x: 10, y: 10 };
@@ -106,7 +106,7 @@ describe('Tests for Field', () => {
   });
 
   describe('Tests for resize', () => {
-    test('Should return a new resized instance', () => {
+    it('should return a new resized instance', () => {
       // Arrange
       const field = new Field('myField', shape);
       const box = { x: 10, y: 11, width: 100, height: 110 };
@@ -121,7 +121,7 @@ describe('Tests for Field', () => {
 
   describe('Tests for equals', () => {
 
-    test('Should return true when two Field are same', () => {
+    it('should return true when two Field are same', () => {
       // Arrange
       const field1 = new Field('myField', shape);
       const field2 = new Field('myField', shape);
@@ -131,7 +131,7 @@ describe('Tests for Field', () => {
       expect(result).toBe(true);
     });
 
-    test('Should return false when name are different', () => {
+    it('should return false when name are different', () => {
       // Arrange
       const field1 = new Field('myField', shape);
       const field2 = new Field('myField2', shape);
@@ -141,7 +141,7 @@ describe('Tests for Field', () => {
       expect(result).toBe(false);
     });
 
-    test('Should return false when shape are different', () => {
+    it('should return false when shape are different', () => {
       // Arrange
       const field1 = new Field('myField', shape);
       const newShape = createShape({

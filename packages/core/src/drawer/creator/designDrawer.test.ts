@@ -6,12 +6,13 @@
  */
 
 import { mockShapeDrawers } from '../../__test_assets__/drawerTest';
-import { createScale, createShapes } from '../../creator';
+import { createShapes } from '../../creator';
 import { ShapeData } from '../../data';
-import { Rect, RectShape } from '../../object';
+import { createScale, Rect, RectShape } from '../../object';
 import { afterEach, Mock } from 'vitest';
 import { createDesignDrawer } from './createDesignDrawer';
 import { MeasurementInterface } from '../types';
+
 
 describe('Tests for designDrawer', () => {
 
@@ -36,7 +37,7 @@ describe('Tests for designDrawer', () => {
     scale
   });
 
-  test('Should draw text with bounding box when shape type is text', () => {
+  it('should draw text with bounding box when shape type is text', () => {
     // Arrange
     const shapesData: ShapeData[] = [{
       type: 'text',
@@ -62,7 +63,7 @@ describe('Tests for designDrawer', () => {
 
   });
 
-  test('Should draw field with bounding box when shape type is field', () => {
+  it('should draw field with bounding box when shape type is field', () => {
     // Arrange
     const shapesData: ShapeData[] = [{
       type: 'field',
@@ -90,7 +91,7 @@ describe('Tests for designDrawer', () => {
     expect(rect.bbox).toEqual({ x: 1, y: 2, width: 100, height: 6 });
   });
 
-  test('Should draw group groupCount times', () => {
+  it('should draw group groupCount times', () => {
     // Arrange
     const shapesData: ShapeData[] = [{
       type: 'group',
@@ -115,7 +116,7 @@ describe('Tests for designDrawer', () => {
     expect(rectDrawer.draw).toHaveBeenCalledTimes(3);
   });
 
-  test('Should draw shapes in list list count  times', () => {
+  it('should draw shapes in list list count  times', () => {
     // Arrange
     const shapesData: ShapeData[] = [{
       type: 'list',

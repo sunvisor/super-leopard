@@ -5,8 +5,9 @@
  * Copyright (C) Sunvisor Lab. 2025.
  */
 import { StaticShapeDrawer } from "./StaticShapeDrawer";
-import { createCircle, createEllipse, createField, createImage, createLine, createRect, createText } from '../creator';
+import { createField } from '../creator';
 import { mockShapeDrawers } from '../__test_assets__/drawerTest';
+import { createCircle, createEllipse, createImage, createLine, createRect, createText } from '../object';
 
 
 describe('Tests for StaticShapeDrawer', () => {
@@ -17,7 +18,7 @@ describe('Tests for StaticShapeDrawer', () => {
 
   describe('Tests for supported shapes', () => {
 
-    test('Should call draw method of RectDrawer when shape type is rect', () => {
+    it('should call draw method of RectDrawer when shape type is rect', () => {
       // Arrange
       const drawer = new StaticShapeDrawer(mockShapeDrawers);
       const rect = createRect({
@@ -37,7 +38,7 @@ describe('Tests for StaticShapeDrawer', () => {
       expect(mockShapeDrawers.rect.draw).toHaveBeenCalledWith(rect, { opacity: 1 });
     });
 
-    test('Should call draw method of LineDrawer when shape type is line', () => {
+    it('should call draw method of LineDrawer when shape type is line', () => {
       // Arrange
       const drawer = new StaticShapeDrawer(mockShapeDrawers);
       const line = createLine({
@@ -57,7 +58,7 @@ describe('Tests for StaticShapeDrawer', () => {
       expect(mockShapeDrawers.line.draw).toHaveBeenCalledWith(line, { opacity: 1 });
     });
 
-    test('Should call draw method of CircleDrawer when shape type is circle', () => {
+    it('should call draw method of CircleDrawer when shape type is circle', () => {
       // Arrange
       const drawer = new StaticShapeDrawer(mockShapeDrawers);
       const circle = createCircle({
@@ -76,7 +77,7 @@ describe('Tests for StaticShapeDrawer', () => {
       expect(mockShapeDrawers.circle.draw).toHaveBeenCalledWith(circle, { opacity: 1 });
     });
 
-    test('Should call draw method of EllipseDrawer when shape type is ellipse', () => {
+    it('should call draw method of EllipseDrawer when shape type is ellipse', () => {
       // Arrange
       const drawer = new StaticShapeDrawer(mockShapeDrawers);
       const ellipse = createEllipse({
@@ -96,7 +97,7 @@ describe('Tests for StaticShapeDrawer', () => {
       expect(mockShapeDrawers.ellipse.draw).toHaveBeenCalledWith(ellipse, { opacity: 1 });
     });
 
-    test('Should call draw method of TextDrawer when shape type is text', () => {
+    it('should call draw method of TextDrawer when shape type is text', () => {
       // Arrange
       const drawer = new StaticShapeDrawer(mockShapeDrawers);
       const text = createText({
@@ -117,7 +118,7 @@ describe('Tests for StaticShapeDrawer', () => {
       expect(mockShapeDrawers.text.draw).toHaveBeenCalledWith(text, { opacity: 1 });
     });
 
-    test('Should call draw method of ImageDrawer when shape type is image', () => {
+    it('should call draw method of ImageDrawer when shape type is image', () => {
       // Arrange
       const drawer = new StaticShapeDrawer(mockShapeDrawers);
       const image = createImage({
@@ -138,7 +139,7 @@ describe('Tests for StaticShapeDrawer', () => {
 
   describe('Tests for unsupported shapes', () => {
 
-    test('Should throw error when shape type is unsupported', () => {
+    it('should throw error when shape type is unsupported', () => {
       // Arrange
       const drawer = new StaticShapeDrawer(mockShapeDrawers);
       const field = createField({

@@ -10,7 +10,7 @@ describe('Tests for value', () => {
 
   describe('Tests for normalizeBox', () => {
 
-    test('Should return same box when width and height are positive', () => {
+    it('should return same box when width and height are positive', () => {
       // Arrange
       const box = { x: 10, y: 10, width: 100, height: 100 };
       // Act
@@ -19,7 +19,7 @@ describe('Tests for value', () => {
       expect(result).toEqual({ x: 10, y: 10, width: 100, height: 100 });
     });
 
-    test('Should return reversed box when width and height are negative', () => {
+    it('should return reversed box when width and height are negative', () => {
       // Arrange
       const box = { x: 110, y: 110, width: -100, height: -100 };
       // Act
@@ -32,7 +32,7 @@ describe('Tests for value', () => {
 
   describe('Tests for positionsToBox', () => {
 
-    test('Should return the correct box when pos1 is smaller than pos2', () => {
+    it('should return the correct box when pos1 is smaller than pos2', () => {
       // Arrange
       const pos1 = { x: 10, y: 10 };
       const pos2 = { x: 20, y: 20 };
@@ -42,7 +42,7 @@ describe('Tests for value', () => {
       expect(result).toEqual({ x: 10, y: 10, width: 10, height: 10 });
     });
 
-    test('Should return the correct box when pos1 is larger than pos2', () => {
+    it('should return the correct box when pos1 is larger than pos2', () => {
       // Arrange
       const pos1 = { x: 20, y: 20 };
       const pos2 = { x: 10, y: 10 };
@@ -56,7 +56,7 @@ describe('Tests for value', () => {
 
   describe('Tests for MAX_SCALE_VALUE', () => {
 
-    test('Should MAX_SCALE_VALUE be 9999', () => {
+    it('should MAX_SCALE_VALUE be 9999', () => {
       expect(MAX_SCALE_VALUE).toBe(9999);
     });
 

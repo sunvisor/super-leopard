@@ -35,7 +35,7 @@ describe('Tests for createList', () => {
     }],
   };
 
-  test('Create List', () => {
+  it('should create List', () => {
     // Arrange
     // Act
     const list = createList(baseConfig);
@@ -44,7 +44,19 @@ describe('Tests for createList', () => {
     expect(list.shapes).toBeInstanceOf(Shapes);
   });
 
-  test('Create List with minimal config', () => {
+  it('type is optional', () => {
+    // Arrange
+    const listData: ListData = {
+      shapes: baseConfig.shapes,
+    }
+    // Act
+    const list = createList(listData);
+    // Assert
+    expect(list.type).toBe('list');
+    expect(list).toBeInstanceOf(List);
+  });
+
+  it('should create List with minimal config', () => {
     // Arrange
     const config: ListData = {
       type: 'list',
@@ -61,4 +73,5 @@ describe('Tests for createList', () => {
     expect(list.direction).toBe('vertical');
     expect(list.shapes).toBeInstanceOf(Shapes);
   });
+
 });

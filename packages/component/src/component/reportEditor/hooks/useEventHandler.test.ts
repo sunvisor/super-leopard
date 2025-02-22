@@ -185,7 +185,7 @@ describe('Tests for useEventHandler', () => {
     expect(shapes.get(shapes.count - 1).bbox.height).toBe(30);
   });
 
-  test('Should remove the selected shape when onRemove is called', () => {
+  it('should remove the selected shape when onRemove is called', () => {
     // Arrange
     setReport();
     setActiveLayer(0);
@@ -205,7 +205,7 @@ describe('Tests for useEventHandler', () => {
     expect(selection.count).toBe(0);
   });
 
-  test('Should append the copied shape when onCopy and onPaste is called', () => {
+  it('should append the copied shape when onCopy and onPaste is called', () => {
     // Arrange
     setReport();
     setActiveLayer(0);
@@ -235,7 +235,7 @@ describe('Tests for useEventHandler', () => {
     expect(added.bbox.y).toBe(y + Math.round(20 / X * 10) / 10);
   });
 
-  test('Should move the copied shape when onCut and onPaste is called', () => {
+  it('should move the copied shape when onCut and onPaste is called', () => {
     // Arrange
     setReport();
     setActiveLayer(0);
@@ -262,7 +262,7 @@ describe('Tests for useEventHandler', () => {
 
   describe('Tests for undo/redo', () => {
 
-    test('Should undo when onUndo is called', () => {
+    it('should undo when onUndo is called', () => {
       // Arrange
       setReport();
       setActiveLayer(0);
@@ -283,7 +283,7 @@ describe('Tests for useEventHandler', () => {
       expect(shapes.count).toBe(count);
     });
 
-    test('Should redo when onRedo is called', () => {
+    it('should redo when onRedo is called', () => {
       // Arrange
       setReport();
       setActiveLayer(0);

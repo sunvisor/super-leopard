@@ -129,7 +129,7 @@ describe('Tests for Group', () => {
 
   describe('Tests for bbox', () => {
 
-    test('Should return bounding box', () => {
+    it('should return bounding box', () => {
       // Act
       const bbox = group.bbox;
       // Assert
@@ -143,7 +143,7 @@ describe('Tests for Group', () => {
 
   describe('Tests for set', () => {
 
-    test('Should return a new instance with changed width', () => {
+    it('should return a new instance with changed width', () => {
       // Arrange
       const newWidth = 200;
       // Act
@@ -154,7 +154,7 @@ describe('Tests for Group', () => {
       assertOtherProperties(newGroup, group, ['width']);
     });
 
-    test('Should return a new instance with changed height', () => {
+    it('should return a new instance with changed height', () => {
       // Arrange
       const newHeight = 210;
       // Act
@@ -165,7 +165,7 @@ describe('Tests for Group', () => {
       assertOtherProperties(newGroup, group, ['height']);
     });
 
-    test('Should return a new instance with changed repeatCount', () => {
+    it('should return a new instance with changed repeatCount', () => {
       // Arrange
       const newRepeatCount = 11;
       // Act
@@ -176,7 +176,7 @@ describe('Tests for Group', () => {
       assertOtherProperties(newGroup, group, ['repeatCount']);
     });
 
-    test('Should return a new instance with changed direction', () => {
+    it('should return a new instance with changed direction', () => {
       // Arrange
       const newDirection: DirectionValue = DirectionType.VERTICAL;
       // Act
@@ -191,7 +191,7 @@ describe('Tests for Group', () => {
 
   describe('Tests for moveTo', () => {
 
-    test('Should return a new moved instance', () => {
+    it('should return a new moved instance', () => {
       // Arrange
       const pos: Position = { x: 11, y: 12 };
       // Act
@@ -208,7 +208,7 @@ describe('Tests for Group', () => {
 
   describe('Tests for resize', () => {
 
-    test('Should return a new resized instance', () => {
+    it('should return a new resized instance', () => {
       // Arrange
       const box: Box = { x: 11, y: 12, width: 200, height: 210 };
       const originalBox = group.bbox;
@@ -223,7 +223,7 @@ describe('Tests for Group', () => {
   });
   describe('Tests for equals', () => {
 
-    test('Should return true when two Group are same', () => {
+    it('should return true when two Group are same', () => {
       // Arrange
       const group2 = new Group({
         shapes,
@@ -238,7 +238,7 @@ describe('Tests for Group', () => {
       expect(result).toBe(true);
     });
 
-    test('Should return false when two Group are different', () => {
+    it('should return false when two Group are different', () => {
       // Arrange
       const group2 = new Group({
         shapes,

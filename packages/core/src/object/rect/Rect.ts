@@ -6,7 +6,7 @@
  * Created by sunvisor on 2023/11/24.
  * Copyright (C) Sunvisor Lab. 2023.
  */
-import { Color, Border } from "../style";
+import { Color, Border, compareBorder } from "../style";
 import { RectShape, Shape, ShapeType } from "../shape";
 import { Box, Position } from "../../value";
 import { externalValue, internalValue } from '../../precision';
@@ -111,7 +111,7 @@ export class Rect implements Shape {
       this.width === other.width &&
       this.height === other.height &&
       this.fillColor?.color === other.fillColor?.color &&
-      (this.border ? this.border.equals(other.border) : !other.border)
+      compareBorder(this.border, other.border);
     }
     return false;
   }

@@ -14,24 +14,26 @@ import GroupBox from '../fieldGroup/GroupBox';
 
 
 type Props = {
-  useFillColor: boolean;
   fillColor?: string;
-  onChangeValue: ChangeValueHandler<boolean|string>;
+  onChangeValue: ChangeValueHandler<string | undefined>;
 }
 
 export default function FillColorField(props: Props) {
   const {
-    useFillColor,
-    fillColor,
     onChangeValue,
   } = props;
   const captions = getCaptions('fillColorProperty');
+  const [fillColor, setFillColor] = React.useState(props.fillColor);
+  const [useFillColor, setUseFillColor] = React.useState(fillColor !== undefined);
 
   const handleCheckChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      onChangeValue(e.target.name, e.target.checked, true);
+      setUseFillColor(e.target.checked);
+      const color = e.target.checked ? '#ffffff' : undefined;
+      setFillColor(color);
+      onChangeValue('fillColor', color, true);
     },
-    [onChangeValue]
+    [onChangeValue, setUseFillColor, setFillColor]
   );
 
   return (
@@ -44,11 +46,11 @@ export default function FillColorField(props: Props) {
         />
       } label={
         <Caption>
-          {!useFillColor && captions.fillColor}
+          {!fillColor && captions.fillColor}
         </Caption>
       }/>
       {
-        useFillColor && <ColorPickerField
+        fillColor && <ColorPickerField
           sx={{ flex: 1 }}
           label={captions.fillColor}
           name="fillColor"

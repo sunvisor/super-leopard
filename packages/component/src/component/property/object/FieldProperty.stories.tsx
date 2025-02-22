@@ -8,9 +8,8 @@
  */
 import FieldProperty from "./FieldProperty";
 import { Meta, StoryObj } from "@storybook/react";
-import { NO_IMAGE } from "../../../svg";
 import { createField, Field } from "@sunvisor/super-leopard-core";
-import { fontList } from '../../../__test_assets__';
+import { testFontList, testImageOptions } from '../../../__test_assets__';
 import { fn } from '@storybook/test';
 
 type Story = StoryObj<typeof FieldProperty>;
@@ -24,7 +23,7 @@ const meta: Meta<typeof FieldProperty> = {
 
 const textField: Field = createField({
   type: "field",
-  name: "氏名",
+  name: "MyTextField",
   shape: {
     type: "text",
     x: 10,
@@ -48,7 +47,7 @@ const textField: Field = createField({
 
 const circleField: Field = createField({
   type: "field",
-  name: "氏名",
+  name: "MyCircleField",
   shape: {
     type: "circle",
     x: 1,
@@ -67,7 +66,7 @@ const circleField: Field = createField({
 
 const ellipseField: Field = createField({
   type: "field",
-  name: "氏名",
+  name: "MyEllipseField",
   shape: {
     type: "ellipse",
     x: 1,
@@ -87,20 +86,20 @@ const ellipseField: Field = createField({
 
 const imageField: Field = createField({
   type: "field",
-  name: "氏名",
+  name: "MyImageField",
   shape: {
     type: "image",
     x: 0,
     y: 0,
     width: 100,
     height: 100,
-    src: NO_IMAGE,
+    src: '',
   },
 });
 
 const lineField: Field = createField({
   type: "field",
-  name: "氏名",
+  name: "MyLineField",
   shape: {
     type: "line",
     x1: 0,
@@ -119,7 +118,7 @@ const lineField: Field = createField({
 
 const rectField: Field = createField({
   type: "field",
-  name: "氏名",
+  name: "MyRectField",
   shape: {
     type: "rect",
     x: 1,
@@ -137,45 +136,73 @@ const rectField: Field = createField({
   },
 });
 
+const barcodeField: Field = createField({
+  type: "field",
+  name: "MyBarcodeField",
+  shape: {
+    type: "barcode",
+    x: 1,
+    y: 2,
+    width: 3,
+    height: 4,
+    format: "qr",
+    value: "https://www.sunvisor.net",
+  },
+})
+
 export const TextField: Story = {
   args: {
     shape: textField,
-    fontList,
+    fontList: testFontList,
+    imageOptions: testImageOptions,
   },
 };
 
 export const CircleField: Story = {
   args: {
     shape: circleField,
-    fontList,
+    fontList: testFontList,
+    imageOptions: testImageOptions,
   },
 };
 
 export const EllipseField: Story = {
   args: {
     shape: ellipseField,
-    fontList,
+    fontList: testFontList,
+    imageOptions: testImageOptions,
   },
 };
 
 export const ImageField: Story = {
   args: {
     shape: imageField,
-    fontList,
+    fontList: testFontList,
+    imageOptions: testImageOptions,
   },
 };
 
 export const LineField: Story = {
   args: {
     shape: lineField,
-    fontList,
+    fontList: testFontList,
+    imageOptions: testImageOptions,
   },
 };
 
 export const RectField: Story = {
   args: {
     shape: rectField,
-    fontList,
+    fontList: testFontList,
+    imageOptions: testImageOptions,
+  },
+};
+
+export const BarcodeField: Story = {
+  args: {
+    shape: barcodeField,
+    fontList: testFontList,
+    imageOptions: testImageOptions,
   },
 };
 

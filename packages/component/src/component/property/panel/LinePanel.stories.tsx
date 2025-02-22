@@ -8,7 +8,7 @@
  */
 import LinePanel from "./LinePanel";
 import { Meta, StoryObj } from '@storybook/react';
-import { LinePropertyValue, UnitType } from '@sunvisor/super-leopard-core';
+import { LineData, UnitType } from '@sunvisor/super-leopard-core';
 import { Box } from '@mui/material';
 import { fn } from '@storybook/test';
 
@@ -29,17 +29,12 @@ const meta: Meta<typeof LinePanel> = {
   ],
 };
 
-const values: LinePropertyValue = {
+const values: LineData = {
   x1: 1,
   y1: 2,
   x2: 3,
   y2: 4,
-  useStroke: true,
-  borderStyle: 'solid',
-  borderWidth: 1,
-  borderColor: '#000000',
-  borderCap: 'butt',
-  borderJoin: 'miter',
+  border: { width: 1, color: '#000000', style: 'solid', cap: 'butt', join: 'miter' },
 }
 
 export const UnitMillimeter: Story = {

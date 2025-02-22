@@ -4,6 +4,7 @@
   "license": "MIT",
   "author": "Sunvisor <hisashi@sunvisor.net> (https://www.sunvisor.net/)",
   "description": "Core objects for Super Leopard",
+  "repository": "https://github.com/sunvisor/super-leopard",
   "type": "module",
   "exports": {
     ".": {

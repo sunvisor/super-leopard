@@ -10,7 +10,7 @@ import { LineRubberBand } from "./LineRubberBand";
 import { Meta, StoryObj } from '@storybook/react';
 import { HandleType } from '../boundingBox';
 import { PositionPair } from '@sunvisor/super-leopard-core';
-import { within } from '@storybook/test';
+import { fn, within } from '@storybook/test';
 import { createTestSvgDrawer } from '../../__test_assets__';
 
 
@@ -23,6 +23,9 @@ type Story = StoryObj<LineRubberBandProps>
 
 const meta: Meta<LineRubberBandProps> = {
   title: 'svg/rubberBand/LineRubberBand',
+  args: {
+    onMovePoint: fn(),
+  }
 };
 
 const Template: Story = {
@@ -58,12 +61,25 @@ function draw(canvasElement: HTMLElement, args: LineRubberBandProps) {
   return el;
 }
 
-export const LeftTop: Story = {
+export const Position2: Story = {
   ...Template,
   args: {
-    onMovePoint: (positions: PositionPair) => console.log(positions),
     type: 'position2'
   }
 };
+
+export const Positions1: Story = {
+  ...Template,
+  args: {
+    type: 'position1'
+  }
+}
+
+export const Center: Story = {
+  ...Template,
+  args: {
+    type: 'center'
+  }
+}
 
 export default meta;

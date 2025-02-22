@@ -5,14 +5,14 @@
  * Copyright (C) Sunvisor Lab. 2023.
  */
 import { createGroup, createGroupFromShapes, createShapes } from "./createShape";
-import { DirectionType, GroupConfig, GroupShape } from '../object';
+import { DirectionType, Group, GroupConfig, GroupShape } from '../object';
 import { GroupData } from '../data';
 import { shapeTestData } from '../__test_assets__';
 
 
 describe('Tests for createGroup', () => {
 
-  test('Create Group', () => {
+  it('should create Group', () => {
     // Arrange
     const groupData: GroupData = {
       type: GroupShape,
@@ -24,7 +24,19 @@ describe('Tests for createGroup', () => {
     expect(group.type).toBe(GroupShape);
   });
 
-  test('Create Group that repeats vertically', () => {
+  it('type is optional', () => {
+    // Arrange
+    const groupData: GroupData = {
+      shapes: shapeTestData,
+    }
+    // Act
+    const group = createGroup(groupData);
+    // Assert
+    expect(group.type).toBe(GroupShape);
+    expect(group).toBeInstanceOf(Group);
+  })
+
+  it('should create Group that repeats vertically', () => {
     // Arrange
     const groupData: GroupData = {
       type: GroupShape,
@@ -44,7 +56,7 @@ describe('Tests for createGroup', () => {
     expect(group.height).toBe(20);
   });
 
-  test('Create Group from Shapes', () => {
+  it('should create Group from Shapes', () => {
     // Arrange
     const groupData: GroupConfig = {
       shapes: createShapes(shapeTestData),
@@ -56,7 +68,7 @@ describe('Tests for createGroup', () => {
     expect(group.shapes.count).toEqual(groupData.shapes.count);
   });
 
-  test('Should throw error when invalid shape type', () => {
+  it('should throw error when invalid shape type', () => {
     // Arrange
     // @ts-expect-error Invalid type
     const groupData: GroupData = { type: 'rect', shapes: shapeTestData }

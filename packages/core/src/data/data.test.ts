@@ -26,7 +26,7 @@ describe('Tests for getValue', () => {
     },
   });
 
-  test('Should return value of specified key', () => {
+  it('should return value of specified key', () => {
     // Arrange
     const values = {
       field1: 'data1',
@@ -38,7 +38,7 @@ describe('Tests for getValue', () => {
     expect(result).toEqual(1000);
   });
 
-  test('Should return empty string if values is undefined', () => {
+  it('should return empty string if values is undefined', () => {
     // Arrange
     const values = undefined;
     // Act
@@ -47,7 +47,7 @@ describe('Tests for getValue', () => {
     expect(result).toEqual('');
   });
 
-  test('Should return empty string if values does not have specified key', () => {
+  it('should return empty string if values does not have specified key', () => {
     // Arrange
     const values = {
       field1: 'data1',

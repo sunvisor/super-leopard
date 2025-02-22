@@ -19,7 +19,7 @@ describe('Tests for LineSelector', () => {
 
   describe('Test for hitTest', () => {
 
-    test('Should return true when hit occurs on a horizontal line', () => {
+    it('should return true when hit occurs on a horizontal line', () => {
       // Arrange
       const line = new Line({ x1: 1, y1: 1, x2: 100, y2: 1, border });
       const pos: Position = { x: DPPX, y: DPPX };
@@ -29,7 +29,7 @@ describe('Tests for LineSelector', () => {
       expect(hit).toBe(true);
     });
 
-    test('Should return true when hit occurs on a horizontally reversed line', () => {
+    it('should return true when hit occurs on a horizontally reversed line', () => {
       // Arrange
       const line = new Line({ x1: 100, y1: 1, x2: 1, y2: 1, border });
       const pos: Position = { x: DPPX, y: DPPX };
@@ -39,7 +39,7 @@ describe('Tests for LineSelector', () => {
       expect(hit).toBe(true);
     });
 
-    test('Should return false when hit does not occur on a horizontal line', () => {
+    it('should return false when hit does not occur on a horizontal line', () => {
       // Arrange
       const line = new Line({ x1: 1, y1: 1, x2: 100, y2: 1, border });
       const pos: Position = { x: DPPX, y: DPPX * 2 };
@@ -49,7 +49,7 @@ describe('Tests for LineSelector', () => {
       expect(hit).toBe(false);
     });
 
-    test('Should return true when hit occurs on a vertical line', () => {
+    it('should return true when hit occurs on a vertical line', () => {
       // Arrange
       const line = new Line({ x1: 1, y1: 1, x2: 1, y2: 100, border });
       const pos: Position = { x: DPPX, y: 100 * DPPX };
@@ -59,7 +59,7 @@ describe('Tests for LineSelector', () => {
       expect(hit).toBe(true);
     });
 
-    test('Should return true when hit occurs on a vertically reversed line', () => {
+    it('should return true when hit occurs on a vertically reversed line', () => {
       // Arrange
       const line = new Line({ x1: 1, y1: 100, x2: 1, y2: 1, border });
       const pos: Position = { x: DPPX, y: 100 * DPPX };
@@ -69,7 +69,7 @@ describe('Tests for LineSelector', () => {
       expect(hit).toBe(true);
     });
 
-    test('Should return false when hit does not occur on a vertical line', () => {
+    it('should return false when hit does not occur on a vertical line', () => {
       // Arrange
       const line = new Line({ x1: 1, y1: 1, x2: 1, y2: 100, border });
       const pos: Position = { x: DPPX, y: 102 * DPPX };
@@ -79,7 +79,7 @@ describe('Tests for LineSelector', () => {
       expect(hit).toBe(false);
     });
 
-    test('Should return true when hit occurs on a diagonal line', () => {
+    it('should return true when hit occurs on a diagonal line', () => {
       // Arrange
       const line = new Line({ x1: 1, y1: 1, x2: 100, y2: 100, border });
       const pos: Position = { x: 50 * DPPX, y: 50 * DPPX };
@@ -89,7 +89,7 @@ describe('Tests for LineSelector', () => {
       expect(hit).toBe(true);
     });
 
-    test('Should return true when hit occurs on a diagonal reversed line', () => {
+    it('should return true when hit occurs on a diagonal reversed line', () => {
       // Arrange
       const line = new Line({ x1: 100, y1: 100, x2: 1, y2: 1, border });
       const pos: Position = { x: 50 * DPPX, y: 50 * DPPX };
@@ -99,7 +99,7 @@ describe('Tests for LineSelector', () => {
       expect(hit).toBe(true);
     });
 
-    test('Should return false when hit does not occur on a diagonal line', () => {
+    it('should return false when hit does not occur on a diagonal line', () => {
       // Arrange
       const line = new Line({ x1: 1, y1: 1, x2: 100, y2: 100, border });
       const pos: Position = { x: 50 * DPPX, y: 55 * DPPX };
@@ -113,7 +113,7 @@ describe('Tests for LineSelector', () => {
 
   describe('Tests for inTheBox', () => {
 
-    test('Should return true when the line is in the box', () => {
+    it('should return true when the line is in the box', () => {
       // Arrange
       const box = { x: DPPX - 1, y: DPPX - 1, width: DPPX * 11, height: DPPX * 6 };
       // Act
@@ -122,7 +122,7 @@ describe('Tests for LineSelector', () => {
       expect(isInBox).toBe(true);
     });
 
-    test('Should return false when the line is not in the box', () => {
+    it('should return false when the line is not in the box', () => {
       // Arrange
       const box = { x: DPPX + 1, y: DPPX + 1, width: DPPX * 10, height: DPPX * 5 };
       // Act

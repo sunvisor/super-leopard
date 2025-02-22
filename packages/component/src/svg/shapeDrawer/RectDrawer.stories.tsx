@@ -151,7 +151,7 @@ export const RedFill: Story = {
       y: 5,
       width: 50,
       height: 10,
-      fillColor: {r:255, g:0, b:0}
+      fillColor: '#ff0000',
     }
   }
 };

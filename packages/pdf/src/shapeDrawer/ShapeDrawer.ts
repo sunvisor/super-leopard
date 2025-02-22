@@ -17,6 +17,15 @@ export type TextDrawerProps = ShapeDrawerProps & {
   measurement: MeasurementInterface;
 }
 
-export type CreateShapeDrawerParams = TextDrawerProps & {
-  getImagePath: GetPdfImagePath;
+export type BarcodeDrawerProps = ShapeDrawerProps & {
+  loadErrorImage: () => string;
 }
+
+export type ImageHandlerProps = {
+  getImagePath: GetPdfImagePath;
+  loadErrorImage: () => string;
+}
+
+export type PdfDrawerProps = TextDrawerProps & ImageHandlerProps;
+
+export type CreateShapeDrawerParams = PdfDrawerProps;

@@ -37,7 +37,7 @@ describe('Tests for ShapesDrawer', () => {
     }
   }
 
-  test('Should draw shape when shape type is static shape', () => {
+  it('should draw shape when shape type is static shape', () => {
     // Arrange
     const shapes = createShapes([rectData]);
     const drawer = new ShapesDrawer(mockShapeDrawer, mockGroupDrawer, mockListDrawer);
@@ -47,7 +47,7 @@ describe('Tests for ShapesDrawer', () => {
     expect(mockShapeDrawer.draw).toBeCalledTimes(1);
   });
 
-  test('Should draw shape shapes count times', () => {
+  it('should draw shape shapes count times', () => {
     // Arrange
     const shapes = createShapes([rectData, rectData]);
     const drawer = new ShapesDrawer(mockShapeDrawer, mockGroupDrawer, mockListDrawer);
@@ -59,7 +59,7 @@ describe('Tests for ShapesDrawer', () => {
     expect(result[0][1]).toEqual({ values: {} });
   });
 
-  test('Should draw group when shape type is group', () => {
+  it('should draw group when shape type is group', () => {
     // Arrange
     const shapes = createShapes([{
       type: 'group',
@@ -75,7 +75,7 @@ describe('Tests for ShapesDrawer', () => {
     expect(result[0][1]).toEqual(params);
   });
 
-  test('Should draw list when shape type is list', () => {
+  it('should draw list when shape type is list', () => {
     // Arrange
     const shapes = createShapes([{
       type: 'list',

@@ -22,7 +22,7 @@ describe('Tests for EllipseDrawer#draw', () => {
     height: ry * 2,
   }
 
-  test('Should append a ellipse element with correct attributes to the SVG', () => {
+  it('should append a ellipse element with correct attributes to the SVG', () => {
     // Arrange
     svg.clear();
     const ellipse = createEllipse(data);

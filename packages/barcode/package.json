@@ -1,0 +1,31 @@
+{
+  "name": "@sunvisor/super-leopard-barcode",
+  "version": "0.1.0",
+  "license": "MIT",
+  "author": "Sunvisor <hisashi@sunvisor.net> (https://www.sunvisor.net/)",
+  "description": "Barcode generator for Super Leopard",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.cjs.js"
+    }
+  },
+  "scripts": {
+    "build": "vite build",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "@sunvisor/super-leopard-core": "^0.1.0"
+  },
+  "peerDependencies": {
+    "@bwip-js/generic": "^4.5.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "vite": "^6.0.11",
+    "vite-plugin-dts": "^4.4.0",
+    "vitest": "^2.1.8"
+  }
+}

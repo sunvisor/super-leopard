@@ -8,11 +8,13 @@
  */
 import EditingLayer from "./EditingLayer";
 import { Meta, StoryFn, StoryObj } from '@storybook/react';
-import { createRect, Shapes } from '@sunvisor/super-leopard-core';
+import { createLine, createRect, Shapes } from '@sunvisor/super-leopard-core';
 import { createStore, Provider } from 'jotai';
 import { SetReportAtom } from '../../../atom/ReportAtom';
 import { emptyReport } from '../../emptyReport';
 import { SelectionAtom } from '../../../atom/SelectionAtom';
+import { fn } from '@storybook/test';
+
 
 type Story = StoryObj<typeof EditingLayer>
 
@@ -36,13 +38,24 @@ const planeDecorator = (Story: StoryFn) => {
   return wrapper(Story, new Shapes([]));
 }
 
-const BoundingBoxDecorator = (Story: StoryFn) => {
+const RectDecorator = (Story: StoryFn) => {
   const shape = createRect({ x: 10, y: 10, width: 100, height: 100, type: 'rect', fillColor: '#000000' });
+  return wrapper(Story, new Shapes([shape]))
+}
+
+const LineDecorator = (Story: StoryFn) => {
+  const shape = createLine({ x1: 10, y1: 10, x2: 110, y2: 110, type: 'line', border: { color: '#000000' }});
   return wrapper(Story, new Shapes([shape]))
 }
 
 const meta: Meta<typeof EditingLayer> = {
   component: EditingLayer,
+  args: {
+    onSelect: fn(),
+    onMove: fn(),
+    onResize: fn(),
+    onMovePosition: fn(),
+  }
 };
 
 
@@ -51,9 +64,14 @@ export const Plane: Story = {
   decorators: [planeDecorator]
 };
 
-export const BoundingBox: Story = {
+export const Rect: Story = {
   args: {},
-  decorators: [BoundingBoxDecorator]
+  decorators: [RectDecorator]
+};
+
+export const Line: Story = {
+  args: {},
+  decorators: [LineDecorator]
 };
 
 export default meta;

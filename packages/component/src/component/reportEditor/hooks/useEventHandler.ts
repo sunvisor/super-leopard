@@ -14,10 +14,10 @@ import { useAtomValue } from 'jotai';
 import { Atom } from 'jotai/ts3.8/vanilla/atom';
 import useShapes from './useShapes';
 import { ClearSelectionAtom, SelectionAtom } from '../../../atom/SelectionAtom';
-import { SettingsAtom } from '../../../atom/SettingsAtom';
 import useClipboard from './useClipboard';
 import { CanRedoAtom, CanUndoAtom, RedoHistoryAtom, UndoHistoryAtom } from '../../../atom/HistoryAtom';
 import { ReadScaleAtom } from '../../../atom/ReportAtom';
+import { getSettings } from '../../../settings';
 
 const PASTE_OFFSET = 20; // pixel
 
@@ -32,7 +32,7 @@ export default function useEventHandler(props: Props = {}) {
   } = useShapes(props);
   const [selection, setSelection] = useAtom(SelectionAtom);
   const clearSelection = useSetAtom(ClearSelectionAtom);
-  const settings = useAtomValue(SettingsAtom);
+  const settings = getSettings();
   const { setToClipboard, getFromClipboard, canPaste } = useClipboard();
   const canUndo = useAtomValue(CanUndoAtom);
   const canRedo = useAtomValue(CanRedoAtom);

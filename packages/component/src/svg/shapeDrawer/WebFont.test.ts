@@ -6,7 +6,7 @@
  */
 import { WebFont } from "./WebFont";
 import { describe } from 'vitest';
-import { webFontMap } from '../../__test_assets__';
+import { testFontMap } from '../../__test_assets__';
 import { createFont, createScale, FontData } from '@sunvisor/super-leopard-core';
 
 describe('Tests for WebFont', () => {
@@ -15,7 +15,7 @@ describe('Tests for WebFont', () => {
     family: 'TimesRoman',
     size: 12
   }
-  const webFont = new WebFont(webFontMap);
+  const webFont = new WebFont(testFontMap);
 
   describe('Tests for svgFontParams method', () => {
 

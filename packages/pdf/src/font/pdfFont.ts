@@ -5,8 +5,7 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import { Font, FontStyleType } from '@sunvisor/super-leopard-core';
-import TextOptions = PDFKit.Mixins.TextOptions;
-import { PdfDocumentInterface } from '../pdfDriver/PdfDriverInterface';
+import { PdfDocumentInterface, TextOptions } from '../pdfDriver/PdfDriverInterface';
 
 export type StandardFontMapItem = {
   normal: string;

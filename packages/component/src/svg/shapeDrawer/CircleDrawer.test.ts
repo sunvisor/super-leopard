@@ -25,7 +25,7 @@ describe('Tests for CircleDrawer#draw', () => {
     vi.clearAllMocks();
   });
 
-  test('Should append a circle element with correct attributes to the SVG', () => {
+  it('should append a circle element with correct attributes to the SVG', () => {
     // Arrange
     svg.clear();
     const circle = createCircle(data);

@@ -75,7 +75,7 @@ describe('Tests for style', () => {
       text: 'Hello, World!',
     };
 
-    test('should apply font to text params', () => {
+    it('should apply font to text params', () => {
       // Arrange
       const font = createFont({
         family: 'TimesRoman',

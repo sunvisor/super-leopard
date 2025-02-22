@@ -31,7 +31,7 @@ describe('Tests for Line', () => {
 
   describe('Tests for bbox', () => {
 
-    test('Should return bounding box', () => {
+    it('should return bounding box', () => {
       // Arrange
       const line = new Line({ x1: 10, y1: 20, x2: 30, y2: 40, border });
       // Act
@@ -47,7 +47,7 @@ describe('Tests for Line', () => {
 
   describe('Tests for positions', () => {
 
-    test('Should return positions', () => {
+    it('should return positions', () => {
       // Arrange
       const line = new Line({ x1: 10, y1: 20, x2: 30, y2: 40, border });
       // Act
@@ -63,7 +63,7 @@ describe('Tests for Line', () => {
 
   describe('Tests for bbox', () => {
 
-    test('Should return bounding box', () => {
+    it('should return bounding box', () => {
       // Arrange
       const line = new Line({ x1: 30, y1: 40, x2: 10, y2: 20, border });
       // Act
@@ -79,7 +79,7 @@ describe('Tests for Line', () => {
 
   describe('Tests for moveTo', () => {
 
-    test('Should return moved Line', () => {
+    it('should return moved Line', () => {
       // Arrange
       const line = new Line({ x1: 1, y1: 2, x2: 3, y2: 4, border });
       const pos: Position = { x: 11, y: 12 };
@@ -119,7 +119,7 @@ describe('Tests for Line', () => {
 
   describe('Tests for resize', () => {
 
-    test('Should return resized Line', () => {
+    it('should return resized Line', () => {
       // Arrange
       const line = new Line({ x1: 1, y1: 2, x2: 3, y2: 4, border });
       const box: Box = { x: 11, y: 12, width: 13, height: 14 };
@@ -166,7 +166,7 @@ describe('Tests for Line', () => {
 
   describe('Tests for set', () => {
 
-    test('Should return new instance with updated x1', () => {
+    it('should return new instance with updated x1', () => {
       // Arrange
       const line = new Line({ x1: 10, y1: 20, x2: 0, y2: 0, border });
       const x1 = 100;
@@ -178,7 +178,7 @@ describe('Tests for Line', () => {
       assertOtherProperties(newLine, line, ['x1']);
     });
 
-    test('Should return new instance with updated y1', () => {
+    it('should return new instance with updated y1', () => {
       // Arrange
       const line = new Line({ x1: 10, y1: 20, x2: 0, y2: 0, border });
       const y1 = 100;
@@ -190,7 +190,7 @@ describe('Tests for Line', () => {
       assertOtherProperties(newLine, line, ['y1']);
     });
 
-    test('Should return new instance with updated x2', () => {
+    it('should return new instance with updated x2', () => {
       // Arrange
       const line = new Line({ x1: 10, y1: 20, x2: 0, y2: 0, border });
       const x2 = 100;
@@ -202,7 +202,7 @@ describe('Tests for Line', () => {
       assertOtherProperties(newLine, line, ['x2']);
     });
 
-    test('Should return new instance with updated y2', () => {
+    it('should return new instance with updated y2', () => {
       // Arrange
       const line = new Line({ x1: 10, y1: 20, x2: 0, y2: 0, border });
       const y2 = 100;
@@ -214,7 +214,7 @@ describe('Tests for Line', () => {
       assertOtherProperties(newLine, line, ['y2']);
     });
 
-    test('Should return new instance with updated border', () => {
+    it('should return new instance with updated border', () => {
       // Arrange
       const line = new Line({ x1: 10, y1: 20, x2: 0, y2: 0, border });
       const newBorder = new Border({ width: 2, color: new Color('#00ff00') });
@@ -230,7 +230,7 @@ describe('Tests for Line', () => {
 
   describe('Tests for setPositions', () => {
 
-    test('Should return new instance with updated positions', () => {
+    it('should return new instance with updated positions', () => {
       // Arrange
       const line = new Line({ x1: 10, y1: 20, x2: 30, y2: 40, border });
       const positions: PositionPair = { x1: 50, y1: 60, x2: 70, y2: 80 };
@@ -248,7 +248,7 @@ describe('Tests for Line', () => {
 
   describe('Tests for equals', () => {
 
-    test('Should return true when two Line are same', () => {
+    it('should return true when two Line are same', () => {
       // Arrange
       const line1 = new Line({ x1: 10, y1: 20, x2: 30, y2: 40, border });
       const line2 = new Line({ x1: 10, y1: 20, x2: 30, y2: 40, border });
@@ -258,7 +258,7 @@ describe('Tests for Line', () => {
       expect(result).toBe(true);
     });
 
-    test('Should return false when two Line are different', () => {
+    it('should return false when two Line are different', () => {
       // Arrange
       const line1 = new Line({ x1: 10, y1: 20, x2: 30, y2: 40, border });
       const line2 = new Line({ x1: 50, y1: 60, x2: 70, y2: 80, border });

@@ -6,9 +6,13 @@
  * Created by sunvisor on 2024/01/26.
  * Copyright (C) Sunvisor Lab. 2024.
  */
-import { AppendShapeRubberBand, AppendShapeRubberBandProps } from "./AppendShapeRubberBand";
+import {
+  AppendShapeRubberBand,
+  AppendShapeType,
+  OnAppendHandler
+} from "./AppendShapeRubberBand";
 import { Meta, StoryObj } from '@storybook/react';
-import { within } from '@storybook/test';
+import { fn, within } from '@storybook/test';
 import {
   CircleShape,
   EllipseShape,
@@ -16,19 +20,26 @@ import {
   ImageShape,
   LineShape,
   RectShape,
-  Shape,
   TextShape,
   createScale,
   UnitType,
 } from '@sunvisor/super-leopard-core';
-import { defaultSettings } from '../setting';
+import { defaultSettings } from '../../settings';
 import { defaultStyle } from '../style';
 import { createTestSvgDrawer } from '../../__test_assets__';
+
+export type AppendShapeRubberBandProps = {
+  type: AppendShapeType;
+  onAppend?: OnAppendHandler
+}
 
 type Story = StoryObj<AppendShapeRubberBandProps>
 
 const meta: Meta<AppendShapeRubberBandProps> = {
   title: 'svg/rubberBand/AppendShapeRubberBandProps',
+  args: {
+    onAppend: fn()
+  }
 };
 
 const Template: Story = {
@@ -51,7 +62,7 @@ function draw(canvasElement: HTMLElement, args: AppendShapeRubberBandProps) {
   const scale = createScale({ unit: UnitType.MILLIMETER });
   const styles = defaultStyle;
   const settings = defaultSettings;
-  const onAppend = (shape: Shape) => console.log('onAppend', shape);
+  const onAppend = args.onAppend;
   const drawer = new AppendShapeRubberBand(
     {
       svg, scale, type: args.type,

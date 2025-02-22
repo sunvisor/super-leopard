@@ -30,7 +30,7 @@ const meta: Meta<typeof ImageListPanel> = {
 
 export const Normal: Story = {
   args: {
-    baseUrl: "/api/images/",
+    getImageUrl: src => `/api/images/${src}`,
     imageList: testImageListData,
   }
 };

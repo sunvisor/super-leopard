@@ -5,8 +5,7 @@
  * Copyright (C) Sunvisor Lab. 2025.
  */
 import multilineAdjuster from "./multilineAdjuster";
-import { createText } from '../creator';
-import { AlignType, Scale, Text, ValignType } from '../object';
+import { AlignType, createText, Scale, Text, ValignType } from '../object';
 import { TextData } from '../data';
 import { expect } from 'vitest';
 
@@ -39,7 +38,7 @@ describe('Tests for multilineAdjuster when fitCell is true', () => {
     }
   }
 
-  test('Should return same text when text is very short', () => {
+  it('should return same text when text is very short', () => {
     // Arrange
     const text = createText({
       ...textConfig,
@@ -52,7 +51,7 @@ describe('Tests for multilineAdjuster when fitCell is true', () => {
     expect((result.get(0) as Text).text).toBe('B'.repeat(10));
   });
 
-  test('Should return wrapped texts when text is not too long', () => {
+  it('should return wrapped texts when text is not too long', () => {
     // Arrange
     const text = createText({
       ...textConfig,
@@ -67,7 +66,7 @@ describe('Tests for multilineAdjuster when fitCell is true', () => {
     expect(firstText.text).toBe('B'.repeat(40));
   });
 
-  test('Should adjust text alignment based on line position', () => {
+  it('should adjust text alignment based on line position', () => {
     // Arrange
     const text = createText({
       ...textConfig,
@@ -83,7 +82,7 @@ describe('Tests for multilineAdjuster when fitCell is true', () => {
     expect(lastText.align).toBe(AlignType.LEFT);
   });
 
-  test('Should return texts with shrunk font when text is too long', () => {
+  it('should return texts with shrunk font when text is too long', () => {
     // Arrange
     const text = createText({
       ...textConfig,
@@ -106,7 +105,7 @@ describe('Tests for multilineAdjuster when fitCell is true', () => {
     const lineHeight = 5 / pointScale;
     const textHeight = lineHeight * 10;
 
-    test('Should return texts with adjusted y position when valign is bottom', () => {
+    it('should return texts with adjusted y position when valign is bottom', () => {
       // Arrange
       const text = createText({
         ...textConfig,
@@ -122,7 +121,7 @@ describe('Tests for multilineAdjuster when fitCell is true', () => {
       expect((result.get(0) as Text).y).toBeCloseTo(text.height - textHeight, 2);
     });
 
-    test('Should return texts with adjusted y position when valign is middle', () => {
+    it('should return texts with adjusted y position when valign is middle', () => {
       // Arrange
       const text = createText({
         ...textConfig,

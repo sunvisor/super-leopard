@@ -18,7 +18,7 @@ describe('Tests for CreateEllipse#create', () => {
   const scale = new Scale({ unit: UnitType.INCH });
   const styles = defaultStyle;
 
-  test('Should return Ellipse object', () => {
+  it('should return Ellipse object', () => {
     // Arrange
     const createEllipse = new CreateEllipse({ scale, styles });
     // Act

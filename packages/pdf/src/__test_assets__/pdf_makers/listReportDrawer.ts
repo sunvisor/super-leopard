@@ -7,7 +7,7 @@
 import { createReportDrawer } from '../../reportDrawer/createReportDrawer';
 import { testAssets } from '@sunvisor/super-leopard-core';
 import { createTestFonts } from '../textTestHelper';
-import { getImagePath, getWritePdf } from '../drawerTestHelper';
+import { getImagePath, getWritePdf, loadErrorImage } from '../drawerTestHelper';
 
 
 const { billTestData, billValues, dummyBillRecords } = testAssets;
@@ -27,6 +27,7 @@ export default async function listReportDrawer() {
   const drawer = createReportDrawer({
     report,
     getImagePath,
+    loadErrorImage,
     fonts: createTestFonts()
   });
   data.forEach((values, index) => {

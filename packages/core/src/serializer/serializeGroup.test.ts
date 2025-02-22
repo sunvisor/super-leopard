@@ -14,7 +14,7 @@ import { shapeTestData } from '../__test_assets__';
 
 describe('Test for serializeGroup', () => {
 
-  test('Should return serialized GroupData', () => {
+  it('should return serialized GroupData', () => {
     // Arrange
     const groupData: GroupData = {
       type: GroupShape,

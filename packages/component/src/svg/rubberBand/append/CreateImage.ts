@@ -9,7 +9,6 @@
 import { ShapeCreatorInterface } from '.';
 import { createImage, Position, positionsToBox, Scale, Shape } from '@sunvisor/super-leopard-core';
 
-export const NO_IMAGE = 'no_image.svg';
 
 export class CreateImage implements ShapeCreatorInterface {
   readonly #scale: Scale;
@@ -26,7 +25,7 @@ export class CreateImage implements ShapeCreatorInterface {
     return createImage({
       type: 'image',
       ...box,
-      src: NO_IMAGE,
+      src: '',
     });
   }
 }

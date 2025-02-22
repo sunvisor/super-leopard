@@ -4,9 +4,9 @@
  * Created by sunvisor on 2025/01/29.
  * Copyright (C) Sunvisor Lab. 2025.
  */
-import { CircleShape, EllipseShape, ImageShape, LineShape, RectShape, TextShape } from '../object';
+import { BarcodeShape, CircleShape, EllipseShape, ImageShape, LineShape, RectShape, TextShape } from '../object';
 import { ShapeDrawerInterface } from '../drawer';
-import { FieldData, ListData, RectData, TextData } from '../data';
+import { BarcodeData, FieldData, ListData, RectData, TextData } from '../data';
 
 
 function createMockDrawer(): ShapeDrawerInterface {
@@ -21,6 +21,7 @@ const circleDrawer = createMockDrawer();
 const ellipseDrawer = createMockDrawer();
 const textDrawer = createMockDrawer();
 const imageDrawer = createMockDrawer();
+const barcodeDrawer = createMockDrawer();
 
 export const mockShapeDrawers = {
   [RectShape]: rectDrawer,
@@ -29,6 +30,7 @@ export const mockShapeDrawers = {
   [EllipseShape]: ellipseDrawer,
   [TextShape]: textDrawer,
   [ImageShape]: imageDrawer,
+  [BarcodeShape]: barcodeDrawer,
 };
 
 
@@ -45,6 +47,19 @@ export const textFieldData: FieldData<TextData> = {
       family: 'Arial',
       size: 12,
     }
+  }
+}
+
+export const barcodeFieldData: FieldData<BarcodeData> = {
+  type: 'field',
+  name: 'myField',
+  shape: {
+    type: 'barcode',
+    x: 1,
+    y: 2,
+    width: 100,
+    height: 200,
+    format: 'qr',
   }
 }
 
