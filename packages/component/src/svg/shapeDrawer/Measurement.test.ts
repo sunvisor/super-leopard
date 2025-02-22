@@ -5,7 +5,7 @@
  * Copyright (C) Sunvisor Lab. 2025.
  */
 import { Measurement } from "./Measurement";
-import { describe } from 'vitest';
+import { beforeEach, describe } from 'vitest';
 import { createScale, createText, TextData } from '@sunvisor/super-leopard-core';
 import { testFontMap } from '../../__test_assets__';
 import { WebFont } from './WebFont';
@@ -20,7 +20,7 @@ describe('Tests for Measurement', () => {
     height: 20,
     text: 'Hello, World!',
     font: {
-      family: 'TimesRoman',
+      family: 'sans-serif',
       size: 12
     },
     color: '#000000',
@@ -33,18 +33,32 @@ describe('Tests for Measurement', () => {
     webFont,
   });
 
+  beforeEach(() => {
+    const mockCanvas = {
+      getContext: vi.fn(() => ({
+        measureText: vi.fn(() => ({
+          width: 100,
+          actualBoundingBoxAscent: 10,
+          actualBoundingBoxDescent: 50,
+        })),
+      })),
+    };
+    // DOM での canvas 要素をモック
+    document.createElement = vi.fn(() => mockCanvas as any);
+  })
+
   it('should return height', () => {
     // Act
     const height = measurement.measureHeight(text);
     // Assert
-    expect(height).toBe(6.51);
+    expect(height).toBe(scale.pointFromPixel(60));
   });
 
   it('should return width', () => {
     // Act
     const width = measurement.measureWidth(text);
     // Assert
-    expect(width).toBe(42.8);
+    expect(width).toBe(scale.pointFromPixel(100));
   });
 
 });
