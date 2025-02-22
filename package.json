@@ -13,6 +13,8 @@
     "packages/barcode"
   ],
   "scripts": {
+    "build": "npm run build:core && npm run build:barcode && npm run build:component && npm run build:pdf",
+    "test": "npm run test:core && npm run test:barcode && npm run test:component && npm run test:pdf",
     "test:core": "npm run test -w packages/core",
     "build:core": "npm run build -w packages/core",
     "test:component": "npm run test -w packages/component",
@@ -23,6 +25,10 @@
     "make:pdf": "npm run makePdf -w packages/pdf",
     "build:pdf": "npm run build -w packages/pdf",
     "test:barcode": "npm run test -w packages/barcode",
-    "build:barcode": "npm run build -w packages/barcode"
+    "build:barcode": "npm run build -w packages/barcode",
+    "watch:core": "npm run watch -w packages/core",
+    "watch:component": "npm run watch -w packages/component",
+    "watch:pdf": "npm run watch -w packages/pdf",
+    "watch:barcode": "npm run watch -w packages/barcode"
   }
 }

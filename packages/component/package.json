@@ -12,7 +12,8 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test-storybook": "test-storybook",
-    "test": "vitest"
+    "test": "vitest run",
+    "watch": "vitest watch"
   },
   "peerDependencies": {
     "@dnd-kit/core": "^6.3.1",

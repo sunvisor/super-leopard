@@ -15,7 +15,8 @@
   },
   "scripts": {
     "build": "vite build",
-    "test": "vitest",
+    "test": "vitest run",
+    "watch": "vitest watch",
     "makePdf": "tsx src/__test_assets__/makePdf.ts"
   },
   "dependencies": {

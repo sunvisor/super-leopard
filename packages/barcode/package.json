@@ -14,7 +14,8 @@
   },
   "scripts": {
     "build": "vite build",
-    "test": "vitest"
+    "test": "vitest run",
+    "watch": "vitest watch"
   },
   "dependencies": {
     "@sunvisor/super-leopard-core": "^0.1.0"
