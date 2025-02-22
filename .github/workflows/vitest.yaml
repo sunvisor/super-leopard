@@ -1,0 +1,50 @@
+name: Run Vitest for All Packages
+
+on:
+  push:
+    branches:
+      - main
+      - workflow
+  pull_request:
+    branches:
+      - main
+jobs:
+  build-all:
+    name: Build Core, Barcode, PDF, and Component
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '23'
+
+      - name: Install dependencies
+        run: npm install --workspaces
+
+      - name: Build Core
+        run: npm run build --workspace=@sunvisor/super-leopard-core
+
+      - name: Build Barcode
+        run: npm run build --workspace=@sunvisor/super-leopard-barcode
+
+      - name: Build PDF
+        run: npm run build --workspace=@sunvisor/super-leopard-pdf
+
+      - name: Build Component
+        run: npm run build --workspace=@sunvisor/super-leopard-component
+
+      - name: Run Core Tests
+        run: cd packages/core && npx vitest run
+
+      - name: Run Barcode Tests
+        run: cd packages/barcode && npx vitest run
+
+      - name: Run PDF Tests
+        run: cd packages/pdf && npx vitest run
+
+      - name: Run Component Tests
+        run: cd packages/component && npx vitest run

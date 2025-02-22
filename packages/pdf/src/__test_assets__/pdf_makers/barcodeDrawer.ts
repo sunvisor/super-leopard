@@ -8,7 +8,7 @@ import { createDocAndScale, drawCaption, getWritePdf, loadErrorImage } from '../
 import { BarcodeData } from '@sunvisor/super-leopard-core';
 import { BarcodeDrawer } from '../../shapeDrawer/BarcodeDrawer';
 import { createBarcode } from '@sunvisor/super-leopard-core';
-import { sampleBarcodeValues } from '@sunvisor/super-leopard-barcode';
+import { sampleBarcodeValues } from '@sunvisor/super-leopard-core';
 
 
 const category = 'shapes';
