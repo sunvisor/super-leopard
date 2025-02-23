@@ -8,7 +8,7 @@ import fs from 'fs';
 import { DrawerParams, Image, ImageDrawerInterface, Scale } from '@sunvisor/super-leopard-core';
 import { ImageDrawerProps } from './ShapeDrawer';
 import { isJPEGFile, isPngFile, isSVGFile } from './imageType';
-import { GetPdfImagePath } from '../index';
+import { GetPdfImagePath } from './type';
 import { ImageParams, PdfDocumentInterface } from '../pdfDriver/PdfDriverInterface';
 import { applyOpacity } from './style';
 

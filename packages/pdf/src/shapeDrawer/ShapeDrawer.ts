@@ -1,5 +1,5 @@
 import { MeasurementInterface, Scale } from '@sunvisor/super-leopard-core';
-import { GetPdfImagePath } from '../index';
+import { GetPdfImagePath } from './type';
 import { PdfFont } from '../font/pdfFont';
 import { PdfDocumentInterface } from '../pdfDriver/PdfDriverInterface';
 

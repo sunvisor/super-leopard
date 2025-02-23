@@ -14,6 +14,7 @@ export default defineConfig({
         'fs',
         /\.test\.ts$/,
         'pdfkit',
+        '__test_assets__',
         'svg-to-pdfkit',
       ],
       output: {
