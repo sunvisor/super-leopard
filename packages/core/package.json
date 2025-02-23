@@ -4,7 +4,11 @@
   "license": "MIT",
   "author": "Sunvisor <hisashi@sunvisor.net> (https://www.sunvisor.net/)",
   "description": "Core objects for Super Leopard",
-  "repository": "https://github.com/sunvisor/super-leopard",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sunvisor/super-leopard.git",
+    "directory": "packages/core"
+  },
   "type": "module",
   "exports": {
     ".": {
@@ -18,10 +22,8 @@
     "test": "vitest run",
     "watch": "vitest watch"
   },
-  "devDependencies": {
-    "typescript": "~5.6.2",
-    "vite": "^6.0.6",
-    "vite-plugin-dts": "^4.4.0",
-    "vitest": "^2.1.8"
+  "dependencies": {
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
   }
 }
