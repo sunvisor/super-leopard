@@ -23,7 +23,7 @@ jobs:
           node-version: '23'
 
       - name: Install dependencies
-        run: npm install --workspaces
+        run: npm install
 
       - name: Build all packages
         run: npm run build

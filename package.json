@@ -12,6 +12,14 @@
     "packages/pdf",
     "packages/barcode"
   ],
+  "devDependencies": {
+    "typescript": "~5.7.2",
+    "typescript-eslint": "^8.15.0",
+    "vite": "^6.0.6",
+    "vite-plugin-dts": "^4.4.0",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^3.0.6"
+  },
   "scripts": {
     "build": "npm run build:core && npm run build:barcode && npm run build:component && npm run build:pdf",
     "test": "npm run test:core && npm run test:barcode && npm run test:component && npm run test:pdf",
