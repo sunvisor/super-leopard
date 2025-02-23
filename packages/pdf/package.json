@@ -4,7 +4,11 @@
   "version": "0.1.0",
   "author": "Sunvisor <hisashi@sunvisor.net> (https://www.sunvisor.net/)",
   "description": "PDF generator for Super Leopard",
-  "repository": "https://github.com/sunvisor/super-leopard",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sunvisor/super-leopard.git",
+    "directory": "packages/pdf"
+  },
   "type": "module",
   "exports": {
     ".": {
@@ -21,9 +25,11 @@
   },
   "dependencies": {
     "@sunvisor/super-leopard-barcode": "^0.1.0",
-    "@sunvisor/super-leopard-core": "^0.1.0"
+    "@sunvisor/super-leopard-core": "^0.1.0",
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
   },
-    "peerDependencies": {
+  "peerDependencies": {
     "pdfkit": "^0.15.2",
     "svg-to-pdfkit": "^0.1.8"
   },
@@ -31,10 +37,6 @@
     "@types/fontkit": "^2.0.7",
     "@types/pdfkit": "^0.13.8",
     "@types/svg-to-pdfkit": "^0.1.3",
-    "tsx": "^4.19.2",
-    "typescript": "^5.7.2",
-    "vite": "^6.0.11",
-    "vite-plugin-dts": "^4.4.0",
-    "vitest": "^2.1.8"
+    "tsx": "^4.19.2"
   }
 }
