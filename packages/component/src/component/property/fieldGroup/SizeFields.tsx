@@ -21,7 +21,7 @@ type Props = {
 
 export default function SizeFields(props: Props) {
   const { width, height, unit, onChangeValue } = props;
-  const captions = getCaptions('sizeProperty');
+  const captions = getCaptions().sizeProperty;
 
   return (
     <GroupBox sx={{ gap: 2 }}>

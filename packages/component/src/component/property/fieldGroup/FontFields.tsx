@@ -23,7 +23,6 @@ export type FontValueType = Omit<FontData, 'style'> & {
   style: FontStyleValue[];
 }
 
-export type FontFieldType = FontValueType | undefined;
 type ChangeValueType = number | string | FontStyleValue[] | undefined;
 
 type Props = {
@@ -49,7 +48,7 @@ function toFontData(font: FontValueType): FontData {
 
 export default function FontFields(props: Props) {
   const { fontList, multiLine, onChangeValue } = props;
-  const captions = getCaptions('fontProperty');
+  const captions = getCaptions().fontProperty;
   const [ enabledStyles, setEnabledStyles ] = useState<FontStyleValue[]>([]);
 
   const adjustFont = useCallback((font: FontValueType) => {

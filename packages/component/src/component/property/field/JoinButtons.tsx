@@ -22,7 +22,7 @@ export type JoinButtonsProps = Props;
 
 export default function JoinButtons(props: Props) {
   const { name, value, onChangeValue } = props;
-  const captions = getCaptions('joinTool');
+  const captions = getCaptions().joinTool;
 
   const buttons: ToggleToolButton[] = useMemo(() => [
     { icon: <JoinMiterIcon/>, value: 'miter', title: captions.miter },

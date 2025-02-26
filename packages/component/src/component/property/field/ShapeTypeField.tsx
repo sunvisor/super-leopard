@@ -20,7 +20,7 @@ type Props = {
 
 export default function ShapeTypeField(props: Props) {
   const { label, name, value, onChangeValue, sx } = props;
-  const captions = getCaptions('staticShapeType');
+  const captions = getCaptions().staticShapeType;
 
   const handleChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     onChangeValue(name, event.target.value);

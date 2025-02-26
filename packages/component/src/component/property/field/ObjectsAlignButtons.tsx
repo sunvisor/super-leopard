@@ -42,7 +42,7 @@ type Props = {
 
 export default function ObjectsAlignButtons(props: Props) {
   const { onClick } = props;
-  const captions = getCaptions('objectManipulation');
+  const captions = getCaptions().objectManipulation;
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }} >
       <ButtonGroup variant="outlined">

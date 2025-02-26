@@ -4,9 +4,8 @@
  * Created by sunvisor on 2024/02/14.
  * Copyright (C) Sunvisor Lab. 2024.
  */
-import { CaptionsKey } from './CaptionsType';
 import { captions as ja } from './ja/captions';
-import { captions as en, numberErrorMessage } from './en/captions';
+import { captions as en } from './en/captions';
 
 export type Language = 'ja' | 'en';
 
@@ -28,12 +27,8 @@ class Captions {
 
 const captions = new Captions();
 
-export default function getCaptions(key: CaptionsKey): Record<string, string> {
-  return captions.getCaptions()[key];
-}
-
-export function getNumberErrorMessage() {
-  return numberErrorMessage;
+export default function getCaptions()  {
+  return captions.getCaptions()
 }
 
 export function setLanguage(lang: string) {

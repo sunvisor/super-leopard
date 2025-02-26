@@ -221,10 +221,14 @@ const listProperty: ListProperty =  {
 }
 
 const objectManipulation: ObjectManipulation = {
-  bringToFront: '最前面へ',
-  sendToBack: '最背面へ',
-  bringToForward: '前へ',
-  sendToBackward: '後へ',
+  toFront: '最前面へ',
+  toBack: '最背面へ',
+  toForward: '前へ',
+  toBackward: '後へ',
+  bringToFront: '最前面へ移動',
+  sendToBack: '最背面へ移動',
+  bringToForward: 'ひとつ前へ移動',
+  sendToBackward: 'ひとつ後へ移動',
   alignToTop: '上揃え',
   alignToBottom: '下揃え',
   alignToLeft: '左揃え',
@@ -248,7 +252,7 @@ const layerOperation: LayerOperation = {
   renameLayer: 'レイヤー名を変更',
 }
 
-export const numberErrorMessage: NumberErrorMessage = {
+const numberErrorMessage: NumberErrorMessage = {
   minValue: value => `値は${value}以上でなければなりません`,
   maxValue: value => `値は${value}以下でなければなりません`,
   invalidValue: '不正な値です',
@@ -282,5 +286,6 @@ export const captions: Captions = {
   objectManipulation,
   groupOperation,
   layerOperation,
+  numberErrorMessage,
 }
 

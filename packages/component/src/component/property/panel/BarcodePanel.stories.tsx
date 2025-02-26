@@ -1,3 +1,5 @@
+// noinspection JSUnusedGlobalSymbols
+
 /**
  * BarcodePanel Story
  *

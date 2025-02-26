@@ -24,7 +24,7 @@ type Props = {
 export default function ImageListPanel(props: Props) {
   const { imageList, getImageUrl, onSelect } = props;
   const [selected, setSelected] = useState<ImageListData | undefined>();
-  const captions = getCaptions('imageProperty');
+  const captions = getCaptions().imageProperty;
 
   const handleClick = useCallback(
     (image: ImageListData) => {

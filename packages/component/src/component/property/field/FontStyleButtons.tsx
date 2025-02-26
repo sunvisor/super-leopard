@@ -26,7 +26,7 @@ type Props = {
 export default function FontStyleButtons(props: Props) {
   const { name, multiLine, enabledStyles, onChangeValue } = props;
   const value = props.value || [];
-  const captions = getCaptions('fontProperty');
+  const captions = getCaptions().fontProperty;
 
   const handleChange = useCallback(
     (_: React.MouseEvent<HTMLElement>, newStyle: FontStyleValue[]) => {

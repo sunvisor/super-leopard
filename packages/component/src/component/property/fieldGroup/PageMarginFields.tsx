@@ -21,7 +21,7 @@ type Props = {
 export default function PageMarginFields(props: Props) {
   const { unit, onChangeValue } = props;
   const [margin, setMargin] = React.useState<PageMargin>(props.margin);
-  const captions = getCaptions('pageProperty');
+  const captions = getCaptions().pageProperty;
 
   useEffect(() => {
     setMargin(props.margin);

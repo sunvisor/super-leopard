@@ -43,7 +43,7 @@ function ValignBottomIcon() {
 
 export default function ValignButtons(props: Props) {
   const { name, value, onChangeValue } = props;
-  const captions = getCaptions('alignTool');
+  const captions = getCaptions().alignTool;
 
   const handleChange = (_: React.MouseEvent<HTMLElement>, newValign: AlignValue) => {
     if (newValign === null) return;

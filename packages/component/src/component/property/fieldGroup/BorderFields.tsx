@@ -26,7 +26,7 @@ type Props = {
  */
 export default function BorderFields(props: Props) {
   const { onChangeValue } = props;
-  const captions = getCaptions('borderProperty');
+  const captions = getCaptions().borderProperty;
   const [border, setBorder] = useState<BorderData | undefined>(props.border);
   const [useStroke, setUseStroke] = useState(border !== undefined);
 

@@ -31,7 +31,7 @@ function AlignJustifyIcon() {
 
 export default function AlignButtons(props: Props) {
   const { name, value, onChangeValue } = props;
-  const captions = getCaptions('alignTool');
+  const captions = getCaptions().alignTool;
 
   const handleChange = (_: React.MouseEvent<HTMLElement>, newAlign: AlignValue) => {
     if (newAlign === null) return;

@@ -41,7 +41,7 @@ export default function TextProperty(props: Props) {
     textValue,
     values => doUpdate(values)
   );
-  const captions = getCaptions('textProperty');
+  const captions = getCaptions().textProperty;
 
   useEffect(() => {
     setValues(textValue);

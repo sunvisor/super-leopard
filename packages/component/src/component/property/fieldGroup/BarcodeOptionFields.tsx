@@ -20,7 +20,7 @@ type Props = {
 export default function BarcodeOptionFields(props :Props) {
   const { values, captions, onChangeValue } = props;
   const { rotate = 'N', includeText = false } = values;
-  const rotateTypeList = getCaptions('barcodeRotateName');
+  const rotateTypeList = getCaptions().barcodeRotateName;
 
   const handleChange = useCallback((key: string, value: string | boolean, update?: boolean) => {
     const newValue = { ...values, [key]: value };

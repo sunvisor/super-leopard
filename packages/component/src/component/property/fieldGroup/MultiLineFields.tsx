@@ -24,7 +24,7 @@ type Props = {
 
 export default function MultiLineFields(props: Props) {
   const { multiLine, linePitch, onChangeValue, unit } = props;
-  const captions = getCaptions('textProperty');
+  const captions = getCaptions().textProperty;
 
   return (
     <GroupBox>

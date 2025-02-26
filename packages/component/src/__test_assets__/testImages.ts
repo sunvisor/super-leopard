@@ -6,6 +6,7 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import { ImageListData } from '../component';
+import { ImageOptions } from '../settings';
 
 
 export const testNoImageUrl = '/api/images/no_image.svg';
@@ -33,7 +34,7 @@ export const testImageListData: ImageListData[] = [
   },
 ]
 
-export const testImageOptions = {
+export const testImageOptions: ImageOptions = {
   getImageUrl: (name: string) => {
     return `/api/images/${name}`
   },

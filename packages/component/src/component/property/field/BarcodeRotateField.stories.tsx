@@ -27,7 +27,7 @@ export const Normal: Story = {
     label: 'Rotate',
     name: 'rotate',
     value: 'N',
-    rotateTypeList: getCaptions('barcodeRotateName'),
+    rotateTypeList: getCaptions().barcodeRotateName,
   }
 };
 

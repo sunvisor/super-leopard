@@ -57,7 +57,7 @@ type ObjectListItemProps = {
 }
 
 function ObjectListItemItem({ title, icon, indent, onItemClick, onSettingClick }: ObjectListItemProps) {
-  const captions = getCaptions('reportObject');
+  const captions = getCaptions().reportObject;
   return (
     <ListItem dense disablePadding>
       <ListItemButton dense sx={{ pl: indent * 2 }} onClick={onItemClick}>
@@ -105,7 +105,7 @@ function getIcon(shape: Shape) {
 }
 
 export default function ObjectListItem({ shape, indent, onClick, onSettingClick }: Props) {
-  const shapeTypes = getCaptions('shapeType');
+  const shapeTypes = getCaptions().shapeType;
   const title = shape.type === TextShape
     ? (shape as Text).text
     : shape.type === FieldShape

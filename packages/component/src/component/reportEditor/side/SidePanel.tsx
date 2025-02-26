@@ -26,15 +26,16 @@ type Props = {
 }
 
 function getAddModeTitle(mode: EditMode): string {
-  const captions = getCaptions('editModeTool');
+  const captions = getCaptions().editModeTool;
   return captions[mode];
 }
 
 function getEditModeTitle(selection: Shapes): string {
-  const captions = getCaptions('shapeType');
-  const { transform } = getCaptions('operation');
+  const captions = getCaptions();
+  const shapeType = captions.shapeType;
+  const { transform } = captions.operation;
   if (selection.count === 1) {
-    return captions[selection.get(0).type];
+    return shapeType[selection.get(0).type];
   }
   if (selection.count > 1) {
     return transform;
@@ -55,7 +56,7 @@ export default function SidePanel(props: Props) {
   const selection = useAtomValue(SelectionAtom);
   const settings = getSettings();
   const [tabIndex, setTabIndex] = React.useState(0);
-  const captions = getCaptions('reportObject');
+  const captions = getCaptions().reportObject;
   const { image: imageOptions, barcode: barcodeOptions } = settings;
   const fontList = getFontList(settings.fontMap);
 

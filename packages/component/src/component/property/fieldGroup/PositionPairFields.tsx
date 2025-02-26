@@ -25,7 +25,7 @@ type Props = {
 
 export default function PositionPairFields(props: Props) {
   const { x1, y1, x2, y2, unit, onChangeValue } = props;
-  const captions = getCaptions('positionProperty');
+  const captions = getCaptions().positionProperty;
 
   return (
     <>
