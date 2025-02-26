@@ -9,7 +9,6 @@ import { describe } from 'vitest';
 import {
   createAndRegisterTestFonts,
   getImagePath,
-  loadErrorImage,
   mockDoc,
   mockMeasurement,
   testAssets
@@ -26,7 +25,6 @@ describe('Tests for PdfDrawer', () => {
     doc: mockDoc,
     scale,
     getImagePath,
-    loadErrorImage,
     fonts: createAndRegisterTestFonts(mockDoc),
     measurement: mockMeasurement,
   });

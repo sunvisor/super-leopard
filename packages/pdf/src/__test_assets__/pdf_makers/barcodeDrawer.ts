@@ -4,7 +4,7 @@
  * Created by sunvisor on 2025/02/14.
  * Copyright (C) Sunvisor Lab. 2025.
  */
-import { createDocAndScale, drawCaption, getWritePdf, loadErrorImage } from '../drawerTestHelper';
+import { createDocAndScale, drawCaption, getWritePdf } from '../drawerTestHelper';
 import { BarcodeData } from '@sunvisor/super-leopard-core';
 import { BarcodeDrawer } from '../../shapeDrawer/BarcodeDrawer';
 import { createBarcode } from '@sunvisor/super-leopard-core';
@@ -182,7 +182,7 @@ const data: DrawData[] = [
 ]
 
 export default async function barcodeDrawer() {
-  const drawer = new BarcodeDrawer({ doc, scale, loadErrorImage });
+  const drawer = new BarcodeDrawer({ doc, scale });
 
   data.forEach(datum => {
     const { caption, config, opacity } = datum;

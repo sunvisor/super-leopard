@@ -18,12 +18,12 @@ export type TextDrawerProps = ShapeDrawerProps & {
 }
 
 export type BarcodeDrawerProps = ShapeDrawerProps & {
-  loadErrorImage: () => string;
+  loadErrorImage?: () => string;
 }
 
 export type ImageHandlerProps = {
   getImagePath: GetPdfImagePath;
-  loadErrorImage: () => string;
+  loadErrorImage?: () => string;
 }
 
 export type PdfDrawerProps = TextDrawerProps & ImageHandlerProps;

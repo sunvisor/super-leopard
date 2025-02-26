@@ -9,7 +9,6 @@ import { createPage, createScale, ReportData } from '@sunvisor/super-leopard-cor
 import {
   createAndRegisterTestFonts,
   getImagePath,
-  loadErrorImage,
   mockDoc,
   mockMeasurement,
   testAssets
@@ -29,7 +28,6 @@ function createDrawer(report: ReportData) {
     doc: mockDoc,
     scale,
     getImagePath,
-    loadErrorImage,
     fonts: createAndRegisterTestFonts(mockDoc),
     measurement: mockMeasurement,
   });

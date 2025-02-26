@@ -6,7 +6,7 @@
  */
 import { createPdfDrawer } from "./createPdfDrawer";
 import { createPage, UnitType } from '@sunvisor/super-leopard-core';
-import { createAndRegisterTestFonts, getImagePath, loadErrorImage, mockDoc } from '../__test_assets__';
+import { createAndRegisterTestFonts, getImagePath, mockDoc } from '../__test_assets__';
 import { expect } from 'vitest';
 import { PdfDrawer } from './PdfDrawer';
 
@@ -21,7 +21,6 @@ describe('Tests for createSvgDrawer', () => {
       page,
       fonts,
       getImagePath,
-      loadErrorImage,
     });
     // Assert
     expect(drawer).toBeDefined();

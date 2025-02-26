@@ -51,10 +51,6 @@ export const getImagePath = (src: string) => {
   return `${__dirname}/images/no_image.svg`;
 }
 
-export function loadErrorImage() {
-  return fs.readFileSync(`${__dirname}/images/barcode_error.svg`, 'utf8');
-}
-
 export const borders = {
   solid: { width: 0.25, color: '#000000', style: StyleType.SOLID },
   bold: { width: 5, color: '#000000', style: StyleType.SOLID },

@@ -18,14 +18,14 @@ createReportDrawer
 const drawer = createReportDrawer({
   report,
   getImagePath,
-  loadErrorImage,
+  loadErrorImage, // オプション
   fonts,
 });
 ```
 
 `report`: レポートの定義を格納したオブジェクト
 `getImagePath`: 画像のパスを返す関数
-`loadErrorImage`: バーコードのエラーの際に表示する画像を返す関数
+`loadErrorImage`: (オプション) バーコードのエラーの際に表示する画像を返す関数
 `fonts`: フォントの定義を格納した `PdfFont` オブジェクト
 
 ### getImagePath
@@ -42,6 +42,7 @@ function getImagePath(src: string): string {
 ### loadErrorImage
 
 バーコードに渡したデータがエラーの場合に表示する画像を返す関数を指定します。
+指定しなかった場合は、ライブラリが用意した画像が表示されます。
 通常は次のような関数を渡すことになります。
 
 ```ts

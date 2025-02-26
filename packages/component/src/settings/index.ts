@@ -1,5 +1,3 @@
-// noinspection SpellCheckingInspection
-
 /**
  * Index
  *
@@ -101,6 +99,7 @@ export type SettingData = {
   barcode: BarcodeOptions;
 }
 
+// noinspection SpellCheckingInspection
 const noImageUrl = 'data:image/svg+xml;base64,' +
   'PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz5cbjxzdmcgaWQ9Il9sYXllcl8' +
   'xIiBkYXRhLW5hbWU9ImxheWVyIDEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Z' +
@@ -117,6 +116,7 @@ const noImageUrl = 'data:image/svg+xml;base64,' +
   'hbWlseTogaGVsdmV0aWNhLCBhcmlhbCwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxMnB4OyI-PH' +
   'RzcGFuIHg9IjAiIHk9IjAiPk5PIElNQUdFPC90c3Bhbj48L3RleHQ-XG48L3N2Zz5cbg'
 
+// noinspection SpellCheckingInspection
 const errorImageUrl = 'data:image/svg+xml;base64, PD94bWwgdmVyc2lvbj0iMS4wIiBl' +
   'bmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmc' +
   'iIHdpZHRoPSIyMDAiIGhlaWdodD0iMTAwIiB2aWV3Qm94PSIwIDAgMjAwIDEwMCI-CjxyZWN0IH' +
@@ -209,8 +209,4 @@ export const defaultSettings: SettingData = {
   barcode: {
     errorImageUrl,
   }
-}
-
-export default function index() {
-
 }

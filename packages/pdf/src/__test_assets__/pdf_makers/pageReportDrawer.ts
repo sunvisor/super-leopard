@@ -4,7 +4,7 @@
  * Created by sunvisor on 2025/02/05.
  * Copyright (C) Sunvisor Lab. 2025.
  */
-import { getImagePath, getWritePdf, loadErrorImage } from '../drawerTestHelper';
+import { getImagePath, getWritePdf } from '../drawerTestHelper';
 import { ReportData } from '@sunvisor/super-leopard-core';
 import { createTestFonts } from '../textTestHelper';
 import { createReportDrawer } from '../../reportDrawer/createReportDrawer';
@@ -39,7 +39,6 @@ export default async function pageReportDrawer() {
   const drawer = createReportDrawer({
     report,
     getImagePath,
-    loadErrorImage,
     fonts: createTestFonts()
   });
 
