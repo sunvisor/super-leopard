@@ -24,7 +24,7 @@ type Props = {
 
 export default function CirclePanel(props: Props) {
   const { unit, values, onChangeValue } = props;
-  const captions = getCaptions('circleProperty');
+  const captions = getCaptions().circleProperty;
 
   return (
     <>

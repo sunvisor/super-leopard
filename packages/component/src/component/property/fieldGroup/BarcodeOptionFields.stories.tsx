@@ -34,7 +34,7 @@ export const Normal: Story = {
       rotate: 'N',
       includeText: false,
     },
-    captions: getCaptions('barcodeProperty')
+    captions: getCaptions().barcodeProperty
   }
 };
 

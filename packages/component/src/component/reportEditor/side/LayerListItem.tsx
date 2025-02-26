@@ -25,7 +25,7 @@ type Props = {
 
 export default function LayerListItem(props: Props) {
   const { item, onSelect, onRemove, onRename } = props;
-  const captions = getCaptions('layerOperation');
+  const captions = getCaptions().layerOperation;
   const [editMode, setEditMode] = useState(false);
   const [layerName, setLayerName] = useState(item.name);
   const {

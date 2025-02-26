@@ -14,7 +14,7 @@ type Props = {
 }
 
 export default function LayerToolbar({ onAddLayer }: Props) {
-  const captions = getCaptions('layerOperation');
+  const captions = getCaptions().layerOperation;
 
   const handleClick = useCallback(() => {
     onAddLayer();

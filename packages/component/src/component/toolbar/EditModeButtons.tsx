@@ -29,7 +29,7 @@ export type EditModeButtonsProps = Props;
 export default function EditModeButtons(props: Props) {
   const { onChange, orientation } = props;
   const [mode, setMode] = React.useState<EditMode>(props.mode || "edit");
-  const captions = getCaptions('editModeTool');
+  const captions = getCaptions().editModeTool;
 
   const handleChange = useCallback((event: React.MouseEvent<HTMLElement>, value: string) => {
     if (value !== null) {

@@ -26,9 +26,8 @@ export type Captions = {
   objectManipulation: ObjectManipulation;
   groupOperation: GroupOperation;
   layerOperation: LayerOperation;
+  numberErrorMessage: NumberErrorMessage;
 }
-
-export type CaptionsKey = keyof Captions;
 
 export type Operation = {
   undo: string;
@@ -211,6 +210,10 @@ export type ListProperty = {
 }
 
 export type ObjectManipulation = {
+  toFront: string;
+  toBack: string;
+  toForward: string;
+  toBackward: string;
   bringToFront: string;
   sendToBack: string;
   bringToForward: string;
@@ -239,7 +242,7 @@ export type NumberErrorMessage = {
 }
 
 export type LayerOperation = {
-  addLayer  : string;
+  addLayer: string;
   removeLayer: string;
   renameLayer: string;
 }

@@ -31,7 +31,7 @@ export default function BarcodeProperty(props: Props) {
   const barcodeProperty = useMemo(
     () => serializeBarcode(shape), [shape]
   );
-  const captions = getCaptions('barcodeProperty');
+  const captions = getCaptions().barcodeProperty;
 
   const doUpdate = useCallback(
     (values: BarcodeData) => {

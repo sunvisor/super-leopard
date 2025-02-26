@@ -65,7 +65,7 @@ export default function PaperSizeFields(props: Props) {
     setWidth(width);
     setHeight(height);
   }, [page]);
-  const captions = getCaptions('pageProperty');
+  const captions = getCaptions().pageProperty;
 
   const handleChangePaperSize = useCallback(
     (_: string, value: PaperSizeValue | 'custom') => {

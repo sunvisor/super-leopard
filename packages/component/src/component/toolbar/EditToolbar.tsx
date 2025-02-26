@@ -20,7 +20,7 @@ type Props = {
 
 export default function EditToolbar(props: Props) {
   const [title, setTitle] = React.useState<string>(props.title);
-  const captions = getCaptions('editTool');
+  const captions = getCaptions().editTool;
   const [editTitle, setEditTitle] = React.useState<boolean>(false);
 
 

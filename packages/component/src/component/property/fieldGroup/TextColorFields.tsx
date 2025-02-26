@@ -25,7 +25,7 @@ export default function TextColorFields(props: Props) {
     color,
     onChangeValue,
   } = props;
-  const captions = getCaptions('textProperty');
+  const captions = getCaptions().textProperty;
 
   return (
     <GroupBox sx={{ gap: 2 }}>

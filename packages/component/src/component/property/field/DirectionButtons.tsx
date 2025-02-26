@@ -21,7 +21,7 @@ type Props = {
 
 export default function DirectionButtons(props: Props) {
   const { name, value, onChangeValue } = props;
-  const captions = getCaptions('groupProperty');
+  const captions = getCaptions().groupProperty;
 
   const buttons: ToggleToolButton[] = useMemo(() => [
     { icon: <EastIcon/>, value: DirectionType.HORIZONTAL, title: captions.horizontal },

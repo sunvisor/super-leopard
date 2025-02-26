@@ -22,7 +22,7 @@ export default function FillColorField(props: Props) {
   const {
     onChangeValue,
   } = props;
-  const captions = getCaptions('fillColorProperty');
+  const captions = getCaptions().fillColorProperty;
   const [fillColor, setFillColor] = React.useState(props.fillColor);
   const [useFillColor, setUseFillColor] = React.useState(fillColor !== undefined);
 

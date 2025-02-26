@@ -224,6 +224,10 @@ const listProperty: ListProperty =  {
 }
 
 const objectManipulation: ObjectManipulation = {
+  toFront: 'Front',
+  toBack: 'Back',
+  toForward: 'Forward',
+  toBackward: 'Backward',
   bringToFront: 'Bring to Front',
   sendToBack: 'Send to Back',
   bringToForward: 'Bring Forward',
@@ -251,7 +255,7 @@ const layerOperation: LayerOperation = {
   renameLayer: 'Rename Layer',
 }
 
-export const numberErrorMessage: NumberErrorMessage = {
+const numberErrorMessage: NumberErrorMessage = {
   minValue: value => `The value must be greater than or equal to ${value}.`,
   maxValue: value => `The value must be less than or equal to ${value}.`,
   invalidValue: 'Invalid number.',
@@ -285,4 +289,5 @@ export const captions: Captions = {
   objectManipulation,
   groupOperation,
   layerOperation,
+  numberErrorMessage,
 }

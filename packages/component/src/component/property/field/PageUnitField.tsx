@@ -12,10 +12,10 @@ import getCaptions from '../../../captions/getCaptions';
 import { ChangeValueHandler } from '../usePropertyStates';
 
 function getUnitList() {
-  const captions = getCaptions('pageProperty');
+  const captions = getCaptions().pageProperty;
   return Object.entries(UnitType).map(([, value]) => ({
     key: value,
-    value: captions[value],
+    value: captions[value as keyof typeof captions],
   }))
 }
 

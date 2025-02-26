@@ -7,7 +7,7 @@
 import { atom } from 'jotai';
 import { BoundingBoxOptions, defaultSettings, DefaultShapeSize, RubberBandOptions, SettingData } from '../settings';
 import { LineSelectOptions } from '@sunvisor/super-leopard-core';
-import { WebFontMap } from '../font';
+
 
 class DesignModeOptions {
 }
@@ -58,8 +58,4 @@ export const UpdateSettingsAtom = atom(null, (get, set, settings: UpdateSettingD
     }
   }
   set(SettingsAtom, original);
-});
-
-export const SetFontMapAtom = atom(null, (get, set, fontMap: WebFontMap) => {
-  set(SettingsAtom, { ...get(SettingsAtom), fontMap });
 });

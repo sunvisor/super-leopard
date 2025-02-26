@@ -32,7 +32,7 @@ type Props = {
 
 export default function TextPanel(props: Props) {
   const { unit, values, fontList, onChangeValue } = props;
-  const captions = getCaptions('textProperty');
+  const captions = getCaptions().textProperty;
 
   return (
     <>

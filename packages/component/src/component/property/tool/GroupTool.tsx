@@ -24,7 +24,7 @@ export default function GroupTool() {
   const setShapes = useSetAtom(SetShapesAtom);
   const [selection, setSelection] = useAtom(SelectionAtom);
   const reportHasList = useAtomValue(ReportHasListAtom);
-  const captions = getCaptions('groupOperation');
+  const captions = getCaptions().groupOperation;
 
   const handleGroup = useCallback(() => {
     const { shapes: newShapes, group } = grouping(shapes, selection);

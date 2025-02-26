@@ -5,7 +5,7 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import { useState } from 'react';
-import { getNumberErrorMessage } from '../../../captions/getCaptions';
+import getCaptions from '../../../captions/getCaptions';
 
 type Props = {
   minValue?: number,
@@ -17,7 +17,7 @@ export default function useValidateNumber(props: Props) {
   const { minValue, maxValue } = props;
   const [error, setError] = useState(false);
   const [message, setMessage] = useState('');
-  const captions = getNumberErrorMessage();
+  const captions = getCaptions().numberErrorMessage;
 
   const validate = (value: string) => {
     const numValue = Number(value);

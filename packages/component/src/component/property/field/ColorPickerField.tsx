@@ -31,7 +31,7 @@ export default function ColorPickerField(props: Props) {
     colorFieldProps,
     onChangeValue,
   } = props;
-  const captions = getCaptions('colorPickerField');
+  const captions = getCaptions().colorPickerField;
   const [color, setColor] = useState(value);
 
   const [error, message] = useMemo(

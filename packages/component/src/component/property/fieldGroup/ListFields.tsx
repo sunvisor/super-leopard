@@ -26,7 +26,7 @@ type Props = {
 
 export default function ListFields(props: Props) {
   const { direction, rows, columns, onChangeValue } = props;
-  const captions = getCaptions('listProperty');
+  const captions = getCaptions().listProperty;
 
   return (
     <GroupBox sx={{ gap: 2 }}>

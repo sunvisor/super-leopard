@@ -23,7 +23,7 @@ type Props = {
 
 export default function BarcodePanel(props: Props) {
   const { values, unit, onChangeValue } = props;
-  const captions = getCaptions('barcodeProperty');
+  const captions = getCaptions().barcodeProperty;
 
   return (
     <>

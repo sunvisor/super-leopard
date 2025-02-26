@@ -21,7 +21,7 @@ type Props = {
 
 export default function PositionFields(props: Props) {
   const { x, y, unit, onChangeValue } = props;
-  const captions = getCaptions('positionProperty');
+  const captions = getCaptions().positionProperty;
 
   return (
     <GroupBox sx={{ gap: 2 }}>

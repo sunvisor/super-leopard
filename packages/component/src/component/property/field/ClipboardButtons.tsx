@@ -23,7 +23,7 @@ type Props = {
 
 export default function ClipboardButtons(props: Props) {
   const { canCopy, canPaste, onCopy, onCut, onPaste, onRemove } = props;
-  const captions = getCaptions('operation');
+  const captions = getCaptions().operation;
 
   return (
     <GroupBox sx={{ gap: 1 }}>

@@ -23,7 +23,7 @@ type Props = {
 
 export default function OrientationField(props: Props) {
   const { name, value, onChangeValue , sx } = props;
-  const captions = getCaptions('pageProperty');
+  const captions = getCaptions().pageProperty;
 
   const button: ToggleToolButton[] = useMemo(() => [
     { icon: <CropPortraitIcon/>, value: 'portrait', caption: captions.portrait, sx: { flex: 1 } },

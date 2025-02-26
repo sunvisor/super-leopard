@@ -28,7 +28,7 @@ type Props = {
 export default function ImagePanel(props: Props) {
   const { imageOptions, unit, values, onChangeValue } = props;
   const { getImageList, getImageUrl, noImageUrl }  = imageOptions;
-  const captions = getCaptions('imageProperty');
+  const captions = getCaptions().imageProperty;
   const [openSelect, setOpenSelect] = useState(false);
   const [imageList, setImageList] = useState<ImageListData[]>([]);
   const srcUrl = values.src.length ? getImageUrl(values.src) : noImageUrl;

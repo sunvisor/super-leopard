@@ -25,4 +25,5 @@ const preview: Preview = {
   loaders: [mswLoader],
 };
 
+// noinspection JSUnusedGlobalSymbols
 export default preview;

@@ -33,7 +33,7 @@ function getPaperSizeList(customCaption: string) {
 
 export default function PaperSizeField(props: Props) {
   const { label, name, value, onChangeValue, sx } = props;
-  const captions = getCaptions('pageProperty');
+  const captions = getCaptions().pageProperty;
   const paperSizeList = getPaperSizeList(captions.custom);
 
   const handleChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {

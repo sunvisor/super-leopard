@@ -25,7 +25,7 @@ type Props = {
 
 export default function GroupFields(props: Props) {
   const { direction, repeatCount, onChangeValue } = props;
-  const captions = getCaptions('groupProperty');
+  const captions = getCaptions().groupProperty;
   return (
     <GroupBox sx={{ gap: 2 }}>
       <GroupBox sx={{ flex: 1, gap: 2 }}>

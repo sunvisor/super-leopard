@@ -23,5 +23,7 @@ const config: StorybookConfig = {
     reactDocgen: "react-docgen-typescript"
   }
 };
+
+// noinspection JSUnusedGlobalSymbols
 export default config;
 

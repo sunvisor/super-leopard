@@ -21,7 +21,7 @@ type Props = {
 
 export default function FieldNameFields(props: Props) {
   const { fieldName, shapeType } = props;
-  const captions = getCaptions('fieldProperty');
+  const captions = getCaptions().fieldProperty;
 
   return (
     <GroupBox sx={{ gap: 2 }}>

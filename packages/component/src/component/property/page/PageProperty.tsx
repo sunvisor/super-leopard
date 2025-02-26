@@ -21,7 +21,7 @@ type Props = {
 }
 
 export default function PageProperty(props: Props) {
-  const captions = getCaptions('pageProperty');
+  const captions = getCaptions().pageProperty;
   const [page, setPage] = useState<Page>(props.page);
   const [unit, setUnit] = React.useState<UnitValue>(page.unit);
   const report = useAtomValue(ReadReportAtom);

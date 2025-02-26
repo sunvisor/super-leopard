@@ -22,7 +22,7 @@ type Props = {
 
 export default function CapButtons(props: Props) {
   const { name, value, onChangeValue } = props;
-  const captions = getCaptions('capTool');
+  const captions = getCaptions().capTool;
 
   const buttons: ToggleToolButton[] = useMemo(() => [
     { icon: <CapButtIcon/>, value: 'butt', title: captions.butt },
