@@ -1,6 +1,6 @@
 {
   "name": "@sunvisor/super-leopard-barcode",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "author": "Sunvisor <hisashi@sunvisor.net> (https://www.sunvisor.net/)",
   "repository": {
@@ -10,6 +10,9 @@
   },
   "description": "Barcode generator for Super Leopard",
   "type": "module",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -23,7 +26,7 @@
     "watch": "vitest watch"
   },
   "dependencies": {
-    "@sunvisor/super-leopard-core": "^0.1.0",
+    "@sunvisor/super-leopard-core": "^0.1.1",
     "react": "19.0.0",
     "react-dom": "19.0.0"
   },

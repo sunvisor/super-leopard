@@ -93,7 +93,7 @@ The key is the font name and the value is an object containing the font definiti
 The definition should contain objects of the following structure for each of `normal`, `bold`, `italic`, and `boldItalic`.
 
 ```ts 
-type AdditionalFontMap = {
+type AdditionalFontMapItem = {
   name: string;
   fileName: string;
   options?: {

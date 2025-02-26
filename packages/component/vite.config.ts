@@ -26,6 +26,7 @@ export default defineConfig({
         /react.*$/,
         /react-dom.*$/,
         /jotai.*$/,
+        /^@bwip-js.*$/,
         /^@dnd-kit\/.*$/,
         /^@mui\/.*$/,
         /^@emotion\/.*$/,

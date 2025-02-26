@@ -1,7 +1,7 @@
 {
   "name": "@sunvisor/super-leopard-pdf",
   "license": "MIT",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Sunvisor <hisashi@sunvisor.net> (https://www.sunvisor.net/)",
   "description": "PDF generator for Super Leopard",
   "repository": {
@@ -10,6 +10,9 @@
     "directory": "packages/pdf"
   },
   "type": "module",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -24,8 +27,8 @@
     "makePdf": "tsx src/__test_assets__/makePdf.ts"
   },
   "dependencies": {
-    "@sunvisor/super-leopard-barcode": "^0.1.0",
-    "@sunvisor/super-leopard-core": "^0.1.0",
+    "@sunvisor/super-leopard-barcode": "^0.1.1",
+    "@sunvisor/super-leopard-core": "^0.1.1",
     "react": "19.0.0",
     "react-dom": "19.0.0"
   },

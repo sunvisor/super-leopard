@@ -7,7 +7,7 @@
 import { ImageDrawer } from './ImageDrawer';
 import * as imageType from './imageType';
 import { createImage, ImageData, Scale } from '@sunvisor/super-leopard-core';
-import { GetPdfImagePath } from '../index';
+import { GetPdfImagePath } from './type';
 import { mockDoc } from '../__test_assets__';
 import fs from 'fs';
 
