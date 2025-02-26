@@ -7,7 +7,7 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import ShapeProperty from "./ShapeProperty";
-import { Meta, StoryFn, StoryObj } from '@storybook/react';
+import { Meta, StoryContext, StoryFn, StoryObj } from '@storybook/react';
 import {
   Circle,
   createCircle,
@@ -178,13 +178,13 @@ const text = createText({
 const store = createStore();
 
 const getDecorator = (shape: Shape) =>
-  (Story: StoryFn) => {
+  (Story: StoryFn, context: StoryContext) => {
     const selection: Shapes = new Shapes([shape]);
     store.set(SelectionAtom, selection);
     return (
       <Provider store={store}>
         <div data-testid="test">
-          <Story/>
+          {Story(context.args, context)}
         </div>
       </Provider>
     )

@@ -7,7 +7,7 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import PropertyEditor from "./PropertyEditor";
-import { Meta, StoryFn, StoryObj } from '@storybook/react';
+import { Meta, StoryContext, StoryFn, StoryObj } from '@storybook/react';
 import { createShapes, Shapes } from '@sunvisor/super-leopard-core';
 import { SelectionAtom } from '../../atom/SelectionAtom';
 import { createStore } from 'jotai/index';
@@ -29,14 +29,14 @@ const report = emptyReport;
 const store = createStore();
 
 const getDecorator = (selection: Shapes, clipboard: Shapes) =>
-  (Story: StoryFn) => {
+  (Story: StoryFn, context: StoryContext) => {
     store.set(SetReportAtom, report);
     store.set(SelectionAtom, selection);
     store.set(ClipboardAtom, clipboard);
     return (
       <Provider store={store}>
         <div data-testid="test">
-          <Story/>
+          {Story(context.args, context)}
         </div>
       </Provider>
     );

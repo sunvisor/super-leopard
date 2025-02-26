@@ -40,13 +40,13 @@
   "devDependencies": {
     "@chromatic-com/storybook": "^3.2.2",
     "@eslint/js": "^9.15.0",
-    "@storybook/addon-essentials": "^8.5.8",
-    "@storybook/addon-interactions": "^8.5.8",
-    "@storybook/addon-onboarding": "^8.5.8",
-    "@storybook/blocks": "^8.5.8",
-    "@storybook/react": "^8.5.8",
-    "@storybook/react-vite": "^8.5.8",
-    "@storybook/test": "^8.5.8",
+    "@storybook/addon-essentials": "^8.6.0",
+    "@storybook/addon-interactions": "^8.6.0",
+    "@storybook/addon-onboarding": "^8.6.0",
+    "@storybook/blocks": "^8.6.0",
+    "@storybook/react": "^8.6.0",
+    "@storybook/react-vite": "^8.6.0",
+    "@storybook/test": "^8.6.0",
     "@storybook/test-runner": "^0.21.3",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.1.0",
@@ -61,7 +61,7 @@
     "jsdom": "^26.0.0",
     "msw": "^2.7.0",
     "msw-storybook-addon": "^2.0.4",
-    "storybook": "^8.5.8"
+    "storybook": "^8.6.0"
   },
   "eslintConfig": {
     "extends": [

@@ -7,7 +7,7 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import LayerPanel from "./LayerPanel";
-import { Meta, StoryFn, StoryObj } from '@storybook/react';
+import { Meta, StoryContext, StoryFn, StoryObj } from '@storybook/react';
 import { ReportData } from '@sunvisor/super-leopard-core';
 import { createStore } from 'jotai/index';
 import { SetActiveLayerIndexAtom, SetReportAtom } from "../../../atom/ReportAtom";
@@ -29,13 +29,13 @@ const report: ReportData = {
 }
 const store = createStore();
 
-const decorator = (Story: StoryFn) => {
+const decorator = (Story: StoryFn, context: StoryContext) => {
   store.set(SetReportAtom, report);
   store.set(SetActiveLayerIndexAtom, 0);
   return (
     <Provider store={store}>
       <div data-testid="test">
-        <Story/>
+        {Story(context.args, context)}
       </div>
     </Provider>
   )

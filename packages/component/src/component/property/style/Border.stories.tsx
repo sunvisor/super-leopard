@@ -7,7 +7,7 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import Border from "./Border";
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryContext, StoryObj } from '@storybook/react';
 import { createStore } from 'jotai/index';
 import { BorderAtom } from '../../../atom/StylesAtom';
 import { Provider } from 'jotai';
@@ -16,11 +16,11 @@ import { StoryFn } from '@storybook/react';
 
 type Story = StoryObj<typeof Border>
 
-const decorator = (Story: StoryFn) => {
+const decorator = (Story: StoryFn, context: StoryContext) => {
   store.set(BorderAtom, {});
   return (
     <Provider store={store}>
-      <Story/>
+      {Story(context.args, context)}
     </Provider>
   )
 }
