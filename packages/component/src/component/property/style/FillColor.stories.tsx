@@ -7,7 +7,7 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import FillColor from "./FillColor";
-import { Meta, StoryFn, StoryObj } from '@storybook/react';
+import { Meta, StoryContext, StoryFn, StoryObj } from '@storybook/react';
 import { createStore } from 'jotai/index';
 import { Provider } from 'jotai';
 import { FillColorAtom } from '../../../atom/StylesAtom';
@@ -15,11 +15,11 @@ import { fieldDecorator } from '../../../__test_assets__';
 
 type Story = StoryObj<typeof FillColor>
 
-const decorator = (Story: StoryFn) => {
+const decorator = (Story: StoryFn, context: StoryContext) => {
   store.set(FillColorAtom, '#ff0000');
   return (
     <Provider store={store}>
-        <Story/>
+      {Story(context.args, context)}
     </Provider>
   )
 }

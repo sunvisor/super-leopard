@@ -7,11 +7,11 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import ReportWorkArea from "./ReportWorkArea";
-import { Meta, StoryFn, StoryObj } from "@storybook/react";
+import { Meta, StoryContext, StoryFn, StoryObj } from "@storybook/react";
 import { PaperSize, ReportData, UnitType } from '@sunvisor/super-leopard-core';
 import { createStore, Provider } from "jotai";
 import { SetReportAtom } from "../../atom/ReportAtom";
-import { testAssets, lineTestData, layerTestData} from '../../__test_assets__';
+import { testAssets, lineTestData, layerTestData } from '../../__test_assets__';
 import { setSettings } from '../../settings';
 import { testSettings } from '../../__test_assets__/settings';
 
@@ -22,20 +22,20 @@ const store = createStore();
 
 const { billTestData } = testAssets;
 
-const wrapper = (Story: StoryFn, data: ReportData) => {
+const wrapper = (Story: StoryFn, context: StoryContext, data: ReportData) => {
   setSettings(testSettings);
   store.set(SetReportAtom, data);
   return (
     <Provider store={store}>
       <div data-testid="test">
-        <Story />
+        {Story(context.args, context)}
       </div>
     </Provider>
   );
 };
 
-const billDecorator = (Story: StoryFn) => {
-  return wrapper(Story, billTestData);
+const billDecorator = (Story: StoryFn, context: StoryContext) => {
+  return wrapper(Story, context, billTestData);
 };
 
 const layerReport = {
@@ -48,8 +48,8 @@ const layerReport = {
   layers: layerTestData,
 };
 
-const layerDecorator = (Story: StoryFn) => {
-  return wrapper(Story, layerReport);
+const layerDecorator = (Story: StoryFn, context: StoryContext) => {
+  return wrapper(Story, context, layerReport);
 };
 
 const lineReport = {
@@ -67,8 +67,8 @@ const lineReport = {
   ],
 };
 
-const lineDecorator = (Story: StoryFn) => {
-  return wrapper(Story, lineReport);
+const lineDecorator = (Story: StoryFn, context: StoryContext) => {
+  return wrapper(Story, context, lineReport);
 };
 
 const meta: Meta<typeof ReportWorkArea> = {
