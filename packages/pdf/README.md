@@ -18,7 +18,7 @@ createReportDrawer
 const drawer = createReportDrawer({
   report,
   getImagePath,
-  loadErrorImage,
+  loadErrorImage, // option
   fonts,
 });
 ```
@@ -26,7 +26,7 @@ const drawer = createReportDrawer({
 `report`: an object containing the report definition 
 `getImagePath`: an image 
 
-`loadErrorImage`: function to return the image to display in case of barcode errors 
+`loadErrorImage`: (option) function to return the image to display in case of barcode errors 
 `fonts`: `PdfFont` object containing the definition of fonts 
 
 ### getImagePath 
@@ -43,6 +43,7 @@ function getImagePath(src: string): string {
 ### loadErrorImage 
 
 Function to return an image to display if the data passed to the barcode is an error to return an image to be displayed if the data passed to the barcode is an error.
+If you do not specify, the image prepared by the library will be displayed.
 Usually, you will pass a function like the following.
 
 ```ts 

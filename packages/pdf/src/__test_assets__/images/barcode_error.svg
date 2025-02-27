@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="200" height="100" viewBox="0 0 200 100">
-    <!-- 背景 -->
+    <!-- background -->
     <rect width="200" height="100" fill="#ffffff" stroke="#000000" stroke-width="2"/>
 
-    <!-- 壊れたバーコード風の線 -->
+    <!-- broken barcode -->
     <line x1="10" y1="20" x2="10" y2="70" stroke="#000" stroke-width="3"/>
     <line x1="25" y1="25" x2="25" y2="75" stroke="#000" stroke-width="4"/>
     <line x1="40" y1="15" x2="40" y2="65" stroke="#000" stroke-width="2"/>
@@ -18,10 +18,10 @@
     <line x1="175" y1="25" x2="175" y2="75" stroke="#000" stroke-width="5"/>
     <line x1="190" y1="15" x2="190" y2="65" stroke="#000" stroke-width="3"/>
 
-    <!-- 斜めのエラーマーク -->
+    <!-- error mark -->
     <line x1="10" y1="10" x2="190" y2="90" stroke="#d3d3d3" stroke-width="7" stroke-linecap="round"/>
     <line x1="190" y1="10" x2="10" y2="90" stroke="#d3d3d3" stroke-width="7" stroke-linecap="round"/>
 
-    <!-- ERROR テキスト -->
-    <text x="100" y="85" font-size="20" font-weight="bold" text-anchor="middle" fill="#808080">ERROR</text>
+    <!-- ERROR text -->
+    <text x="100" y="85" font-family="Helvetica" font-size="20" font-weight="bold" text-anchor="middle" fill="#808080">ERROR</text>
 </svg>

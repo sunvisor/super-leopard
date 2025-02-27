@@ -24,7 +24,7 @@ export class BarcodeDrawer implements BarcodeDrawerInterface {
   constructor({ doc, scale, loadErrorImage }: BarcodeDrawerProps) {
     this.#doc = doc;
     this.#scale = scale;
-    this.#loadErrorImage = loadErrorImage;
+    this.#loadErrorImage = loadErrorImage ?? defaultErrorImageLoader;
   }
 
   draw(barcode: Barcode, params?: DrawerParams): void {
@@ -45,4 +45,35 @@ export class BarcodeDrawer implements BarcodeDrawerInterface {
 
 }
 
+export function defaultErrorImageLoader() {
+  return `
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="100" viewBox="0 0 200 100">
+    <!-- background -->
+    <rect width="200" height="100" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+
+    <!-- broken barcode -->
+    <line x1="10" y1="20" x2="10" y2="70" stroke="#000" stroke-width="3"/>
+    <line x1="25" y1="25" x2="25" y2="75" stroke="#000" stroke-width="4"/>
+    <line x1="40" y1="15" x2="40" y2="65" stroke="#000" stroke-width="2"/>
+    <line x1="55" y1="30" x2="55" y2="80" stroke="#000" stroke-width="5"/>
+    <line x1="70" y1="20" x2="70" y2="65" stroke="#000" stroke-width="3"/>
+    <line x1="85" y1="10" x2="85" y2="60" stroke="#000" stroke-width="4"/>
+    <line x1="100" y1="25" x2="100" y2="65" stroke="#000" stroke-width="2"/>
+    <line x1="115" y1="15" x2="115" y2="65" stroke="#000" stroke-width="5"/>
+    <line x1="130" y1="30" x2="130" y2="65" stroke="#000" stroke-width="3"/>
+    <line x1="145" y1="20" x2="145" y2="70" stroke="#000" stroke-width="4"/>
+    <line x1="160" y1="10" x2="160" y2="60" stroke="#000" stroke-width="2"/>
+    <line x1="175" y1="25" x2="175" y2="75" stroke="#000" stroke-width="5"/>
+    <line x1="190" y1="15" x2="190" y2="65" stroke="#000" stroke-width="3"/>
+
+    <!-- error mark -->
+    <line x1="10" y1="10" x2="190" y2="90" stroke="#d3d3d3" stroke-width="7" stroke-linecap="round"/>
+    <line x1="190" y1="10" x2="10" y2="90" stroke="#d3d3d3" stroke-width="7" stroke-linecap="round"/>
+
+    <!-- ERROR text -->
+    <text x="100" y="85" font-family="Helvetica" font-size="20" font-weight="bold" text-anchor="middle" fill="#808080">ERROR</text>
+</svg>
+  `
+}
 

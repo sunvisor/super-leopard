@@ -4,10 +4,9 @@
  * Created by sunvisor on 2025/02/10.
  * Copyright (C) Sunvisor Lab. 2025.
  */
-import { BarcodeDrawer } from "./BarcodeDrawer";
+import { BarcodeDrawer, defaultErrorImageLoader } from "./BarcodeDrawer";
 import { BarcodeData, createBarcode, Scale } from '@sunvisor/super-leopard-core';
 import { PdfDocumentInterface } from '../pdfDriver/PdfDriverInterface';
-import { loadErrorImage } from '../__test_assets__';
 import { createBarcodeSvg } from '@sunvisor/super-leopard-barcode';
 import { afterEach } from 'vitest';
 
@@ -37,7 +36,7 @@ describe('Tests for BarcodeDrawer', () => {
       type: 'barcode', format: 'code128', value: '12345', x: 0, y: 10, width: 200, height: 100
     }
     const barcode = createBarcode(barcodeData);
-    const drawer = new BarcodeDrawer({ doc, scale, loadErrorImage });
+    const drawer = new BarcodeDrawer({ doc, scale });
     // Act
     drawer.draw(barcode, {})
     // Assert
@@ -53,12 +52,12 @@ describe('Tests for BarcodeDrawer', () => {
       type: 'barcode', format: 'code128', value: '12345', x: 0, y: 10, width: 200, height: 100
     }
     const barcode = createBarcode(barcodeData);
-    const drawer = new BarcodeDrawer({ doc, scale, loadErrorImage });
+    const drawer = new BarcodeDrawer({ doc, scale });
     // Act
     drawer.draw(barcode, {})
     // Assert
     expect(doc.image).toHaveBeenCalledWith({
-      svg: loadErrorImage(), x:0, y: 10, width: 200, height: 100
+      svg: defaultErrorImageLoader() , x:0, y: 10, width: 200, height: 100
     });
   });
 
