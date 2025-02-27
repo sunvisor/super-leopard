@@ -28,7 +28,7 @@ export function ungrouping(shapes: Shapes, group: Group): {
 } {
   const index = shapes.indexOf(group);
   const items = group.shapes.map(item => {
-    return item.moveTo({ x: item.bbox.x + group.bbox.x, y: item.bbox.y + group.bbox.y }) as Shape
+    return item;
   });
   const newShapes = shapes.insert(new Shapes(items), index).remove(group);
   return {
