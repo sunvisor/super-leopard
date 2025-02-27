@@ -117,7 +117,7 @@ export const billTestData: ReportData = {
           y: 10,
           text: "INVOICE",
           width: 170,
-          height: 7,
+          height: 10,
           align: "center",
           valign: "middle"
         },
@@ -413,7 +413,7 @@ export const billTestData: ReportData = {
           color: "#000000",
           x: 140,
           y: 92,
-          width: 8,
+          width: 15,
           height: 5,
           text: "Amount"
         },

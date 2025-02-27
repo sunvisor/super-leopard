@@ -117,7 +117,7 @@ export const billTestData: ReportData = {
           y: 10,
           text: "請　求　書",
           width: 170,
-          height: 7,
+          height: 10,
           align: "center",
           valign: "middle"
         },
@@ -376,7 +376,8 @@ export const billTestData: ReportData = {
           y: 92,
           width: 20,
           height: 5,
-          text: "品　　　名"
+          align: 'justify-all',
+          text: "品名"
         },
         {
           type: "text",

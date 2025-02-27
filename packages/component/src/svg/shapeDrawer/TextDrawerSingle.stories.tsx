@@ -258,6 +258,10 @@ export const VerticalAlignTopText: Story = {
   args: {
     text: {
       ...baseData,
+      font: {
+        family: 'NotoSansJP',
+        size: 20,
+      },
       height: 180,
       text: '上寄せ Vertical Align Top Text',
       valign: ValignType.TOP
@@ -274,6 +278,10 @@ export const VerticalAlignMiddleText: Story = {
   args: {
     text: {
       ...baseData,
+      font: {
+        family: 'NotoSansJP',
+        size: 20,
+      },
       height: 180,
       text: '縦中央 Vertical Align Middle Text',
       valign: ValignType.MIDDLE
@@ -290,6 +298,10 @@ export const VerticalAlignBottomText: Story = {
   args: {
     text: {
       ...baseData,
+      font: {
+        family: 'NotoSansJP',
+        size: 20,
+      },
       height: 180,
       text: '下寄せ Vertical Align Bottom Text',
       valign: ValignType.BOTTOM

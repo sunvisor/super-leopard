@@ -95,7 +95,10 @@ export class SvgJsDrawer implements SvgDrawerInterface {
     text.fill(fillColor);
     text.opacity(opacity || 1);
     this.applyDecoration(text, params);
-    text.move(x, y);
+    const bbox = text.bbox();
+    // adjust font top axis
+    const offsetY = (bbox.height - font.size) / 2;
+    text.move(x, y - offsetY);
 
     return new SvgJsText(text);
   }
