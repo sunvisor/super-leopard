@@ -4,7 +4,7 @@
  * Created by sunvisor on 2025/02/07.
  * Copyright (C) Sunvisor Lab. 2025.
  */
-import { MeasurementInterface, Scale, Size, Text } from '@sunvisor/super-leopard-core';
+import { Font, MeasurementInterface, Scale, Text } from '@sunvisor/super-leopard-core';
 import { WebFont } from './WebFont';
 
 
@@ -26,26 +26,34 @@ export class Measurement implements MeasurementInterface {
   }
 
   measureHeight(text: Text): number {
-    return this.getTextSize(text).height;
+    const context = this.getContext(text.font);
+    if (!context) {
+      return text.font.size;
+    }
+    // add 'MyAg' to get exact height
+    const metrics = context.measureText(text.text + 'MyAg');
+    return this.#scale.pointFromPixel(metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent);
   }
 
   measureWidth(text: Text): number {
-    return this.getTextSize(text).width;
+    const context = this.getContext(text.font);
+    if (!context) {
+      return text.font.size * text.text.length;
+    }
+    const metrics = context.measureText(text.text);
+    return this.#scale.pointFromPixel(metrics.width);
   }
 
-  private getTextSize(text: Text): Size {
+  private getContext(font: Font) {
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
     if (!context) {
-      return { width: 0, height: 0 };
+      console.error('could not get canvas context!');
+      return undefined;
     }
-    context.font = this.#webFont.webFontAttr(text.font);
-    const metrics = context.measureText(text.text);
+    context.font = this.#webFont.webFontAttr(font);
 
-    return {
-      width: this.#scale.pointFromPixel(metrics.width),
-      height: this.#scale.pointFromPixel(metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent),
-    };
+    return context;
   }
 
 }

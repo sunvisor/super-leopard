@@ -29,6 +29,10 @@ describe('Tests for SvgJsDrawer', () => {
     font: vi.fn().mockReturnThis(),
     opacity: vi.fn().mockReturnThis(),
     size: vi.fn().mockReturnThis(),
+    bbox: vi.fn().mockReturnValue({
+      height: 10,
+      width: 10,
+    }),
   } as unknown as Shape
 
   afterEach(() => {
@@ -329,7 +333,7 @@ describe('Tests for SvgJsDrawer', () => {
       drawer.text({ x: 10, y: 20, text: 'Hello', font, fillColor: '#0000ff' });
       // Assert
       expect(mockSvg.text).toHaveBeenCalledWith('Hello');
-      expect(mockShape.move).toHaveBeenCalledWith(10, 20);
+      expect(mockShape.move).toHaveBeenCalledWith(10, 21); // (12 - 10) / 2
       expect(mockShape.fill).toHaveBeenCalledWith('#0000ff');
       expect(mockShape.opacity).toHaveBeenCalledWith(1);
     });
