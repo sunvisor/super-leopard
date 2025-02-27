@@ -55,10 +55,13 @@ export const UnitInch: Story = {
   },
 }
 
-export const EmptyImageList: Story = {
+export const EmptyImage: Story = {
   args: {
     unit: UnitType.INCH,
-    values,
+    values: {
+      ...values,
+      src: '',
+    },
     imageOptions,
   },
 }

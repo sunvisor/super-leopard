@@ -10,6 +10,7 @@ import BarcodeField from "./BarcodeField";
 import { Meta, StoryObj } from '@storybook/react';
 import { fieldDecorator } from '../../../__test_assets__';
 import { sampleBarcodeValues } from '@sunvisor/super-leopard-core';
+import { defaultSettings } from '../../../settings';
 
 type Story = StoryObj<typeof BarcodeField>
 
@@ -24,7 +25,7 @@ export const Code128: Story = {
     value: sampleBarcodeValues.code128,
     rotate: 'N',
     includeText: true,
-    errorImageUrl: '/api/images/barcode_error.svg'
+    errorImageUrl: defaultSettings.barcode.errorImageUrl
   }
 };
 
@@ -34,7 +35,7 @@ export const Err: Story = {
     value: 'code39',
     rotate: 'N',
     includeText: true,
-    errorImageUrl: '/api/images/barcode_error.svg'
+    errorImageUrl: defaultSettings.barcode.errorImageUrl
   }
 }
 

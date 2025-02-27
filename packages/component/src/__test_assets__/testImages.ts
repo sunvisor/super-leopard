@@ -6,7 +6,7 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import { ImageListData } from '../component';
-import { ImageOptions } from '../settings';
+import { defaultSettings, ImageOptions } from '../settings';
 
 
 export const testNoImageUrl = '/api/images/no_image.svg';
@@ -38,7 +38,7 @@ export const testImageOptions: ImageOptions = {
   getImageUrl: (name: string) => {
     return `/api/images/${name}`
   },
-  noImageUrl: testNoImageUrl,
+  noImageUrl: defaultSettings.image.noImageUrl,
   getImageList: async () => {
     return testImageListData;
   },
