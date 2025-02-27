@@ -138,7 +138,7 @@ export default function FieldProperty(props: Props) {
       {
         PanelComponent && <PanelComponent
           unit={unit}
-          values={shapeValues as any}
+          values={shapeProperty as any}
           fontList={fontList}
           imageOptions={imageOptions}
           onChangeValue={handle}
