@@ -126,8 +126,17 @@ export default function FieldProperty(props: Props) {
     [handleChangeValue]
   );
 
+  const handleSubmit = useCallback(
+    (values: any) => {
+      handleChangeValue(fieldName, shapeType, values)
+    },
+    [handleChangeValue, fieldName, shapeType]
+  )
+
   return (
-    <PropertyBox>
+    <PropertyBox
+      onSubmit={() => handleSubmit(shapeValues)}
+    >
       <FieldNameFields
         fieldName={fieldName}
         shapeType={shapeType}
@@ -138,7 +147,7 @@ export default function FieldProperty(props: Props) {
       {
         PanelComponent && <PanelComponent
           unit={unit}
-          values={shapeValues as any}
+          values={shapeProperty as any}
           fontList={fontList}
           imageOptions={imageOptions}
           onChangeValue={handle}

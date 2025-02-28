@@ -20,14 +20,15 @@ type Props = {
 }
 
 function getPaperSizeList(customCaption: string) {
-  const paperSizeList: {key: string, value: string}[] = [];
+  const paperSizeList: {value: string, caption: string}[] = [];
   for (const key in PaperSize) {
+    const v = PaperSize[key as keyof typeof PaperSize];
     paperSizeList.push({
-      key,
-      value: key,
+      value: v,
+      caption: key,
     });
   }
-  paperSizeList.push({key: 'custom', value: customCaption});
+  paperSizeList.push({value: 'custom', caption: customCaption});
   return paperSizeList;
 }
 
@@ -59,10 +60,10 @@ export default function PaperSizeField(props: Props) {
       {
         paperSizeList.map(item => (
           <MenuItem
-            key={item.key}
-            value={item.key}
+            key={item.value}
+            value={item.value}
           >
-            {item.value}
+            {item.caption}
           </MenuItem>
         ))
       }

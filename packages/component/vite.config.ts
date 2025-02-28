@@ -23,6 +23,7 @@ export default defineConfig({
     },
     rollupOptions: {
       external: [
+        /@sunvisor\/super-leopard.*$/,
         /react.*$/,
         /react-dom.*$/,
         /jotai.*$/,
