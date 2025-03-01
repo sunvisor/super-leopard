@@ -10,7 +10,8 @@
     "packages/core",
     "packages/component",
     "packages/pdf",
-    "packages/barcode"
+    "packages/barcode",
+    "packages/test-assets"
   ],
   "devDependencies": {
     "typescript": "~5.7.2",

@@ -1,6 +1,6 @@
-import { FieldData, ShapeData } from '../data';
+// noinspection JSUnusedGlobalSymbols
 
-export const fieldTestData: FieldData[] = [
+export const fieldTestData = [
   {
     name: 'myTextField',
     type: 'field',
@@ -38,7 +38,7 @@ export const fieldTestData: FieldData[] = [
 ];
 
 // noinspection JSUnusedGlobalSymbols
-export const combinationTestData: ShapeData[] = [
+export const combinationTestData = [
   {
     type: 'text',
     x: 0,

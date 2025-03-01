@@ -10,7 +10,7 @@ import { PaperSize, Rect, UnitType, UnitValue } from '../object';
 import { ReportData } from '../data';
 import { createShapes } from '../creator';
 import { GroupData, ListData, RectData, ShapeData } from '../data';
-import { fieldTestData } from '../__test_assets__';
+import { fieldTestData } from '@sunvisor/super-leopard-test-assets';
 
 
 function getReportData(unit: UnitValue, shape: ShapeData): ReportData {

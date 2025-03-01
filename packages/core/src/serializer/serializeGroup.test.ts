@@ -9,7 +9,7 @@ import { createGroup } from '../creator';
 import { GroupData } from '../data';
 import { serializeShapes } from './serializeShape';
 import { GroupShape } from '../object';
-import { shapeTestData } from '../__test_assets__';
+import { shapeTestData } from '@sunvisor/super-leopard-test-assets';
 
 
 describe('Test for serializeGroup', () => {

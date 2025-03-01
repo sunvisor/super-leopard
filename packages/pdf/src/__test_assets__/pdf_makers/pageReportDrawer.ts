@@ -8,9 +8,9 @@ import { getImagePath, getWritePdf } from '../drawerTestHelper';
 import { ReportData } from '@sunvisor/super-leopard-core';
 import { createTestFonts } from '../textTestHelper';
 import { createReportDrawer } from '../../reportDrawer/createReportDrawer';
-import { testAssets } from '@sunvisor/super-leopard-core';
+import { combinationTestData } from '@sunvisor/super-leopard-test-assets';
 
-const { combinationTestData } = testAssets;
+
 const category = 'report';
 const writePdf = getWritePdf(category);
 const report: ReportData = {

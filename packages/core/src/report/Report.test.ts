@@ -6,9 +6,9 @@
  */
 import { getListFromReport, getReportSchema, layersHasMultipleList, reportHasList, updateLayers } from "./Report";
 import { LayerData, ReportData } from '../data';
-import { billTestData, billTestShapesData, fieldTestData, shapeTestData } from '../__test_assets__';
 import { describe, expect } from 'vitest';
 import { List } from '../object';
+import { billTestShapesData, fieldTestData, shapeTestData, billTestData } from '@sunvisor/super-leopard-test-assets';
 
 
 describe('Tests for Report', () => {

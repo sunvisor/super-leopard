@@ -6,19 +6,22 @@ export default defineConfig({
     sourcemap: true,
     lib: {
       entry: './src/index.ts',
-      formats: ['es', 'cjs'],
       fileName: (format) => `index.${format}.js`,
     },
     rollupOptions: {
-      external: [
-        /^@bwip-js.*$/,
-        /^@sunvisor.*$/,
-      ],
-      output: {
-        preserveModules: true,
-        preserveModulesRoot: 'src',
-        entryFileNames: '[name].[format].js',
-      }
+      external: [],
+      output: [
+        {
+          format: "es",
+          preserveModules: false,
+          entryFileNames: '[name].mjs',
+        },
+        {
+          format: "cjs",
+          preserveModules: false,
+          entryFileNames: '[name].cjs',
+        }
+      ]
     },
     outDir: 'dist',
   },

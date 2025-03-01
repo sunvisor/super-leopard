@@ -1,7 +1,6 @@
-import { testAssets, LayerData }   from '@sunvisor/super-leopard-core';
+import { LayerData }   from '@sunvisor/super-leopard-core';
+import { shapeTestData, shapeTestData2, fieldTestData } from '@sunvisor/super-leopard-test-assets';
 
-
-const { shapeTestData, shapeTestData2, fieldTestData } = testAssets;
 
 export const layerTestData: LayerData[] = [
   { name: 'layer1', shapes: [...shapeTestData, ...fieldTestData] },

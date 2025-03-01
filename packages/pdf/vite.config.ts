@@ -6,22 +6,31 @@ export default defineConfig({
     sourcemap: true,
     lib: {
       entry: './src/index.ts',
-      formats: ['es', 'cjs'],
-      fileName: (format) => `index.${format}.js`,
+      fileName: (format) => `index.${format === "es" ? "mjs" : "cjs"}`
     },
     rollupOptions: {
       external: [
+        /@sunvisor\/super-leopard.*$/,
         'fs',
         /\.test\.ts$/,
         'pdfkit',
         '__test_assets__',
         'svg-to-pdfkit',
       ],
-      output: {
-        preserveModules: false,
-        preserveModulesRoot: 'src',
-        entryFileNames: '[name].[format].js',
-      }
+      output: [
+        {
+          format: "es",
+          entryFileNames: '[name].mjs',
+          dir: "dist",
+          preserveModules: true,
+        },
+        {
+          format: "cjs",
+          entryFileNames: '[name].cjs',
+          dir: "dist",
+          preserveModules: true,
+        }
+      ]
     },
     outDir: 'dist',
   },
@@ -30,7 +39,7 @@ export default defineConfig({
       tsconfigPath: './tsconfig.json',
       outDir: 'dist',
       insertTypesEntry: true,
-      exclude: ['**/*.test.ts', '**/*.test.tsx'],
+      exclude: ['**/*.test.ts', '**/*.test.tsx', '**/__test_assets__'],
     })
   ],
 });

@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import dts from 'vite-plugin-dts';
 
-// https://vite.dev/config/
+
 export default defineConfig({
   plugins: [
     react(),
@@ -23,7 +23,6 @@ export default defineConfig({
     },
     rollupOptions: {
       external: [
-        /@sunvisor\/super-leopard.*$/,
         /react.*$/,
         /react-dom.*$/,
         /jotai.*$/,
@@ -36,8 +35,7 @@ export default defineConfig({
         /\.stories\.ts$/,
       ],
       output: {
-        preserveModules: true,
-        preserveModulesRoot: 'src',
+        preserveModules: false,
         entryFileNames: '[name].js',
       },
     },

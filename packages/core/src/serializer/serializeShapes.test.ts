@@ -6,7 +6,7 @@
  */
 import { serializeShapes } from "./serializeShape";
 import { createShapes } from "../creator";
-import { billTestShapesData, shapeTestData, shapeTestData2 } from '../__test_assets__';
+import { billTestShapesData, shapeTestData, shapeTestData2 } from '@sunvisor/super-leopard-test-assets';
 
 
 describe('Tests for serializeShapes', () => {

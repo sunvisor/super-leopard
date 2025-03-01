@@ -31,7 +31,7 @@ Report Editor
 - `onSave`: Callback to be called when report definition is saved
 - `settings`: (optional) Settings information
 
-![report editor](../../docs/en/images/report_editor.png)
+![report editor](docs/images/report_editor.png)
 
 Report
 -------
@@ -47,3 +47,8 @@ If the report is in list format and spans multiple pages, the page specified by 
 - `pageNumber`: (optional) Number of the page to display
 - `zoom`: (optional) Scale (%) to display
 - `settings`: (optional) Settings information
+
+License
+--------
+
+[MIT](LICENSE)

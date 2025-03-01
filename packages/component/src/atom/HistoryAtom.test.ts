@@ -17,9 +17,8 @@ import {
 import { createStore } from 'jotai/index';
 import { ReportData } from '@sunvisor/super-leopard-core';
 import { ReadShapesAtom } from './ReportAtom';
-import { testAssets } from '../__test_assets__';
+import { shapeTestData, shapeTestData2 } from '@sunvisor/super-leopard-test-assets';
 
-const { shapeTestData, shapeTestData2 } = testAssets;
 
 describe('Tests for HistoryAtom', () => {
 

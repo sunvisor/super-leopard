@@ -24,9 +24,9 @@ import {
 import { createStore } from 'jotai/index';
 import { ReadHistoryAtom } from './HistoryAtom';
 import { createShapes, ReportData } from '@sunvisor/super-leopard-core';
-import { testAssets, layerTestData } from '../__test_assets__';
+import { layerTestData } from '../__test_assets__';
+import { billTestData, shapeTestData } from '@sunvisor/super-leopard-test-assets';
 
-const { billTestData, shapeTestData } = testAssets;
 
 describe('Tests for ReportAtom', () => {
 
@@ -35,7 +35,7 @@ describe('Tests for ReportAtom', () => {
     test('Returns true if the report contains a list', () => {
       // Arrange
       const store = createStore();
-      store.set(SetReportAtom, testAssets.billTestData);
+      store.set(SetReportAtom, billTestData);
       // Act
       const result = store.get(ReportHasListAtom);
       // Assert

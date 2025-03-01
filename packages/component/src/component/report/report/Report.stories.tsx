@@ -10,13 +10,10 @@ import Report from "./Report";
 import { Meta, StoryObj } from "@storybook/react";
 import { PaperSize, UnitType } from '@sunvisor/super-leopard-core';
 import { createStore, Provider } from "jotai/index";
-import { testAssets, layerTestData } from '../../../__test_assets__';
 import { testSettings } from '../../../__test_assets__/settings';
+import { layerTestData } from '../../../__test_assets__';
+import { billListRecords, billTestData, billValues, dummyBillRecords } from '@sunvisor/super-leopard-test-assets';
 
-const {
-  billTestData, billListRecords, billValues,
-  dummyBillRecords,
-} = testAssets;
 
 type Story = StoryObj<typeof Report>;
 

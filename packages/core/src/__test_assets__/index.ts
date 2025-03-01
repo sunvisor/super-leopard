@@ -1,6 +1,9 @@
-export * from './testBill';
-export * from './testField';
+import { shapeTestData } from '@sunvisor/super-leopard-test-assets/src';
+import { createShape } from '../creator';
+
 export * from './testList';
-export * from './testShape';
-export * from './testField';
 export * as en from './en/testBill';
+
+export function createTestShapes(data = shapeTestData) {
+  return data.map(item => createShape(item));
+}

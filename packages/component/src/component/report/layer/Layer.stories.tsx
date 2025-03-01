@@ -10,16 +10,18 @@ import Layer from "./Layer";
 import { createStore, Provider } from "jotai/index";
 import { Meta, StoryObj } from "@storybook/react";
 import { DrawModeType } from '../../../svg';
-import { Shapes, ShapeData } from '@sunvisor/super-leopard-core';
+import { ShapeData, createShapes } from '@sunvisor/super-leopard-core';
 import { expect, waitFor, within } from "@storybook/test";
-import { testAssets } from '../../../__test_assets__';
 import { testSettings } from '../../../__test_assets__/settings';
 import { setSettings } from '../../../settings';
+import {
+  billListRecords,
+  billTestLayerData,
+  billValues,
+  fieldTestData,
+  shapeTestData
+} from '@sunvisor/super-leopard-test-assets';
 
-const {
-  billTestLayerData, shapeTestData, createTestShapes, fieldTestData,
-  billListRecords, billValues
-} = testAssets;
 
 type Story = StoryObj<typeof Layer>;
 
@@ -43,7 +45,7 @@ const meta: Meta<typeof Layer> = {
 };
 
 function getShapes(items: ShapeData[]) {
-  return new Shapes(createTestShapes(items));
+  return createShapes(items);
 }
 
 export const ShapesOnly: Story = {

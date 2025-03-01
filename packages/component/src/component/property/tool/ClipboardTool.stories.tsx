@@ -11,12 +11,12 @@ import { Meta, StoryObj } from '@storybook/react';
 import { createStore, Provider } from 'jotai/index';
 import { SelectionAtom } from '../../../atom/SelectionAtom';
 import { createShapes } from '@sunvisor/super-leopard-core';
-import { testAssets } from '../../../__test_assets__';
 import { ClipboardAtom } from '../../../atom/ClipboardAtom';
+import { shapeTestData } from '@sunvisor/super-leopard-test-assets';
+
 
 type Story = StoryObj<typeof ClipboardTool>
 
-const { shapeTestData } = testAssets;
 
 const store = createStore();
 

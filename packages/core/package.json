@@ -1,23 +1,28 @@
 {
   "name": "@sunvisor/super-leopard-core",
-  "version": "0.1.1",
-  "license": "MIT",
-  "author": "Sunvisor <hisashi@sunvisor.net> (https://www.sunvisor.net/)",
+  "version": "0.1.2",
   "description": "Core objects for Super Leopard",
+  "author": "Sunvisor <hisashi@sunvisor.net> (https://www.sunvisor.net/)",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sunvisor/super-leopard.git",
     "directory": "packages/core"
   },
   "type": "module",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.es.js",
+  "main": "dist/index.cjs",
+  "module": "dist/index..mjs",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.es.js",
-      "require": "./dist/index.cjs.js"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     }
   },
   "scripts": {
@@ -25,8 +30,7 @@
     "test": "vitest run",
     "watch": "vitest watch"
   },
-  "dependencies": {
-    "react": "19.0.0",
-    "react-dom": "19.0.0"
+  "devDependencies": {
+    "@sunvisor/super-leopard-test-assets": "^0.1.2"
   }
 }

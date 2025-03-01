@@ -5,12 +5,11 @@
  * Copyright (C) Sunvisor Lab. 2025.
  */
 import { createReportDrawer } from '../../reportDrawer/createReportDrawer';
-import { testAssets } from '@sunvisor/super-leopard-core';
 import { createTestFonts } from '../textTestHelper';
 import { getImagePath, getWritePdf } from '../drawerTestHelper';
+import { billTestData, billValues, dummyBillRecords } from '@sunvisor/super-leopard-test-assets';
 
 
-const { billTestData, billValues, dummyBillRecords } = testAssets;
 const category = 'report';
 const writePdf = getWritePdf(category);
 const report = billTestData;

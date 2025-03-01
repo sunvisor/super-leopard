@@ -24,6 +24,7 @@ workspace の構成は、次のようになります。
 ```
 .
 ├── packages
+│   ├── barcode
 │   ├── component
 │   ├── core
 │   ├── pdf
@@ -32,6 +33,7 @@ workspace の構成は、次のようになります。
 - packages/core: Super Leopard のコアライブラリ
 - packages/component: Super Leopard の GUI を提供するライブラリ
 - packages/pdf: PDF を出力するライブラリ
+- packages/barcode: バーコードを出力するライブラリ
 
 ### core ライブラリ
 
@@ -43,6 +45,11 @@ component ライブラリで定義されている GUI を使って生成でき�
 このライブラリは、基本的には json で定義されたレポート (テンプレート) に対して、データを与えることで帳票を印刷します。
 その基礎となるレポートの書式や基本的な動作を定義しているのがこの core ライブラリです。
 Web や PDF 以外に出力する帳票が必要になった場合は、core ライブラリを使用して作成することができます。
+
+### barcode ライブラリ
+
+バーコードを出力するためのライブラリを提供します。
+component と pdf ライブラリから使用されます。
 
 ### pdf ライブラリ
 

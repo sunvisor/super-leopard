@@ -15,11 +15,11 @@ import { SetReportAtom } from '../../atom/ReportAtom';
 import { emptyReport } from '../emptyReport';
 import { Provider } from 'jotai';
 import { ClipboardAtom } from '../../atom/ClipboardAtom';
-import { testAssets, testImageOptions } from '../../__test_assets__';
+import { testImageOptions } from '../../__test_assets__';
+import { shapeTestData } from '@sunvisor/super-leopard-test-assets';
+
 
 type Story = StoryObj<typeof PropertyEditor>
-
-const { shapeTestData } = testAssets;
 
 const meta: Meta<typeof PropertyEditor> = {
   component: PropertyEditor,

@@ -14,12 +14,11 @@ import { expect, waitFor, within } from '@storybook/test';
 import { emptyReport } from '../emptyReport';
 import { SetReportAtom } from '../../atom/ReportAtom';
 import imageHandlers from '../../__test_assets__/msw/imageHandlers';
-import { testAssets, testImageListData } from '../../__test_assets__';
+import { testImageListData } from '../../__test_assets__';
 import { fn } from '@storybook/test';
 import { testSettings } from '../../__test_assets__/settings';
+import { billTestData, en } from '@sunvisor/super-leopard-test-assets';
 
-
-const { billTestData, en } = testAssets;
 
 type Story = StoryObj<typeof ReportEditor>
 
