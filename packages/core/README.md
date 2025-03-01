@@ -227,3 +227,8 @@ Only one list can exist in a report.
 
 For example, if you specify `rows=10` and `columns=2`, it will create a list with 10 rows in 2 columns.
 If `direction` is `'vertical'`, it will first repeat vertically, then horizontally.
+
+License
+--------
+
+[MIT](LICENSE)

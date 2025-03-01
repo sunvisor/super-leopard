@@ -1,0 +1,10 @@
+{
+  "name": "@sunvisor/super-leopard-test-assets",
+  "version": "0.1.2",
+  "description": "Test assets for Super Leopard",
+  "author": "Sunvisor <hisashi@sunvisor.net> (https://www.sunvisor.net/)",
+  "license": "UNLICENSED",
+  "type": "module",
+  "main": "src/index.js",
+  "module": "src/index.js"
+}

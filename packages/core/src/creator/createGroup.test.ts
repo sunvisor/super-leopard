@@ -7,7 +7,7 @@
 import { createGroup, createGroupFromShapes, createShapes } from "./createShape";
 import { DirectionType, Group, GroupConfig, GroupShape } from '../object';
 import { GroupData } from '../data';
-import { shapeTestData } from '../__test_assets__';
+import { shapeTestData } from '@sunvisor/super-leopard-test-assets';
 
 
 describe('Tests for createGroup', () => {

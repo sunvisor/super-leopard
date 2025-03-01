@@ -34,6 +34,7 @@ export type BarcodeData = {
   value?: string;
 }
 
+// noinspection JSUnusedGlobalSymbols
 export const barcodeDescriptions: Record<BarcodeFormatValue, string> = {
   [BarcodeFormatType.CODE39]: 'Code 39',
   [BarcodeFormatType.CODE128]: 'Code 128',

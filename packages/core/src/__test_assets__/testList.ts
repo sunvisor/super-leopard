@@ -1,5 +1,5 @@
 import { AlignType, ValignType } from '../object';
-import { FieldValues, ListData } from '../data';
+import { ListData } from '../data';
 
 export const listTestData: ListData = {
   type: 'list',
@@ -78,15 +78,3 @@ export const listTestData: ListData = {
     }
   ],
 };
-
-// noinspection JSUnusedGlobalSymbols
-export function createTestValues(count: number): FieldValues[] {
-  const values: FieldValues[] = [];
-  for (let i = 0; i < count; i++) {
-    values.push({
-      name: `person${i + 1}`,
-      value: 2000 + i * 1000,
-    });
-  }
-  return values;
-}

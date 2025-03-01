@@ -9,13 +9,11 @@
 import GroupProperty from "./GroupProperty";
 import { Meta, StoryObj } from '@storybook/react';
 import { createGroup, UnitType } from '@sunvisor/super-leopard-core';
-import { testAssets } from '../../../__test_assets__';
 import { fn } from '@storybook/test';
+import { shapeTestData } from '@sunvisor/super-leopard-test-assets';
 
 
 type Story = StoryObj<typeof GroupProperty>
-
-const { shapeTestData } = testAssets;
 
 const meta: Meta<typeof GroupProperty> = {
   component: GroupProperty,

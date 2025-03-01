@@ -27,12 +27,12 @@ import {
   Rect, Shape, Shapes,
   UnitType
 } from '@sunvisor/super-leopard-core';
-import { testAssets, testFontList, testImageOptions } from '../../../__test_assets__';
+import { testFontList, testImageOptions } from '../../../__test_assets__';
 import { Provider } from 'jotai';
 import { createStore } from 'jotai/index';
 import { SelectionAtom } from '../../../atom/SelectionAtom';
+import { fieldTestData, shapeTestData } from '@sunvisor/super-leopard-test-assets';
 
-const { fieldTestData, shapeTestData } = testAssets;
 
 type Story = StoryObj<typeof ShapeProperty>
 

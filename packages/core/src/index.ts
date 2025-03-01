@@ -11,4 +11,3 @@ export * from './data';
 export * from './layer';
 export * from './textAdjuster';
 export * from './drawer';
-export * as testAssets from './__test_assets__';

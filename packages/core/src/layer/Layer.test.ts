@@ -7,7 +7,7 @@
 import { addLayer, removeLayer, updateLayer, updateLayerName, updateLayerShapes } from "./Layer";
 import { createShapes } from '../creator';
 import { LayerData } from '../data';
-import { shapeTestData, shapeTestData2 } from '../__test_assets__';
+import { shapeTestData, shapeTestData2 } from '@sunvisor/super-leopard-test-assets';
 
 
 describe('Tests for Layer', () => {

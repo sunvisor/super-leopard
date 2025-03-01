@@ -11,16 +11,15 @@ import { Meta, StoryContext, StoryFn, StoryObj } from "@storybook/react";
 import { PaperSize, ReportData, UnitType } from '@sunvisor/super-leopard-core';
 import { createStore, Provider } from "jotai";
 import { SetReportAtom } from "../../atom/ReportAtom";
-import { testAssets, lineTestData, layerTestData } from '../../__test_assets__';
+import { lineTestData, layerTestData } from '../../__test_assets__';
 import { setSettings } from '../../settings';
 import { testSettings } from '../../__test_assets__/settings';
+import { billTestData } from '@sunvisor/super-leopard-test-assets';
 
 
 type Story = StoryObj<typeof ReportWorkArea>;
 
 const store = createStore();
-
-const { billTestData } = testAssets;
 
 const wrapper = (Story: StoryFn, context: StoryContext, data: ReportData) => {
   setSettings(testSettings);

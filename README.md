@@ -26,14 +26,16 @@ The workspace structure is as follows.
 ```
 .
 ├── packages
-│ ├── component
-│ ├── core
-│ ├── pdf
+│      ├── barcode
+│      ├── component
+│      ├── core
+│      ├── pdf
 ```
 
 - packages/core: Super Leopard core library
 - packages/component: Super Leopard GUI library
 - packages/pdf: PDF output library
+- packages/barcode: Barcode output library
 
 ### core library
 
@@ -45,6 +47,11 @@ The reports can be generated using the GUI defined in the component library.
 This library basically prints reports (templates) defined in JSON by providing data.
 The core library defines the format and basic behavior of the underlying reports.
 If you need a report that outputs something other than web or PDF, you can create it using the core library.
+
+## barcode library
+
+Provides a library for outputting barcodes.
+It is used from the component and pdf libraries.
 
 ### pdf library
 
@@ -59,10 +66,4 @@ You can edit templates on a web screen.
 The component is implemented using React and MUI.
 We also use jotai for state management.
 
-![report editor](docs/en/images/report_editor.png)
-
-
-License
--------
-
-MIT
+![report editor](packages/component/docs/images/report_editor.png)

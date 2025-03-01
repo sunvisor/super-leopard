@@ -11,10 +11,10 @@ import {
   getImagePath,
   mockDoc,
   mockMeasurement,
-  testAssets
 } from '../__test_assets__';
 import { createScale, createShapes } from '@sunvisor/super-leopard-core';
-const { shapeTestData } = testAssets;
+import { shapeTestData } from '@sunvisor/super-leopard-test-assets';
+
 
 describe('Tests for PdfDrawer', () => {
 

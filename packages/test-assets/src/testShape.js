@@ -1,28 +1,15 @@
-import {
-  BarcodeShape,
-  CircleShape,
-  DirectionType,
-  EllipseShape,
-  GroupShape,
-  ImageShape,
-  LineShape,
-  RectShape,
-  Shape,
-  TextShape
-} from '../object';
-import { createShape } from '../creator';
-import { ShapeData } from '../data';
+// noinspection JSUnusedGlobalSymbols
 
-export const shapeTestData: ShapeData[] = [
+export const shapeTestData = [
   {
-    type: CircleShape,
+    type: 'circle',
     x: 5,
     y: 5,
     diameter: 10,
     fillColor: '#ff0000',
   },
   {
-    type: EllipseShape,
+    type: 'ellipse',
     x: 20,
     y: 5,
     width: 20,
@@ -30,7 +17,7 @@ export const shapeTestData: ShapeData[] = [
     fillColor: '#00ff00',
   },
   {
-    type: RectShape,
+    type: 'rect',
     x: 45,
     y: 5,
     width: 10,
@@ -38,7 +25,7 @@ export const shapeTestData: ShapeData[] = [
     fillColor: '#0000ff',
   },
   {
-    type: TextShape,
+    type: 'text',
     x: 60,
     y: 5,
     width: 40,
@@ -54,14 +41,14 @@ export const shapeTestData: ShapeData[] = [
     color: '#000000',
   },
   {
-    type: GroupShape,
+    type: 'group',
     repeatCount: 3,
     width: 100,
     height: 5,
-    direction: DirectionType.VERTICAL,
+    direction: 'vertical',
     shapes: [
       {
-        type: RectShape, x: 5, y: 20, width: 100, height: 4,
+        type: 'rect', x: 5, y: 20, width: 100, height: 4,
         border: {
           color: '#aaaaaa',
           width: 1,
@@ -75,7 +62,7 @@ export const shapeTestData: ShapeData[] = [
 ];
 export const shapeTestData2 = [
   {
-    type: LineShape,
+    type: 'line',
     x1: 5,
     y1: 35,
     x2: 100,
@@ -89,7 +76,7 @@ export const shapeTestData2 = [
     }
   },
   {
-    type: ImageShape,
+    type: 'image',
     x: 5,
     y: 40,
     src: 'sunvisorlab_icon.png',
@@ -97,7 +84,7 @@ export const shapeTestData2 = [
     height: 20,
   },
   {
-    type: BarcodeShape,
+    type: 'barcode',
     x: 30,
     y: 40,
     width: 20,
@@ -106,8 +93,3 @@ export const shapeTestData2 = [
     value: 'https://www.sunvisor.net',
   }
 ]
-
-
-export function createTestShapes(data: ShapeData[] = shapeTestData): Shape[] {
-  return data.map(item => createShape(item));
-}

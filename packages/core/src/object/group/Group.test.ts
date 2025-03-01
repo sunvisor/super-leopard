@@ -10,7 +10,8 @@ import { Box, Position } from '../../value';
 import { GroupShape } from '../shape';
 import { createList, createShapes } from '../../creator';
 import { describe, expect } from 'vitest';
-import { listTestData, shapeTestData } from '../../__test_assets__';
+import { listTestData } from '../../__test_assets__';
+import { shapeTestData } from '@sunvisor/super-leopard-test-assets';
 
 
 describe('Tests for Group', () => {

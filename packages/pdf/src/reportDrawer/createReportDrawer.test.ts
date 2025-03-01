@@ -7,11 +7,10 @@
 import { createReportDrawer } from "./createReportDrawer";
 import { ReportData } from '@sunvisor/super-leopard-core';
 import { PageReportDrawer } from './PageReportDrawer';
-import { createTestFonts, getImagePath, testAssets } from '../__test_assets__';
+import { createTestFonts, getImagePath } from '../__test_assets__';
 import { ListReportDrawer } from './ListReportDrawer';
+import { combinationTestData } from '@sunvisor/super-leopard-test-assets';
 
-
-const { combinationTestData } = testAssets;
 
 describe('Tests for createReportDrawer', () => {
 

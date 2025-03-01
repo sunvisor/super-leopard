@@ -9,10 +9,9 @@
 import ObjectList from "./ObjectList";
 import { Meta, StoryObj } from '@storybook/react';
 import { createShapes } from '@sunvisor/super-leopard-core';
-import { testAssets } from '../../__test_assets__';
 import { fn } from '@storybook/test';
+import { billTestShapesData, shapeTestData } from '@sunvisor/super-leopard-test-assets';
 
-const { shapeTestData, billTestShapesData } = testAssets;
 
 type Story = StoryObj<typeof ObjectList>
 

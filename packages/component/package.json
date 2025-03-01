@@ -1,9 +1,9 @@
 {
   "name": "@sunvisor/super-leopard-component",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Visual components for Super Leopard",
-  "license": "MIT",
   "author": "Sunvisor <hisashi@sunvisor.net> (https://www.sunvisor.net/)",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sunvisor/super-leopard.git",
@@ -12,6 +12,12 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
+  "files": [
+    "dist",
+    "docs",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
     "build": "vite build",
     "storybook": "storybook dev -p 6006",
@@ -35,7 +41,7 @@
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
-    "@sunvisor/super-leopard-core": "^0.1.1"
+    "@sunvisor/super-leopard-core": "^0.1.2"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^3.2.2",
@@ -48,6 +54,7 @@
     "@storybook/react-vite": "^8.6.0",
     "@storybook/test": "^8.6.0",
     "@storybook/test-runner": "^0.21.3",
+    "@sunvisor/super-leopard-test-assets": "^0.1.2",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.1.0",
     "@types/react": "^19.0.0",

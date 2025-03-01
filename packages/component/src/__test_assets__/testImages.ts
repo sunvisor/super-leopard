@@ -1,4 +1,3 @@
-
 /**
  * TestImages
  *
@@ -9,7 +8,6 @@ import { ImageListData } from '../component';
 import { defaultSettings, ImageOptions } from '../settings';
 
 
-export const testNoImageUrl = '/api/images/no_image.svg';
 export const testImageListData: ImageListData[] = [
 
   {

@@ -9,10 +9,9 @@
 import ListProperty from "./ListProperty";
 import { Meta, StoryObj } from '@storybook/react';
 import { createList, DirectionType, UnitType } from '@sunvisor/super-leopard-core';
-import { testAssets } from '../../../__test_assets__';
 import { fn } from '@storybook/test';
+import { fieldTestData } from '@sunvisor/super-leopard-test-assets';
 
-const { fieldTestData } = testAssets
 
 type Story = StoryObj<typeof ListProperty>
 

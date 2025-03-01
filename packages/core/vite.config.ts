@@ -6,16 +6,27 @@ export default defineConfig({
     sourcemap: true,
     lib: {
       entry: './src/index.ts',
-      formats: ['es', 'cjs'],
       fileName: (format) => `index.${format}.js`,
     },
     rollupOptions: {
-      external: [/\.test\.ts$/],
-      output: {
-        preserveModules: true,
-        preserveModulesRoot: 'src',
-        entryFileNames: '[name].[format].js',
-      }
+      external: [
+        '__test_assets__',
+        /\.test\.ts$/
+      ],
+      output: [
+        {
+          format: "es",
+          preserveModules: true,
+          preserveModulesRoot: 'src',
+          entryFileNames: '[name].mjs',
+        },
+        {
+          format: "cjs",
+          preserveModules: true,
+          preserveModulesRoot: 'src',
+          entryFileNames: '[name].cjs',
+        }
+      ]
     },
     outDir: 'dist',
   },
@@ -24,7 +35,7 @@ export default defineConfig({
       tsconfigPath: './tsconfig.json',
       outDir: 'dist',
       insertTypesEntry: true,
-      exclude: ['**/*.test.ts', '**/*.test.tsx'],
+      exclude: ['**/*.test.ts', '**/*.test.tsx', '**/__test_assets__'],
     })
   ],
 });

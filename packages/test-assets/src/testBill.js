@@ -1,9 +1,8 @@
 // noinspection JSUnusedGlobalSymbols
 
-import { LayerData, ReportData, ShapeData } from '../data';
 
 
-export const billTestData: ReportData = {
+export const billTestData = {
   page: {
     size: "A4",
     orientation: "portrait",
@@ -533,10 +532,10 @@ export const billTestData: ReportData = {
   ]
 }
 
-export const billTestShapesData: ShapeData[] = billTestData.layers[0].shapes as ShapeData[];
+export const billTestShapesData = billTestData.layers[0].shapes;
 
 // noinspection JSUnusedGlobalSymbols
-export const billTestLayerData: LayerData = billTestData.layers[0] as LayerData;
+export const billTestLayerData = billTestData.layers[0];
 
 export const billValues = {
   dateOfIssue: '2024-01-01',
@@ -570,7 +569,7 @@ export const billListRecords = [
   },
 ];
 
-export function dummyBillRecords(count: number) {
+export function dummyBillRecords(count) {
   const records = [];
   for (let i = 0; i < count; i++) {
     records.push({

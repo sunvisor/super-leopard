@@ -10,8 +10,9 @@ import { CircleShape, ListShape, RectShape } from '../shape';
 import { Group } from '../group';
 import { ShapeData } from '../../data';
 import { describe, expect } from 'vitest';
-import { createTestShapes, listTestData, shapeTestData } from '../../__test_assets__';
+import { createTestShapes, listTestData } from '../../__test_assets__';
 import { createRect } from '../rect';
+import { shapeTestData } from '@sunvisor/super-leopard-test-assets';
 
 
 const nestedShapesData: ShapeData[] = [

@@ -10,14 +10,13 @@ import {
   getImagePath,
   mockDoc,
   mockMeasurement,
-  testAssets
 } from '../__test_assets__';
 import { createPage, createScale, ReportData } from '@sunvisor/super-leopard-core';
+import { combinationTestData } from '@sunvisor/super-leopard-test-assets';
 import { PdfDrawer } from './PdfDrawer';
 import { describe, Mock } from 'vitest';
 
 
-const { combinationTestData } = testAssets;
 
 function createDrawer(report: ReportData) {
   const scale = createScale({

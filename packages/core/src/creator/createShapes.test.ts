@@ -5,7 +5,7 @@
  * Copyright (C) Sunvisor Lab. 2023.
  */
 import { createShapes } from "./createShape";
-import { shapeTestData } from '../__test_assets__';
+import { shapeTestData } from '@sunvisor/super-leopard-test-assets';
 
 
 describe('Test for createShapes', () => {
