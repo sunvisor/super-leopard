@@ -48,6 +48,14 @@ export class PdfDrawer {
     this.drawer.draw(shapes, params);
   }
 
+  open(stream: NodeJS.WritableStream) {
+    this.doc.open(stream);
+  }
+
+  close() {
+    this.doc.close();
+  }
+
   addPage(page: Page) {
     this.doc.addPage({
       size: this.getSize(page),

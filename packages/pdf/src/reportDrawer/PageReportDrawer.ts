@@ -40,6 +40,14 @@ export class PageReportDrawer implements ReportDrawerInterface {
     });
   }
 
+  open(stream: NodeJS.WritableStream) {
+    this.drawer.open(stream);
+  }
+
+  close() {
+    this.drawer.close();
+  }
+
   private drawLayer(layer: LayerData, params: { values: FieldValues }) {
     const shapes = createShapes(layer.shapes);
     this.drawer.draw(shapes, params)

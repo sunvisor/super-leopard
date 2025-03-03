@@ -6,15 +6,14 @@
  */
 import { createReportDrawer } from '../../reportDrawer/createReportDrawer';
 import { createTestFonts } from '../textTestHelper';
-import { getImagePath, getWritePdf } from '../drawerTestHelper';
+import { getImagePath, openStream } from '../drawerTestHelper';
 import { billTestData, billValues, dummyBillRecords } from '@sunvisor/super-leopard-test-assets';
 
 
 const category = 'report';
-const writePdf = getWritePdf(category);
 const report = billTestData;
 
-export default async function listReportDrawer() {
+export default function listReportDrawer() {
   const data = [
     billValues,
     { ...billValues, customer: '株式会社 BBB' },
@@ -28,9 +27,11 @@ export default async function listReportDrawer() {
     getImagePath,
     fonts: createTestFonts()
   });
+  const stream = openStream(category, 'list_report.pdf');
+
+  drawer.open(stream);
   data.forEach((values, index) => {
     drawer.draw({ values, listRecords: details[index] });
-  })
-
-  await writePdf('list_report.pdf', drawer.document);
+  });
+  drawer.close();
 }

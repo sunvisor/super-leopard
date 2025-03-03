@@ -103,6 +103,7 @@ type AdditionalFontMapItem = {
 ```
 
 これらの定義は、bold や italic が指定された場合、どのフォントを使って、どんな風に出力するかを定義するものです。
+実際に `AdditionalFontMap` をどのように定義するのかは、`src/__test_assets__/textTestHelper.ts` の `additionalFontMap` の定義を参照してください。
 
 標準のフォントのみを使用する場合は、additionalFontMap を空のオブジェクトとして渡すことができます。
 
@@ -150,9 +151,12 @@ drawer.draw({ values, listRecords });
 drawer.close();
 ```
 
-`values` や `listRecords` で渡したデータを使って PDF が出力されます。
+- **`open` メソッド**: PDF を出力するストリームと `drawer` を関連付けます。
+- **`draw` メソッド**: PDF を出力します。
+- **`close` メソッド**: PDF の生成を終了します。
 
-`draw` メソッドは 1ページを印刷します。複数ページのデータがある場合は、それをイテレートして出力します。
+`values` や `listRecords` で渡したデータを使って PDF が出力されます。
+`draw` メソッドは 1ページを印刷します。複数ページのデータがある場合は、次のようにそれをイテレートして出力する必要があります。
 
 ```ts
 // 出力例
@@ -163,3 +167,5 @@ records.forEach((values) => {
 });
 doc.close();
 ```
+
+`listRecords` の件数が、レポートの `list` で定義された件数を上回る場合は、ページが追加されて出力されます。その際の `values` は同じものが使われます。

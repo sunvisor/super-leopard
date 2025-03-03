@@ -10,4 +10,6 @@ import { PdfDocumentInterface } from '../pdfDriver/PdfDriverInterface';
 export interface ReportDrawerInterface {
   document: PdfDocumentInterface;
   draw(params: DataParams): void;
+  open(stream: NodeJS.WritableStream): void;
+  close(): void;
 }
