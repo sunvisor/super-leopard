@@ -1,27 +1,31 @@
-Super Leopard - Report generation library
-==============================
+# Super Leopard - Report Generation Library
+================================
 
-Super Leopard is a library for creating reports.
-It can add data to a template written in a specified format and output a PDF.
-The template data is expressed in JSON, but a GUI is provided for editing on a web screen.
-Super Leopard is intended to be incorporated into your application to provide flexible report generation functionality.
+**Super Leopard** is a library for generating reports.  
+It allows you to insert data into a predefined template and output a **PDF**.  
+Templates are structured in **JSON**, and a **GUI** is provided for editing them via a web interface.  
+Super Leopard is designed to be integrated into applications, offering **flexible report generation capabilities**.
 
-We are currently developing it for release.
+*We are currently developing it for release.*
 
-[日本語の解説はこちら(Japanese document is here)](./docs/ja/README.md)
+[日本語の解説はこちら (Japanese document is here)](./docs/ja/README.md)
 
-Super Leopard features
--------------------
+---
 
-- Outputs a PDF report from a template and data
-- Displays a report on a web page from a template and data
-- Edits a template on a web page
+Super Leopard Features
+----------------------
 
-Project structure
--------------------
+- **Generates PDF reports** from templates and data
+- **Displays reports** on a web page using templates and data
+- **Provides a web-based GUI** for editing templates
 
-This repository is structured using npm workspace.
-The workspace structure is as follows.
+---
+
+Project Structure
+----------------------
+
+This repository is structured using **npm workspaces**.  
+The workspace structure is as follows:
 
 ```
 .
@@ -32,38 +36,48 @@ The workspace structure is as follows.
 │      ├── pdf
 ```
 
-- packages/core: Super Leopard core library
-- packages/component: Super Leopard GUI library
-- packages/pdf: PDF output library
-- packages/barcode: Barcode output library
+- **packages/core**: Core library for Super Leopard
+- **packages/component**: GUI library for Super Leopard
+- **packages/pdf**: Library for PDF generation
+- **packages/barcode**: Library for barcode generation
 
-### core library
+---
 
-This provides a model that defines each element of a report template (called a Report).
-Reports can be defined in JSON. The syntax is described in the [core documentation](packages/core/README.md).
-However, there is no need to memorize the syntax.
-The reports can be generated using the GUI defined in the component library.
+### Core Library
 
-This library basically prints reports (templates) defined in JSON by providing data.
-The core library defines the format and basic behavior of the underlying reports.
-If you need a report that outputs something other than web or PDF, you can create it using the core library.
+The **core library** provides a model that defines each element of a report template (**Report**).  
+Reports are defined in **JSON**, and their syntax is documented in the [core documentation](https://github.com/sunvisor/super-leopard/blob/main/packages/core/README.md).
 
-## barcode library
+However, there is no need to memorize the syntax.  
+Templates can be created and edited using the **GUI** provided by the **component library**.
 
-Provides a library for outputting barcodes.
-It is used from the component and pdf libraries.
+This library primarily **generates reports** by applying data to JSON-defined templates.  
+It also defines the **format and behavior** of reports.  
+If you need to output reports in formats other than **web pages or PDFs**, you can extend the core library.
 
-### pdf library
+---
 
-This provides a library for outputting PDF.
-You can output PDFs using HTTP servers such as Express or Fastify, or desktop apps such as Electron.
-This library uses PDFKit for creating PDF.
+### Barcode Library
 
-### component library
+The **barcode library** provides functionality for generating barcodes.  
+It is used by both the **component** and **pdf** libraries.
 
-This provides a function to display forms on a web screen and a GUI for editing form templates.
-You can edit templates on a web screen.
-The component is implemented using React and MUI.
-We also use jotai for state management.
+---
 
-![report editor](packages/component/docs/images/report_editor.png)
+### PDF Library
+
+The **pdf library** provides functionality for **PDF generation**.  
+It supports output via **HTTP servers** such as **Express** or **Fastify**, as well as **desktop applications** like **Electron**.  
+This library utilizes **PDFKit** for PDF creation.
+
+---
+
+### Component Library
+
+The **component library** provides **web-based UI components** for displaying reports and editing templates.  
+Templates can be edited using a **web-based GUI**.
+
+- Built with **React** and **MUI**
+- Uses **Jotai** for state management
+
+![report editor](https://github.com/sunvisor/super-leopard/raw/main/docs/images/report_editor.png)

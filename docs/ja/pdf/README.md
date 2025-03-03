@@ -106,21 +106,52 @@ type AdditionalFontMapItem = {
 
 標準のフォントのみを使用する場合は、additionalFontMap を空のオブジェクトとして渡すことができます。
 
+データ形式
+-----------
+
+レポートに `field` が存在する場合、`values ` データを渡すことで、その `field` に対応するデータを出力します。
+データは、key-value ペアの形式になっていて、`key` には `field` の `name` を、`value` にはそこに出力する値を指定します。
+
+```json
+{
+  "id": 1,
+  "customer": "sample",
+  "price": 100
+}
+```
+
+レポートに `list` が存在する場合、`listRecords` に渡された配列が出力されます、`list` は繰り返されるので、複数のデータが出力されます。
+
+```json
+[
+  {
+    "id": 1,
+    "product": "sample1",
+    "price": 100
+  },
+  {
+    "id": 2,
+    "product": "sample2",
+    "price": 200
+  }
+]
+```
+
 PDF の作成
 ------------
 
 `createReportDrawer` を使って drawer を作成できました。
-生成された drawer を使って PDF を作成するには、`document` プロパティを使います。
+生成された drawer を使って PDF を作成するには、`draw` メソッドを使います。
 
 ```ts
 const stream = fs.createWriteStream('/path/to/output.pdf');
-const doc = drawer.document;
-doc.open(stream);
+drawer.open(stream);
 drawer.draw({ values, listRecords });
-doc.close();
+drawer.close();
 ```
 
 `values` や `listRecords` で渡したデータを使って PDF が出力されます。
+
 `draw` メソッドは 1ページを印刷します。複数ページのデータがある場合は、それをイテレートして出力します。
 
 ```ts

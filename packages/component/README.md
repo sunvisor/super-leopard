@@ -31,7 +31,7 @@ Report Editor
 - `onSave`: Callback to be called when report definition is saved
 - `settings`: (optional) Settings information
 
-![report editor](docs/images/report_editor.png)
+![report editor](https://github.com/sunvisor/super-leopard/raw/main/docs/images/report_editor.png)
 
 Report
 -------
