@@ -1,6 +1,6 @@
 {
   "name": "@sunvisor/super-leopard-barcode",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "Barcode generator for Super Leopard",
   "author": "Sunvisor <hisashi@sunvisor.net> (https://www.sunvisor.net/)",
   "license": "MIT",
@@ -9,7 +9,6 @@
     "url": "git+https://github.com/sunvisor/super-leopard.git",
     "directory": "packages/barcode"
   },
-  "type": "module",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -17,6 +16,13 @@
     "dist",
     "LICENSE",
     "README.md"
+  ],
+  "keywords": [
+    "report",
+    "barcode",
+    "bwip-js",
+    "typescript",
+    "Super Leopard"
   ],
   "exports": {
     ".": {
@@ -31,7 +37,7 @@
     "watch": "vitest watch"
   },
   "dependencies": {
-    "@sunvisor/super-leopard-core": "^0.1.2",
+    "@sunvisor/super-leopard-core": "^0.1.4",
     "@bwip-js/generic": "^4.5.1"
   }
 }

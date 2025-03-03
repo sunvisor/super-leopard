@@ -64,6 +64,14 @@ export class ListReportDrawer implements ReportDrawerInterface {
     });
   }
 
+  open(stream: NodeJS.WritableStream) {
+    this.drawer.open(stream);
+  }
+
+  close() {
+    this.drawer.close();
+  }
+
   private drawLayer(layer: LayerData, params: DataParams) {
     const shapes = createShapes(layer.shapes);
     this.drawer.draw(shapes, params);

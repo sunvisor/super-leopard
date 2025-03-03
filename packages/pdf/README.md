@@ -1,63 +1,70 @@
-Super Leopard pdf package
+# Super Leopard pdf Package
 =========================
 
-This package provides functionality for creating PDFs.
-It will fill a defined report with data and output it as a PDF.
+**Super Leopard pdf Package** provides functionality for generating PDFs.  
+It fills a predefined report with data and outputs it as a PDF.
 
-The entry point used for PDF output is `createReportDrawer`.
-Call this function to create a Report Drawer.
-The returned object implements the `ReportDrawerInterface`.
-Passing data to the `draw` method will output a PDF.
+The main entry point for PDF output is `createReportDrawer`.  
+Call this function to create a Report Drawer.  
+The returned object implements the `ReportDrawerInterface`.  
+Passing data to the `draw` method will generate a PDF.
 
-createReportDrawer
-------------------- 
+---
 
-`createReportDrawer` creates an object that outputs PDF, and returns an object implementing the `ReportDrawerInterface`.
+## **createReportDrawer**
 
-```ts 
+`createReportDrawer` creates an object that outputs PDFs and returns an object implementing the `ReportDrawerInterface`.
+
+```ts
 const drawer = createReportDrawer({
   report,
   getImagePath,
-  loadErrorImage, // option
+  loadErrorImage, // optional
   fonts,
 });
 ```
 
-`report`: an object containing the report definition 
-`getImagePath`: an image 
+- **`report`**: An object containing the report definition.
+- **`getImagePath`**: A function that returns the path to an image.
+- **`loadErrorImage`** *(optional)*: A function that returns an image to display in case of barcode errors.
+- **`fonts`**: A `PdfFont` object containing font definitions.
 
-`loadErrorImage`: (option) function to return the image to display in case of barcode errors 
-`fonts`: `PdfFont` object containing the definition of fonts 
+---
 
-### getImagePath 
+## **getImagePath**
 
-If the report data contains image output, specify a function to return where that image actually If the data in the report includes an image, specify a function to return the actual location of the image. The argument of the function is the value of the `src` property specified in the report.
-Typically, you would pass a function similar to the following.
+If the report data includes an image, specify a function that returns the actual location of the image.  
+The argument of the function is the value of the `src` property specified in the report.  
+Typically, you would pass a function like the following:
 
-```ts 
-function getImagePath(src: string): string { 
-  return `/var/report/images/${src}` 
-} 
-``` 
+```ts
+function getImagePath(src: string): string {
+  return `/var/report/images/${src}`;
+}
+```
 
-### loadErrorImage 
+---
 
-Function to return an image to display if the data passed to the barcode is an error to return an image to be displayed if the data passed to the barcode is an error.
-If you do not specify, the image prepared by the library will be displayed.
-Usually, you will pass a function like the following.
+## **loadErrorImage**
 
-```ts 
+Function that returns an image to display if the barcode data is invalid.  
+If not specified, the library provides a default error image.  
+Usually, you will pass a function like the following:
+
+```ts
 function loadErrorImage(): string {
   return `/var/report/images/barcode_error.svg`;
 }
-``` 
+```
 
-### font
+---
 
-By default, only standard PDF fonts are available, but if you prepare font files and register them However, if you prepare a font file and register it, you will be able to use that font.
-To do so, you must create an instance of the `PdfFont` class and pass it to ``createReportDrawer``.
+## **Font Configuration**
 
-```ts 
+By default, only standard PDF fonts are available. However, if you prepare and register font files, you can use additional fonts.  
+To do so, you must create an instance of the `PdfFont` class and pass it to `createReportDrawer`.
+
+```ts
 const additionalFontMap: AdditionalFontMap = {
   'NotoSerifJP': {
     normal: {
@@ -71,65 +78,72 @@ const additionalFontMap: AdditionalFontMap = {
     italic: {
       name: 'NotoSerifJP-Regular',
       fileName: 'NotoSerifJP-Regular.otf',
-      options: { oblique: true }
+      options: { oblique: true },
     },
     boldItalic: {
       name: 'NotoSerifJP-Bold',
       fileName: 'NotoSerifJP-Bold.otf',
-      options: { oblique: true }
+      options: { oblique: true },
     },
   },
-}
+};
 
 const fonts = new PdfFont({
-  fontPath: '/path/to/fonts',
-  additionalFontMap
+  fontPath: "/path/to/fonts",
+  additionalFontMap,
 });
-``` 
+```
 
-#### additionalFontMap 
+### **AdditionalFontMap**
 
-`PdfFont` has an ` AdditionalFontMap` to register additional fonts.
-The key is the font name and the value is an object containing the font definition.
+`PdfFont` has an `AdditionalFontMap` to register additional fonts.  
+The key is the font name, and the value is an object containing the font definition.  
 The definition should contain objects of the following structure for each of `normal`, `bold`, `italic`, and `boldItalic`.
 
-```ts 
+```ts
 type AdditionalFontMapItem = {
   name: string;
   fileName: string;
   options?: {
     oblique?: boolean;
-  }
-}
-``` 
-
-These definitions define which font to use and how to output it if bold or italic is specified.
-
-If only standard fonts are to be used, additionalFontMap can be passed as an empty object.
-
-Creating a PDF
------------- 
-
-You could create a drawer using `createReportDrawer`.
-To create a PDF with the generated drawer use the `document` property.
-
-```ts 
-const stream = fs.createWriteStream('/path/to/output.pdf'); 
-const doc = drawer.document; 
-doc.open(stream); 
-drawer.draw({ values, listRecords }); 
-doc.close(); 
-``` 
-
- The PDF will be output using the data passed in `values` and `listRecords`.
-The `draw` method prints a single page. If there are multiple pages of data, it will iterate through them and output them.
-
-```ts 
-// output example 
-doc.open(stream); 
-records.forEach((values) => { 
-  const listRecords = getListRecord(values.id); 
-  drawer.draw({ values, listRecords });
-}); 
-doc.close(); 
+  };
+};
 ```
+
+These definitions specify which font to use and how to render it when bold or italic styling is applied.  
+To see how `AdditionalFontMap` is actually defined, please refer to the definition of `additionalFontMap` in `src/__test_assets__/textTestHelper.ts`.
+
+If you only want to use standard fonts, `additionalFontMap` can be passed as an empty object.
+
+---
+
+## **Creating a PDF**
+
+You can create a drawer using `createReportDrawer`.  
+To generate a PDF using the created drawer, call the `draw` method.
+
+```ts
+const stream = fs.createWriteStream('/path/to/output.pdf');
+drawer.open(stream);
+drawer.draw({ values, listRecords });
+drawer.close();
+```
+
+- **`open` method**: Binds the stream that outputs the PDF and the `drawer`.
+- **`draw` method**: Outputs the PDF.
+- **`close` method**: Ends the PDF generation process.
+
+The PDF is generated using the data passed in `values` and `listRecords`.  
+The `draw` method prints one page. If you have data for multiple pages, you need to iterate through it and output it as follows.
+
+```ts
+// Output example
+doc.open(stream);
+records.forEach((values) => {
+  const listRecords = getListRecord(values.id);
+  drawer.draw({ values, listRecords });
+});
+doc.close();
+```
+
+If the number of records in `listRecords` exceeds the number defined in the report's `list`, a page will be added to the output. In this case, the same `values` will be used.

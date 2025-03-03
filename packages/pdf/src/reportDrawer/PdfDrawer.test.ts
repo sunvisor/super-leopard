@@ -42,4 +42,28 @@ describe('Tests for PdfDrawer', () => {
 
   });
 
+  describe('Tests for open', () => {
+
+    it('should open stream', () => {
+      // Arrange
+      const stream = {} as NodeJS.WritableStream;
+      // Act
+      drawer.open(stream);
+      // Assert
+      expect(mockDoc.open).toBeCalledWith(stream);
+    });
+
+  });
+
+  describe('Tests for close', () => {
+
+    it('should close stream', () => {
+      // Act
+      drawer.close();
+      // Assert
+      expect(mockDoc.close).toBeCalled();
+    });
+
+  });
+
 });

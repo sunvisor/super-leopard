@@ -39,6 +39,11 @@ export async function writePdfFile(category: string, fileName: string, doc: PdfD
   });
 }
 
+export function openStream(category: string, fileName: string) {
+  const fullPath = `${outputBaseDir}/${category}/${fileName}`
+  return fs.createWriteStream(fullPath);
+}
+
 export function makeDir(category: string) {
   fs.mkdirSync(`${outputBaseDir}/${category}`, { recursive: true });
 }
