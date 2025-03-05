@@ -19,10 +19,9 @@ The main components are as follows, although there are many components in total.
 
 The other components are used by these two components.
 
-Report Editor
--------------
+### ReportEditor
 
-### Properties
+#### Properties
 
 - `report`: (optional) Report definition
 - `reportId`: Report identifier
@@ -30,13 +29,16 @@ Report Editor
 - `language`: (optional) Language to use in editor
 - `onSave`: Callback to be called when report definition is saved
 - `settings`: (optional) Settings information
+- `showSaveButton`: (optional) Show save button (default: `true`)
+- `additionalTools`: (optional) Additional tools to be shown before and/or after the save button
+  - `after`: (optional) Additional tools to be shown after the save button
+  - `before`: (optional) Additional tools to be shown before the save button
 
 ![report editor](https://github.com/sunvisor/super-leopard/raw/main/docs/images/report_editor.png)
 
-Report
--------
+### Report
 
-### Properties
+#### Properties
 
 This function gives data to a report and displays a preview on the screen.
 If the report is in list format and spans multiple pages, the page specified by `pageNumber` will be displayed.
@@ -47,6 +49,16 @@ If the report is in list format and spans multiple pages, the page specified by 
 - `pageNumber`: (optional) Number of the page to display
 - `zoom`: (optional) Scale (%) to display
 - `settings`: (optional) Settings information
+
+Hooks
+------
+
+### useReportStates
+
+You can get the state of the report using this hook.
+
+- `report`: The current state of the report
+- `dirty`: Whether the current report has been changed or not
 
 License
 --------
