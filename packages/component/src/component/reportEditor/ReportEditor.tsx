@@ -4,7 +4,7 @@
  * Created by sunvisor on 2024/03/06.
  * Copyright (C) Sunvisor Lab. 2024.
  */
-import React, { useCallback, useEffect, useState } from "react";
+import React, { ReactNode, useCallback, useEffect, useState } from "react";
 import { AppBar, Box } from '@mui/material';
 import ReportWorkArea from '../reportEditor/ReportWorkArea';
 import EditToolbar from '../toolbar/EditToolbar';
@@ -29,6 +29,11 @@ type Props = {
   language?: string;
   onSave: OnSaveHandler;
   settings?: SettingData;
+  showSaveButton?: boolean;
+  additionalTools?: {
+    before?: ReactNode;
+    after?: ReactNode;
+  }
 }
 
 export default function ReportEditor(props: Props) {
@@ -74,6 +79,8 @@ export default function ReportEditor(props: Props) {
           onSave={handleSave}
           onChangeTitle={handleChangeTitle}
           onPropertyOpen={() => setOpen(true)}
+          additionalTools={props.additionalTools}
+          showSaveButton={props.showSaveButton}
         />
       </AppBar>
       <Box sx={{ width: '100%', height: '100%', padding: 0, display: 'flex' }}>

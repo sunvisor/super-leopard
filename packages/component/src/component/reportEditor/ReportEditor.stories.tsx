@@ -18,6 +18,8 @@ import { testImageListData } from '../../__test_assets__';
 import { fn } from '@storybook/test';
 import { testSettings } from '../../__test_assets__/settings';
 import { billTestData, en } from '@sunvisor/super-leopard-test-assets';
+import NoteAddIcon from '@mui/icons-material/NoteAdd';
+import FileOpenIcon from '@mui/icons-material/FileOpen';
 
 
 type Story = StoryObj<typeof ReportEditor>
@@ -81,6 +83,27 @@ export const Empty: Story = {
     title: 'Empty',
     reportId: 1,
     language: 'ja',
+  }
+}
+
+export const AdditionalTools: Story = {
+  args: {
+    title: 'Empty',
+    reportId: 1,
+    language: 'ja',
+    additionalTools: {
+      before: <NoteAddIcon />,
+      after: <FileOpenIcon />,
+    }
+  }
+}
+
+export const HideSaveButton: Story = {
+  args: {
+    title: 'Empty',
+    reportId: 1,
+    language: 'ja',
+    showSaveButton: false,
   }
 }
 
