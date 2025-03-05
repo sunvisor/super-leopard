@@ -4,7 +4,7 @@
  * Created by sunvisor on 2024/02/02.
  * Copyright (C) Sunvisor Lab. 2024.
  */
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { Box, Divider, IconButton, Input, Toolbar, Tooltip } from "@mui/material";
 import SaveIcon from '@mui/icons-material/Save';
 import ListAltIcon from '@mui/icons-material/ListAlt';
@@ -16,10 +16,16 @@ type Props = {
   onSave: (event: React.MouseEvent<HTMLElement>) => void;
   onPropertyOpen: (event: React.MouseEvent<HTMLElement>) => void;
   onChangeTitle: (title: string) => void;
+  showSaveButton?: boolean;
+  additionalTools?: {
+    before?: ReactNode;
+    after?: ReactNode;
+  }
 }
 
 export default function EditToolbar(props: Props) {
   const [title, setTitle] = React.useState<string>(props.title);
+  const showSaveButton = props.showSaveButton !== undefined ? props.showSaveButton : true;
   const captions = getCaptions().editTool;
   const [editTitle, setEditTitle] = React.useState<boolean>(false);
 
@@ -50,12 +56,22 @@ export default function EditToolbar(props: Props) {
 
   return (
     <Toolbar variant="dense">
-      <Tooltip title={captions.save}>
-        <IconButton size="small" color="inherit" onClick={props.onSave} aria-label={captions.save}>
-          <SaveIcon/>
-        </IconButton>
-      </Tooltip>
-      <Divider orientation="vertical" variant="middle" flexItem sx={{ ml: 2 }}/>
+      {
+        props.additionalTools?.before && props.additionalTools.before
+      }
+      {
+        showSaveButton && <Tooltip title={captions.save}>
+          <IconButton size="small" color="inherit" onClick={props.onSave} aria-label={captions.save}>
+            <SaveIcon/>
+          </IconButton>
+        </Tooltip>
+      }
+      {
+        props.additionalTools?.after && props.additionalTools.after
+      }
+      {
+        (showSaveButton || props.additionalTools) && <Divider orientation="vertical" variant="middle" flexItem sx={{ ml: 2 }}/>
+      }
       <Tooltip title={captions.rename}>
         <IconButton size="small" color="inherit" onClick={handleEdit} aria-label={captions.rename}>
           <DriveFileRenameOutlineIcon />

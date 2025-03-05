@@ -18,11 +18,30 @@ import { testImageListData } from '../../__test_assets__';
 import { fn } from '@storybook/test';
 import { testSettings } from '../../__test_assets__/settings';
 import { billTestData, en } from '@sunvisor/super-leopard-test-assets';
+import NoteAddIcon from '@mui/icons-material/NoteAdd';
+import FileOpenIcon from '@mui/icons-material/FileOpen';
+import useReportStates from './hooks/useReportStates';
+import { useEffect } from 'react';
 
 
 type Story = StoryObj<typeof ReportEditor>
 
 const store = createStore();
+
+// test for useReportStates
+function Flame({ children } : { children: any}) {
+  const {report, dirty} = useReportStates();
+  useEffect(() => {
+    console.log('report', report);
+    console.log('dirty', dirty);
+  }, [report ,dirty]);
+
+  return (
+    <>
+      {children}
+    </>
+  );
+}
 
 const meta: Meta<typeof ReportEditor> = {
   component: ReportEditor,
@@ -30,11 +49,15 @@ const meta: Meta<typeof ReportEditor> = {
   decorators: [
     (Story) => {
       store.set(SetReportAtom, emptyReport);
+
+
       return (
 
         <Provider store={store}>
           <div data-testid="test">
-            <Story/>
+            <Flame>
+              <Story/>
+            </Flame>
           </div>
         </Provider>
       );
@@ -81,6 +104,27 @@ export const Empty: Story = {
     title: 'Empty',
     reportId: 1,
     language: 'ja',
+  }
+}
+
+export const AdditionalTools: Story = {
+  args: {
+    title: 'Empty',
+    reportId: 1,
+    language: 'ja',
+    additionalTools: {
+      before: <NoteAddIcon />,
+      after: <FileOpenIcon />,
+    }
+  }
+}
+
+export const HideSaveButton: Story = {
+  args: {
+    title: 'Empty',
+    reportId: 1,
+    language: 'ja',
+    showSaveButton: false,
   }
 }
 

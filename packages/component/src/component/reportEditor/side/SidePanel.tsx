@@ -91,7 +91,7 @@ export default function SidePanel(props: Props) {
         <Tab label={captions.layer} value={1}/>
         <Tab label={captions.object} value={2}/>
       </Tabs>
-      <Box sx={{ width: 430, height: '100vw', overflow: 'scroll' }}>
+      <Box sx={{ width: 430, height: '100vw', overflow: 'auto' }}>
         {
           tabIndex === 0 && <PropertyTab
             mode={mode}

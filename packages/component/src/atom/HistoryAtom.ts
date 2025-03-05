@@ -24,6 +24,8 @@ const CurrentHistoryAtom = atom((get) => {
   return get(HistoryAtom)[get(PointerAtom)];
 });
 
+const DirtyAtom = atom<boolean>(false);
+
 /**
  * Read history for debug and testing
  */
@@ -69,6 +71,7 @@ export const PushHistoryAtom = atom(null, (get, set, item: HistoryItem) => {
   history.push(newItem);
   set(HistoryAtom, history);
   set(PointerAtom, history.length - 1);
+  set(DirtyAtom, true);
 });
 
 const RestoreHistoryAtom = atom(null, (get, set) => {
@@ -76,6 +79,7 @@ const RestoreHistoryAtom = atom(null, (get, set) => {
   if (item.report) {
     const report = JSON.parse(item.report);
     set(RestoreReportAtom, report);
+    set(DirtyAtom, true);
   }
 });
 
@@ -98,3 +102,8 @@ export const RedoHistoryAtom = atom(null, (get, set) => {
   set(RestoreHistoryAtom);
 });
 
+export const ClearDirtyAtom = atom(null, (_, set) => {
+  set(DirtyAtom, false);
+});
+
+export const ReadDirtyAtom = atom((get) => get(DirtyAtom));

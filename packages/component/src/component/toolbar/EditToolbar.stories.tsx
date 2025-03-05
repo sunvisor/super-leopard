@@ -9,6 +9,8 @@
 import EditToolbar from "./EditToolbar";
 import { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
+import FileOpenIcon from '@mui/icons-material/FileOpen';
+import NoteAddIcon from '@mui/icons-material/NoteAdd';
 
 
 type Story = StoryObj<typeof EditToolbar>
@@ -28,4 +30,49 @@ export const Normal: Story = {
   }
 };
 
+export const Before: Story = {
+  args: {
+    title: 'Title',
+    additionalTools: {
+      before: <><NoteAddIcon /><FileOpenIcon /></>,
+    },
+  }
+}
+
+export const BeforeAfter: Story = {
+  args: {
+    title: 'Title',
+    additionalTools: {
+      before: <NoteAddIcon />,
+      after: <FileOpenIcon />,
+    },
+  }
+};
+
+export const After: Story = {
+  args: {
+    title: 'Title',
+    additionalTools: {
+      after: <><NoteAddIcon /><FileOpenIcon /></>,
+    },
+  }
+}
+
+export const HideSaveButton: Story = {
+  args: {
+    title: 'Title',
+    showSaveButton: false,
+  }
+}
+
 export default meta;
+export const HideSaveButtonAndAfter: Story = {
+  args: {
+    title: 'Title',
+    showSaveButton: false,
+    additionalTools: {
+      after: <><NoteAddIcon /><FileOpenIcon /></>,
+    },
+  }
+}
+
