@@ -19,6 +19,7 @@ import SidePanel from './side/SidePanel';
 import { setLanguage } from '../../captions/getCaptions';
 import { setSettings, SettingData } from '../../settings';
 
+
 export type OnSaveHandler = (id: ReportId, title: string, report: ReportData) => void;
 export type ReportId = number | 'new';
 

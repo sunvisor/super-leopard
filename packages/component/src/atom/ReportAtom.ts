@@ -23,7 +23,7 @@ import {
   updateLayerName,
   updateLayerShapes, UnitType
 } from '@sunvisor/super-leopard-core';
-import { ClearHistoryAtom, PushHistoryAtom } from './HistoryAtom';
+import { ClearDirtyAtom, ClearHistoryAtom, PushHistoryAtom } from './HistoryAtom';
 
 const emptyReport: ReportData = {
   page: {
@@ -74,6 +74,7 @@ export const SetReportAtom = atom(null, (_, set, report: ReportData, activeLayer
   set(PushHistoryAtom, {
     report,
   });
+  set(ClearDirtyAtom);
   set(ScaleAtom, createScale(report.page.unit, report.page.margin));
 });
 
