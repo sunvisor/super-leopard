@@ -67,7 +67,7 @@ export default function ReportEditor(props: Props) {
   }, [applyShapes, onSave, title, report, clearSelection]);
 
   return (
-    <Box sx={{ width: '100vw', height: '100vh', padding: 0 }}>
+    <Box sx={{ width: '100%', height: '100%', padding: 0 }}>
       <AppBar position="sticky">
         <EditToolbar
           title={title}
