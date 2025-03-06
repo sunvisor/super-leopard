@@ -81,6 +81,7 @@ export class BoundingBox {
 
     const rectElement = this.drawRect(drawBox);
     rectElement.on('mousedown', (event: Event) => {
+      (document.activeElement as HTMLElement).blur();
       const e = event as MouseEvent;
       if (e.button !== 0) return;
       this.onHandleMouseDown(e, 'body');
@@ -171,6 +172,7 @@ export class BoundingBox {
       classes: ['handle', type]
     });
     el.on('mousedown', (e: Event) => {
+      (document.activeElement as HTMLElement).blur();
       this.onHandleMouseDown(e as MouseEvent, type);
       e.preventDefault();
     });
