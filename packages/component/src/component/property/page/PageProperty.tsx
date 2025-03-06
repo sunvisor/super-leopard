@@ -13,8 +13,8 @@ import PageMarginFields from '../fieldGroup/PageMarginFields';
 import getCaptions from '../../../captions/getCaptions';
 import PropertyBox from '../object/PropertyBox';
 import Caption from '../Caption';
-import { useAtomValue, useSetAtom } from 'jotai';
-import { ReadReportAtom, SetReportAtom } from '../../../atom/ReportAtom';
+import useReport from '../../../hooks/useReport';
+
 
 type Props = {
   page: Page;
@@ -24,8 +24,7 @@ export default function PageProperty(props: Props) {
   const captions = getCaptions().pageProperty;
   const [page, setPage] = useState<Page>(props.page);
   const [unit, setUnit] = React.useState<UnitValue>(page.unit);
-  const report = useAtomValue(ReadReportAtom);
-  const setReport = useSetAtom(SetReportAtom);
+  const { report, setReport } = useReport();
 
   useEffect(() => {
     setPage(props.page);

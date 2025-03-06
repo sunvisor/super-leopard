@@ -12,16 +12,16 @@ import { useAtomValue, useSetAtom } from 'jotai';
 import {
   AddLayerAtom,
   ReadActiveLayerIndexAtom,
-  ReadReportAtom,
   RemoveLayerAtom,
   SetActiveLayerIndexAtom,
   UpdateLayerNameAtom,
   UpdateLayersAtom
 } from '../../../atom/ReportAtom';
 import { LayerData } from '@sunvisor/super-leopard-core';
+import useReport from '../../../hooks/useReport';
 
 export default function LayerPanel() {
-  const report = useAtomValue(ReadReportAtom);
+  const {report} = useReport();
   const activeLayerIndex = useAtomValue(ReadActiveLayerIndexAtom);
   const setActiveLayerIndex = useSetAtom(SetActiveLayerIndexAtom);
   const updateLayers = useSetAtom(UpdateLayersAtom);

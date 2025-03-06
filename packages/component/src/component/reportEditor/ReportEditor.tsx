@@ -11,13 +11,14 @@ import EditToolbar from '../toolbar/EditToolbar';
 import { EditMode } from './ReportWorkArea';
 import FooterToolbar from '../toolbar/FooterToolbar';
 import { ReportData } from '@sunvisor/super-leopard-core';
-import { useAtomValue, useSetAtom } from 'jotai';
-import { ApplyShapesToReportAtom, ReadReportAtom, SetReportAtom } from '../../atom/ReportAtom';
+import { useSetAtom } from 'jotai';
+import { ApplyShapesToReportAtom } from '../../atom/ReportAtom';
 import { ClearSelectionAtom } from '../../atom/SelectionAtom';
 import DrawToolbar from '../toolbar/DrawToolbar';
 import SidePanel from './side/SidePanel';
 import { setLanguage } from '../../captions/getCaptions';
 import { setSettings, SettingData } from '../../settings';
+import useReport from '../../hooks/useReport';
 
 
 export type OnSaveHandler = (id: ReportId, title: string, report: ReportData) => void;
@@ -42,8 +43,7 @@ export default function ReportEditor(props: Props) {
   const [title, setTitle] = useState<string>(props.title);
   const applyShapes = useSetAtom(ApplyShapesToReportAtom);
   const clearSelection = useSetAtom(ClearSelectionAtom);
-  const report = useAtomValue(ReadReportAtom);
-  const setReport = useSetAtom(SetReportAtom);
+  const { report, setReport } = useReport();
   const [mode, setMode] = React.useState<EditMode>("edit");
   const [zoom, setZoom] = useState<number>(100);
   const [open, setOpen] = useState<boolean>(true);

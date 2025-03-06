@@ -15,11 +15,12 @@ import EditingLayer from './layer/EditingLayer';
 import AppendShapeLayer, { AppendShapeType } from './layer/AppendShapeLayer';
 import useShapes from '../reportEditor/hooks/useShapes';
 import { useAtomValue, useSetAtom } from 'jotai';
-import { ReadActiveLayerIndexAtom, ReadReportAtom, SetZoomAtom } from '../../atom/ReportAtom';
+import { ReadActiveLayerIndexAtom, SetZoomAtom } from '../../atom/ReportAtom';
 import useKeyboard from '../reportEditor/hooks/useKeyboard';
 import useEventHandler from '../reportEditor/hooks/useEventHandler';
 import { isMac } from '../environment';
 import contractShapes from '../report/layer/contractShapes';
+import useReport from '../../hooks/useReport';
 
 
 export type EditMode = AppendShapeType | 'edit';
@@ -31,7 +32,7 @@ type Props = {
 
 export default function ReportWorkArea(props: Props) {
   const { mode, zoom } = props;
-  const report = useAtomValue(ReadReportAtom)
+  const { report } = useReport()
   const activeLayerIndex = useAtomValue(ReadActiveLayerIndexAtom);
   const layers = useMemo(
     () => contractShapes(report.layers),
@@ -61,35 +62,35 @@ export default function ReportWorkArea(props: Props) {
   }, isMac());
 
   return (
-      <ReportPaper>
-        {
-          layers.map((layer, index) => {
-            const isActive = index === activeLayerIndex;
-            const name = layer.name;
-            const layerShapes = isActive ? shapes : layer.shapes;
-            return (
-              <Layer
-                key={name}
-                name={name}
-                shapes={layerShapes}
-                mode={DrawModeType.DESIGN}
-              />
-            );
-          })
-        }
-        {
-          (mode === 'edit') && <EditingLayer
-            {...listeners}
-          />
-        }
-        {
-          (
-            mode !== 'edit'
-          ) && <AppendShapeLayer
-            shapeType={mode}
-            onAppend={onAppend}
-          />
-        }
-      </ReportPaper>
+    <ReportPaper>
+      {
+        layers.map((layer, index) => {
+          const isActive = index === activeLayerIndex;
+          const name = layer.name;
+          const layerShapes = isActive ? shapes : layer.shapes;
+          return (
+            <Layer
+              key={name}
+              name={name}
+              shapes={layerShapes}
+              mode={DrawModeType.DESIGN}
+            />
+          );
+        })
+      }
+      {
+        (mode === 'edit') && <EditingLayer
+          {...listeners}
+        />
+      }
+      {
+        (
+          mode !== 'edit'
+        ) && <AppendShapeLayer
+          shapeType={mode}
+          onAppend={onAppend}
+        />
+      }
+    </ReportPaper>
   );
 }
