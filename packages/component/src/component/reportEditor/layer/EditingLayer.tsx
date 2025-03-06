@@ -13,11 +13,12 @@ import {
   OnResizeHandler,
   OnSelectHandler
 } from '../../../svg';
-import { ReadPageAtom, ReadScaleAtom } from '../../../atom/ReportAtom';
+import { ReadScaleAtom } from '../../../atom/ReportAtom';
 import { SelectionAtom } from '../../../atom/SelectionAtom';
 import { LayerDiv } from '../../report/layer/Layer';
 import { SvgDriver } from '../../../svgDriver';
 import { getSettings } from '../../../settings';
+import usePage from '../../../hooks/usePage';
 
 type Props = {
   onSelect?: OnSelectHandler;
@@ -36,7 +37,7 @@ type Props = {
 export default function EditingLayer(props: Props) {
   const { onSelect, onMove, onResize, onMovePosition } = props;
   const selection = useAtomValue(SelectionAtom);
-  const page = useAtomValue(ReadPageAtom);
+  const { page } = usePage();
   const scale = useAtomValue(ReadScaleAtom);
   const ref = useRef<HTMLDivElement>(null);
   const svg = useMemo(() => SvgDriver.createDrawer(), []);

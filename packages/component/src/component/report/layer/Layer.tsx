@@ -10,10 +10,11 @@ import { useEffect, useMemo, useRef } from "react";
 import { createLayerDrawer, DrawModeValue } from '../../../svg';
 import { FieldValues, Shapes } from '@sunvisor/super-leopard-core';
 import { useAtomValue } from 'jotai';
-import { ReadPageAtom, ReadScaleAtom } from '../../../atom/ReportAtom';
+import { ReadScaleAtom } from '../../../atom/ReportAtom';
 import styled from '@emotion/styled';
 import { SvgDriver } from '../../../svgDriver';
 import { getSettings } from '../../../settings';
+import usePage from '../../../hooks/usePage';
 
 type Props = {
   name: string;
@@ -41,7 +42,7 @@ export default function Layer(props: Props) {
   const settings = getSettings();
   const wrapperEl = useRef(null);
   const svg = useMemo(() => SvgDriver.createDrawer(), []);
-  const page = useAtomValue(ReadPageAtom);
+  const { page } = usePage();
   const scale = useAtomValue(ReadScaleAtom);
   const drawer = useMemo(() => createLayerDrawer({
     svg, page, scale, settings, mode

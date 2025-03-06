@@ -5,16 +5,15 @@
  * Copyright (C) Sunvisor Lab. 2023.
  */
 import React from "react";
-import { useAtomValue } from 'jotai';
-import { ReadPageAtom } from '../../../atom/ReportAtom';
 import Paper from '../../paper/Paper';
+import usePage from '../../../hooks/usePage';
 
 type Props = {
   children?: React.ReactNode;
 }
 
 export default function ReportPaper(props: Props) {
-  const page = useAtomValue(ReadPageAtom);
+  const { page } = usePage();
 
   return (
     <Paper page={page}>

@@ -17,12 +17,13 @@ import {
   BarcodeShapeType,
 } from '@sunvisor/super-leopard-core';
 import { useAtomValue } from 'jotai';
-import { ReadPageAtom, ReadScaleAtom } from '../../../atom/ReportAtom';
+import { ReadScaleAtom } from '../../../atom/ReportAtom';
 import { StylesAtom } from '../../../atom/StylesAtom';
 import { AppendShapeRubberBand } from '../../../svg';
 import { LayerDiv } from '../../report/layer/Layer';
 import { SvgDriver } from '../../../svgDriver';
 import { getSettings } from '../../../settings';
+import usePage from '../../../hooks/usePage';
 
 export type OnAppendHandler = (shape: Shape) => void;
 
@@ -45,7 +46,7 @@ export default function AppendShapeLayer(props: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const svg = useMemo(() => SvgDriver.createDrawer(), []);
   const { shapeType, onAppend } = props;
-  const page = useAtomValue(ReadPageAtom);
+  const { page } = usePage();
   const scale = useAtomValue(ReadScaleAtom);
   const settings = getSettings();
   const styles = useAtomValue(StylesAtom);
