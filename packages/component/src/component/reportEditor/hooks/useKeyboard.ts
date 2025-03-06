@@ -54,6 +54,9 @@ export default function useKeyboard(listeners: Listeners, isMac: boolean = false
   const { onCopy, onCut, onPaste, onRemove, onUndo, onRedo } = listeners;
 
   const onKeyDown = useCallback((event: KeyboardEvent) => {
+    if (event.target instanceof HTMLElement && (["INPUT", "TEXTAREA"].includes(event.target.tagName) || event.target.isContentEditable)) {
+      return;
+    }
     if (isDelete(event)) onRemove();
     if (isCtrlC(event, isMac)) onCopy();
     if (isCtrlV(event, isMac)) onPaste();

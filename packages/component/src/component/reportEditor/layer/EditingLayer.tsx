@@ -55,6 +55,7 @@ export default function EditingLayer(props: Props) {
 
   const onMouseDown = useCallback(
     (event: React.MouseEvent<HTMLDivElement>) => {
+      (document.activeElement as HTMLElement).blur();
       if (event.button === 0) {
         handler.startRubberBand(event.clientX, event.clientY);
       }

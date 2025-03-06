@@ -8,6 +8,7 @@ import { atom } from 'jotai';
 import { ReportData } from '@sunvisor/super-leopard-core';
 import { RestoreReportAtom } from './ReportAtom';
 import { Atom } from 'jotai';
+import { ClearSelectionAtom } from './SelectionAtom';
 
 type HistoryItem = {
   report: ReportData;
@@ -88,6 +89,7 @@ export const UndoHistoryAtom = atom(null, (get, set) => {
   if (pointer <= 0) {
     return;
   }
+  set(ClearSelectionAtom)
   set(PointerAtom, pointer - 1);
   set(RestoreHistoryAtom);
 });
@@ -98,6 +100,7 @@ export const RedoHistoryAtom = atom(null, (get, set) => {
   if (pointer > history.length - 1) {
     return;
   }
+  set(ClearSelectionAtom)
   set(PointerAtom, pointer + 1);
   set(RestoreHistoryAtom);
 });
