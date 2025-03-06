@@ -13,33 +13,34 @@ import { emptyReport } from '../component/emptyReport';
 
 describe('Tests for useReport', () => {
 
-  it('Should return report', () => {
+  it('should return report', () => {
+    // Arrange
     const reportData = billTestData;
     const { result } = renderHook(() => useSetAtom(SetReportAtom));
     act(() => {
       result.current(reportData);
     });
-
+    // Act
     const { result: reportResult } = renderHook(() => useReport());
+    // Assert
     expect(reportResult.current.report).toEqual(reportData);
   });
 
-  it('Should update report when SetReportAtom is updated', () => {
+  it('should update report when SetReportAtom is updated', () => {
+    // Arrange
     const initialReportData = billTestData;
     const updatedReportData = emptyReport;
-
+    // Set initial
     const { result } = renderHook(() => useSetAtom(SetReportAtom));
     act(() => {
       result.current(initialReportData);
     });
-
+    // Act
     const { result: reportResult } = renderHook(() => useReport());
-    expect(reportResult.current.report).toEqual(initialReportData);
-
     act(() => {
       result.current(updatedReportData);
     });
-
+    // Assert update
     expect(reportResult.current.report).toEqual(updatedReportData);
   });
 });
