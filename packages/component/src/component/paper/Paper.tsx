@@ -4,12 +4,10 @@
  * Created by sunvisor on 2024/03/13.
  * Copyright (C) Sunvisor Lab. 2024.
  */
-import { createPage, PageData } from '@sunvisor/super-leopard-core';
-import { useAtomValue } from 'jotai/index';
-import { ReadScaleAtom } from '../../atom/ReportAtom';
-import { Page } from '@sunvisor/super-leopard-core';
+import { createPage, Page, PageData } from '@sunvisor/super-leopard-core';
 import styled from '@emotion/styled';
 import React from 'react';
+import useScale from '../../hooks/useScale';
 
 type Props = {
   page: PageData | Page;
@@ -37,7 +35,7 @@ const Inner = styled('div')({
 
 export default function Paper(props: Props) {
   const page = props.page instanceof Page ? props.page : createPage(props.page);
-  const scale = useAtomValue(ReadScaleAtom);
+  const { scale } = useScale();
   const width = scale.toPixel(page.width);
   const height = scale.toPixel(page.height);
 

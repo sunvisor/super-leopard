@@ -6,11 +6,13 @@
  */
 import { ReadReportAtom, SetReportAtom } from '../atom/ReportAtom';
 import { useAtomValue, useSetAtom } from 'jotai';
+import { reportHasList } from '@sunvisor/super-leopard-core';
 
 
 export default function useReport() {
   const report = useAtomValue(ReadReportAtom);
   const setReport = useSetAtom(SetReportAtom);
+  const hasList = () => reportHasList(report);
 
-  return { report, setReport };
+  return { report, setReport, hasList };
 }

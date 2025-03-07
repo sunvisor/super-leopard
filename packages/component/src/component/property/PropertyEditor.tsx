@@ -8,7 +8,6 @@ import { Box, } from '@mui/material';
 import { useAtomValue } from 'jotai';
 import { SelectionAtom } from '../../atom/SelectionAtom';
 import ShapeProperty from './object/ShapeProperty';
-import { ReadScaleAtom } from '../../atom/ReportAtom';
 import TransformProperty from './object/TransformProperty';
 import ClipboardTool from './tool/ClipboardTool';
 import ZOrderTool from './tool/ZOrderTool';
@@ -18,6 +17,7 @@ import PageProperty from './page/PageProperty';
 import { FontList } from '../../font';
 import { ImageOptions } from '../../settings';
 import usePage from '../../hooks/usePage';
+import useScale from '../../hooks/useScale';
 
 
 type Props = {
@@ -29,7 +29,7 @@ type Props = {
 export default function PropertyEditor(props: Props) {
   const { imageOptions, errorImageUrl, fontList } = props;
   const selection = useAtomValue(SelectionAtom);
-  const scale = useAtomValue(ReadScaleAtom);
+  const { scale } = useScale();
   const { page } = usePage();
 
   return (

@@ -13,7 +13,6 @@ import {
   ReadReportAtom,
   ReadShapesAtom,
   RemoveLayerAtom,
-  ReportHasListAtom,
   RestoreReportAtom,
   SetActiveLayerIndexAtom,
   SetReportAtom,
@@ -29,30 +28,6 @@ import { billTestData, shapeTestData } from '@sunvisor/super-leopard-test-assets
 
 
 describe('Tests for ReportAtom', () => {
-
-  describe('Tests for ReportHasListAtom', () => {
-
-    test('Returns true if the report contains a list', () => {
-      // Arrange
-      const store = createStore();
-      store.set(SetReportAtom, billTestData);
-      // Act
-      const result = store.get(ReportHasListAtom);
-      // Assert
-      expect(result).toBe(true);
-    });
-
-    test('Returns false if the report does not contain a list', () => {
-      // Arrange
-      const store = createStore();
-      store.set(SetReportAtom, { page: { unit: 'mm', size: 'A4' }, layers: layerTestData });
-      // Act
-      const result = store.get(ReportHasListAtom);
-      // Assert
-      expect(result).toBe(false);
-    });
-
-  });
 
   describe('Tests for SetReportAtom', () => {
 

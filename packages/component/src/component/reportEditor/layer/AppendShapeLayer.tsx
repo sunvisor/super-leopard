@@ -6,6 +6,7 @@
  */
 import React, { useCallback, useEffect, useMemo, useRef } from "react";
 import {
+  BarcodeShapeType,
   CircleShapeType,
   EllipseShapeType,
   FieldShapeType,
@@ -14,16 +15,15 @@ import {
   RectShapeType,
   Shape,
   TextShapeType,
-  BarcodeShapeType,
 } from '@sunvisor/super-leopard-core';
 import { useAtomValue } from 'jotai';
-import { ReadScaleAtom } from '../../../atom/ReportAtom';
 import { StylesAtom } from '../../../atom/StylesAtom';
 import { AppendShapeRubberBand } from '../../../svg';
 import { LayerDiv } from '../../report/layer/Layer';
 import { SvgDriver } from '../../../svgDriver';
 import { getSettings } from '../../../settings';
 import usePage from '../../../hooks/usePage';
+import useScale from '../../../hooks/useScale';
 
 export type OnAppendHandler = (shape: Shape) => void;
 
@@ -47,7 +47,7 @@ export default function AppendShapeLayer(props: Props) {
   const svg = useMemo(() => SvgDriver.createDrawer(), []);
   const { shapeType, onAppend } = props;
   const { page } = usePage();
-  const scale = useAtomValue(ReadScaleAtom);
+  const { scale } = useScale();
   const settings = getSettings();
   const styles = useAtomValue(StylesAtom);
   const rubberBand = useMemo(() => {

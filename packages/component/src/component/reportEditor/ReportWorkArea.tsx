@@ -14,14 +14,13 @@ import { DrawModeType } from '../../svg';
 import EditingLayer from './layer/EditingLayer';
 import AppendShapeLayer, { AppendShapeType } from './layer/AppendShapeLayer';
 import useShapes from '../reportEditor/hooks/useShapes';
-import { useSetAtom } from 'jotai';
-import { SetZoomAtom } from '../../atom/ReportAtom';
 import useKeyboard from '../reportEditor/hooks/useKeyboard';
 import useEventHandler from '../reportEditor/hooks/useEventHandler';
 import { isMac } from '../environment';
 import contractShapes from '../report/layer/contractShapes';
 import useReport from '../../hooks/useReport';
 import useLayer from '../../hooks/useLayer';
+import useScale from '../../hooks/useScale';
 
 
 export type EditMode = AppendShapeType | 'edit';
@@ -39,7 +38,7 @@ export default function ReportWorkArea(props: Props) {
     () => contractShapes(report.layers),
     [report.layers]
   );
-  const setZoom = useSetAtom(SetZoomAtom);
+  const { setZoom } = useScale();
 
   useEffect(() => {
     setZoom(zoom)

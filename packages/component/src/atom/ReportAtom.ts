@@ -8,7 +8,6 @@
 import { atom } from 'jotai';
 import {
   ReportData,
-  reportHasList,
   updateLayers,
   Page,
   createShapes,
@@ -61,8 +60,6 @@ export const ReadPageAtom = atom((get) => get(PageAtom));
 export const ReadActiveLayerIndexAtom = atom((get) => get(ActiveLayerIndexAtom));
 
 export const ReadScaleAtom = atom((get) => get(ScaleAtom));
-
-export const ReportHasListAtom = atom((get) => reportHasList(get(ReportAtom)));
 
 /**
  * Set Report and add history

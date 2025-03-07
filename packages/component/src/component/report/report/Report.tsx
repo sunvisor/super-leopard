@@ -9,10 +9,10 @@ import ReportPaper from '../paper/ReportPaper';
 import { FieldValues, ReportData } from '@sunvisor/super-leopard-core';
 import Layer from '../layer/Layer';
 import { DrawModeType } from '../../../svg';
-import { useSetAtom } from 'jotai';
-import { SetReportAtom, SetZoomAtom } from '../../../atom/ReportAtom';
 import contractShapes from '../../report/layer/contractShapes';
 import { setSettings, SettingData } from '../../../settings';
+import useScale from '../../../hooks/useScale';
+import useReport from '../../../hooks/useReport';
 
 type Props = {
   report: ReportData;
@@ -29,8 +29,8 @@ export default function Report(props: Props) {
     () => contractShapes(report.layers),
     [report.layers]
   );
-  const setZoom = useSetAtom(SetZoomAtom);
-  const setReport = useSetAtom(SetReportAtom);
+  const { setZoom } = useScale();
+  const { setReport } = useReport();
 
   setReport(report);
   useEffect(() => {

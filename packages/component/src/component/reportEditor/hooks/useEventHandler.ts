@@ -16,8 +16,8 @@ import useShapes from './useShapes';
 import { ClearSelectionAtom, SelectionAtom } from '../../../atom/SelectionAtom';
 import useClipboard from './useClipboard';
 import { CanRedoAtom, CanUndoAtom, RedoHistoryAtom, UndoHistoryAtom } from '../../../atom/HistoryAtom';
-import { ReadScaleAtom } from '../../../atom/ReportAtom';
 import { getSettings } from '../../../settings';
+import useScale from '../../../hooks/useScale';
 
 const PASTE_OFFSET = 20; // pixel
 
@@ -38,7 +38,7 @@ export default function useEventHandler(props: Props = {}) {
   const canRedo = useAtomValue(CanRedoAtom);
   const undo = useSetAtom(UndoHistoryAtom);
   const redo = useSetAtom(RedoHistoryAtom);
-  const scale = useAtomValue(ReadScaleAtom);
+  const { scale } = useScale();
 
   const onSelect = useCallback((area: Box | Position) => {
       const selector = createShapesSelector(scale, settings.lineSelect);

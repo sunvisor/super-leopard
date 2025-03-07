@@ -15,15 +15,16 @@ import {
   Shapes, shapesToList, ungrouping
 } from '@sunvisor/super-leopard-core';
 import { useAtom, useSetAtom } from 'jotai/index';
-import { ReportHasListAtom, SetShapesAtom } from '../../../atom/ReportAtom';
+import { SetShapesAtom } from '../../../atom/ReportAtom';
 import GroupBox from '../fieldGroup/GroupBox';
-import { useAtomValue } from 'jotai';
+import useReport from '../../../hooks/useReport';
 
 export default function GroupTool() {
   const { shapes } = useShapes();
   const setShapes = useSetAtom(SetShapesAtom);
   const [selection, setSelection] = useAtom(SelectionAtom);
-  const reportHasList = useAtomValue(ReportHasListAtom);
+  const { hasList } = useReport();
+  const reportHasList = hasList();
   const captions = getCaptions().groupOperation;
 
   const handleGroup = useCallback(() => {
