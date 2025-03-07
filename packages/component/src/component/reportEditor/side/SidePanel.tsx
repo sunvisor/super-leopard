@@ -10,13 +10,12 @@ import { EditMode } from '../ReportWorkArea';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { Shapes } from '@sunvisor/super-leopard-core';
 import getCaptions from '../../../captions/getCaptions';
-import { useAtomValue } from 'jotai/index';
-import { SelectionAtom } from '../../../atom/SelectionAtom';
 import PropertyTab from './PropertyTab';
 import LayerPanel from './LayerPanel';
 import ObjectListPanel from '../../objectList/ObjectListPanel';
 import { getSettings } from '../../../settings';
 import { getFontList } from '../../../font/font';
+import useSelection from '../../../hooks/useSelection';
 
 
 type Props = {
@@ -53,7 +52,7 @@ function getTitle(selection: Shapes, mode: EditMode): string {
 
 export default function SidePanel(props: Props) {
   const { mode, open, onClosePanel } = props;
-  const selection = useAtomValue(SelectionAtom);
+  const { selection } = useSelection();
   const settings = getSettings();
   const [tabIndex, setTabIndex] = React.useState(0);
   const captions = getCaptions().reportObject;

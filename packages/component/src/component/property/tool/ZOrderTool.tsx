@@ -7,16 +7,14 @@
 import { useCallback } from "react";
 import PropertyBox from '../object/PropertyBox';
 import ZOrderButtons, { ZOrderCommand } from '../field/ZOrderButtons';
-import { useAtomValue, useSetAtom } from 'jotai';
-import { SelectionAtom } from '../../../atom/SelectionAtom';
 import useShapes from '../../reportEditor/hooks/useShapes';
-import { SetShapesAtom } from '../../../atom/ReportAtom';
+import useSelection from '../../../hooks/useSelection';
+
 
 export default function ZOrderTool() {
-  const selection = useAtomValue(SelectionAtom);
+  const {selection} = useSelection();
   const target = selection.count > 0 ? selection.get(0) : undefined;
-  const { shapes } = useShapes();
-  const setShapes = useSetAtom(SetShapesAtom);
+  const { shapes, setShapes } = useShapes();
 
   const bringTo = useCallback((command: ZOrderCommand) => {
       if (!target) return shapes;

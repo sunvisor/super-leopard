@@ -11,13 +11,12 @@ import EditToolbar from '../toolbar/EditToolbar';
 import { EditMode } from './ReportWorkArea';
 import FooterToolbar from '../toolbar/FooterToolbar';
 import { ReportData } from '@sunvisor/super-leopard-core';
-import { useSetAtom } from 'jotai';
-import { ClearSelectionAtom } from '../../atom/SelectionAtom';
 import DrawToolbar from '../toolbar/DrawToolbar';
 import SidePanel from './side/SidePanel';
 import { setLanguage } from '../../captions/getCaptions';
 import { setSettings, SettingData } from '../../settings';
 import useReport from '../../hooks/useReport';
+import useSelection from '../../hooks/useSelection';
 
 
 export type OnSaveHandler = (id: ReportId, title: string, report: ReportData) => void;
@@ -40,7 +39,7 @@ type Props = {
 export default function ReportEditor(props: Props) {
   const { report: data, reportId, onSave, language, settings } = props;
   const [title, setTitle] = useState<string>(props.title);
-  const clearSelection = useSetAtom(ClearSelectionAtom);
+  const { clearSelection } = useSelection();
   const { report, setReport, applyShapes } = useReport();
   const [mode, setMode] = React.useState<EditMode>("edit");
   const [zoom, setZoom] = useState<number>(100);

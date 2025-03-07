@@ -5,11 +5,11 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import { useCallback } from "react";
-import { useSetAtom } from 'jotai';
 import ObjectList from '../objectList/ObjectList';
-import { SelectionAtom } from '../../atom/SelectionAtom';
 import { Shape, Shapes } from '@sunvisor/super-leopard-core';
 import useShapes from '../reportEditor/hooks/useShapes';
+import useSelection from '../../hooks/useSelection';
+
 
 type Props = {
   showPropertyTab: () => void;
@@ -17,7 +17,7 @@ type Props = {
 
 export default function ObjectListPanel({ showPropertyTab }: Props) {
   const { shapes } = useShapes()
-  const setSelection = useSetAtom(SelectionAtom);
+  const { setSelection } = useSelection();
 
   const handleClick = useCallback((shape: Shape) => {
     setSelection(new Shapes([shape]))

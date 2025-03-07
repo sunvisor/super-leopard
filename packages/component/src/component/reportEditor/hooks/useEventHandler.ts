@@ -5,7 +5,7 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import { useCallback } from 'react';
-import { useAtom, useSetAtom, WritableAtom } from 'jotai/index';
+import { useSetAtom, WritableAtom } from 'jotai/index';
 import { Shape } from '@sunvisor/super-leopard-core';
 import { Box, Position, PositionPair } from '@sunvisor/super-leopard-core';
 import { createShapesSelector } from '@sunvisor/super-leopard-core';
@@ -13,11 +13,11 @@ import { Shapes, Line } from '@sunvisor/super-leopard-core';
 import { useAtomValue } from 'jotai';
 import { Atom } from 'jotai/ts3.8/vanilla/atom';
 import useShapes from './useShapes';
-import { ClearSelectionAtom, SelectionAtom } from '../../../atom/SelectionAtom';
 import useClipboard from './useClipboard';
 import { CanRedoAtom, CanUndoAtom, RedoHistoryAtom, UndoHistoryAtom } from '../../../atom/HistoryAtom';
 import { getSettings } from '../../../settings';
 import useScale from '../../../hooks/useScale';
+import useSelection from '../../../hooks/useSelection';
 
 const PASTE_OFFSET = 20; // pixel
 
@@ -30,8 +30,7 @@ export default function useEventHandler(props: Props = {}) {
   const {
     shapes, removeShapes, addShape, updateShapes
   } = useShapes(props);
-  const [selection, setSelection] = useAtom(SelectionAtom);
-  const clearSelection = useSetAtom(ClearSelectionAtom);
+  const { selection, setSelection, clearSelection } = useSelection();
   const settings = getSettings();
   const { setToClipboard, getFromClipboard, canPaste } = useClipboard();
   const canUndo = useAtomValue(CanUndoAtom);

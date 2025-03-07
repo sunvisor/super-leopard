@@ -5,14 +5,14 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import { useCallback } from "react";
-import { SelectionAtom } from '../../../atom/SelectionAtom';
 import useShapes from '../../reportEditor/hooks/useShapes';
 import PropertyBox from '../object/PropertyBox';
 import ObjectsAlignButtons, { ObjectAlignCommand } from '../field/ObjectsAlignButtons';
-import { useAtom } from 'jotai/index';
+import useSelection from '../../../hooks/useSelection';
+
 
 export default function ObjectAlignTool() {
-  const [selection, setSelection] = useAtom(SelectionAtom);
+  const {selection, setSelection} = useSelection();
   const { updateShapes } = useShapes();
 
   const align = useCallback(

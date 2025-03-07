@@ -37,6 +37,7 @@ export default function useShapes(props: Props = {}) {
 
   return {
     shapes,
+    setShapes,
     addShape,
     updateShapes,
     removeShapes,

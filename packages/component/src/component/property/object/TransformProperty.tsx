@@ -5,11 +5,10 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import { useCallback, useMemo } from "react";
-import { useAtomValue, useSetAtom } from 'jotai';
-import { SelectionAtom } from '../../../atom/SelectionAtom';
 import { Box, UnitValue } from '@sunvisor/super-leopard-core';
 import useShapes from '../../reportEditor/hooks/useShapes';
 import TransformPanel from '../panel/TransformPanel';
+import useSelection from '../../../hooks/useSelection';
 
 type Props = {
   unit: UnitValue;
@@ -17,9 +16,8 @@ type Props = {
 
 export default function TransformProperty(props: Props) {
   const { unit } = props;
-  const selection = useAtomValue(SelectionAtom);
+  const { selection, setSelection } = useSelection();
   const { updateShapes } = useShapes();
-  const setSelection = useSetAtom(SelectionAtom);
   const box = useMemo(() => selection.bbox, [selection.bbox]);
 
   const handleUpdate = useCallback(
