@@ -20,7 +20,7 @@ import { isMac } from '../environment';
 import contractShapes from '../report/layer/contractShapes';
 import useReport from '../../hooks/useReport';
 import useLayer from '../../hooks/useLayer';
-import useScale from '../../hooks/useScale';
+import useZoom from '../../hooks/useZoom';
 
 
 export type EditMode = AppendShapeType | 'edit';
@@ -38,7 +38,7 @@ export default function ReportWorkArea(props: Props) {
     () => contractShapes(report.layers),
     [report.layers]
   );
-  const { setZoom } = useScale();
+  const { setZoom } = useZoom();
 
   useEffect(() => {
     setZoom(zoom)

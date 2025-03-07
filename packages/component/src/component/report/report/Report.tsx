@@ -11,8 +11,8 @@ import Layer from '../layer/Layer';
 import { DrawModeType } from '../../../svg';
 import contractShapes from '../../report/layer/contractShapes';
 import { setSettings, SettingData } from '../../../settings';
-import useScale from '../../../hooks/useScale';
 import useReport from '../../../hooks/useReport';
+import useZoom from '../../../hooks/useZoom';
 
 type Props = {
   report: ReportData;
@@ -29,7 +29,7 @@ export default function Report(props: Props) {
     () => contractShapes(report.layers),
     [report.layers]
   );
-  const { setZoom } = useScale();
+  const { setZoom } = useZoom();
   const { setReport } = useReport();
 
   setReport(report);
