@@ -105,7 +105,7 @@ describe('Tests for ReportAtom', () => {
 
   });
 
-  describe('Tests for UpdateActiveLayerShapesAtom', () => {
+  describe('Tests for ApplyShapesToReportAtom', () => {
 
     test('Updates shapes', () => {
       // Arrange

@@ -6,10 +6,11 @@
  */
 import { renderHook, act } from '@testing-library/react';
 import { useSetAtom } from 'jotai';
-import { SetReportAtom } from '../atom/ReportAtom';
+import { SetReportAtom, SetShapesAtom } from '../atom/ReportAtom';
 import useReport from './useReport';
-import { billTestData } from '@sunvisor/super-leopard-test-assets';
+import { billTestData, shapeTestData } from '@sunvisor/super-leopard-test-assets';
 import { emptyReport } from '../component/emptyReport';
+import { createShapes } from '@sunvisor/super-leopard-core';
 
 describe('Tests for useReport', () => {
 
@@ -69,5 +70,28 @@ describe('Tests for useReport', () => {
     // Assert
     expect(reportResult.current.hasList()).toBe(false);
   });
+
+  it('should apply shapes to report', () => {
+    // Arrange
+    const reportData = billTestData;
+    // Set report
+    const { result } = renderHook(() => useSetAtom(SetReportAtom));
+    act(() => {
+      result.current(reportData);
+    });
+    // Set shapes
+    const shapes = createShapes(shapeTestData);
+    const { result: shapesResult } = renderHook(() => useSetAtom(SetShapesAtom));
+    act(() => {
+      shapesResult.current(shapes);
+    })
+    // Act
+    const { result: reportResult } = renderHook(() => useReport());
+    act(() => {
+      reportResult.current.applyShapes();
+    });
+    // Assert
+    expect(reportResult.current.report.layers[0].shapes).toEqual(shapeTestData);
+  })
 
 });
