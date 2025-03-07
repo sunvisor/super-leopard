@@ -7,7 +7,7 @@
 import useShapes from "./useShapes";
 import { createRect, PaperSize, ReportData, Shape, Shapes, UnitType } from '@sunvisor/super-leopard-core';
 import { act, renderHook } from '@testing-library/react';
-import { useSetAtom } from 'jotai/index';
+import { useSetAtom } from 'jotai';
 import { SetActiveLayerIndexAtom, SetReportAtom } from '../../../atom/ReportAtom';
 import { layerTestData } from '../../../__test_assets__';
 

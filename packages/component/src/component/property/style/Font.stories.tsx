@@ -8,11 +8,9 @@
  */
 import Font from "./Font";
 import { Meta, StoryContext, StoryFn, StoryObj } from '@storybook/react';
-import { createStore } from 'jotai/index';
+import { createStore, Provider } from 'jotai';
 import { defaultStyle, FontStyleAtom } from '../../../atom/StylesAtom';
-import { Provider } from 'jotai';
-import { fieldDecorator } from '../../../__test_assets__';
-import { testFontList } from '../../../__test_assets__';
+import { fieldDecorator, testFontList } from '../../../__test_assets__';
 
 type Story = StoryObj<typeof Font>
 

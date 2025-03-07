@@ -5,11 +5,10 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import { useCallback, useState } from "react";
-import { FontStyleAtom } from '../../../atom/StylesAtom';
-import { useAtom } from 'jotai/index';
 import FontFields from '../fieldGroup/FontFields';
 import { FontList } from '../../../font';
 import { FontData } from '@sunvisor/super-leopard-core';
+import useStyles from '../../../hooks/useStyles';
 
 
 type Props = {
@@ -17,7 +16,7 @@ type Props = {
 }
 
 export default function Font({ fontList }: Props) {
-  const [font, setFont] = useAtom(FontStyleAtom);
+  const { font, setFont } = useStyles();
   const [values, setValues] = useState<FontData>(font);
 
   const handleChangeValue = useCallback(

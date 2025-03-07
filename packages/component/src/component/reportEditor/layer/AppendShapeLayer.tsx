@@ -16,14 +16,13 @@ import {
   Shape,
   TextShapeType,
 } from '@sunvisor/super-leopard-core';
-import { useAtomValue } from 'jotai';
-import { StylesAtom } from '../../../atom/StylesAtom';
 import { AppendShapeRubberBand } from '../../../svg';
 import { LayerDiv } from '../../report/layer/Layer';
 import { SvgDriver } from '../../../svgDriver';
 import { getSettings } from '../../../settings';
 import usePage from '../../../hooks/usePage';
 import useScale from '../../../hooks/useScale';
+import useStyles from '../../../hooks/useStyles';
 
 export type OnAppendHandler = (shape: Shape) => void;
 
@@ -49,7 +48,7 @@ export default function AppendShapeLayer(props: Props) {
   const { page } = usePage();
   const { scale } = useScale();
   const settings = getSettings();
-  const styles = useAtomValue(StylesAtom);
+  const { styles } = useStyles();
   const rubberBand = useMemo(() => {
     return new AppendShapeRubberBand({
       svg,

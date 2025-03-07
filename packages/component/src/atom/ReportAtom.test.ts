@@ -20,7 +20,7 @@ import {
   UpdateLayerNameAtom,
   UpdateLayersAtom,
 } from "./ReportAtom";
-import { createStore } from 'jotai/index';
+import { createStore } from 'jotai';
 import { ReadHistoryAtom } from './HistoryAtom';
 import { createShapes, ReportData } from '@sunvisor/super-leopard-core';
 import { layerTestData } from '../__test_assets__';

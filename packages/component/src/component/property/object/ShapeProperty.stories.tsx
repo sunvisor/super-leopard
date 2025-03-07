@@ -24,12 +24,13 @@ import {
   Field,
   Image,
   Line,
-  Rect, Shape, Shapes,
+  Rect,
+  Shape,
+  Shapes,
   UnitType
 } from '@sunvisor/super-leopard-core';
 import { testFontList, testImageOptions } from '../../../__test_assets__';
-import { Provider } from 'jotai';
-import { createStore } from 'jotai/index';
+import { createStore, Provider } from 'jotai';
 import { SelectionAtom } from '../../../atom/SelectionAtom';
 import { fieldTestData, shapeTestData } from '@sunvisor/super-leopard-test-assets';
 

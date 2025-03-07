@@ -14,7 +14,7 @@ import {
   RedoHistoryAtom,
   UndoHistoryAtom
 } from "./HistoryAtom";
-import { createStore } from 'jotai/index';
+import { createStore } from 'jotai';
 import { ReportData } from '@sunvisor/super-leopard-core';
 import { ReadShapesAtom } from './ReportAtom';
 import { shapeTestData, shapeTestData2 } from '@sunvisor/super-leopard-test-assets';

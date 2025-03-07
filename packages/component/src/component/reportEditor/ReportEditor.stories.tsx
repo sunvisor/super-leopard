@@ -8,14 +8,12 @@
  */
 import ReportEditor from "./ReportEditor";
 import { Meta, StoryObj } from '@storybook/react';
-import { Provider } from 'jotai';
-import { createStore } from 'jotai/index';
-import { expect, waitFor, within } from '@storybook/test';
+import { createStore, Provider } from 'jotai';
+import { expect, fn, waitFor, within } from '@storybook/test';
 import { emptyReport } from '../emptyReport';
 import { SetReportAtom } from '../../atom/ReportAtom';
 import imageHandlers from '../../__test_assets__/msw/imageHandlers';
 import { testImageListData } from '../../__test_assets__';
-import { fn } from '@storybook/test';
 import { testSettings } from '../../__test_assets__/settings';
 import { billTestData, en } from '@sunvisor/super-leopard-test-assets';
 import NoteAddIcon from '@mui/icons-material/NoteAdd';

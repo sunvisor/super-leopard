@@ -8,7 +8,7 @@ import { act, renderHook } from '@testing-library/react';
 import { SetReportAtom } from '../atom/ReportAtom';
 import useScale from './useScale';
 import { beforeEach } from 'vitest';
-import { createStore } from 'jotai/index';
+import { createStore } from 'jotai';
 import { emptyReport } from '../component/emptyReport';
 
 describe('Tests for useScale', () => {

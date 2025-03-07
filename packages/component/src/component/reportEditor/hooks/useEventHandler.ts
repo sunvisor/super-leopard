@@ -5,13 +5,8 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import { useCallback } from 'react';
-import { useSetAtom, WritableAtom } from 'jotai/index';
-import { Shape } from '@sunvisor/super-leopard-core';
-import { Box, Position, PositionPair } from '@sunvisor/super-leopard-core';
-import { createShapesSelector } from '@sunvisor/super-leopard-core';
-import { Shapes, Line } from '@sunvisor/super-leopard-core';
-import { useAtomValue } from 'jotai';
-import { Atom } from 'jotai/ts3.8/vanilla/atom';
+import { Atom, useAtomValue, useSetAtom, WritableAtom } from 'jotai';
+import { Box, createShapesSelector, Line, Position, PositionPair, Shape, Shapes } from '@sunvisor/super-leopard-core';
 import useShapes from './useShapes';
 import useClipboard from './useClipboard';
 import { CanRedoAtom, CanUndoAtom, RedoHistoryAtom, UndoHistoryAtom } from '../../../atom/HistoryAtom';

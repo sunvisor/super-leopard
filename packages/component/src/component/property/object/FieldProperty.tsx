@@ -24,12 +24,11 @@ import EllipsePanel from '../panel/EllipsePanel';
 import ImagePanel from '../panel/ImagePanel';
 import LinePanel from '../panel/LinePanel';
 import RectPanel from '../panel/RectPanel';
-import { useAtomValue } from 'jotai';
-import { StylesAtom } from '../../../atom/StylesAtom';
 import { UpdateHandler } from './ShapeProperty';
 import BarcodePanel from '../panel/BarcodePanel';
 import ShapeState from '../ShapeState';
 import { ImageOptions } from '../../../settings';
+import useStyles from '../../../hooks/useStyles';
 
 type Props = {
   unit: UnitValue;
@@ -63,7 +62,7 @@ export default function FieldProperty(props: Props) {
   const [fieldName, setFieldName] = useState(shape.name);
   const [shapeType, setShapeType] = useState<StaticShapeType>(shape.shape.type as StaticShapeType);
   const PanelComponent: PanelType = useMemo(() => panels[shapeType] as PanelType, [shapeType]);
-  const defaultStyle = useAtomValue(StylesAtom);
+  const { styles: defaultStyle } = useStyles();
   const shapeProperty = useMemo(
     () => serializeShape(shape.shape), [shape.shape]
   );
