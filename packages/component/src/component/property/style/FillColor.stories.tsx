@@ -8,8 +8,7 @@
  */
 import FillColor from "./FillColor";
 import { Meta, StoryContext, StoryFn, StoryObj } from '@storybook/react';
-import { createStore } from 'jotai/index';
-import { Provider } from 'jotai';
+import { createStore, Provider } from 'jotai';
 import { FillColorAtom } from '../../../atom/StylesAtom';
 import { fieldDecorator } from '../../../__test_assets__';
 

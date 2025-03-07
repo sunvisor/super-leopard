@@ -5,7 +5,7 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import { ClearSelectionAtom, SelectionAtom } from "./SelectionAtom";
-import { createStore } from 'jotai/index';
+import { createStore } from 'jotai';
 import { createShapes } from '@sunvisor/super-leopard-core';
 import { shapeTestData } from '@sunvisor/super-leopard-test-assets';
 

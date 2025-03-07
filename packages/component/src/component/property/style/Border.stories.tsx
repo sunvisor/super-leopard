@@ -7,12 +7,10 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import Border from "./Border";
-import { Meta, StoryContext, StoryObj } from '@storybook/react';
-import { createStore } from 'jotai/index';
+import { Meta, StoryContext, StoryFn, StoryObj } from '@storybook/react';
+import { createStore, Provider } from 'jotai';
 import { BorderAtom } from '../../../atom/StylesAtom';
-import { Provider } from 'jotai';
 import { fieldDecorator } from '../../../__test_assets__';
-import { StoryFn } from '@storybook/react';
 
 type Story = StoryObj<typeof Border>
 

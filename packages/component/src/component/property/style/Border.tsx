@@ -6,12 +6,12 @@
  */
 import { useCallback, useEffect, useState } from "react";
 import BorderFields from '../fieldGroup/BorderFields';
-import { useAtom } from 'jotai/index';
-import { BorderAtom } from '../../../atom/StylesAtom';
 import { BorderData, } from '@sunvisor/super-leopard-core';
+import useStyles from '../../../hooks/useStyles';
+
 
 export default function Border() {
-  const [border, setBorder] = useAtom(BorderAtom);
+  const { border, setBorder } = useStyles();
   const [values, setValues] = useState<BorderData | undefined>(border);
 
   const handleChangeValue = useCallback(

@@ -6,12 +6,12 @@
  */
 import PropertyBox from '../object/PropertyBox';
 import ClipboardButtons from '../field/ClipboardButtons';
-import { useAtomValue } from 'jotai';
-import { SelectionAtom } from '../../../atom/SelectionAtom';
 import useEventHandler from '../../reportEditor/hooks/useEventHandler';
+import useSelection from '../../../hooks/useSelection';
+
 
 export default function ClipboardTool() {
-  const selection = useAtomValue(SelectionAtom);
+  const { selection } = useSelection();
   const canCopy = selection.count > 0;
   const { onCopy, onCut, onPaste, canPaste, onRemove } = useEventHandler();
 

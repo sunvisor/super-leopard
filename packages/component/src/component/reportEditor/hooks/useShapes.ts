@@ -4,11 +4,10 @@
  * Created by sunvisor on 2024/02/07.
  * Copyright (C) Sunvisor Lab. 2024.
  */
-import { useAtomValue, useSetAtom, WritableAtom } from 'jotai';
+import { Atom, useAtomValue, useSetAtom, WritableAtom } from 'jotai';
 import { useCallback } from 'react';
 import { Shape, Shapes } from '@sunvisor/super-leopard-core';
 import { ReadShapesAtom, SetShapesAtom } from '../../../atom/ReportAtom';
-import { Atom } from 'jotai/ts3.8/vanilla/atom';
 
 type Props = {
   readAtom?: Atom<Shapes>,
@@ -37,6 +36,7 @@ export default function useShapes(props: Props = {}) {
 
   return {
     shapes,
+    setShapes,
     addShape,
     updateShapes,
     removeShapes,

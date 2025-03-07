@@ -6,7 +6,7 @@
  */
 import { Shapes } from '@sunvisor/super-leopard-core';
 import { useCallback } from 'react';
-import { useAtom } from 'jotai/index';
+import { useAtom } from 'jotai';
 import { ClipboardAtom } from '../../../atom/ClipboardAtom';
 
 export default function useClipboard() {

@@ -13,7 +13,6 @@ import {
   ReadReportAtom,
   ReadShapesAtom,
   RemoveLayerAtom,
-  ReportHasListAtom,
   RestoreReportAtom,
   SetActiveLayerIndexAtom,
   SetReportAtom,
@@ -21,7 +20,7 @@ import {
   UpdateLayerNameAtom,
   UpdateLayersAtom,
 } from "./ReportAtom";
-import { createStore } from 'jotai/index';
+import { createStore } from 'jotai';
 import { ReadHistoryAtom } from './HistoryAtom';
 import { createShapes, ReportData } from '@sunvisor/super-leopard-core';
 import { layerTestData } from '../__test_assets__';
@@ -29,30 +28,6 @@ import { billTestData, shapeTestData } from '@sunvisor/super-leopard-test-assets
 
 
 describe('Tests for ReportAtom', () => {
-
-  describe('Tests for ReportHasListAtom', () => {
-
-    test('Returns true if the report contains a list', () => {
-      // Arrange
-      const store = createStore();
-      store.set(SetReportAtom, billTestData);
-      // Act
-      const result = store.get(ReportHasListAtom);
-      // Assert
-      expect(result).toBe(true);
-    });
-
-    test('Returns false if the report does not contain a list', () => {
-      // Arrange
-      const store = createStore();
-      store.set(SetReportAtom, { page: { unit: 'mm', size: 'A4' }, layers: layerTestData });
-      // Act
-      const result = store.get(ReportHasListAtom);
-      // Assert
-      expect(result).toBe(false);
-    });
-
-  });
 
   describe('Tests for SetReportAtom', () => {
 
@@ -130,7 +105,7 @@ describe('Tests for ReportAtom', () => {
 
   });
 
-  describe('Tests for UpdateActiveLayerShapesAtom', () => {
+  describe('Tests for ApplyShapesToReportAtom', () => {
 
     test('Updates shapes', () => {
       // Arrange

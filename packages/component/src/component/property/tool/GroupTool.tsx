@@ -8,22 +8,21 @@ import { useCallback } from "react";
 import PropertyBox from '../object/PropertyBox';
 import { Button, ButtonGroup } from '@mui/material';
 import getCaptions from '../../../captions/getCaptions';
-import { SelectionAtom } from '../../../atom/SelectionAtom';
 import useShapes from '../../reportEditor/hooks/useShapes';
 import {
   Field, Group, grouping, List, listToShapes,
   Shapes, shapesToList, ungrouping
 } from '@sunvisor/super-leopard-core';
-import { useAtom, useSetAtom } from 'jotai/index';
-import { ReportHasListAtom, SetShapesAtom } from '../../../atom/ReportAtom';
 import GroupBox from '../fieldGroup/GroupBox';
-import { useAtomValue } from 'jotai';
+import useReport from '../../../hooks/useReport';
+import useSelection from '../../../hooks/useSelection';
+
 
 export default function GroupTool() {
-  const { shapes } = useShapes();
-  const setShapes = useSetAtom(SetShapesAtom);
-  const [selection, setSelection] = useAtom(SelectionAtom);
-  const reportHasList = useAtomValue(ReportHasListAtom);
+  const { shapes, setShapes } = useShapes();
+  const { selection, setSelection } = useSelection();
+  const { hasList } = useReport();
+  const reportHasList = hasList();
   const captions = getCaptions().groupOperation;
 
   const handleGroup = useCallback(() => {

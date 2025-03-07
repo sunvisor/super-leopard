@@ -8,26 +8,20 @@ import { Box } from "@mui/material";
 import { useCallback } from "react";
 import LayerToolbar from './LayerToolbar';
 import LayerList from './LayerList';
-import { useAtomValue, useSetAtom } from 'jotai';
-import {
-  AddLayerAtom,
-  ReadActiveLayerIndexAtom,
-  ReadReportAtom,
-  RemoveLayerAtom,
-  SetActiveLayerIndexAtom,
-  UpdateLayerNameAtom,
-  UpdateLayersAtom
-} from '../../../atom/ReportAtom';
 import { LayerData } from '@sunvisor/super-leopard-core';
+import useReport from '../../../hooks/useReport';
+import useLayer from '../../../hooks/useLayer';
 
 export default function LayerPanel() {
-  const report = useAtomValue(ReadReportAtom);
-  const activeLayerIndex = useAtomValue(ReadActiveLayerIndexAtom);
-  const setActiveLayerIndex = useSetAtom(SetActiveLayerIndexAtom);
-  const updateLayers = useSetAtom(UpdateLayersAtom);
-  const removeLayer = useSetAtom(RemoveLayerAtom);
-  const updateLayerName = useSetAtom(UpdateLayerNameAtom)
-  const addLayer = useSetAtom(AddLayerAtom);
+  const { report } = useReport();
+  const {
+    activeLayerIndex,
+    setActiveLayerIndex,
+    updateLayers,
+    removeLayer,
+    updateLayerName,
+    addLayer
+  } = useLayer();
 
   const handleAddLayer = useCallback(
     () => {

@@ -7,7 +7,7 @@
  * Copyright (C) Sunvisor Lab. 2023.
  */
 import Layer from "./Layer";
-import { createStore, Provider } from "jotai/index";
+import { createStore, Provider } from "jotai";
 import { Meta, StoryObj } from "@storybook/react";
 import { DrawModeType } from '../../../svg';
 import { ShapeData, createShapes } from '@sunvisor/super-leopard-core';

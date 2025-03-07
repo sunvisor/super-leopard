@@ -5,19 +5,14 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import { useCallback } from 'react';
-import { useAtom, useSetAtom, WritableAtom } from 'jotai/index';
-import { Shape } from '@sunvisor/super-leopard-core';
-import { Box, Position, PositionPair } from '@sunvisor/super-leopard-core';
-import { createShapesSelector } from '@sunvisor/super-leopard-core';
-import { Shapes, Line } from '@sunvisor/super-leopard-core';
-import { useAtomValue } from 'jotai';
-import { Atom } from 'jotai/ts3.8/vanilla/atom';
+import { Atom, useAtomValue, useSetAtom, WritableAtom } from 'jotai';
+import { Box, createShapesSelector, Line, Position, PositionPair, Shape, Shapes } from '@sunvisor/super-leopard-core';
 import useShapes from './useShapes';
-import { ClearSelectionAtom, SelectionAtom } from '../../../atom/SelectionAtom';
 import useClipboard from './useClipboard';
 import { CanRedoAtom, CanUndoAtom, RedoHistoryAtom, UndoHistoryAtom } from '../../../atom/HistoryAtom';
-import { ReadScaleAtom } from '../../../atom/ReportAtom';
 import { getSettings } from '../../../settings';
+import useScale from '../../../hooks/useScale';
+import useSelection from '../../../hooks/useSelection';
 
 const PASTE_OFFSET = 20; // pixel
 
@@ -30,15 +25,14 @@ export default function useEventHandler(props: Props = {}) {
   const {
     shapes, removeShapes, addShape, updateShapes
   } = useShapes(props);
-  const [selection, setSelection] = useAtom(SelectionAtom);
-  const clearSelection = useSetAtom(ClearSelectionAtom);
+  const { selection, setSelection, clearSelection } = useSelection();
   const settings = getSettings();
   const { setToClipboard, getFromClipboard, canPaste } = useClipboard();
   const canUndo = useAtomValue(CanUndoAtom);
   const canRedo = useAtomValue(CanRedoAtom);
   const undo = useSetAtom(UndoHistoryAtom);
   const redo = useSetAtom(RedoHistoryAtom);
-  const scale = useAtomValue(ReadScaleAtom);
+  const { scale } = useScale();
 
   const onSelect = useCallback((area: Box | Position) => {
       const selector = createShapesSelector(scale, settings.lineSelect);
