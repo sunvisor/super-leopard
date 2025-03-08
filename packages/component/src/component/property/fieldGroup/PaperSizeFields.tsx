@@ -11,7 +11,7 @@ import { Page, OrientationValue, PageSize, PaperSize, PaperSizeValue } from '@su
 import NumberField from '../field/NumberField';
 import { MAX_SCALE_VALUE } from '@sunvisor/super-leopard-core';
 import { ChangeValueHandler } from '../usePropertyStates';
-import getCaptions from '../../../captions/getCaptions';
+import translation from '../../../translations/translation';
 import OrientationField from '../field/OrientationField';
 
 
@@ -65,7 +65,7 @@ export default function PaperSizeFields(props: Props) {
     setWidth(width);
     setHeight(height);
   }, [page]);
-  const captions = getCaptions().pageProperty;
+  const t = translation().pageProperty;
 
   const handleChangePaperSize = useCallback(
     (_: string, value: PaperSizeValue | 'custom') => {
@@ -101,7 +101,7 @@ export default function PaperSizeFields(props: Props) {
       <GroupBox sx={{ gap: 2, display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
         <PaperSizeField
           sx={{ flex: 1 }}
-          label={captions.paperSize}
+          label={t.paperSize}
           name="paperSize"
           value={paperSize}
           onChangeValue={handleChangePaperSize}
@@ -115,7 +115,7 @@ export default function PaperSizeFields(props: Props) {
       </GroupBox>
       <GroupBox sx={{ gap: 2 }}>
         <NumberField
-          label={captions.width}
+          label={t.width}
           name="width"
           unit={page.unit}
           value={width}
@@ -125,7 +125,7 @@ export default function PaperSizeFields(props: Props) {
           onChangeValue={handleChangeWidth}
         />
         <NumberField
-          label={captions.height}
+          label={t.height}
           name="height"
           unit={page.unit}
           value={height}

@@ -9,7 +9,7 @@ import CapButtIcon from '../field/icon/CapButtIcon';
 import { CapValue } from '@sunvisor/super-leopard-core';
 import CapRoundIcon from '../field/icon/CapRoundIcon';
 import CapSquareIcon from '../field/icon/CapSquareIcon';
-import getCaptions from '../../../captions/getCaptions';
+import translation from '../../../translations/translation';
 import ToggleTools, { ToggleToolButton } from '../ToggleTools';
 import { ChangeValueHandler } from '../usePropertyStates';
 
@@ -22,13 +22,13 @@ type Props = {
 
 export default function CapButtons(props: Props) {
   const { name, value, onChangeValue } = props;
-  const captions = getCaptions().capTool;
+  const t = translation().capTool;
 
   const buttons: ToggleToolButton[] = useMemo(() => [
-    { icon: <CapButtIcon/>, value: 'butt', title: captions.butt },
-    { icon: <CapRoundIcon/>, value: 'round', title: captions.round },
-    { icon: <CapSquareIcon/>, value: 'square', title: captions.square }
-  ], [captions.butt, captions.round, captions.square]);
+    { icon: <CapButtIcon/>, value: 'butt', title: t.butt },
+    { icon: <CapRoundIcon/>, value: 'round', title: t.round },
+    { icon: <CapSquareIcon/>, value: 'square', title: t.square }
+  ], [t.butt, t.round, t.square]);
 
   const handleChange = useCallback((_: React.MouseEvent<HTMLElement>, newCap: CapValue) => {
     if (newCap === null) return;

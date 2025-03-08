@@ -4,7 +4,7 @@
  * Created by sunvisor on 2024/02/15.
  * Copyright (C) Sunvisor Lab. 2024.
  */
-import { Captions } from './ja';
+import { Translation } from './ja';
 
 
 const operation = {
@@ -229,7 +229,7 @@ const numberErrorMessage= {
   invalidValue: 'Invalid number.',
 }
 
-export const en: Captions = {
+export const en: Translation = {
   operation,
   reportObject,
   pageProperty,

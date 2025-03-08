@@ -7,7 +7,7 @@
 import { useCallback } from "react";
 import PropertyBox from '../object/PropertyBox';
 import { Button, ButtonGroup } from '@mui/material';
-import getCaptions from '../../../captions/getCaptions';
+import translation from '../../../translations/translation';
 import useShapes from '../../reportEditor/hooks/useShapes';
 import {
   Field, Group, grouping, List, listToShapes,
@@ -23,7 +23,7 @@ export default function GroupTool() {
   const { selection, setSelection } = useSelection();
   const { hasList } = useReport();
   const reportHasList = hasList();
-  const captions = getCaptions().groupOperation;
+  const t = translation().groupOperation;
 
   const handleGroup = useCallback(() => {
     const { shapes: newShapes, group } = grouping(shapes, selection);
@@ -73,13 +73,13 @@ export default function GroupTool() {
       <GroupBox sx={{ gap: 1 }}>
         <ButtonGroup variant="outlined">
           <Button size="small" onClick={handleGroup} disabled={!canGroup()}>
-            {captions.group}
+            {t.group}
           </Button>
           <Button
             size="small" onClick={handleUngroup}
             disabled={!canUngroup()}
           >
-            {captions.ungroup}
+            {t.ungroup}
           </Button>
         </ButtonGroup>
         <ButtonGroup variant="outlined">
@@ -87,13 +87,13 @@ export default function GroupTool() {
             size="small" onClick={handleShapesToList}
             disabled={!canList()}
           >
-            {captions.shapesToList}
+            {t.shapesToList}
           </Button>
           <Button
             size="small" onClick={handleListToShapes}
             disabled={!canUnList()}
           >
-            {captions.listToShapes}
+            {t.listToShapes}
           </Button>
         </ButtonGroup>
       </GroupBox>

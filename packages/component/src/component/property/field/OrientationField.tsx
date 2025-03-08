@@ -9,7 +9,7 @@ import CropPortraitIcon from '@mui/icons-material/CropPortrait';
 import { SxProps } from '@mui/material';
 import { OrientationValue } from '@sunvisor/super-leopard-core';
 import React, { useCallback, useMemo } from "react";
-import getCaptions from '../../../captions/getCaptions';
+import translation from '../../../translations/translation';
 import ToggleTools, { ToggleToolButton } from '../ToggleTools';
 import { ChangeValueHandler } from '../usePropertyStates';
 
@@ -23,12 +23,12 @@ type Props = {
 
 export default function OrientationField(props: Props) {
   const { name, value, onChangeValue , sx } = props;
-  const captions = getCaptions().pageProperty;
+  const t = translation().pageProperty;
 
   const button: ToggleToolButton[] = useMemo(() => [
-    { icon: <CropPortraitIcon/>, value: 'portrait', caption: captions.portrait, sx: { flex: 1 } },
-    { icon: <CropLandscapeIcon/>, value: 'landscape', caption: captions.landscape, sx: { flex: 1 } },
-  ], [captions.portrait, captions.landscape]);
+    { icon: <CropPortraitIcon/>, value: 'portrait', caption: t.portrait, sx: { flex: 1 } },
+    { icon: <CropLandscapeIcon/>, value: 'landscape', caption: t.landscape, sx: { flex: 1 } },
+  ], [t.portrait, t.landscape]);
 
   const handleChange = useCallback((_: React.MouseEvent<HTMLElement>, newOrientation: OrientationValue) => {
     if (newOrientation === null) return;

@@ -8,7 +8,7 @@ import { Box } from '@mui/material';
 import FillColorField from '../field/FillColorField';
 import { ChangeValueHandler } from '../usePropertyStates';
 import ColorPickerField from '../field/ColorPickerField';
-import getCaptions from '../../../captions/getCaptions';
+import translation from '../../../translations/translation';
 import GroupBox from '../fieldGroup/GroupBox';
 
 export type TextColorFieldType = boolean | string | undefined;
@@ -25,7 +25,7 @@ export default function TextColorFields(props: Props) {
     color,
     onChangeValue,
   } = props;
-  const captions = getCaptions().textProperty;
+  const t = translation().textProperty;
 
   return (
     <GroupBox sx={{ gap: 2 }}>
@@ -33,7 +33,7 @@ export default function TextColorFields(props: Props) {
         <ColorPickerField
           name="color"
           value={color}
-          label={captions.color}
+          label={t.color}
           onChangeValue={onChangeValue}
         />
       </Box>

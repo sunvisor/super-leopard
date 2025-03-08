@@ -10,7 +10,7 @@ import FormatBoldIcon from '@mui/icons-material/FormatBold';
 import FormatItalicIcon from '@mui/icons-material/FormatItalic';
 import FormatUnderlinedIcon from '@mui/icons-material/FormatUnderlined';
 import FormatStrikethroughIcon from '@mui/icons-material/FormatStrikethrough';
-import getCaptions from '../../../captions/getCaptions';
+import translation from '../../../translations/translation';
 import ToggleTools, { ToggleToolButton } from '../ToggleTools';
 import { ChangeValueHandler } from '../usePropertyStates';
 
@@ -26,7 +26,7 @@ type Props = {
 export default function FontStyleButtons(props: Props) {
   const { name, multiLine, enabledStyles, onChangeValue } = props;
   const value = props.value || [];
-  const captions = getCaptions().fontProperty;
+  const t = translation().fontProperty;
 
   const handleChange = useCallback(
     (_: React.MouseEvent<HTMLElement>, newStyle: FontStyleValue[]) => {
@@ -38,29 +38,29 @@ export default function FontStyleButtons(props: Props) {
       {
         icon: <FormatBoldIcon/>,
         value: FontStyleType.BOLD,
-        title: captions.bold,
+        title: t.bold,
         disabled: !enabledStyles.includes('bold'),
       },
       {
         icon: <FormatItalicIcon/>,
         value: FontStyleType.ITALIC,
-        title: captions.italic,
+        title: t.italic,
         disabled: !enabledStyles.includes('italic'),
       },
       {
         icon: <FormatUnderlinedIcon/>,
         value: FontStyleType.UNDERLINE,
-        title: captions.underline,
+        title: t.underline,
         disabled: !enabledStyles.includes('underline') || multiLine,
       },
       {
         icon: <FormatStrikethroughIcon/>,
         value: FontStyleType.STRIKE,
-        title: captions.strikethrough,
+        title: t.strikethrough,
         disabled: !enabledStyles.includes('strike') || multiLine,
       }
     ],
-    [captions.bold, captions.italic, captions.underline, enabledStyles, captions.strikethrough, multiLine]
+    [t.bold, t.italic, t.underline, enabledStyles, t.strikethrough, multiLine]
   );
 
   return (

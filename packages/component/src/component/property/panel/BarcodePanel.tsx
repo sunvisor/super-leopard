@@ -10,7 +10,7 @@ import { ChangeValueHandler } from '../usePropertyStates';
 import SizeFields from '../fieldGroup/SizeFields';
 import GroupBox from '../fieldGroup/GroupBox';
 import BarcodeFormatField from '../field/BarcodeFormatField';
-import getCaptions from '../../../captions/getCaptions';
+import translation from '../../../translations/translation';
 import BarcodeOptionFields from '../fieldGroup/BarcodeOptionFields';
 
 
@@ -23,7 +23,7 @@ type Props = {
 
 export default function BarcodePanel(props: Props) {
   const { values, unit, onChangeValue } = props;
-  const captions = getCaptions().barcodeProperty;
+  const captions = translation().barcodeProperty;
 
   return (
     <>

@@ -10,7 +10,7 @@ import NumberField from '../field/NumberField';
 import { MAX_SCALE_VALUE, PageMargin } from '@sunvisor/super-leopard-core';
 import { UnitValue } from '@sunvisor/super-leopard-core';
 import { ChangeValueHandler } from '../usePropertyStates';
-import getCaptions from '../../../captions/getCaptions';
+import translation from '../../../translations/translation';
 
 type Props = {
   margin: PageMargin;
@@ -21,7 +21,7 @@ type Props = {
 export default function PageMarginFields(props: Props) {
   const { unit, onChangeValue } = props;
   const [margin, setMargin] = React.useState<PageMargin>(props.margin);
-  const captions = getCaptions().pageProperty;
+  const t = translation().pageProperty;
 
   useEffect(() => {
     setMargin(props.margin);
@@ -36,7 +36,7 @@ export default function PageMarginFields(props: Props) {
   return (
     <GroupBox sx={{ gap: 2 }}>
       <NumberField
-        label={captions.top}
+        label={t.top}
         name="top"
         unit={unit}
         value={margin.top}
@@ -45,7 +45,7 @@ export default function PageMarginFields(props: Props) {
         onChangeValue={handleChange}
       />
       <NumberField
-        label={captions.left}
+        label={t.left}
         name="left"
         unit={unit}
         value={margin.left}

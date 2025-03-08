@@ -14,7 +14,7 @@ import { ChangeValueHandler } from '../usePropertyStates';
 import { AlignType, FontData, TextData, UnitValue, ValignType } from '@sunvisor/super-leopard-core';
 import { FontList } from '../../../font';
 import SvCheckboxField from '../field/SvCheckboxField';
-import getCaptions from '../../../captions/getCaptions';
+import translation from '../../../translations/translation';
 
 export type TextPanelValueType =
   number
@@ -32,7 +32,7 @@ type Props = {
 
 export default function TextPanel(props: Props) {
   const { unit, values, fontList, onChangeValue } = props;
-  const captions = getCaptions().textProperty;
+  const t = translation().textProperty;
 
   return (
     <>
@@ -72,7 +72,7 @@ export default function TextPanel(props: Props) {
       />
       <SvCheckboxField
         name="fitCell"
-        label={captions.fitCell}
+        label={t.fitCell}
         value={values.fitCell || false}
         onChangeValue={onChangeValue}
       />

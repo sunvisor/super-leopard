@@ -6,7 +6,7 @@
  */
 import React, { useCallback, useMemo, useState } from "react";
 import { SxProps, TextField, TextFieldProps } from '@mui/material';
-import getCaptions from '../../../captions/getCaptions';
+import translation from '../../../translations/translation';
 import { ChangeValueHandler } from '../usePropertyStates';
 import GroupBox from '../fieldGroup/GroupBox';
 
@@ -31,12 +31,12 @@ export default function ColorPickerField(props: Props) {
     colorFieldProps,
     onChangeValue,
   } = props;
-  const captions = getCaptions().colorPickerField;
+  const t = translation().colorPickerField;
   const [color, setColor] = useState(value);
 
   const [error, message] = useMemo(
-    () => isValidColor(color) ? [false, ''] : [true, captions.invalidColor],
-    [captions.invalidColor, color]
+    () => isValidColor(color) ? [false, ''] : [true, t.invalidColor],
+    [t.invalidColor, color]
   );
 
   const handleChangeColor = useCallback(

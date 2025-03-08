@@ -7,7 +7,7 @@
 import ShapeTypeField from '../field/ShapeTypeField';
 import { ShapeType } from '@sunvisor/super-leopard-core';
 import { ChangeValueHandler } from '../usePropertyStates';
-import getCaptions from '../../../captions/getCaptions';
+import translation from '../../../translations/translation';
 import SvTextField from '../field/SvTextField';
 import GroupBox from '../fieldGroup/GroupBox';
 
@@ -21,7 +21,7 @@ type Props = {
 
 export default function FieldNameFields(props: Props) {
   const { fieldName, shapeType } = props;
-  const captions = getCaptions().fieldProperty;
+  const t = translation().fieldProperty;
 
   return (
     <GroupBox sx={{ gap: 2 }}>
@@ -29,12 +29,12 @@ export default function FieldNameFields(props: Props) {
         size="small"
         sx={{ flex: 2}}
         name="fieldName"
-        label={captions.name}
+        label={t.name}
         value={fieldName}
         onChangeValue={props.onChangeName}
       />
       <ShapeTypeField
-        label={captions.shapeType}
+        label={t.shapeType}
         name="shapeType"
         value={shapeType}
         onChangeValue={props.onChangeType}

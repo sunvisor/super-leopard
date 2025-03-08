@@ -15,7 +15,7 @@ import QrCodeIcon from '@mui/icons-material/QrCode';
 import { EditMode } from '../reportEditor/ReportWorkArea';
 import EllipseIcon from '../toolbar/EllipseIcon';
 import LineIcon from '../toolbar/LineIcon';
-import getCaptions from '../../captions/getCaptions';
+import translation from '../../translations/translation';
 import ToggleTools, { ToggleToolButton } from '../property/ToggleTools';
 
 type OnChangeHandler = (event: React.MouseEvent<HTMLElement>, newMode: EditMode) => void;
@@ -29,7 +29,7 @@ export type EditModeButtonsProps = Props;
 export default function EditModeButtons(props: Props) {
   const { onChange, orientation } = props;
   const [mode, setMode] = React.useState<EditMode>(props.mode || "edit");
-  const captions = getCaptions().editModeTool;
+  const t = translation().editModeTool;
 
   const handleChange = useCallback((event: React.MouseEvent<HTMLElement>, value: string) => {
     if (value !== null) {
@@ -40,16 +40,16 @@ export default function EditModeButtons(props: Props) {
   }, [onChange, setMode]);
 
   const buttons: ToggleToolButton[] = useMemo(() => [
-    { value: "edit", icon: <HighlightAltIcon />, title: captions.edit },
-    { value: "rect", icon: <RectangleOutlinedIcon />, title: captions.rect },
-    { value: "circle", icon: <CircleOutlinedIcon />, title: captions.circle },
-    { value: "ellipse", icon: <EllipseIcon />, title: captions.ellipse },
-    { value: "line", icon: <LineIcon />, title: captions.line },
-    { value: "image", icon: <PhotoSizeSelectActualIcon /> , title: captions.image },
-    { value: "text", icon: <TitleIcon /> , title: captions.text },
-    { value: "field", icon: <TextFieldsIcon /> , title: captions.field },
-    { value: "barcode", icon: <QrCodeIcon /> , title: captions.barcode },
-  ], [captions.edit, captions.rect, captions.circle, captions.ellipse, captions.line, captions.image, captions.text, captions.field, captions.barcode]);
+    { value: "edit", icon: <HighlightAltIcon />, title: t.edit },
+    { value: "rect", icon: <RectangleOutlinedIcon />, title: t.rect },
+    { value: "circle", icon: <CircleOutlinedIcon />, title: t.circle },
+    { value: "ellipse", icon: <EllipseIcon />, title: t.ellipse },
+    { value: "line", icon: <LineIcon />, title: t.line },
+    { value: "image", icon: <PhotoSizeSelectActualIcon /> , title: t.image },
+    { value: "text", icon: <TitleIcon /> , title: t.text },
+    { value: "field", icon: <TextFieldsIcon /> , title: t.field },
+    { value: "barcode", icon: <QrCodeIcon /> , title: t.barcode },
+  ], [t.edit, t.rect, t.circle, t.ellipse, t.line, t.image, t.text, t.field, t.barcode]);
 
   return (
     <ToggleTools

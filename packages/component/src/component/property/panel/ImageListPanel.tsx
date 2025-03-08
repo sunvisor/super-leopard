@@ -10,7 +10,7 @@ import {
   ImageListItemBar, Toolbar, Tooltip,
 } from "@mui/material";
 import Caption from '../Caption';
-import getCaptions from '../../../captions/getCaptions';
+import translation from '../../../translations/translation';
 import CloseIcon from '@mui/icons-material/Close';
 import { ImageListData } from '../../index';
 import { GetImageUrl } from '../../../settings';
@@ -24,7 +24,7 @@ type Props = {
 export default function ImageListPanel(props: Props) {
   const { imageList, getImageUrl, onSelect } = props;
   const [selected, setSelected] = useState<ImageListData | undefined>();
-  const captions = getCaptions().imageProperty;
+  const t = translation().imageProperty;
 
   const handleClick = useCallback(
     (image: ImageListData) => {
@@ -51,9 +51,9 @@ export default function ImageListPanel(props: Props) {
       <Box sx={{ flex: 1, overflow: "auto" }}>
         <Toolbar variant="dense" disableGutters>
           <Box sx={{ flexGrow: 1 }}>
-            <Caption>{captions.selectMessage}</Caption>
+            <Caption>{t.selectMessage}</Caption>
           </Box>
-          <Tooltip title={captions.close}>
+          <Tooltip title={t.close}>
             <IconButton onClick={onIconButtonClick}>
               <CloseIcon/>
             </IconButton>
@@ -112,8 +112,8 @@ export default function ImageListPanel(props: Props) {
         </ImageList>
       </Box>
       <Toolbar variant="dense" disableGutters>
-        <Caption sx={{ flexGrow: 1 }}>{selected ? selected.name : captions.selectMessage}</Caption>
-        <Button variant="contained" disabled={!selected} onClick={handleButtonClick}>{captions.decide}</Button>
+        <Caption sx={{ flexGrow: 1 }}>{selected ? selected.name : t.selectMessage}</Caption>
+        <Button variant="contained" disabled={!selected} onClick={handleButtonClick}>{t.decide}</Button>
       </Toolbar>
     </Box>
   );

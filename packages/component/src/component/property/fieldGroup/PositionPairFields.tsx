@@ -7,7 +7,7 @@
 import { ChangeValueHandler } from '../usePropertyStates';
 import { Box } from '@mui/material';
 import NumberField from '../field/NumberField';
-import getCaptions from '../../../captions/getCaptions';
+import translation from '../../../translations/translation';
 import { UnitValue } from '@sunvisor/super-leopard-core';
 import Caption from '../Caption';
 import GroupBox from '../fieldGroup/GroupBox';
@@ -25,19 +25,19 @@ type Props = {
 
 export default function PositionPairFields(props: Props) {
   const { x1, y1, x2, y2, unit, onChangeValue } = props;
-  const captions = getCaptions().positionProperty;
+  const t = translation().positionProperty;
 
   return (
     <>
       <GroupBox>
         <Box sx={{ mr: 2, display: 'flex', alignItems: 'center', width: 45 }}>
           <Caption>
-            {captions.startPosition}
+            {t.startPosition}
           </Caption>
         </Box>
         <NumberField
           sx={{ mr: 2 }}
-          label={captions.x}
+          label={t.x}
           name="x1"
           unit={unit}
           value={x1}
@@ -46,7 +46,7 @@ export default function PositionPairFields(props: Props) {
           onChangeValue={onChangeValue}
         />
         <NumberField
-          label={captions.y}
+          label={t.y}
           name="y1"
           unit={unit}
           value={y1}
@@ -58,12 +58,12 @@ export default function PositionPairFields(props: Props) {
       <GroupBox>
         <Box sx={{ mr: 2, display: 'flex', alignItems: 'center', width: 45 }}>
           <Caption>
-            {captions.endPosition}
+            {t.endPosition}
           </Caption>
         </Box>
         <NumberField
           sx={{ mr: 2 }}
-          label={captions.x}
+          label={t.x}
           name="x2"
           unit={unit}
           value={x2}
@@ -72,7 +72,7 @@ export default function PositionPairFields(props: Props) {
           onChangeValue={onChangeValue}
         />
         <NumberField
-          label={captions.y}
+          label={t.y}
           name="y2"
           unit={unit}
           value={y2}

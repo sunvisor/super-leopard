@@ -13,7 +13,7 @@ import FooterToolbar from '../toolbar/FooterToolbar';
 import { ReportData } from '@sunvisor/super-leopard-core';
 import DrawToolbar from '../toolbar/DrawToolbar';
 import SidePanel from './side/SidePanel';
-import { setLanguage } from '../../captions/getCaptions';
+import { setLanguage } from '../../translations/translation';
 import { setSettings, SettingData } from '../../settings';
 import useReport from '../../hooks/useReport';
 import useSelection from '../../hooks/useSelection';

@@ -8,14 +8,14 @@ import { SxProps, TextField } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 import { UnitType } from '@sunvisor/super-leopard-core';
 import { ChangeEvent, useCallback } from "react";
-import getCaptions from '../../../captions/getCaptions';
+import translation from '../../../translations/translation';
 import { ChangeValueHandler } from '../usePropertyStates';
 
 function getUnitList() {
-  const captions = getCaptions().pageProperty;
+  const t = translation().pageProperty;
   return Object.entries(UnitType).map(([, value]) => ({
     key: value,
-    value: captions[value as keyof typeof captions],
+    value: t[value as keyof typeof t],
   }))
 }
 

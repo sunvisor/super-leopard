@@ -7,7 +7,7 @@
 import { SxProps, TextField } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 import { ChangeEvent, useCallback } from "react";
-import getCaptions from '../../../captions/getCaptions';
+import translation from '../../../translations/translation';
 import { ChangeValueHandler } from '../usePropertyStates';
 
 type Props = {
@@ -20,7 +20,7 @@ type Props = {
 
 export default function ShapeTypeField(props: Props) {
   const { label, name, value, onChangeValue, sx } = props;
-  const captions = getCaptions().staticShapeType;
+  const t = translation().staticShapeType;
 
   const handleChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     onChangeValue(name, event.target.value);
@@ -37,7 +37,7 @@ export default function ShapeTypeField(props: Props) {
       select
     >
       {
-        Object.entries(captions).map(([key, value]) => (
+        Object.entries(t).map(([key, value]) => (
           <MenuItem
             key={key}
             value={key}

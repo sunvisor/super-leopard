@@ -10,7 +10,7 @@ import PageUnitField from '../field/PageUnitField';
 import PaperSizeFields, { PaperSizeFieldType } from '../fieldGroup/PaperSizeFields';
 import GroupBox from '../fieldGroup/GroupBox';
 import PageMarginFields from '../fieldGroup/PageMarginFields';
-import getCaptions from '../../../captions/getCaptions';
+import translation from '../../../translations/translation';
 import PropertyBox from '../object/PropertyBox';
 import Caption from '../Caption';
 import useReport from '../../../hooks/useReport';
@@ -21,7 +21,7 @@ type Props = {
 }
 
 export default function PageProperty(props: Props) {
-  const captions = getCaptions().pageProperty;
+  const t = translation().pageProperty;
   const [page, setPage] = useState<Page>(props.page);
   const [unit, setUnit] = React.useState<UnitValue>(page.unit);
   const { report, setReport } = useReport();
@@ -66,11 +66,11 @@ export default function PageProperty(props: Props) {
     <PropertyBox
       onSubmit={handleSubmit}
     >
-      <Caption>{captions.title}</Caption>
+      <Caption>{t.title}</Caption>
       <GroupBox sx={{ gap: 2, display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
         <PageUnitField
           sx={{ flex: 1 }}
-          label={captions.unit}
+          label={t.unit}
           name="unit"
           value={unit}
           onChangeValue={handleChangeUnit}

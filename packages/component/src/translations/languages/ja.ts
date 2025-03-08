@@ -257,4 +257,4 @@ export const ja = {
   numberErrorMessage,
 }
 
-export type Captions = typeof ja
+export type Translation = typeof ja

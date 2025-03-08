@@ -9,7 +9,7 @@ import { createText, serializeText, Text, TextData, UnitValue } from '@sunvisor/
 import usePropertyStates from '../usePropertyStates';
 import { FontList } from '../../../font';
 import { Box } from '@mui/material';
-import getCaptions from '../../../captions/getCaptions';
+import translation from '../../../translations/translation';
 import TextPanel from '../panel/TextPanel';
 import SvTextField from '../field/SvTextField';
 import { UpdateHandler } from './ShapeProperty';
@@ -41,7 +41,7 @@ export default function TextProperty(props: Props) {
     textValue,
     values => doUpdate(values)
   );
-  const captions = getCaptions().textProperty;
+  const t = translation().textProperty;
 
   useEffect(() => {
     setValues(textValue);
@@ -56,7 +56,7 @@ export default function TextProperty(props: Props) {
           name="text"
           size="small"
           fullWidth
-          label={captions.text}
+          label={t.text}
           value={values.text}
           multiline={values.multiLine}
           maxRows={5}
