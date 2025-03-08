@@ -4,33 +4,25 @@
  * Created by sunvisor on 2024/02/14.
  * Copyright (C) Sunvisor Lab. 2024.
  */
-import { captions as ja } from './ja/captions';
-import { captions as en } from './en/captions';
+import { ja as ja, Captions } from './languages/ja';
+import { en as en } from './languages/en';
 
-export type Language = 'ja' | 'en';
+export type Language = string;
 
-class Captions {
-  #language: Language = 'ja';
+let currentLanguage: Language = 'ja';
+const translations: Record<string, Captions> = { ja, en };
 
-  public setLanguage(lang: Language) {
-    this.#language = lang;
-  }
-
-  public getCaptions() {
-    if (this.#language === 'ja') {
-      return ja;
-    } else {
-      return en;
-    }
-  }
-}
-
-const captions = new Captions();
-
-export default function getCaptions()  {
-  return captions.getCaptions()
+export default function getCaptions(): Captions {
+  return translations[currentLanguage];
 }
 
 export function setLanguage(lang: string) {
-  captions.setLanguage(lang === 'en' ? 'en' : 'ja');
+  if (!translations[lang]) {
+    throw new Error(`Unknown language: ${lang}`);
+  }
+  currentLanguage = lang;
+}
+
+export function addLanguage(lang: string, captions: Captions) {
+  translations[lang] = captions;
 }
