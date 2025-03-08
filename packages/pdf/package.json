@@ -1,6 +1,6 @@
 {
   "name": "@sunvisor/super-leopard-pdf",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "PDF generator for Super Leopard",
   "author": "Sunvisor <hisashi@sunvisor.net> (https://www.sunvisor.net/)",
   "license": "MIT",
@@ -41,8 +41,8 @@
     "makePdf": "tsx src/__test_assets__/makePdf.ts"
   },
   "dependencies": {
-    "@sunvisor/super-leopard-barcode": "^0.1.4",
-    "@sunvisor/super-leopard-core": "^0.1.4",
+    "@sunvisor/super-leopard-barcode": "^0.1.5",
+    "@sunvisor/super-leopard-core": "^0.1.5",
     "pdfkit": "^0.15.2",
     "svg-to-pdfkit": "^0.1.8"
   },
@@ -50,7 +50,7 @@
     "@types/fontkit": "^2.0.7",
     "@types/pdfkit": "^0.13.8",
     "@types/svg-to-pdfkit": "^0.1.3",
-    "@sunvisor/super-leopard-test-assets": "^0.1.4",
+    "@sunvisor/super-leopard-test-assets": "^0.1.5",
     "tsx": "^4.19.2"
   }
 }
