@@ -10,7 +10,7 @@ import BarcodeRotateField from "./BarcodeRotateField";
 import { Meta, StoryObj } from '@storybook/react';
 import { fieldDecorator } from '../../../__test_assets__';
 import { fn } from '@storybook/test';
-import getCaptions from '../../../captions/getCaptions';
+import translation from '../../../translations/translation';
 
 type Story = StoryObj<typeof BarcodeRotateField>
 
@@ -27,7 +27,7 @@ export const Normal: Story = {
     label: 'Rotate',
     name: 'rotate',
     value: 'N',
-    rotateTypeList: getCaptions().barcodeRotateName,
+    rotateTypeList: translation().barcodeRotateName,
   }
 };
 

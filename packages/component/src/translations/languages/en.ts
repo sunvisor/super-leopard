@@ -1,45 +1,13 @@
-// noinspection JSUnusedGlobalSymbols
-
 /**
  * English Captions
  *
  * Created by sunvisor on 2024/02/15.
  * Copyright (C) Sunvisor Lab. 2024.
  */
-import {
-  AlignTool,
-  BarcodeProperty,
-  BarcodeRotateName,
-  BorderProperty,
-  Captions,
-  CapTool,
-  CircleProperty,
-  ColorPickerField,
-  EditModeTool,
-  EditTool,
-  FieldProperty,
-  FillColorProperty,
-  FontProperty,
-  GroupOperation,
-  GroupProperty,
-  ImageProperty,
-  JoinTool,
-  LayerOperation,
-  ListProperty,
-  NumberErrorMessage,
-  ObjectManipulation,
-  Operation,
-  PageProperty,
-  PositionProperty,
-  ReportObject,
-  ShapeTypeName,
-  SizeProperty,
-  StaticShapeTypeName,
-  TextProperty
-} from '../CaptionsType';
+import { Translation } from './ja';
 
 
-const operation: Operation = {
+const operation = {
   undo: "Undo",
   redo: "Redo",
   cut: "Cut",
@@ -49,7 +17,7 @@ const operation: Operation = {
   delete: "Delete",
 }
 
-const reportObject: ReportObject = {
+const reportObject= {
   report: "Report",
   layer: "Layer",
   shape: "Shape",
@@ -59,7 +27,7 @@ const reportObject: ReportObject = {
   editProperty: "Edit Property",
 }
 
-const pageProperty: PageProperty = {
+const pageProperty= {
   title: 'Page Settings',
   paperSize: 'Paper Size',
   custom: 'custom...',
@@ -77,7 +45,7 @@ const pageProperty: PageProperty = {
   pt: 'Point (pt)',
 }
 
-const staticShapeType: StaticShapeTypeName = {
+const staticShapeType= {
   rect: "Rectangle",
   circle: "Circle",
   ellipse: "Ellipse",
@@ -87,41 +55,41 @@ const staticShapeType: StaticShapeTypeName = {
   barcode: "Barcode",
 }
 
-const shapeType: ShapeTypeName = {
+const shapeType= {
   ...staticShapeType,
   group: "Group",
   list: "List",
   field: "Field",
 }
-const editTool: EditTool = {
+const editTool= {
   save: 'Save',
   rename: 'Rename',
   property: 'Property',
 }
 
-const editModeTool: EditModeTool = {
+const editModeTool= {
   edit: "Edit",
   field: "Field",
   ...staticShapeType,
 }
 
-const positionProperty: PositionProperty = {
+const positionProperty= {
   x: "X",
   y: "Y",
   startPosition: "Start",
   endPosition: "End",
 }
 
-const sizeProperty: SizeProperty = {
+const sizeProperty= {
   width: "Width",
   height: "Height",
 }
 
-const fillColorProperty: FillColorProperty = {
+const fillColorProperty= {
   fillColor: "Fill Color",
 }
 
-const borderProperty: BorderProperty = {
+const borderProperty= {
   border: "Border",
   color: "Border Color",
   width: "Border Width",
@@ -130,28 +98,28 @@ const borderProperty: BorderProperty = {
   join: "Join",
 }
 
-const capTool: CapTool = {
+const capTool= {
   butt: "Butt",
   round: "Round",
   square: "Square",
 }
 
-const joinTool: JoinTool = {
+const joinTool= {
   miter: "Miter",
   round: "Round",
   bevel: "Bevel",
 }
 
-export const colorPickerField: ColorPickerField = {
+export const colorPickerField= {
   invalidColor: 'Invalid color code',
 }
 
 
-const circleProperty: CircleProperty = {
+const circleProperty= {
   diameter: "直径",
 }
 
-const textProperty: TextProperty = {
+const textProperty= {
   text: 'Text',
   align: 'Align',
   valign: 'Vertical Align',
@@ -161,7 +129,7 @@ const textProperty: TextProperty = {
   fitCell: 'Fit to Cell',
 }
 
-const alignTool: AlignTool = {
+const alignTool= {
   left: 'Left',
   center: 'Center',
   right: 'Right',
@@ -172,7 +140,7 @@ const alignTool: AlignTool = {
   bottom: 'Bottom',
 }
 
-const fontProperty: FontProperty = {
+const fontProperty= {
   fontFamily: "Font",
   fontSize: "Size",
   fontStyle: "Style",
@@ -182,7 +150,7 @@ const fontProperty: FontProperty = {
   strikethrough: "Strikethrough",
 }
 
-const imageProperty: ImageProperty = {
+const imageProperty= {
   upload: "Upload Image",
   select: "Select Image",
   selectMessage: "Please Select image",
@@ -190,26 +158,26 @@ const imageProperty: ImageProperty = {
   close: 'Close',
 }
 
-const barcodeProperty: BarcodeProperty = {
+const barcodeProperty= {
   format: "Format",
   value: "Value",
   rotate: 'Rotate',
   includeText: 'Include Text',
 }
 
-const barcodeRotateName: BarcodeRotateName = {
+const barcodeRotateName= {
   N: 'None',
   L: 'Clockwise',
   R: 'Anti-Clockwise',
   I: 'Invert',
 }
 
-const fieldProperty: FieldProperty = {
+const fieldProperty= {
   name: 'Field Name',
   shapeType: 'Shape Type',
 }
 
-const groupProperty: GroupProperty = {
+const groupProperty= {
   repeatCount: 'Repeat Count',
   direction: 'Repeat Direction',
   horizontal: 'Horizontal',
@@ -217,13 +185,13 @@ const groupProperty: GroupProperty = {
   times: 'Times',
 }
 
-const listProperty: ListProperty =  {
+const listProperty=  {
   direction: 'Direction',
   rows: 'Rows',
   columns: 'Columns',
 }
 
-const objectManipulation: ObjectManipulation = {
+const objectManipulation= {
   toFront: 'Front',
   toBack: 'Back',
   toForward: 'Forward',
@@ -242,26 +210,26 @@ const objectManipulation: ObjectManipulation = {
   distributeVertically: 'Distribute Vertically',
 }
 
-const groupOperation: GroupOperation = {
+const groupOperation= {
   group: 'Group',
   ungroup: 'Ungroup',
   shapesToList: 'Shapes to List',
   listToShapes: 'List to Shapes',
 }
 
-const layerOperation: LayerOperation = {
+const layerOperation= {
   addLayer: 'Add Layer',
   removeLayer: 'Remove Layer',
   renameLayer: 'Rename Layer',
 }
 
-const numberErrorMessage: NumberErrorMessage = {
-  minValue: value => `The value must be greater than or equal to ${value}.`,
-  maxValue: value => `The value must be less than or equal to ${value}.`,
+const numberErrorMessage= {
+  minValue: (value: number) => `The value must be greater than or equal to ${value}.`,
+  maxValue: (value: number) => `The value must be less than or equal to ${value}.`,
   invalidValue: 'Invalid number.',
 }
 
-export const captions: Captions = {
+export const en: Translation = {
   operation,
   reportObject,
   pageProperty,

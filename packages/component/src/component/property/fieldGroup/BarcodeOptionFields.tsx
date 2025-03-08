@@ -9,7 +9,7 @@ import { ChangeValueHandler } from '../usePropertyStates';
 import GroupBox from './GroupBox';
 import BarcodeRotateField from '../field/BarcodeRotateField';
 import SvCheckboxField from '../field/SvCheckboxField';
-import getCaptions from '../../../captions/getCaptions';
+import translation from '../../../translations/translation';
 import { useCallback } from 'react';
 
 type Props = {
@@ -20,7 +20,7 @@ type Props = {
 export default function BarcodeOptionFields(props :Props) {
   const { values, captions, onChangeValue } = props;
   const { rotate = 'N', includeText = false } = values;
-  const rotateTypeList = getCaptions().barcodeRotateName;
+  const rotateTypeList = translation().barcodeRotateName;
 
   const handleChange = useCallback((key: string, value: string | boolean, update?: boolean) => {
     const newValue = { ...values, [key]: value };

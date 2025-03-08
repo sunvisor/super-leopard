@@ -9,7 +9,7 @@ import EastIcon from '@mui/icons-material/East';
 import SouthIcon from '@mui/icons-material/South';
 import ToggleTools, { ToggleToolButton } from '../ToggleTools';
 import { DirectionType, DirectionValue } from '@sunvisor/super-leopard-core';
-import getCaptions from '../../../captions/getCaptions';
+import translation from '../../../translations/translation';
 import { ChangeValueHandler } from '../usePropertyStates';
 
 
@@ -21,12 +21,12 @@ type Props = {
 
 export default function DirectionButtons(props: Props) {
   const { name, value, onChangeValue } = props;
-  const captions = getCaptions().groupProperty;
+  const t = translation().groupProperty;
 
   const buttons: ToggleToolButton[] = useMemo(() => [
-    { icon: <EastIcon/>, value: DirectionType.HORIZONTAL, title: captions.horizontal },
-    { icon: <SouthIcon/>, value: DirectionType.VERTICAL, title: captions.vertical }
-  ], [captions.horizontal, captions.vertical])
+    { icon: <EastIcon/>, value: DirectionType.HORIZONTAL, title: t.horizontal },
+    { icon: <SouthIcon/>, value: DirectionType.VERTICAL, title: t.vertical }
+  ], [t.horizontal, t.vertical])
 
   const handleChange = useCallback(
     (_: React.MouseEvent<HTMLElement>, newDirection: DirectionValue) => {

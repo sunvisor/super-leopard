@@ -10,7 +10,7 @@ import SizeFields from '../fieldGroup/SizeFields';
 import { Box, Button } from '@mui/material';
 import { UnitValue, ImageData } from '@sunvisor/super-leopard-core';
 import { ChangeValueHandler } from '../usePropertyStates';
-import getCaptions from '../../../captions/getCaptions';
+import translation from '../../../translations/translation';
 import SvImage from '../field/SvImage';
 import CollectionsIcon from '@mui/icons-material/Collections';
 import { ImageListData } from '../../index';
@@ -28,7 +28,7 @@ type Props = {
 export default function ImagePanel(props: Props) {
   const { imageOptions, unit, values, onChangeValue } = props;
   const { getImageList, getImageUrl, noImageUrl }  = imageOptions;
-  const captions = getCaptions().imageProperty;
+  const t = translation().imageProperty;
   const [openSelect, setOpenSelect] = useState(false);
   const [imageList, setImageList] = useState<ImageListData[]>([]);
   const srcUrl = values.src.length ? getImageUrl(values.src) : noImageUrl;
@@ -79,7 +79,7 @@ export default function ImagePanel(props: Props) {
               disabled={imageList.length === 0}
               startIcon={<CollectionsIcon/>}
             >
-              {captions.select}
+              {t.select}
             </Button>
           </Box>
           <Box sx={{ height: 200 }}>

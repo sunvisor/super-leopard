@@ -9,7 +9,7 @@ import BringFrontIcon from '../field/icon/BringFrontIcon';
 import BringForwardIcon from '../field/icon/BringForwardIcon';
 import SendBackwardIcon from '../field/icon/SendBackwardIcon';
 import SendBackIcon from '../field/icon/SendBackIcon';
-import getCaptions from '../../../captions/getCaptions';
+import translation from '../../../translations/translation';
 
 
 export type ZOrderCommand = 'bringToFront' | 'bringToForward' | 'sendToBackward' | 'sendToBack';
@@ -20,43 +20,43 @@ type Props = {
 
 export default function ZOrderButtons(props: Props) {
   const { onBringTo } = props;
-  const captions = getCaptions().objectManipulation;
+  const t = translation().objectManipulation;
   return (
     <ButtonGroup variant="outlined">
-      <Tooltip title={captions.bringToFront}>
+      <Tooltip title={t.bringToFront}>
         <Button
           size="small"
           onClick={() => onBringTo('bringToFront')}
           startIcon={<BringFrontIcon/>}
         >
-          {captions.toFront}
+          {t.toFront}
         </Button>
       </Tooltip>
-      <Tooltip title={captions.bringToForward}>
+      <Tooltip title={t.bringToForward}>
         <Button
           size="small"
           onClick={() => onBringTo('bringToForward')}
           startIcon={<BringForwardIcon/>}
         >
-          {captions.toForward}
+          {t.toForward}
         </Button>
       </Tooltip>
-      <Tooltip title={captions.sendToBackward}>
+      <Tooltip title={t.sendToBackward}>
         <Button
           size="small"
           onClick={() => onBringTo('sendToBackward')}
           startIcon={<SendBackwardIcon/>}
         >
-          {captions.toBackward}
+          {t.toBackward}
         </Button>
       </Tooltip>
-      <Tooltip title={captions.sendToBack}>
+      <Tooltip title={t.sendToBack}>
         <Button
           size="small"
           onClick={() => onBringTo('sendToBack')}
           startIcon={<SendBackIcon/>}
         >
-          {captions.toBack}
+          {t.toBack}
         </Button>
       </Tooltip>
     </ButtonGroup>

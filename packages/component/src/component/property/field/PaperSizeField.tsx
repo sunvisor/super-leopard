@@ -8,7 +8,7 @@ import { SxProps, TextField } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 import { PaperSize } from '@sunvisor/super-leopard-core';
 import { ChangeEvent, useCallback } from "react";
-import getCaptions from '../../../captions/getCaptions';
+import translation from '../../../translations/translation';
 import { ChangeValueHandler } from '../usePropertyStates';
 
 type Props = {
@@ -34,8 +34,8 @@ function getPaperSizeList(customCaption: string) {
 
 export default function PaperSizeField(props: Props) {
   const { label, name, value, onChangeValue, sx } = props;
-  const captions = getCaptions().pageProperty;
-  const paperSizeList = getPaperSizeList(captions.custom);
+  const t = translation().pageProperty;
+  const paperSizeList = getPaperSizeList(t.custom);
 
   const handleChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;

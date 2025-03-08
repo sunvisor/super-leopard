@@ -6,7 +6,7 @@
  */
 import React, { useMemo } from "react";
 import { AlignValue, ValignType, ValignValue } from '@sunvisor/super-leopard-core';
-import getCaptions from '../../../captions/getCaptions';
+import translation from '../../../translations/translation';
 import ToggleTools, { ToggleToolButton } from '../ToggleTools';
 import { ChangeValueHandler } from '../usePropertyStates';
 import { SvgIcon } from '@mui/material';
@@ -43,7 +43,7 @@ function ValignBottomIcon() {
 
 export default function ValignButtons(props: Props) {
   const { name, value, onChangeValue } = props;
-  const captions = getCaptions().alignTool;
+  const t = translation().alignTool;
 
   const handleChange = (_: React.MouseEvent<HTMLElement>, newValign: AlignValue) => {
     if (newValign === null) return;
@@ -51,10 +51,10 @@ export default function ValignButtons(props: Props) {
   };
 
   const buttons: ToggleToolButton[] = useMemo(() => [
-    { value: ValignType.TOP, icon: <ValignTopIcon/>, title: captions.top },
-    { value: ValignType.MIDDLE, icon: <ValignMiddleIcon/>, title: captions.middle },
-    { value: ValignType.BOTTOM, icon: <ValignBottomIcon/>, title: captions.bottom },
-  ], [captions.top, captions.middle, captions.bottom]);
+    { value: ValignType.TOP, icon: <ValignTopIcon/>, title: t.top },
+    { value: ValignType.MIDDLE, icon: <ValignMiddleIcon/>, title: t.middle },
+    { value: ValignType.BOTTOM, icon: <ValignBottomIcon/>, title: t.bottom },
+  ], [t.top, t.middle, t.bottom]);
 
   return (
     <ToggleTools

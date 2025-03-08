@@ -7,14 +7,14 @@
 import { Button, Toolbar } from "@mui/material";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { useCallback } from "react";
-import getCaptions from '../../../captions/getCaptions';
+import translation from '../../../translations/translation';
 
 type Props = {
   onAddLayer: () => void;
 }
 
 export default function LayerToolbar({ onAddLayer }: Props) {
-  const captions = getCaptions().layerOperation;
+  const t = translation().layerOperation;
 
   const handleClick = useCallback(() => {
     onAddLayer();
@@ -26,7 +26,7 @@ export default function LayerToolbar({ onAddLayer }: Props) {
         startIcon={<AddCircleIcon/>}
         onClick={handleClick}
       >
-        {captions.addLayer}
+        {t.addLayer}
       </Button>
     </Toolbar>
   );

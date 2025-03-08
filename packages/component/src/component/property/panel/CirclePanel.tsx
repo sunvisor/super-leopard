@@ -11,7 +11,7 @@ import FillColorField from '../field/FillColorField';
 import BorderFields from '../fieldGroup/BorderFields';
 import { BorderData, CircleData, UnitValue } from '@sunvisor/super-leopard-core';
 import { ChangeValueHandler } from '../usePropertyStates';
-import getCaptions from '../../../captions/getCaptions';
+import translation from '../../../translations/translation';
 import GroupBox from '../fieldGroup/GroupBox';
 import { MAX_SCALE_VALUE } from '@sunvisor/super-leopard-core';
 
@@ -24,7 +24,7 @@ type Props = {
 
 export default function CirclePanel(props: Props) {
   const { unit, values, onChangeValue } = props;
-  const captions = getCaptions().circleProperty;
+  const t = translation().circleProperty;
 
   return (
     <>
@@ -37,7 +37,7 @@ export default function CirclePanel(props: Props) {
       <GroupBox>
         <Box sx={{ flex: 1, mr: 2 }}>
           <NumberField
-            label={captions.diameter}
+            label={t.diameter}
             name="diameter"
             unit={unit}
             value={values.diameter}

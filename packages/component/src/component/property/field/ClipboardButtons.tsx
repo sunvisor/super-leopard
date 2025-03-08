@@ -9,7 +9,7 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import ContentCutIcon from '@mui/icons-material/ContentCut';
 import ContentPasteIcon from '@mui/icons-material/ContentPaste';
 import DeleteIcon from '@mui/icons-material/Delete';
-import getCaptions from '../../../captions/getCaptions';
+import translation from '../../../translations/translation';
 import GroupBox from '../fieldGroup/GroupBox';
 
 type Props = {
@@ -23,19 +23,19 @@ type Props = {
 
 export default function ClipboardButtons(props: Props) {
   const { canCopy, canPaste, onCopy, onCut, onPaste, onRemove } = props;
-  const captions = getCaptions().operation;
+  const t = translation().operation;
 
   return (
     <GroupBox sx={{ gap: 1 }}>
       <ButtonGroup variant="outlined">
         <Button size="small" disabled={!canCopy} startIcon={<ContentCutIcon/>} onClick={onCut}>
-          {captions.cut}
+          {t.cut}
         </Button>
         <Button size="small" disabled={!canCopy} startIcon={<ContentCopyIcon/>} onClick={onCopy}>
-          {captions.copy}
+          {t.copy}
         </Button>
         <Button size="small" disabled={!canPaste} startIcon={<ContentPasteIcon/>} onClick={onPaste}>
-          {captions.paste}
+          {t.paste}
         </Button>
       </ButtonGroup>
       <Button
@@ -45,7 +45,7 @@ export default function ClipboardButtons(props: Props) {
         onClick={onRemove}
         startIcon={<DeleteIcon/>}
       >
-        {captions.delete}
+        {t.delete}
       </Button>
     </GroupBox>
   );

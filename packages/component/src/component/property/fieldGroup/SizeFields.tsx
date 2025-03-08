@@ -6,7 +6,7 @@
  */
 import NumberField from '../field/NumberField';
 import { ChangeValueHandler } from '../usePropertyStates';
-import getCaptions from '../../../captions/getCaptions';
+import translation from '../../../translations/translation';
 import { UnitValue } from '@sunvisor/super-leopard-core';
 import GroupBox from '../fieldGroup/GroupBox';
 import { MAX_SCALE_VALUE } from '@sunvisor/super-leopard-core';
@@ -21,12 +21,12 @@ type Props = {
 
 export default function SizeFields(props: Props) {
   const { width, height, unit, onChangeValue } = props;
-  const captions = getCaptions().sizeProperty;
+  const t = translation().sizeProperty;
 
   return (
     <GroupBox sx={{ gap: 2 }}>
       <NumberField
-        label={captions.width}
+        label={t.width}
         name="width"
         unit={unit}
         value={width}
@@ -35,7 +35,7 @@ export default function SizeFields(props: Props) {
         onChangeValue={onChangeValue}
       />
       <NumberField
-        label={captions.height}
+        label={t.height}
         name="height"
         unit={unit}
         value={height}

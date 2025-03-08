@@ -5,7 +5,7 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import { useState } from 'react';
-import getCaptions from '../../../captions/getCaptions';
+import translation from '../../../translations/translation';
 
 type Props = {
   minValue?: number,
@@ -17,23 +17,23 @@ export default function useValidateNumber(props: Props) {
   const { minValue, maxValue } = props;
   const [error, setError] = useState(false);
   const [message, setMessage] = useState('');
-  const captions = getCaptions().numberErrorMessage;
+  const t = translation().numberErrorMessage;
 
   const validate = (value: string) => {
     const numValue = Number(value);
     if (isNaN(numValue)) {
       setError(true);
-      setMessage(captions.invalidValue);
+      setMessage(t.invalidValue);
       return false;
     }
     if (minValue !== undefined && numValue < minValue) {
       setError(true);
-      setMessage(captions.minValue(minValue));
+      setMessage(t.minValue(minValue));
       return false;
     }
     if (maxValue !== undefined && numValue > maxValue) {
       setError(true);
-      setMessage(captions.maxValue(maxValue));
+      setMessage(t.maxValue(maxValue));
       return false;
     }
     setError(false);

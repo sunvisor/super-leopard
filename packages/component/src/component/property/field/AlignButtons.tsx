@@ -11,7 +11,7 @@ import FormatAlignCenterIcon from '@mui/icons-material/FormatAlignCenter';
 import FormatAlignRightIcon from '@mui/icons-material/FormatAlignRight';
 import FormatAlignJustifyIcon from '@mui/icons-material/FormatAlignJustify';
 import { AlignType, AlignValue } from '@sunvisor/super-leopard-core';
-import getCaptions from '../../../captions/getCaptions';
+import translation from '../../../translations/translation';
 import ToggleTools, { ToggleToolButton } from '../ToggleTools';
 import { ChangeValueHandler } from '../usePropertyStates';
 
@@ -31,7 +31,7 @@ function AlignJustifyIcon() {
 
 export default function AlignButtons(props: Props) {
   const { name, value, onChangeValue } = props;
-  const captions = getCaptions().alignTool;
+  const t = translation().alignTool;
 
   const handleChange = (_: React.MouseEvent<HTMLElement>, newAlign: AlignValue) => {
     if (newAlign === null) return;
@@ -39,12 +39,12 @@ export default function AlignButtons(props: Props) {
   };
 
   const buttons: ToggleToolButton[] = useMemo(() => [
-    { value: AlignType.LEFT, icon: <FormatAlignLeftIcon/>, title: captions.left },
-    { value: AlignType.CENTER, icon: <FormatAlignCenterIcon/>, title: captions.center },
-    { value: AlignType.RIGHT, icon: <FormatAlignRightIcon/>, title: captions.right },
-    { value: AlignType.JUSTIFY, icon: <AlignJustifyIcon/>, title: captions.justify },
-    { value: AlignType.JUSTIFY_ALL, icon: <FormatAlignJustifyIcon/>, title: captions.justifyAll },
-  ], [captions.left, captions.center, captions.right, captions.justify]);
+    { value: AlignType.LEFT, icon: <FormatAlignLeftIcon/>, title: t.left },
+    { value: AlignType.CENTER, icon: <FormatAlignCenterIcon/>, title: t.center },
+    { value: AlignType.RIGHT, icon: <FormatAlignRightIcon/>, title: t.right },
+    { value: AlignType.JUSTIFY, icon: <AlignJustifyIcon/>, title: t.justify },
+    { value: AlignType.JUSTIFY_ALL, icon: <FormatAlignJustifyIcon/>, title: t.justifyAll },
+  ], [t.left, t.center, t.right, t.justify]);
 
   return (
     <ToggleTools

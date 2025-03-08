@@ -11,7 +11,7 @@ import AlignVerticalBottomIcon from '@mui/icons-material/AlignVerticalBottom';
 import AlignVerticalCenterIcon from '@mui/icons-material/AlignVerticalCenter';
 import AlignVerticalTopIcon from '@mui/icons-material/AlignVerticalTop';
 import { Box, Button, ButtonGroup, Tooltip } from '@mui/material';
-import getCaptions from '../../../captions/getCaptions';
+import translation from '../../../translations/translation';
 import DistributeHorizontallyIcon from '../field/icon/DistributeHorizontallyIcon';
 import DistributeVerticallyIcon from '../field/icon/DistributeVerticallyIcon';
 import React from 'react';
@@ -42,36 +42,36 @@ type Props = {
 
 export default function ObjectsAlignButtons(props: Props) {
   const { onClick } = props;
-  const captions = getCaptions().objectManipulation;
+  const t = translation().objectManipulation;
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }} >
       <ButtonGroup variant="outlined">
-        <AlignButton title={captions.alignToLeft} onClick={() => onClick('left')}>
+        <AlignButton title={t.alignToLeft} onClick={() => onClick('left')}>
           <AlignHorizontalLeftIcon/>
         </AlignButton>
-        <AlignButton title={captions.alignToCenter} onClick={() => onClick('center')}>
+        <AlignButton title={t.alignToCenter} onClick={() => onClick('center')}>
           <AlignHorizontalCenterIcon/>
         </AlignButton>
-        <AlignButton title={captions.alignToCenter} onClick={() => onClick('right')}>
+        <AlignButton title={t.alignToCenter} onClick={() => onClick('right')}>
           <AlignHorizontalRightIcon/>
         </AlignButton>
       </ButtonGroup>
       <ButtonGroup variant="outlined">
-        <AlignButton title={captions.alignToTop} onClick={() => onClick('top')}>
+        <AlignButton title={t.alignToTop} onClick={() => onClick('top')}>
           <AlignVerticalTopIcon/>
         </AlignButton>
-        <AlignButton title={captions.alignToMiddle} onClick={() => onClick('middle')}>
+        <AlignButton title={t.alignToMiddle} onClick={() => onClick('middle')}>
           <AlignVerticalCenterIcon/>
         </AlignButton>
-        <AlignButton title={captions.alignToBottom} onClick={() => onClick('bottom')}>
+        <AlignButton title={t.alignToBottom} onClick={() => onClick('bottom')}>
           <AlignVerticalBottomIcon/>
         </AlignButton>
       </ButtonGroup>
       <ButtonGroup variant="outlined">
-        <AlignButton title={captions.distributeHorizontally} onClick={() => onClick('distributeHorizontally')}>
+        <AlignButton title={t.distributeHorizontally} onClick={() => onClick('distributeHorizontally')}>
           <DistributeHorizontallyIcon/>
         </AlignButton>
-        <AlignButton title={captions.distributeVertically} onClick={() => onClick('distributeVertically')}>
+        <AlignButton title={t.distributeVertically} onClick={() => onClick('distributeVertically')}>
           <DistributeVerticallyIcon/>
         </AlignButton>
       </ButtonGroup>

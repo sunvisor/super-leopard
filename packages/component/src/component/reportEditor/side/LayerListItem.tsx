@@ -14,7 +14,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import ListItemButton from '@mui/material/ListItemButton';
 import { LayerItem } from './LayerList';
-import getCaptions from '../../../captions/getCaptions';
+import translation from '../../../translations/translation';
 
 type Props = {
   item: LayerItem;
@@ -25,7 +25,7 @@ type Props = {
 
 export default function LayerListItem(props: Props) {
   const { item, onSelect, onRemove, onRename } = props;
-  const captions = getCaptions().layerOperation;
+  const t = translation().layerOperation;
   const [editMode, setEditMode] = useState(false);
   const [layerName, setLayerName] = useState(item.name);
   const {
@@ -85,12 +85,12 @@ export default function LayerListItem(props: Props) {
     <div ref={setNodeRef} style={style}>
       <ListItem disablePadding secondaryAction={
         <>
-          <Tooltip title={captions.renameLayer} placement="left">
+          <Tooltip title={t.renameLayer} placement="left">
             <IconButton edge="end" aria-label="delete" onClick={handleEditClick}>
               <EditIcon/>
             </IconButton>
           </Tooltip>
-          <Tooltip title={captions.removeLayer} placement="right">
+          <Tooltip title={t.removeLayer} placement="right">
           <IconButton edge="end" aria-label="delete" onClick={handleDeleteClick}>
             <DeleteIcon sx={{ml: 1}}/>
           </IconButton>

@@ -9,7 +9,7 @@ import JoinMiterIcon from '../field/icon/JoinMiterIcon';
 import JoinRoundIcon from '../field/icon/JoinRoundIcon';
 import JoinBevelIcon from '../field/icon/JoinBevelIcon';
 import { JoinValue } from '@sunvisor/super-leopard-core';
-import getCaptions from '../../../captions/getCaptions';
+import translation from '../../../translations/translation';
 import ToggleTools, { ToggleToolButton } from '../ToggleTools';
 import { ChangeValueHandler } from '../usePropertyStates';
 
@@ -22,13 +22,13 @@ export type JoinButtonsProps = Props;
 
 export default function JoinButtons(props: Props) {
   const { name, value, onChangeValue } = props;
-  const captions = getCaptions().joinTool;
+  const t = translation().joinTool;
 
   const buttons: ToggleToolButton[] = useMemo(() => [
-    { icon: <JoinMiterIcon/>, value: 'miter', title: captions.miter },
-    { icon: <JoinRoundIcon/>, value: 'round', title: captions.round },
-    { icon: <JoinBevelIcon/>, value: 'bevel', title: captions.bevel }
-  ], [captions.miter, captions.round, captions.bevel]);
+    { icon: <JoinMiterIcon/>, value: 'miter', title: t.miter },
+    { icon: <JoinRoundIcon/>, value: 'round', title: t.round },
+    { icon: <JoinBevelIcon/>, value: 'bevel', title: t.bevel }
+  ], [t.miter, t.round, t.bevel]);
 
   const handleChange = useCallback( (_: React.MouseEvent<HTMLElement>, newJoin: JoinValue) => {
     if (newJoin === null) return;

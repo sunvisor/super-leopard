@@ -7,7 +7,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { Box } from '@mui/material';
 import FontFamilyField from '../field/FontFamilyField';
-import getCaptions from '../../../captions/getCaptions';
+import translation from '../../../translations/translation';
 import { FontData, FontStyleValue, toStyleString, toStyleValues } from '@sunvisor/super-leopard-core';
 import { ChangeValueHandler } from '../usePropertyStates';
 import { FontList } from '../../../font';
@@ -48,7 +48,7 @@ function toFontData(font: FontValueType): FontData {
 
 export default function FontFields(props: Props) {
   const { fontList, multiLine, onChangeValue } = props;
-  const captions = getCaptions().fontProperty;
+  const t = translation().fontProperty;
   const [ enabledStyles, setEnabledStyles ] = useState<FontStyleValue[]>([]);
 
   const adjustFont = useCallback((font: FontValueType) => {
@@ -86,7 +86,7 @@ export default function FontFields(props: Props) {
       <GroupBox>
         <FontFamilyField
           sx={{ flex: 1 }}
-          label={captions.fontFamily}
+          label={t.fontFamily}
           name="font.family"
           value={font.family}
           fontList={fontList}
@@ -97,7 +97,7 @@ export default function FontFields(props: Props) {
       <GroupBox sx={{ gap: 2 }}>
         <NumberField
           sx={{ flex: 1 }}
-          label={captions.fontSize}
+          label={t.fontSize}
           name="font.size"
           value={font.size.toString()}
           unit="pt"

@@ -9,7 +9,7 @@ import DirectionButtons from '../field/DirectionButtons';
 import { DirectionValue } from '@sunvisor/super-leopard-core';
 import { ChangeValueHandler } from '../usePropertyStates';
 import NumberField from '../field/NumberField';
-import getCaptions from '../../../captions/getCaptions';
+import translation from '../../../translations/translation';
 import Caption from '../Caption';
 import GroupBox from '../fieldGroup/GroupBox';
 import { SizeFieldValueType } from './SizeFields';
@@ -25,12 +25,12 @@ type Props = {
 
 export default function GroupFields(props: Props) {
   const { direction, repeatCount, onChangeValue } = props;
-  const captions = getCaptions().groupProperty;
+  const t = translation().groupProperty;
   return (
     <GroupBox sx={{ gap: 2 }}>
       <GroupBox sx={{ flex: 1, gap: 2 }}>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <Caption>{captions.direction}</Caption>
+          <Caption>{t.direction}</Caption>
         </Box>
         <DirectionButtons
           name="direction"
@@ -40,13 +40,13 @@ export default function GroupFields(props: Props) {
       </GroupBox>
       <Box sx={{ flex: 1 }}>
         <NumberField
-          label={captions.repeatCount}
+          label={t.repeatCount}
           name="repeatCount"
           value={repeatCount}
           minValue={1}
           maxValue={MAX_REPEAT_COUNT}
           decimalPlace={0}
-          unit={captions.times}
+          unit={t.times}
           onChangeValue={onChangeValue}
         />
       </Box>

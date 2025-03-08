@@ -5,7 +5,7 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import NumberField from '../field/NumberField';
-import getCaptions from '../../../captions/getCaptions';
+import translation from '../../../translations/translation';
 import { ChangeValueHandler } from '../usePropertyStates';
 import { UnitValue } from '@sunvisor/super-leopard-core';
 import GroupBox from '../fieldGroup/GroupBox';
@@ -21,12 +21,12 @@ type Props = {
 
 export default function PositionFields(props: Props) {
   const { x, y, unit, onChangeValue } = props;
-  const captions = getCaptions().positionProperty;
+  const t = translation().positionProperty;
 
   return (
     <GroupBox sx={{ gap: 2 }}>
       <NumberField
-        label={captions.x}
+        label={t.x}
         name="x"
         unit={unit}
         value={x}
@@ -35,7 +35,7 @@ export default function PositionFields(props: Props) {
         onChangeValue={onChangeValue}
       />
       <NumberField
-        label={captions.y}
+        label={t.y}
         name="y"
         unit={unit}
         value={y}

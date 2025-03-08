@@ -37,7 +37,7 @@ import {
   Text,
   TextShape,
 } from '@sunvisor/super-leopard-core';
-import getCaptions from '../../captions/getCaptions';
+import translation from '../../translations/translation';
 import EllipseIcon from '../toolbar/EllipseIcon';
 import LineIcon from '../toolbar/LineIcon';
 
@@ -57,7 +57,7 @@ type ObjectListItemProps = {
 }
 
 function ObjectListItemItem({ title, icon, indent, onItemClick, onSettingClick }: ObjectListItemProps) {
-  const captions = getCaptions().reportObject;
+  const t = translation().reportObject;
   return (
     <ListItem dense disablePadding>
       <ListItemButton dense sx={{ pl: indent * 2 }} onClick={onItemClick}>
@@ -70,8 +70,8 @@ function ObjectListItemItem({ title, icon, indent, onItemClick, onSettingClick }
           </Typography>
         </ListItemText>
       </ListItemButton>
-      <IconButton size="small" aria-label={captions.editProperty} onClick={onSettingClick}>
-        <Tooltip title={captions.editProperty}>
+      <IconButton size="small" aria-label={t.editProperty} onClick={onSettingClick}>
+        <Tooltip title={t.editProperty}>
           <SettingsIcon />
         </Tooltip>
       </IconButton>
@@ -105,7 +105,7 @@ function getIcon(shape: Shape) {
 }
 
 export default function ObjectListItem({ shape, indent, onClick, onSettingClick }: Props) {
-  const shapeTypes = getCaptions().shapeType;
+  const shapeTypes = translation().shapeType;
   const title = shape.type === TextShape
     ? (shape as Text).text
     : shape.type === FieldShape

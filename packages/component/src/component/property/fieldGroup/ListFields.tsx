@@ -6,7 +6,7 @@
  */
 import { DirectionValue } from '@sunvisor/super-leopard-core';
 import { ChangeValueHandler } from '../usePropertyStates';
-import getCaptions from '../../../captions/getCaptions';
+import translation from '../../../translations/translation';
 import { Box } from '@mui/material';
 import Caption from '../Caption';
 import DirectionButtons from '../field/DirectionButtons';
@@ -26,13 +26,13 @@ type Props = {
 
 export default function ListFields(props: Props) {
   const { direction, rows, columns, onChangeValue } = props;
-  const captions = getCaptions().listProperty;
+  const t = translation().listProperty;
 
   return (
     <GroupBox sx={{ gap: 2 }}>
       <GroupBox sx={{ flex: 10, gap: 2 }}>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <Caption>{captions.direction}</Caption>
+          <Caption>{t.direction}</Caption>
         </Box>
         <DirectionButtons
           name="direction"
@@ -42,7 +42,7 @@ export default function ListFields(props: Props) {
       </GroupBox>
       <Box sx={{ flex: 9 }}>
         <NumberField
-          label={captions.columns}
+          label={t.columns}
           name="columns"
           value={columns}
           minValue={1}
@@ -53,7 +53,7 @@ export default function ListFields(props: Props) {
       </Box>
       <Box sx={{ flex: 9 }}>
         <NumberField
-          label={captions.rows}
+          label={t.rows}
           name="rows"
           value={rows}
           minValue={1}

@@ -9,7 +9,7 @@ import { Box, Divider, IconButton, Input, Toolbar, Tooltip } from "@mui/material
 import SaveIcon from '@mui/icons-material/Save';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
-import getCaptions from '../../captions/getCaptions';
+import translation from '../../translations/translation';
 
 type Props = {
   title: string;
@@ -26,7 +26,7 @@ type Props = {
 export default function EditToolbar(props: Props) {
   const [title, setTitle] = React.useState<string>(props.title);
   const showSaveButton = props.showSaveButton !== undefined ? props.showSaveButton : true;
-  const captions = getCaptions().editTool;
+  const t = translation().editTool;
   const [editTitle, setEditTitle] = React.useState<boolean>(false);
 
 
@@ -60,8 +60,8 @@ export default function EditToolbar(props: Props) {
         props.additionalTools?.before && props.additionalTools.before
       }
       {
-        showSaveButton && <Tooltip title={captions.save}>
-          <IconButton size="small" color="inherit" onClick={props.onSave} aria-label={captions.save}>
+        showSaveButton && <Tooltip title={t.save}>
+          <IconButton size="small" color="inherit" onClick={props.onSave} aria-label={t.save}>
             <SaveIcon/>
           </IconButton>
         </Tooltip>
@@ -72,8 +72,8 @@ export default function EditToolbar(props: Props) {
       {
         (showSaveButton || props.additionalTools) && <Divider orientation="vertical" variant="middle" flexItem sx={{ ml: 2 }}/>
       }
-      <Tooltip title={captions.rename}>
-        <IconButton size="small" color="inherit" onClick={handleEdit} aria-label={captions.rename}>
+      <Tooltip title={t.rename}>
+        <IconButton size="small" color="inherit" onClick={handleEdit} aria-label={t.rename}>
           <DriveFileRenameOutlineIcon />
         </IconButton>
       </Tooltip>
@@ -94,8 +94,8 @@ export default function EditToolbar(props: Props) {
           <span onClick={() => setEditTitle(true)} style={{ color: 'white' }}>{title}</span>
         }
       </Box>
-      <Tooltip title={captions.property}>
-        <IconButton size="small" color="inherit" onClick={props.onPropertyOpen} aria-label={captions.property}>
+      <Tooltip title={t.property}>
+        <IconButton size="small" color="inherit" onClick={props.onPropertyOpen} aria-label={t.property}>
           <ListAltIcon/>
         </IconButton>
       </Tooltip>

@@ -7,7 +7,7 @@
 import { Checkbox, FormControlLabel } from '@mui/material';
 import ColorPickerField from '../field/ColorPickerField';
 import React, { useCallback } from 'react';
-import getCaptions from '../../../captions/getCaptions';
+import translation from '../../../translations/translation';
 import { ChangeValueHandler } from '../usePropertyStates';
 import Caption from '../Caption';
 import GroupBox from '../fieldGroup/GroupBox';
@@ -22,7 +22,7 @@ export default function FillColorField(props: Props) {
   const {
     onChangeValue,
   } = props;
-  const captions = getCaptions().fillColorProperty;
+  const t = translation().fillColorProperty;
   const [fillColor, setFillColor] = React.useState(props.fillColor);
   const [useFillColor, setUseFillColor] = React.useState(fillColor !== undefined);
 
@@ -46,13 +46,13 @@ export default function FillColorField(props: Props) {
         />
       } label={
         <Caption>
-          {!fillColor && captions.fillColor}
+          {!fillColor && t.fillColor}
         </Caption>
       }/>
       {
         fillColor && <ColorPickerField
           sx={{ flex: 1 }}
-          label={captions.fillColor}
+          label={t.fillColor}
           name="fillColor"
           value={fillColor ?? '#ffffff'}
           onChangeValue={onChangeValue}

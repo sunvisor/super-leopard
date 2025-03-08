@@ -9,7 +9,7 @@ import { Box, Drawer, IconButton, Tab, Tabs, Toolbar } from '@mui/material';
 import { EditMode } from '../ReportWorkArea';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { Shapes } from '@sunvisor/super-leopard-core';
-import getCaptions from '../../../captions/getCaptions';
+import translation from '../../../translations/translation';
 import PropertyTab from './PropertyTab';
 import LayerPanel from './LayerPanel';
 import ObjectListPanel from '../../objectList/ObjectListPanel';
@@ -25,14 +25,12 @@ type Props = {
 }
 
 function getAddModeTitle(mode: EditMode): string {
-  const captions = getCaptions().editModeTool;
-  return captions[mode];
+  const t = translation().editModeTool;
+  return t[mode];
 }
 
 function getEditModeTitle(selection: Shapes): string {
-  const captions = getCaptions();
-  const shapeType = captions.shapeType;
-  const { transform } = captions.operation;
+  const { shapeType, operation: { transform } } = translation();
   if (selection.count === 1) {
     return shapeType[selection.get(0).type];
   }
@@ -55,7 +53,7 @@ export default function SidePanel(props: Props) {
   const { selection } = useSelection();
   const settings = getSettings();
   const [tabIndex, setTabIndex] = React.useState(0);
-  const captions = getCaptions().reportObject;
+  const t = translation().reportObject;
   const { image: imageOptions, barcode: barcodeOptions } = settings;
   const fontList = getFontList(settings.fontMap);
 
@@ -86,9 +84,9 @@ export default function SidePanel(props: Props) {
         </IconButton>
       </Toolbar>
       <Tabs onChange={handleTabChange} value={tabIndex}>
-        <Tab label={captions.property} value={0}/>
-        <Tab label={captions.layer} value={1}/>
-        <Tab label={captions.object} value={2}/>
+        <Tab label={t.property} value={0}/>
+        <Tab label={t.layer} value={1}/>
+        <Tab label={t.object} value={2}/>
       </Tabs>
       <Box sx={{ width: 430, height: '100vw', overflow: 'auto' }}>
         {

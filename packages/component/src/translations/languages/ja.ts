@@ -1,42 +1,10 @@
-// noinspection JSUnusedGlobalSymbols
-
 /**
  * Japanese Captions
  *
  * Created by sunvisor on 2024/02/15.
  * Copyright (C) Sunvisor Lab. 2024.
  */
-import {
-  AlignTool,
-  BarcodeProperty, BarcodeRotateName,
-  BorderProperty,
-  Captions,
-  CapTool,
-  CircleProperty,
-  ColorPickerField,
-  EditModeTool,
-  EditTool,
-  FieldProperty,
-  FillColorProperty,
-  FontProperty,
-  GroupOperation,
-  GroupProperty,
-  ImageProperty,
-  JoinTool,
-  LayerOperation,
-  ListProperty,
-  NumberErrorMessage,
-  ObjectManipulation,
-  Operation,
-  PageProperty,
-  PositionProperty,
-  ReportObject,
-  ShapeTypeName,
-  SizeProperty,
-  TextProperty
-} from '../CaptionsType';
-
-const operation: Operation = {
+const operation = {
   undo: '元に戻す',
   redo: 'やり直す',
   delete: '削除',
@@ -46,8 +14,8 @@ const operation: Operation = {
   transform: '変形',
 }
 
-const reportObject: ReportObject = {
-  report: 'レポート'  ,
+const reportObject = {
+  report: 'レポート',
   page: 'ページ',
   layer: 'レイヤー',
   property: 'プロパティ',
@@ -56,7 +24,7 @@ const reportObject: ReportObject = {
   editProperty: 'プロパティを編集する',
 }
 
-const pageProperty: PageProperty = {
+const pageProperty = {
   title: 'ページ情報',
   paperSize: '用紙サイズ',
   custom: 'カスタム...',
@@ -84,42 +52,42 @@ const staticShapeType = {
   barcode: 'バーコード',
 }
 
-const shapeType: ShapeTypeName = {
+const shapeType = {
   ...staticShapeType,
   group: 'グループ',
   list: 'リスト',
   field: 'フィールド',
 }
 
-const editTool: EditTool = {
+const editTool = {
   save: '保存',
   rename: '名前を変更',
   property: 'プロパティ',
 }
 
-const editModeTool: EditModeTool = {
+const editModeTool = {
   edit: '編集',
   field: 'フィールド',
   ...staticShapeType,
 }
 
-const positionProperty: PositionProperty = {
+const positionProperty = {
   x: "X位置",
   y: "Y位置",
   startPosition: "開始",
   endPosition: "終了",
 }
 
-const sizeProperty: SizeProperty = {
+const sizeProperty = {
   width: "幅",
   height: "高さ",
 }
 
-const fillColorProperty: FillColorProperty = {
+const fillColorProperty = {
   fillColor: "塗り色",
 }
 
-const borderProperty: BorderProperty = {
+const borderProperty = {
   border: "線",
   color: "線色",
   width: "線幅",
@@ -128,27 +96,27 @@ const borderProperty: BorderProperty = {
   join: "角",
 }
 
-const capTool: CapTool = {
+const capTool = {
   butt: "直線",
   round: "丸",
   square: "四角",
 }
 
-const joinTool: JoinTool = {
+const joinTool = {
   miter: "角結合",
   round: "丸結合",
   bevel: "斜結合",
 }
 
-const colorPickerField: ColorPickerField = {
+const colorPickerField = {
   invalidColor: '不正な色コード',
 }
 
-const circleProperty: CircleProperty = {
+const circleProperty = {
   diameter: "直径",
 }
 
-const textProperty: TextProperty = {
+const textProperty = {
   text: '文字',
   align: '揃え',
   valign: '縦揃え',
@@ -158,7 +126,7 @@ const textProperty: TextProperty = {
   fitCell: '範囲に合わせる',
 }
 
-const alignTool: AlignTool = {
+const alignTool = {
   left: '左揃え',
   center: '中央揃え',
   right: '右揃え',
@@ -169,7 +137,7 @@ const alignTool: AlignTool = {
   bottom: '下揃え',
 }
 
-const fontProperty: FontProperty = {
+const fontProperty = {
   fontFamily: "フォント",
   fontSize: "サイズ",
   fontStyle: "スタイル",
@@ -179,7 +147,7 @@ const fontProperty: FontProperty = {
   strikethrough: "打ち消し線",
 }
 
-const imageProperty: ImageProperty = {
+const imageProperty = {
   upload: '画像をアップロードする',
   select: '画像を選択する',
   selectMessage: '使用する画像を選択してください',
@@ -187,26 +155,26 @@ const imageProperty: ImageProperty = {
   close: '閉じる',
 }
 
-const barcodeProperty: BarcodeProperty = {
+const barcodeProperty = {
   format: '形式',
   value: '値',
   rotate: '回転',
   includeText: '文字を表示',
 }
 
-const barcodeRotateName: BarcodeRotateName = {
+const barcodeRotateName = {
   N: 'なし',
   L: '時計回り',
   R: '反時計回り',
   I: '180度回転',
 }
 
-const fieldProperty: FieldProperty = {
+const fieldProperty = {
   name: 'フィールド名',
   shapeType: '図形タイプ',
 }
 
-const groupProperty: GroupProperty = {
+const groupProperty = {
   direction: '繰り返す方向',
   repeatCount: '繰り返し回数',
   vertical: '縦方向',
@@ -214,13 +182,13 @@ const groupProperty: GroupProperty = {
   times: '回',
 }
 
-const listProperty: ListProperty =  {
+const listProperty = {
   direction: '方向',
   rows: '行数',
   columns: '列数',
 }
 
-const objectManipulation: ObjectManipulation = {
+const objectManipulation = {
   toFront: '最前面へ',
   toBack: '最背面へ',
   toForward: '前へ',
@@ -239,26 +207,26 @@ const objectManipulation: ObjectManipulation = {
   distributeVertically: '縦方向に分布',
 }
 
-const groupOperation: GroupOperation = {
+const groupOperation = {
   group: 'グループ化',
   ungroup: 'グループ解除',
   shapesToList: 'リスト化',
   listToShapes: 'リスト解除',
 }
 
-const layerOperation: LayerOperation = {
+const layerOperation = {
   addLayer: 'レイヤーを追加',
   removeLayer: 'レイヤーを削除',
   renameLayer: 'レイヤー名を変更',
 }
 
-const numberErrorMessage: NumberErrorMessage = {
-  minValue: value => `値は${value}以上でなければなりません`,
-  maxValue: value => `値は${value}以下でなければなりません`,
+const numberErrorMessage = {
+  minValue: (value: number) => `値は${value}以上でなければなりません`,
+  maxValue: (value: number) => `値は${value}以下でなければなりません`,
   invalidValue: '不正な値です',
 }
 
-export const captions: Captions = {
+export const ja = {
   operation,
   reportObject,
   pageProperty,
@@ -289,3 +257,4 @@ export const captions: Captions = {
   numberErrorMessage,
 }
 
+export type Translation = typeof ja

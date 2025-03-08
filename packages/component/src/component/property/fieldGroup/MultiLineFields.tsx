@@ -5,7 +5,7 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import { ChangeValueHandler } from '../usePropertyStates';
-import getCaptions from '../../../captions/getCaptions';
+import translation from '../../../translations/translation';
 import NumberField from '../field/NumberField';
 import { UnitValue } from '@sunvisor/super-leopard-core';
 import SvCheckboxField from '../field/SvCheckboxField';
@@ -24,19 +24,19 @@ type Props = {
 
 export default function MultiLineFields(props: Props) {
   const { multiLine, linePitch, onChangeValue, unit } = props;
-  const captions = getCaptions().textProperty;
+  const t = translation().textProperty;
 
   return (
     <GroupBox>
       <SvCheckboxField
         name="multiLine"
-        label={captions.multiLine}
+        label={t.multiLine}
         value={multiLine}
         onChangeValue={onChangeValue}
       />
       {
         multiLine && <NumberField
-          label={captions.linePitch}
+          label={t.linePitch}
           name="linePitch"
           unit={unit}
           value={linePitch}

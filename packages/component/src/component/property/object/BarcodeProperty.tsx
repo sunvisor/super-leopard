@@ -16,7 +16,7 @@ import { Box } from '@mui/material';
 import SvTextField from '../field/SvTextField';
 import BarcodePanel from '../panel/BarcodePanel';
 import BarcodeField from '../field/BarcodeField';
-import getCaptions from '../../../captions/getCaptions';
+import translation from '../../../translations/translation';
 
 
 type Props = {
@@ -31,7 +31,7 @@ export default function BarcodeProperty(props: Props) {
   const barcodeProperty = useMemo(
     () => serializeBarcode(shape), [shape]
   );
-  const captions = getCaptions().barcodeProperty;
+  const captions = translation().barcodeProperty;
 
   const doUpdate = useCallback(
     (values: BarcodeData) => {

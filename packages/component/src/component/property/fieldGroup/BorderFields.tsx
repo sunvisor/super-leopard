@@ -6,7 +6,7 @@ import CapButtons from '../field/CapButtons';
 import JoinButtons from '../field/JoinButtons';
 import { ChangeValueHandler } from '../usePropertyStates';
 import BorderStyleField from '../field/BorderStyleField';
-import getCaptions from '../../../captions/getCaptions';
+import translation from '../../../translations/translation';
 import Caption from '../Caption';
 import SvCheckboxField from '../field/SvCheckboxField';
 import GroupBox from '../fieldGroup/GroupBox';
@@ -26,7 +26,7 @@ type Props = {
  */
 export default function BorderFields(props: Props) {
   const { onChangeValue } = props;
-  const captions = getCaptions().borderProperty;
+  const t = translation().borderProperty;
   const [border, setBorder] = useState<BorderData | undefined>(props.border);
   const [useStroke, setUseStroke] = useState(border !== undefined);
 
@@ -54,7 +54,7 @@ export default function BorderFields(props: Props) {
       <GroupBox>
         <SvCheckboxField
           name="useStroke"
-          label={!useStroke ? captions.border : ''}
+          label={!useStroke ? t.border : ''}
           value={useStroke}
           onChangeValue={handleChangeUseStroke}
         />
@@ -62,7 +62,7 @@ export default function BorderFields(props: Props) {
           border && <>
             <Box sx={{ flex: 1, mr: 1 }}>
               <BorderWidthField
-                label={captions.width}
+                label={t.width}
                 name="border.width"
                 value={(border.width ?? 1).toString()}
                 onChangeValue={handleChangeValue}
@@ -71,7 +71,7 @@ export default function BorderFields(props: Props) {
             <Box sx={{ flex: 1 }}>
               <BorderStyleField
                 sx={{ width: '100%' }}
-                label={captions.style}
+                label={t.style}
                 name="border.style"
                 value={border.style ?? 'solid'}
                 onChangeValue={handleChangeValue}
@@ -84,7 +84,7 @@ export default function BorderFields(props: Props) {
         border && <Box sx={{ ml: 6 }}>
           <ColorPickerField
             sx={{ flex: 1 }}
-            label={captions.color}
+            label={t.color}
             name="border.color"
             value={border.color ?? '#000000'}
             onChangeValue={handleChangeValue}
@@ -97,7 +97,7 @@ export default function BorderFields(props: Props) {
           <GroupBox sx={{ flex: 1 }}>
             <Box sx={{ mr: 2, display: 'flex', alignItems: 'center' }}>
               <Caption>
-                {captions.cap}
+                {t.cap}
               </Caption>
             </Box>
             <CapButtons
@@ -109,7 +109,7 @@ export default function BorderFields(props: Props) {
           <GroupBox sx={{ flex: 1 }}>
             <Box sx={{ mr: 2, display: 'flex', alignItems: 'center' }}>
               <Caption>
-                {captions.join}
+                {t.join}
               </Caption>
             </Box>
             <JoinButtons
