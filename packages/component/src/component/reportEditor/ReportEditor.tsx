@@ -17,6 +17,7 @@ import { setLanguage } from '../../translations/translation';
 import { setSettings, SettingData } from '../../settings';
 import useReport from '../../hooks/useReport';
 import useSelection from '../../hooks/useSelection';
+import { emptyReport } from '../emptyReport';
 
 
 export type OnSaveHandler = (id: ReportId, title: string, report: ReportData) => void;
@@ -46,7 +47,7 @@ export default function ReportEditor(props: Props) {
   const [open, setOpen] = useState<boolean>(true);
 
   useEffect(() => {
-    if (data) setReport(data);
+    setReport(data || emptyReport);
     if (language) setLanguage(language);
     if (settings) setSettings(settings);
   }, [data, setReport, language]);

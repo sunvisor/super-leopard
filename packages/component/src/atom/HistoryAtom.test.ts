@@ -58,12 +58,14 @@ describe('Tests for HistoryAtom', () => {
     const store = createStore();
     const item = testHistories[0];
     expect(store.get(CanUndoAtom)).toBe(false);
-    // Act
+    // initial load
     store.set(PushHistoryAtom, item);
+    // Act
+    store.set(PushHistoryAtom, testHistories[1]);
     // Assert
     expect(store.get(CanUndoAtom)).toBe(true);
-    expect(store.get(ReadHistoryAtom).length).toBe(1);
-    expect(store.get(ReadPointerAtom)).toBe(0);
+    expect(store.get(ReadHistoryAtom).length).toBe(2);
+    expect(store.get(ReadPointerAtom)).toBe(1);
   });
 
   test('Undoing history reverts to the previous state', () => {
