@@ -38,8 +38,8 @@ export class Group implements Shape {
   readonly #shapes: Shapes;
   readonly #repeatCount?: number;
   readonly #direction?: DirectionValue;
-  readonly #width?: number;
-  readonly #height?: number;
+  readonly #width: number;
+  readonly #height: number;
 
   constructor(config: GroupConfig) {
     this.#shapes = config.shapes;
@@ -49,10 +49,11 @@ export class Group implements Shape {
     if (config.shapes.getList() !== undefined) {
       throw new Error('List is not allowed in Group.');
     }
+    const bbox = this.#shapes.bbox;
     this.#repeatCount = config.repeatCount;
     this.#direction = config.direction;
-    this.#width = partial(config.width, internalValue);
-    this.#height = partial(config.height, internalValue);
+    this.#width = internalValue(config.width ?? bbox.width);
+    this.#height = internalValue(config.height ?? bbox.height);
     this.validateConfig();
   }
 
@@ -94,8 +95,8 @@ export class Group implements Shape {
       shapes: this.#shapes,
       repeatCount: this.#repeatCount,
       direction: this.#direction,
-      width: partial(this.#width, externalValue),
-      height: partial(this.#height, externalValue),
+      width: externalValue(this.#width),
+      height: externalValue(this.#height),
     }
   }
 
