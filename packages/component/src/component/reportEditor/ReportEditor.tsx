@@ -70,7 +70,7 @@ export default function ReportEditor(props: Props) {
   }, [applyShapes, onSave, title, report, clearSelection]);
 
   return (
-    <Box sx={{ width: '100%', height: '100%', padding: 0 }}>
+    <Box sx={{ width: '100%', height: '100%', padding: 0, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
       <AppBar position="sticky">
         <EditToolbar
           title={title}
@@ -81,12 +81,14 @@ export default function ReportEditor(props: Props) {
           showSaveButton={props.showSaveButton}
         />
       </AppBar>
-      <Box sx={{ width: '100%', height: '100%', padding: 0, display: 'flex' }}>
+      <Box sx={{ padding: 0, display: 'flex', overflow: 'hidden', flex: 1 }}>
         <DrawToolbar onChange={handleChangeTool}/>
-        <ReportWorkArea
-          mode={mode}
-          zoom={zoom / 100}
-        />
+        <Box sx={{ flex: 1, overflow: 'auto' }}>
+          <ReportWorkArea
+            mode={mode}
+            zoom={zoom / 100}
+          />
+        </Box>
       </Box>
       <AppBar position="sticky" sx={{ top: 'auto', bottom: 0 }} color="default">
         <FooterToolbar

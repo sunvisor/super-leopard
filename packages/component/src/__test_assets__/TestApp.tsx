@@ -37,7 +37,7 @@ function HistoryTool() {
 
 export default function TestApp() {
   return (
-    <Box>
+    <Box sx={{ width: '100vw', height: '100vh' }}>
       <ReportEditor
         reportId={1}
         report={billTestData}
