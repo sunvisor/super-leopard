@@ -9,8 +9,8 @@ import UndoIcon from '@mui/icons-material/Undo';
 import RedoIcon from '@mui/icons-material/Redo';
 import { ReportEditor, ReportId, useReportStates } from '../component';
 import { ReportData } from '@sunvisor/super-leopard-core';
-import { billTestData } from '@sunvisor/super-leopard-test-assets';
 import { useCallback } from 'react';
+import { testSettings } from './settings';
 
 function HistoryTool() {
   const { undo, redo, canUndo, canRedo } = useReportStates();
@@ -35,13 +35,20 @@ function HistoryTool() {
   )
 }
 
-export default function TestApp() {
+type Props = {
+  reportId: ReportId;
+  report: ReportData;
+  title: string;
+}
+
+export default function TestApp({ reportId, report, title }: Props) {
   return (
-    <Box>
+    <Box sx={{ width: '100vw', height: '100vh' }}>
       <ReportEditor
-        reportId={1}
-        report={billTestData}
-        title="Bill"
+        reportId={reportId}
+        report={report}
+        title={title}
+        settings={testSettings}
         onSave={function (id: ReportId, title: string, report: ReportData): void {
           throw new Error(`Function not implemented. ${id}, ${title}, ${report}`);
         }}

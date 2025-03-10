@@ -48,11 +48,9 @@ const meta: Meta<typeof ReportEditor> = {
     (Story) => {
       store.set(SetReportAtom, emptyReport);
 
-
       return (
-
         <Provider store={store}>
-          <div data-testid="test">
+          <div data-testid="test" style={{ width: '100vw', height: '100vh' }}>
             <Flame>
               <Story/>
             </Flame>

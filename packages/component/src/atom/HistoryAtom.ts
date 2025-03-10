@@ -46,7 +46,7 @@ export const ReadHistoryAtom: Atom<HistoryItem[]> = atom((get) => {
 export const ReadPointerAtom = atom((get) => get(PointerAtom));
 
 export const CanUndoAtom = atom((get) => {
-  return get(PointerAtom) >= 0;
+  return get(PointerAtom) > 0;
 });
 
 export const CanRedoAtom = atom((get) => {
