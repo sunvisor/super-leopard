@@ -1,6 +1,6 @@
 {
   "name": "@sunvisor/super-leopard-core",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Core objects for Super Leopard",
   "author": "Sunvisor <hisashi@sunvisor.net> (https://www.sunvisor.net/)",
   "license": "MIT",
@@ -36,6 +36,6 @@
     "watch": "vitest watch"
   },
   "devDependencies": {
-    "@sunvisor/super-leopard-test-assets": "^0.1.6"
+    "@sunvisor/super-leopard-test-assets": "^0.1.7"
   }
 }

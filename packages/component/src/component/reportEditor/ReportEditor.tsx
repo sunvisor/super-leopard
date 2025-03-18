@@ -20,12 +20,12 @@ import useSelection from '../../hooks/useSelection';
 import { emptyReport } from '../emptyReport';
 
 
-export type OnSaveHandler = (id: ReportId, title: string, report: ReportData) => void;
+export type OnSaveHandler = (report: ReportData) => void;
+export type OnChangeTitleHandler = (title: string) => void;
 export type ReportId = number | 'new';
 
 type Props = {
   report?: ReportData;
-  reportId: ReportId;
   title: string;
   language?: string;
   onSave: OnSaveHandler;
@@ -35,11 +35,11 @@ type Props = {
     before?: ReactNode;
     after?: ReactNode;
   }
+  onChangeTitle: OnChangeTitleHandler;
 }
 
 export default function ReportEditor(props: Props) {
-  const { report: data, reportId, onSave, language, settings } = props;
-  const [title, setTitle] = useState<string>(props.title);
+  const { report: data, onSave, language, settings, onChangeTitle, title } = props;
   const { clearSelection } = useSelection();
   const { report, setReport, applyShapes } = useReport();
   const [mode, setMode] = React.useState<EditMode>("edit");
@@ -61,14 +61,14 @@ export default function ReportEditor(props: Props) {
   }, [setZoom]);
 
   const handleChangeTitle = useCallback((newTitle: string) => {
-    setTitle(newTitle);
-  }, [setTitle]);
+    onChangeTitle(newTitle);
+  }, [onChangeTitle]);
 
   const handleSave = useCallback(async () => {
     applyShapes();
-    onSave(reportId, title, report);
+    onSave(report);
     clearSelection();
-  }, [applyShapes, onSave, title, report, clearSelection]);
+  }, [applyShapes, onSave, report, clearSelection]);
 
   return (
     <Box sx={{ width: '100%', height: '100%', padding: 0, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>

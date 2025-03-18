@@ -74,6 +74,7 @@ const meta: Meta<typeof ReportEditor> = {
   args: {
     settings: testSettings,
     onSave: fn(),
+    onChangeTitle: fn(),
   }
 };
 
@@ -81,7 +82,6 @@ export const Bill: Story = {
   args: {
     title: 'Bill',
     report: billTestData,
-    reportId: 1,
     language: 'ja',
   }
 }
@@ -90,7 +90,6 @@ export const InEnglish: Story = {
   args: {
     title: 'Bill',
     report: en.billTestData,
-    reportId: 1,
     language: 'en',
   }
 }
@@ -98,7 +97,6 @@ export const InEnglish: Story = {
 export const Empty: Story = {
   args: {
     title: 'Empty',
-    reportId: 1,
     language: 'ja',
   }
 }
@@ -106,7 +104,6 @@ export const Empty: Story = {
 export const AdditionalTools: Story = {
   args: {
     title: 'Empty',
-    reportId: 1,
     language: 'ja',
     additionalTools: {
       before: <NoteAddIcon />,
@@ -118,7 +115,6 @@ export const AdditionalTools: Story = {
 export const HideSaveButton: Story = {
   args: {
     title: 'Empty',
-    reportId: 1,
     language: 'ja',
     showSaveButton: false,
   }
@@ -128,7 +124,6 @@ export const AnotherSettings: Story = {
   args: {
     title: 'Bill',
     report: billTestData,
-    reportId: 1,
     language: 'ja',
     settings: {
       ...testSettings,

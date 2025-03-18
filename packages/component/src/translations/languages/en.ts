@@ -15,6 +15,7 @@ const operation = {
   paste: "Paste",
   transform: "Transform",
   delete: "Delete",
+  close: 'Close',
 }
 
 const reportObject= {
@@ -155,7 +156,6 @@ const imageProperty= {
   select: "Select Image",
   selectMessage: "Please Select image",
   decide: "Decide",
-  close: 'Close',
 }
 
 const barcodeProperty= {
