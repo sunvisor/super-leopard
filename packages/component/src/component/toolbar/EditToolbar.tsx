@@ -4,7 +4,7 @@
  * Created by sunvisor on 2024/02/02.
  * Copyright (C) Sunvisor Lab. 2024.
  */
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useEffect } from 'react';
 import { Box, Divider, IconButton, Input, Toolbar, Tooltip } from "@mui/material";
 import SaveIcon from '@mui/icons-material/Save';
 import ListAltIcon from '@mui/icons-material/ListAlt';
@@ -29,6 +29,9 @@ export default function EditToolbar(props: Props) {
   const t = translation().editTool;
   const [editTitle, setEditTitle] = React.useState<boolean>(false);
 
+  useEffect(() => {
+    setTitle(props.title);
+  }, [props.title]);
 
   const handleEdit = () => {
     setEditTitle(true);
@@ -55,7 +58,7 @@ export default function EditToolbar(props: Props) {
   }
 
   return (
-    <Toolbar variant="dense">
+    <Toolbar variant="dense" sx={{ px: 1 }} disableGutters>
       {
         props.additionalTools?.before && props.additionalTools.before
       }
@@ -81,17 +84,14 @@ export default function EditToolbar(props: Props) {
         {editTitle
           ? <Input
             inputRef={input => input && input.focus()}
-            sx={{ width: '100%' }}
+            sx={{ width: '100%', color: 'inherit' }}
             type="text"
             value={title}
             onChange={handleChangeTitle}
             onBlur={handleTitleBlur}
             onKeyDown={handleTitleKeyDown}
-            inputProps={{
-              style: { color: 'white' }
-            }}
           /> :
-          <span onClick={() => setEditTitle(true)} style={{ color: 'white' }}>{title}</span>
+          <span onClick={() => setEditTitle(true)} color="inherit" style={{ userSelect: 'none' }}>{title}</span>
         }
       </Box>
       <Tooltip title={t.property}>

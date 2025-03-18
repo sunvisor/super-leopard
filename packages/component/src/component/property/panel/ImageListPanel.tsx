@@ -53,7 +53,7 @@ export default function ImageListPanel(props: Props) {
           <Box sx={{ flexGrow: 1 }}>
             <Caption>{t.selectMessage}</Caption>
           </Box>
-          <Tooltip title={t.close}>
+          <Tooltip title={translation().operation.close}>
             <IconButton onClick={onIconButtonClick}>
               <CloseIcon/>
             </IconButton>

@@ -5,9 +5,9 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import React, { useCallback } from "react";
-import { Box, Drawer, IconButton, Tab, Tabs, Toolbar } from '@mui/material';
+import { Box, Drawer, IconButton, Tab, Tabs, Toolbar, Tooltip, Typography } from '@mui/material';
 import { EditMode } from '../ReportWorkArea';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import CloseIcon from '@mui/icons-material/Close';
 import { Shapes } from '@sunvisor/super-leopard-core';
 import translation from '../../../translations/translation';
 import PropertyTab from './PropertyTab';
@@ -77,11 +77,17 @@ export default function SidePanel(props: Props) {
       anchor="right"
       variant="persistent"
     >
-      <Toolbar variant="dense" disableGutters>
+      <Toolbar variant="dense" disableGutters sx={{ px: 1 }}>
+        <Box sx={{ flexGrow: 1, mx: 1 }}>
+          <Typography variant="subtitle1" color="textSecondary">
+            {getTitle(selection, mode)}
+          </Typography>
+        </Box>
+        <Tooltip title={translation().operation.close}>
         <IconButton size="small" onClick={handleDrawerClose}>
-          <ChevronRightIcon/>
-          {getTitle(selection, mode)}
+          <CloseIcon/>
         </IconButton>
+        </Tooltip>
       </Toolbar>
       <Tabs onChange={handleTabChange} value={tabIndex}>
         <Tab label={t.property} value={0}/>

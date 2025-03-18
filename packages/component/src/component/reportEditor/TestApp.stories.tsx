@@ -9,17 +9,20 @@
 import TestApp from "../../__test_assets__/TestApp";
 import { Meta, StoryObj } from '@storybook/react';
 import { billTestData } from '@sunvisor/super-leopard-test-assets';
+import { fn } from '@storybook/test';
 
 type Story = StoryObj<typeof TestApp>
 
 const meta: Meta<typeof TestApp> = {
   component: TestApp,
+  args: {
+    onSave: fn(),
+  }
 };
 
 export const Bill: Story = {
   args: {
     title: 'Bill',
-    reportId: 1,
     report: billTestData,
   }
 };
@@ -27,7 +30,6 @@ export const Bill: Story = {
 export const New: Story = {
   args: {
     'title': 'New Report',
-    reportId: 'new',
   }
 };
 

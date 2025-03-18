@@ -12,6 +12,7 @@ const operation = {
   paste: '貼り付け',
   cut: '切り取り',
   transform: '変形',
+  close: '閉じる',
 }
 
 const reportObject = {
@@ -152,7 +153,6 @@ const imageProperty = {
   select: '画像を選択する',
   selectMessage: '使用する画像を選択してください',
   decide: '確定する',
-  close: '閉じる',
 }
 
 const barcodeProperty = {

@@ -7,10 +7,11 @@
 import { Box, IconButton } from '@mui/material';
 import UndoIcon from '@mui/icons-material/Undo';
 import RedoIcon from '@mui/icons-material/Redo';
-import { ReportEditor, ReportId, useReportStates } from '../component';
+import { OnSaveHandler, ReportEditor, useReportStates } from '../component';
 import { ReportData } from '@sunvisor/super-leopard-core';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { testSettings } from './settings';
+
 
 function HistoryTool() {
   const { undo, redo, canUndo, canRedo } = useReportStates();
@@ -36,22 +37,21 @@ function HistoryTool() {
 }
 
 type Props = {
-  reportId: ReportId;
   report: ReportData;
   title: string;
+  onSave: OnSaveHandler;
 }
 
-export default function TestApp({ reportId, report, title }: Props) {
+export default function TestApp(props: Props) {
+  const [title, setTitle] = useState(props.title);
   return (
     <Box sx={{ width: '100vw', height: '100vh' }}>
       <ReportEditor
-        reportId={reportId}
-        report={report}
+        report={props.report}
         title={title}
         settings={testSettings}
-        onSave={function (id: ReportId, title: string, report: ReportData): void {
-          throw new Error(`Function not implemented. ${id}, ${title}, ${report}`);
-        }}
+        onSave={props.onSave}
+        onChangeTitle={title => setTitle(title)}
         additionalTools={
           {
             before: <HistoryTool/>
