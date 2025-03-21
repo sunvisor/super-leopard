@@ -1,5 +1,5 @@
 /**
- * useEventHandler
+ * useReportManipulator
  *
  * Created by sunvisor on 2024/02/08.
  * Copyright (C) Sunvisor Lab. 2024.
@@ -9,7 +9,7 @@ import { Atom, useAtomValue, useSetAtom, WritableAtom } from 'jotai';
 import { Box, createShapesSelector, Line, Position, PositionPair, Shape, Shapes } from '@sunvisor/super-leopard-core';
 import useShapes from './useShapes';
 import useClipboard from './useClipboard';
-import { CanRedoAtom, CanUndoAtom, RedoHistoryAtom, UndoHistoryAtom } from '../../../atom/HistoryAtom';
+import { CanRedoAtom, CanUndoAtom, ReadDirtyAtom, RedoHistoryAtom, UndoHistoryAtom } from '../../../atom/HistoryAtom';
 import { getSettings } from '../../../settings';
 import useScale from '../../../hooks/useScale';
 import useSelection from '../../../hooks/useSelection';
@@ -21,7 +21,7 @@ type Props = {
   setAtom?: WritableAtom<null, [shapes: Shapes], void>,
 }
 
-export default function useEventHandler(props: Props = {}) {
+export default function useReportManipulator(props: Props = {}) {
   const {
     shapes, removeShapes, addShape, updateShapes
   } = useShapes(props);
@@ -30,11 +30,12 @@ export default function useEventHandler(props: Props = {}) {
   const { setToClipboard, getFromClipboard, canPaste } = useClipboard();
   const canUndo = useAtomValue(CanUndoAtom);
   const canRedo = useAtomValue(CanRedoAtom);
-  const undo = useSetAtom(UndoHistoryAtom);
-  const redo = useSetAtom(RedoHistoryAtom);
+  const doUndo = useSetAtom(UndoHistoryAtom);
+  const doRedo = useSetAtom(RedoHistoryAtom);
+  const dirty = useAtomValue(ReadDirtyAtom);
   const { scale } = useScale();
 
-  const onSelect = useCallback((area: Box | Position) => {
+  const select = useCallback((area: Box | Position) => {
       const selector = createShapesSelector(scale, settings.lineSelect);
       if ('width' in area) {
         setSelection(selector.selectByBox(area as Box, shapes));
@@ -45,21 +46,21 @@ export default function useEventHandler(props: Props = {}) {
     [scale, settings, setSelection, shapes]
   );
 
-  const onMove = useCallback((pos: Position) => {
+  const move = useCallback((pos: Position) => {
     pos = scale.fromPixel(pos);
     const newSelection = selection.moveTo(pos)
     updateShapes(selection, newSelection);
     setSelection(newSelection);
   }, [scale, selection, setSelection, updateShapes]);
 
-  const onResize = useCallback((box: Box) => {
+  const resize = useCallback((box: Box) => {
     box = scale.fromPixel(box);
     const newSelection = selection.resize(box)
     updateShapes(selection, newSelection);
     setSelection(newSelection);
   }, [scale, selection, setSelection, updateShapes]);
 
-  const onMovePosition = useCallback((positions: PositionPair) => {
+  const movePosition = useCallback((positions: PositionPair) => {
     positions = scale.fromPixel(positions);
     const line = selection.get(0) as Line;
     const newLine = line.setPositions(positions);
@@ -68,20 +69,20 @@ export default function useEventHandler(props: Props = {}) {
     setSelection(newSelection);
   }, [scale, selection, setSelection, updateShapes])
 
-  const onAppend = useCallback((shape: Shape) => {
+  const append = useCallback((shape: Shape) => {
     addShape(shape);
   }, [addShape]);
 
-  const onRemove = useCallback(() => {
+  const remove = useCallback(() => {
     removeShapes(selection);
     clearSelection();
   }, [clearSelection, removeShapes, selection]);
 
-  const onCopy = useCallback(() => {
+  const copy = useCallback(() => {
     setToClipboard(selection);
   }, [selection, setToClipboard]);
 
-  const onPaste = useCallback(() => {
+  const paste = useCallback(() => {
     const clipboard = getFromClipboard();
     const moveSize = scale.fromPixel(PASTE_OFFSET);
     if (clipboard.count > 0) {
@@ -94,37 +95,38 @@ export default function useEventHandler(props: Props = {}) {
     }
   }, [addShape, getFromClipboard, scale, setSelection]);
 
-  const onCut = useCallback(() => {
-    onCopy();
-    onRemove();
-  }, [onCopy, onRemove]);
+  const cut = useCallback(() => {
+    copy();
+    remove();
+  }, [copy, remove]);
 
-  const onUndo = useCallback(() => {
+  const undo = useCallback(() => {
     if (canUndo) {
       clearSelection();
-      undo();
+      doUndo();
     }
-  }, [canUndo, clearSelection, undo]);
+  }, [canUndo, clearSelection, doUndo]);
 
-  const onRedo = useCallback(() => {
+  const redo = useCallback(() => {
     if (canRedo) {
       clearSelection();
-      redo();
+      doRedo();
     }
-  }, [canRedo, clearSelection, redo])
+  }, [canRedo, clearSelection, doRedo])
 
   return {
-    onSelect,
-    onMove,
-    onResize,
-    onMovePosition,
-    onAppend,
-    onRemove,
-    onCopy,
-    onPaste,
-    onCut,
-    onUndo,
-    onRedo,
+    select,
+    move,
+    resize,
+    movePosition,
+    append,
+    remove,
+    copy,
+    paste,
+    cut,
+    undo,
+    redo,
     canPaste,
+    dirty,
   }
 }

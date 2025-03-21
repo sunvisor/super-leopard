@@ -1,10 +1,10 @@
 /**
- * Test for useEventHandler
+ * Test for useReportManipulator
  *
  * Created by sunvisor on 2024/02/08.
  * Copyright (C) Sunvisor Lab. 2024.
  */
-import useEventHandler from "./useEventHandler";
+import useReportManipulator from "./useReportManipulator";
 import { act, renderHook } from '@testing-library/react';
 import { ReadShapesAtom, SetActiveLayerIndexAtom, SetReportAtom } from '../../../atom/ReportAtom';
 import { createRect, DPPX, PaperSize, ReportData, UnitType } from '@sunvisor/super-leopard-core';
@@ -13,7 +13,7 @@ import { SelectionAtom } from '../../../atom/SelectionAtom';
 import { layerTestData } from '../../../__test_assets__';
 
 
-describe('Tests for useEventHandler', () => {
+describe('Tests for useReportManipulator', () => {
 
   const X = DPPX / 25.4;
   const reportData: ReportData = {
@@ -51,10 +51,10 @@ describe('Tests for useEventHandler', () => {
     // Arrange
     setReport();
     setActiveLayer(0);
-    const { result } = renderHook(() => useEventHandler());
+    const { result } = renderHook(() => useReportManipulator());
     // Act
     act(() => {
-      result.current.onSelect({ x: 0, y: 0, width: 45 * X, height: 30 * X });
+      result.current.select({ x: 0, y: 0, width: 45 * X, height: 30 * X });
     });
     // Assert
     const selection = getSelection();
@@ -65,10 +65,10 @@ describe('Tests for useEventHandler', () => {
     // Arrange
     setReport();
     setActiveLayer(0);
-    const { result } = renderHook(() => useEventHandler());
+    const { result } = renderHook(() => useReportManipulator());
     // Act
     act(() => {
-      result.current.onSelect({ x: 7 * X, y: 7 * X });
+      result.current.select({ x: 7 * X, y: 7 * X });
     });
     // Assert
     const selection = getSelection();
@@ -79,10 +79,10 @@ describe('Tests for useEventHandler', () => {
     // Arrange
     setReport();
     setActiveLayer(0);
-    const { result } = renderHook(() => useEventHandler());
+    const { result } = renderHook(() => useReportManipulator());
     // Act
     act(() => {
-      result.current.onSelect({ x: 0, y: 0 });
+      result.current.select({ x: 0, y: 0 });
     });
     // Assert
     const selection = getSelection();
@@ -93,13 +93,13 @@ describe('Tests for useEventHandler', () => {
     // Arrange
     setReport();
     setActiveLayer(0);
-    const { result } = renderHook(() => useEventHandler());
+    const { result } = renderHook(() => useReportManipulator());
     // Act
     act(() => {
-      result.current.onSelect({ x: 0, y: 0, width: 30 * X, height: 30 * X });
+      result.current.select({ x: 0, y: 0, width: 30 * X, height: 30 * X });
     });
     act(() => {
-      result.current.onMove({ x: 0, y: 0 });
+      result.current.move({ x: 0, y: 0 });
     });
     // Assert
     const selection = getSelection();
@@ -114,10 +114,10 @@ describe('Tests for useEventHandler', () => {
     // Arrange
     setReport();
     setActiveLayer(0);
-    const { result } = renderHook(() => useEventHandler());
+    const { result } = renderHook(() => useReportManipulator());
     // Act
     act(() => {
-      result.current.onMove({ x: 0, y: 0 });
+      result.current.move({ x: 0, y: 0 });
     });
     // Assert
     const shapes = getShapes();
@@ -129,13 +129,13 @@ describe('Tests for useEventHandler', () => {
     // Arrange
     setReport();
     setActiveLayer(0);
-    const { result } = renderHook(() => useEventHandler());
+    const { result } = renderHook(() => useReportManipulator());
     // Act
     act(() => {
-      result.current.onSelect({ x: 0, y: 0, width: 30 * X, height: 30 * X });
+      result.current.select({ x: 0, y: 0, width: 30 * X, height: 30 * X });
     });
     act(() => {
-      result.current.onResize({ x: 0, y: 0, width: 10 * X, height: 10 * X });
+      result.current.resize({ x: 0, y: 0, width: 10 * X, height: 10 * X });
     });
     // Assert
     const selection = getSelection();
@@ -150,13 +150,13 @@ describe('Tests for useEventHandler', () => {
     // Arrange
     setReport();
     setActiveLayer(1);
-    const { result } = renderHook(() => useEventHandler());
+    const { result } = renderHook(() => useReportManipulator());
     // Act
     act(() => {
-      result.current.onSelect({ x: 0, y: 30 * X, width: 120 * X, height: 6 * X });
+      result.current.select({ x: 0, y: 30 * X, width: 120 * X, height: 6 * X });
     });
     act(() => {
-      result.current.onMovePosition({ x1: 0, y1: 0, x2: 10 * X, y2: 10 * X });
+      result.current.movePosition({ x1: 0, y1: 0, x2: 10 * X, y2: 10 * X });
     });
     // Assert
     const shapes = getShapes();
@@ -168,14 +168,14 @@ describe('Tests for useEventHandler', () => {
     // Arrange
     setReport();
     setActiveLayer(0);
-    const { result } = renderHook(() => useEventHandler());
+    const { result } = renderHook(() => useReportManipulator());
     const newShape = createRect({
       type: 'rect', x: 0, y: 0, width: 30, height: 30
     });
     const count = getShapes().count;
     // Act
     act(() => {
-      result.current.onAppend(newShape);
+      result.current.append(newShape);
     });
     // Assert
     const shapes = getShapes();
@@ -189,14 +189,14 @@ describe('Tests for useEventHandler', () => {
     // Arrange
     setReport();
     setActiveLayer(0);
-    const { result } = renderHook(() => useEventHandler());
+    const { result } = renderHook(() => useReportManipulator());
     const count = getShapes().count;
     // Act
     act(() => {
-      result.current.onSelect({ x: 0, y: 0, width: 30 * X, height: 30 * X });
+      result.current.select({ x: 0, y: 0, width: 30 * X, height: 30 * X });
     });
     act(() => {
-      result.current.onRemove();
+      result.current.remove();
     });
     // Assert
     const shapes = getShapes();
@@ -209,19 +209,19 @@ describe('Tests for useEventHandler', () => {
     // Arrange
     setReport();
     setActiveLayer(0);
-    const { result } = renderHook(() => useEventHandler());
+    const { result } = renderHook(() => useReportManipulator());
     const count = getShapes().count;
     const x = getShapes().get(0).bbox.x;
     const y = getShapes().get(0).bbox.y;
     // Act
     act(() => {
-      result.current.onSelect({ x: 0, y: 0, width: 30 * X, height: 30 * X });
+      result.current.select({ x: 0, y: 0, width: 30 * X, height: 30 * X });
     });
     act(() => {
-      result.current.onCopy();
+      result.current.copy();
     });
     act(() => {
-      result.current.onPaste();
+      result.current.paste();
     });
     // Assert
     const selection = getSelection();
@@ -239,17 +239,17 @@ describe('Tests for useEventHandler', () => {
     // Arrange
     setReport();
     setActiveLayer(0);
-    const { result } = renderHook(() => useEventHandler());
+    const { result } = renderHook(() => useReportManipulator());
     const count = getShapes().count;
     // Act
     act(() => {
-      result.current.onSelect({ x: 0, y: 0, width: 30 * X, height: 30 * X });
+      result.current.select({ x: 0, y: 0, width: 30 * X, height: 30 * X });
     });
     act(() => {
-      result.current.onCut();
+      result.current.cut();
     });
     act(() => {
-      result.current.onPaste();
+      result.current.paste();
     });
     // Assert
     const shapes = getShapes();
@@ -266,17 +266,17 @@ describe('Tests for useEventHandler', () => {
       // Arrange
       setReport();
       setActiveLayer(0);
-      const { result } = renderHook(() => useEventHandler());
+      const { result } = renderHook(() => useReportManipulator());
       const count = getShapes().count;
       // Act
       act(() => {
-        result.current.onSelect({ x: 0, y: 0, width: 30 * X, height: 30 * X });
+        result.current.select({ x: 0, y: 0, width: 30 * X, height: 30 * X });
       });
       act(() => {
-        result.current.onRemove();
+        result.current.remove();
       });
       act(() => {
-        result.current.onUndo();
+        result.current.undo();
       });
       // Assert
       const shapes = getShapes();
@@ -287,20 +287,20 @@ describe('Tests for useEventHandler', () => {
       // Arrange
       setReport();
       setActiveLayer(0);
-      const { result } = renderHook(() => useEventHandler());
+      const { result } = renderHook(() => useReportManipulator());
       const count = getShapes().count;
       // Act
       act(() => {
-        result.current.onSelect({ x: 0, y: 0, width: 30 * X, height: 30 * X });
+        result.current.select({ x: 0, y: 0, width: 30 * X, height: 30 * X });
       });
       act(() => {
-        result.current.onRemove();
+        result.current.remove();
       });
       act(() => {
-        result.current.onUndo();
+        result.current.undo();
       });
       act(() => {
-        result.current.onRedo();
+        result.current.redo();
       });
       // Assert
       const shapes = getShapes();

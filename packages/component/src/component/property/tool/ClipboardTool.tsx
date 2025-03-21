@@ -6,24 +6,24 @@
  */
 import PropertyBox from '../object/PropertyBox';
 import ClipboardButtons from '../field/ClipboardButtons';
-import useEventHandler from '../../reportEditor/hooks/useEventHandler';
+import useReportManipulator from '../../reportEditor/hooks/useReportManipulator';
 import useSelection from '../../../hooks/useSelection';
 
 
 export default function ClipboardTool() {
   const { selection } = useSelection();
   const canCopy = selection.count > 0;
-  const { onCopy, onCut, onPaste, canPaste, onRemove } = useEventHandler();
+  const { copy, cut, paste, canPaste, remove } = useReportManipulator();
 
   return (
     <PropertyBox>
       <ClipboardButtons
         canCopy={canCopy}
         canPaste={canPaste()}
-        onCopy={onCopy}
-        onCut={onCut}
-        onPaste={onPaste}
-        onRemove={onRemove}
+        onCopy={copy}
+        onCut={cut}
+        onPaste={paste}
+        onRemove={remove}
       />
     </PropertyBox>
   );
