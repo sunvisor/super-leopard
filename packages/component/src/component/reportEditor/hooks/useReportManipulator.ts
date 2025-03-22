@@ -82,12 +82,12 @@ export default function useReportManipulator(props: Props = {}) {
     clearSelection();
   }, [clearSelection, removeShapes, selection]);
 
-  const copy = useCallback(() => {
-    setToClipboard(selection);
+  const copy = useCallback(async () => {
+    await setToClipboard(selection);
   }, [selection, setToClipboard]);
 
-  const paste = useCallback(() => {
-    const clipboard = getFromClipboard();
+  const paste = useCallback(async () => {
+    const clipboard = await getFromClipboard();
     const moveSize = scale.fromPixel(PASTE_OFFSET);
     if (clipboard.count > 0) {
       const newShapes = clipboard.moveTo({
@@ -99,8 +99,8 @@ export default function useReportManipulator(props: Props = {}) {
     }
   }, [addShape, getFromClipboard, scale, setSelection]);
 
-  const cut = useCallback(() => {
-    copy();
+  const cut = useCallback(async () => {
+    await copy();
     remove();
   }, [copy, remove]);
 

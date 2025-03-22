@@ -11,6 +11,8 @@ import { createRect, DPPX, PaperSize, ReportData, UnitType } from '@sunvisor/sup
 import { useAtomValue, useSetAtom } from 'jotai';
 import { SelectionAtom } from '../../../atom/SelectionAtom';
 import { layerTestData } from '../../../__test_assets__';
+import { beforeEach } from 'vitest';
+import mockClipboard from '../../../__test_assets__/mockClipboard';
 
 
 describe('Tests for useReportManipulator', () => {
@@ -54,6 +56,10 @@ describe('Tests for useReportManipulator', () => {
     const hook = renderHook(() => useReportManipulator());
     return hook.result;
   };
+
+  beforeEach(() => {
+    mockClipboard();
+  });
 
   it('should select with a rectangle using "select"', () => {
     // Arrange
@@ -195,7 +201,7 @@ describe('Tests for useReportManipulator', () => {
     expect(selection.count).toBe(0);
   });
 
-  it('should append the copied shape when onCopy and "paste" is called', () => {
+  it('should append the copied shape when onCopy and "paste" is called', async () => {
     // Arrange
     const result = setup(0);
     const count = getShapes().count;
@@ -205,11 +211,9 @@ describe('Tests for useReportManipulator', () => {
     act(() => {
       result.current.select({ x: 0, y: 0, width: 30 * X, height: 30 * X });
     });
-    act(() => {
-      result.current.copy();
-    });
-    act(() => {
-      result.current.paste();
+    await act(async () => {
+      await result.current.copy();
+      await result.current.paste();
     });
     // Assert
     const selection = getSelection();
@@ -223,7 +227,7 @@ describe('Tests for useReportManipulator', () => {
     expect(added.bbox.y).toBe(y + Math.round(20 / X * 10) / 10);
   });
 
-  it('should move the copied shape when onCut and "paste" is called', () => {
+  it('should move the copied shape when onCut and "paste" is called', async () => {
     // Arrange
     const result = setup(0);
     const count = getShapes().count;
@@ -231,11 +235,11 @@ describe('Tests for useReportManipulator', () => {
     act(() => {
       result.current.select({ x: 0, y: 0, width: 30 * X, height: 30 * X });
     });
-    act(() => {
-      result.current.cut();
+    await act(async () => {
+      await result.current.cut();
     });
-    act(() => {
-      result.current.paste();
+    await act(async () => {
+      await result.current.paste();
     });
     // Assert
     const shapes = getShapes();
