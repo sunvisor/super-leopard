@@ -35,6 +35,11 @@ const isCtrlShiftZ = (event: KeyboardEvent, isMac: boolean) => {
   return event.key.toLowerCase() === 'z' && modifierKey(event) === `S${key}`;
 }
 
+const isCtrlA = (event: KeyboardEvent, isMac: boolean) => {
+  const key = isMac ? 'M' : 'C';
+  return event.key.toLowerCase() === 'a' && modifierKey(event) === key;
+}
+
 const modifierKey = (event: KeyboardEvent) =>
   (event.shiftKey ? 'S' : '') +
   (event.altKey ? 'A' : '') +
@@ -48,6 +53,7 @@ type Listeners = {
   onRemove: () => void;
   onUndo: () => void;
   onRedo: () => void;
+  onSelectAll: () => void;
 }
 
 export default function useKeyboard(listeners: Listeners, isMac: boolean = false) {
@@ -63,6 +69,8 @@ export default function useKeyboard(listeners: Listeners, isMac: boolean = false
     if (isCtrlX(event, isMac)) onCut();
     if (isCtrlZ(event, isMac)) onUndo();
     if (isCtrlShiftZ(event, isMac)) onRedo();
+    if (isCtrlA(event, isMac)) listeners.onSelectAll();
+    event.preventDefault();
   }, [isMac, onCopy, onCut, onPaste, onRedo, onRemove, onUndo]);
 
   useEffect(() => {

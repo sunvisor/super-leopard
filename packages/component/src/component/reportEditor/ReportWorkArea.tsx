@@ -48,17 +48,17 @@ export default function ReportWorkArea(props: Props) {
 
   const {
     append, select, move, resize, movePosition,
-    copy, paste, remove, cut, undo, redo
+    copy, paste, remove, cut, undo, redo, selectAll,
   } = useReportManipulator();
 
   const listeners = useMemo(
     () => ({
-      onSelect: select, onMove: move, onResize: resize, onMovePosition: movePosition
+      onSelect: select, onMove: move, onResize: resize, onMovePosition: movePosition, onSelectAll: selectAll
     }),
     [select, move, resize])
 
   useKeyboard({
-    onCopy: copy, onPaste: paste, onRemove: remove, onCut: cut, onUndo: undo, onRedo: redo
+    onCopy: copy, onPaste: paste, onRemove: remove, onCut: cut, onUndo: undo, onRedo: redo, onSelectAll: selectAll
   }, isMac());
 
   return (

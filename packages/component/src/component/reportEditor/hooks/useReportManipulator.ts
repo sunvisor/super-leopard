@@ -46,6 +46,10 @@ export default function useReportManipulator(props: Props = {}) {
     [scale, settings, setSelection, shapes]
   );
 
+  const selectAll = useCallback(() => {
+    setSelection(shapes);
+  }, [setSelection, shapes]);
+
   const move = useCallback((pos: Position) => {
     pos = scale.fromPixel(pos);
     const newSelection = selection.moveTo(pos)
@@ -116,6 +120,7 @@ export default function useReportManipulator(props: Props = {}) {
 
   return {
     select,
+    selectAll,
     move,
     resize,
     movePosition,

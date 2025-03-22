@@ -47,7 +47,7 @@ describe('Tests for useReportManipulator', () => {
     result.current(layer);
   }
 
-  test('Select with a rectangular area using onSelect', () => {
+  it('should select with a rectangle using "select"', () => {
     // Arrange
     setReport();
     setActiveLayer(0);
@@ -61,7 +61,7 @@ describe('Tests for useReportManipulator', () => {
     expect(selection.count).toBe(2);
   });
 
-  test('Select with a point using onSelect', () => {
+  it('should select with a point using "select"', () => {
     // Arrange
     setReport();
     setActiveLayer(0);
@@ -75,7 +75,7 @@ describe('Tests for useReportManipulator', () => {
     expect(selection.count).toBe(1);
   });
 
-  test('Selection should be empty when selecting an empty area with onSelect', () => {
+  it('should be empty when selecting an empty area with "select"', () => {
     // Arrange
     setReport();
     setActiveLayer(0);
@@ -89,7 +89,7 @@ describe('Tests for useReportManipulator', () => {
     expect(selection.count).toBe(0);
   });
 
-  test('Selection should move when onMove is called', () => {
+  it('should move the selection when "move" is called', () => {
     // Arrange
     setReport();
     setActiveLayer(0);
@@ -110,7 +110,7 @@ describe('Tests for useReportManipulator', () => {
     expect(shapes.get(0).bbox.y).toBe(0);
   });
 
-  test('Selection should not move when there is no selection in onMove', () => {
+  it('should not move the selection when there is no selection in "move"', () => {
     // Arrange
     setReport();
     setActiveLayer(0);
@@ -125,7 +125,7 @@ describe('Tests for useReportManipulator', () => {
     expect(shapes.get(0).bbox.y).toBe(5);
   });
 
-  test('Selection should resize when onResize is called', () => {
+  it('should resize the selection when "resize" is called', () => {
     // Arrange
     setReport();
     setActiveLayer(0);
@@ -146,7 +146,7 @@ describe('Tests for useReportManipulator', () => {
     expect(shapes.get(0).bbox.height).toBe(10);
   });
 
-  test('Selection should move when onMovePosition is called', () => {
+  it('should move the selection when "movePosition" is called', () => {
     // Arrange
     setReport();
     setActiveLayer(1);
@@ -164,7 +164,7 @@ describe('Tests for useReportManipulator', () => {
     expect(shapes.get(0).bbox.height).toBe(10);
   });
 
-  test('', () => {
+  it('should add a new shape when "append" is called', () => {
     // Arrange
     setReport();
     setActiveLayer(0);
@@ -185,7 +185,7 @@ describe('Tests for useReportManipulator', () => {
     expect(shapes.get(shapes.count - 1).bbox.height).toBe(30);
   });
 
-  it('should remove the selected shape when onRemove is called', () => {
+  it('should remove the selected shape when "remove" is called', () => {
     // Arrange
     setReport();
     setActiveLayer(0);
@@ -205,7 +205,7 @@ describe('Tests for useReportManipulator', () => {
     expect(selection.count).toBe(0);
   });
 
-  it('should append the copied shape when onCopy and onPaste is called', () => {
+  it('should append the copied shape when onCopy and "paste" is called', () => {
     // Arrange
     setReport();
     setActiveLayer(0);
@@ -235,7 +235,7 @@ describe('Tests for useReportManipulator', () => {
     expect(added.bbox.y).toBe(y + Math.round(20 / X * 10) / 10);
   });
 
-  it('should move the copied shape when onCut and onPaste is called', () => {
+  it('should move the copied shape when onCut and "paste" is called', () => {
     // Arrange
     setReport();
     setActiveLayer(0);
@@ -262,7 +262,7 @@ describe('Tests for useReportManipulator', () => {
 
   describe('Tests for undo/redo', () => {
 
-    it('should undo when onUndo is called', () => {
+    it('should undo when "undo" is called', () => {
       // Arrange
       setReport();
       setActiveLayer(0);
@@ -283,7 +283,7 @@ describe('Tests for useReportManipulator', () => {
       expect(shapes.count).toBe(count);
     });
 
-    it('should redo when onRedo is called', () => {
+    it('should redo when "redo" is called', () => {
       // Arrange
       setReport();
       setActiveLayer(0);
@@ -306,6 +306,21 @@ describe('Tests for useReportManipulator', () => {
       const shapes = getShapes();
       expect(shapes.count).toBe(count - 1);
     });
+
+    it('should select all shapes when "selectAll" is called', () => {
+      // Arrange
+      setReport();
+      setActiveLayer(0);
+      const { result } = renderHook(() => useReportManipulator());
+      const count = getShapes().count;
+      // Act
+      act(() => {
+        result.current.selectAll();
+      });
+      // Assert
+      const selection = getSelection();
+      expect(selection.count).toBe(count);
+    })
 
   });
 });
