@@ -127,6 +127,8 @@ export default function useReportManipulator(props: Props = {}) {
     undo,
     redo,
     canPaste,
+    canUndo,
+    canRedo,
     dirty,
   }
 }
