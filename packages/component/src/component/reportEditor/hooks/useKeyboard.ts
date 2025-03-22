@@ -6,46 +6,6 @@
  */
 import { useCallback, useEffect } from 'react';
 
-const isDelete = (event: KeyboardEvent) => {
-  return event.key.toLowerCase() === 'delete' && modifierKey(event) === '';
-}
-
-const isCtrlC = (event: KeyboardEvent, isMac: boolean) => {
-  const key = isMac ? 'M' : 'C';
-  return event.key.toLowerCase() === 'c' && modifierKey(event) === key;
-}
-
-const isCtrlV = (event: KeyboardEvent, isMac: boolean) => {
-  const key = isMac ? 'M' : 'C';
-  return event.key.toLowerCase() === 'v' && modifierKey(event) === key;
-}
-
-const isCtrlX = (event: KeyboardEvent, isMac: boolean) => {
-  const key = isMac ? 'M' : 'C';
-  return event.key.toLowerCase() === 'x' && modifierKey(event) === key;
-}
-
-const isCtrlZ = (event: KeyboardEvent, isMac: boolean) => {
-  const key = isMac ? 'M' : 'C';
-  return event.key.toLowerCase() === 'z' && modifierKey(event) === key;
-}
-
-const isCtrlShiftZ = (event: KeyboardEvent, isMac: boolean) => {
-  const key = isMac ? 'M' : 'C';
-  return event.key.toLowerCase() === 'z' && modifierKey(event) === `S${key}`;
-}
-
-const isCtrlA = (event: KeyboardEvent, isMac: boolean) => {
-  const key = isMac ? 'M' : 'C';
-  return event.key.toLowerCase() === 'a' && modifierKey(event) === key;
-}
-
-const modifierKey = (event: KeyboardEvent) =>
-  (event.shiftKey ? 'S' : '') +
-  (event.altKey ? 'A' : '') +
-  (event.ctrlKey ? 'C' : '') +
-  (event.metaKey ? 'M' : '');
-
 type Listeners = {
   onCopy: () => void;
   onCut: () => void;
@@ -54,27 +14,48 @@ type Listeners = {
   onUndo: () => void;
   onRedo: () => void;
   onSelectAll: () => void;
-}
+};
 
-export default function useKeyboard(listeners: Listeners, isMac: boolean = false) {
-  const { onCopy, onCut, onPaste, onRemove, onUndo, onRedo } = listeners;
+const getModifierKey = (event: KeyboardEvent): string =>
+  ['shift', 'alt', 'ctrl', 'meta']
+    .map((key) => (event[`${key}Key` as keyof KeyboardEvent] ? key[0].toUpperCase() : ''))
+    .join('');
 
-  const onKeyDown = useCallback((event: KeyboardEvent) => {
-    if (event.target instanceof HTMLElement && (["INPUT", "TEXTAREA"].includes(event.target.tagName) || event.target.isContentEditable)) {
-      return;
-    }
-    if (isDelete(event)) onRemove();
-    if (isCtrlC(event, isMac)) onCopy();
-    if (isCtrlV(event, isMac)) onPaste();
-    if (isCtrlX(event, isMac)) onCut();
-    if (isCtrlZ(event, isMac)) onUndo();
-    if (isCtrlShiftZ(event, isMac)) onRedo();
-    if (isCtrlA(event, isMac)) listeners.onSelectAll();
-    event.preventDefault();
-  }, [isMac, onCopy, onCut, onPaste, onRedo, onRemove, onUndo]);
+const isKeyCombo = (event: KeyboardEvent, key: string, modifiers: string): boolean =>
+  event.key.toLowerCase() === key && getModifierKey(event) === modifiers;
+
+export default function useKeyboard(listeners: Listeners, isMac = false) {
+  const onKeyDown = useCallback(
+    (event: KeyboardEvent) => {
+      const tag = (event.target as HTMLElement)?.tagName;
+      const isEditable =
+        tag === 'INPUT' || tag === 'TEXTAREA' || (event.target as HTMLElement).isContentEditable;
+      if (isEditable) return;
+
+      const mod = isMac ? 'M' : 'C';
+      const keyMap: [boolean, () => void][] = [
+        [isKeyCombo(event, 'delete', ''), listeners.onRemove],
+        [isKeyCombo(event, 'c', mod), listeners.onCopy],
+        [isKeyCombo(event, 'v', mod), listeners.onPaste],
+        [isKeyCombo(event, 'x', mod), listeners.onCut],
+        [isKeyCombo(event, 'z', mod), listeners.onUndo],
+        [isKeyCombo(event, 'z', 'S' + mod), listeners.onRedo],
+        [isKeyCombo(event, 'a', mod), listeners.onSelectAll],
+      ];
+
+      for (const [condition, handler] of keyMap) {
+        if (condition) {
+          event.preventDefault();
+          handler();
+          break;
+        }
+      }
+    },
+    [listeners, isMac]
+  );
 
   useEffect(() => {
     document.addEventListener('keydown', onKeyDown);
-    return () => document.removeEventListener('keydown', onKeyDown)
+    return () => document.removeEventListener('keydown', onKeyDown);
   }, [onKeyDown]);
 }

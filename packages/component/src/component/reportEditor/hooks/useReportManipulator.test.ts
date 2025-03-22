@@ -47,11 +47,17 @@ describe('Tests for useReportManipulator', () => {
     result.current(layer);
   }
 
+  const setup = (layerIndex: number = 0) => {
+    setReport();
+    setActiveLayer(layerIndex);
+
+    const hook = renderHook(() => useReportManipulator());
+    return hook.result;
+  };
+
   it('should select with a rectangle using "select"', () => {
     // Arrange
-    setReport();
-    setActiveLayer(0);
-    const { result } = renderHook(() => useReportManipulator());
+    const result = setup(0);
     // Act
     act(() => {
       result.current.select({ x: 0, y: 0, width: 45 * X, height: 30 * X });
@@ -63,9 +69,7 @@ describe('Tests for useReportManipulator', () => {
 
   it('should select with a point using "select"', () => {
     // Arrange
-    setReport();
-    setActiveLayer(0);
-    const { result } = renderHook(() => useReportManipulator());
+    const result = setup(0);
     // Act
     act(() => {
       result.current.select({ x: 7 * X, y: 7 * X });
@@ -77,9 +81,7 @@ describe('Tests for useReportManipulator', () => {
 
   it('should be empty when selecting an empty area with "select"', () => {
     // Arrange
-    setReport();
-    setActiveLayer(0);
-    const { result } = renderHook(() => useReportManipulator());
+    const result = setup(0);
     // Act
     act(() => {
       result.current.select({ x: 0, y: 0 });
@@ -91,9 +93,7 @@ describe('Tests for useReportManipulator', () => {
 
   it('should move the selection when "move" is called', () => {
     // Arrange
-    setReport();
-    setActiveLayer(0);
-    const { result } = renderHook(() => useReportManipulator());
+    const result = setup(0);
     // Act
     act(() => {
       result.current.select({ x: 0, y: 0, width: 30 * X, height: 30 * X });
@@ -112,9 +112,7 @@ describe('Tests for useReportManipulator', () => {
 
   it('should not move the selection when there is no selection in "move"', () => {
     // Arrange
-    setReport();
-    setActiveLayer(0);
-    const { result } = renderHook(() => useReportManipulator());
+    const result = setup(0);
     // Act
     act(() => {
       result.current.move({ x: 0, y: 0 });
@@ -127,9 +125,7 @@ describe('Tests for useReportManipulator', () => {
 
   it('should resize the selection when "resize" is called', () => {
     // Arrange
-    setReport();
-    setActiveLayer(0);
-    const { result } = renderHook(() => useReportManipulator());
+    const result = setup(0);
     // Act
     act(() => {
       result.current.select({ x: 0, y: 0, width: 30 * X, height: 30 * X });
@@ -148,9 +144,7 @@ describe('Tests for useReportManipulator', () => {
 
   it('should move the selection when "movePosition" is called', () => {
     // Arrange
-    setReport();
-    setActiveLayer(1);
-    const { result } = renderHook(() => useReportManipulator());
+    const result = setup(1);
     // Act
     act(() => {
       result.current.select({ x: 0, y: 30 * X, width: 120 * X, height: 6 * X });
@@ -166,9 +160,7 @@ describe('Tests for useReportManipulator', () => {
 
   it('should add a new shape when "append" is called', () => {
     // Arrange
-    setReport();
-    setActiveLayer(0);
-    const { result } = renderHook(() => useReportManipulator());
+    const result = setup(0);
     const newShape = createRect({
       type: 'rect', x: 0, y: 0, width: 30, height: 30
     });
@@ -187,9 +179,7 @@ describe('Tests for useReportManipulator', () => {
 
   it('should remove the selected shape when "remove" is called', () => {
     // Arrange
-    setReport();
-    setActiveLayer(0);
-    const { result } = renderHook(() => useReportManipulator());
+    const result = setup(0);
     const count = getShapes().count;
     // Act
     act(() => {
@@ -207,9 +197,7 @@ describe('Tests for useReportManipulator', () => {
 
   it('should append the copied shape when onCopy and "paste" is called', () => {
     // Arrange
-    setReport();
-    setActiveLayer(0);
-    const { result } = renderHook(() => useReportManipulator());
+    const result = setup(0);
     const count = getShapes().count;
     const x = getShapes().get(0).bbox.x;
     const y = getShapes().get(0).bbox.y;
@@ -237,9 +225,7 @@ describe('Tests for useReportManipulator', () => {
 
   it('should move the copied shape when onCut and "paste" is called', () => {
     // Arrange
-    setReport();
-    setActiveLayer(0);
-    const { result } = renderHook(() => useReportManipulator());
+    const result = setup(0);
     const count = getShapes().count;
     // Act
     act(() => {
@@ -264,9 +250,7 @@ describe('Tests for useReportManipulator', () => {
 
     it('should undo when "undo" is called', () => {
       // Arrange
-      setReport();
-      setActiveLayer(0);
-      const { result } = renderHook(() => useReportManipulator());
+      const result = setup(0);
       const count = getShapes().count;
       // Act
       act(() => {
@@ -285,13 +269,11 @@ describe('Tests for useReportManipulator', () => {
 
     it('should redo when "redo" is called', () => {
       // Arrange
-      setReport();
-      setActiveLayer(0);
-      const { result } = renderHook(() => useReportManipulator());
+      const result = setup(0);
       const count = getShapes().count;
       // Act
       act(() => {
-        result.current.select({ x: 0, y: 0, width: 30 * X, height: 30 * X });
+        result.current.select({ x: 0, y: 0, width: 31 * X, height: 30 * X });
       });
       act(() => {
         result.current.remove();
@@ -309,9 +291,7 @@ describe('Tests for useReportManipulator', () => {
 
     it('should select all shapes when "selectAll" is called', () => {
       // Arrange
-      setReport();
-      setActiveLayer(0);
-      const { result } = renderHook(() => useReportManipulator());
+      const result = setup(0);
       const count = getShapes().count;
       // Act
       act(() => {
@@ -320,7 +300,8 @@ describe('Tests for useReportManipulator', () => {
       // Assert
       const selection = getSelection();
       expect(selection.count).toBe(count);
-    })
+    });
 
   });
+
 });
