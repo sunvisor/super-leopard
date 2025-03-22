@@ -15,7 +15,7 @@ import EditingLayer from './layer/EditingLayer';
 import AppendShapeLayer, { AppendShapeType } from './layer/AppendShapeLayer';
 import useShapes from '../reportEditor/hooks/useShapes';
 import useKeyboard from '../reportEditor/hooks/useKeyboard';
-import useEventHandler from '../reportEditor/hooks/useEventHandler';
+import useReportManipulator from './hooks/useReportManipulator';
 import { isMac } from '../environment';
 import contractShapes from '../report/layer/contractShapes';
 import useReport from '../../hooks/useReport';
@@ -47,18 +47,18 @@ export default function ReportWorkArea(props: Props) {
   const { shapes } = useShapes();
 
   const {
-    onAppend, onSelect, onMove, onResize, onMovePosition,
-    onCopy, onPaste, onRemove, onCut, onUndo, onRedo
-  } = useEventHandler();
+    append, select, move, resize, movePosition,
+    copy, paste, remove, cut, undo, redo, selectAll,
+  } = useReportManipulator();
 
   const listeners = useMemo(
     () => ({
-      onSelect, onMove, onResize, onMovePosition
+      onSelect: select, onMove: move, onResize: resize, onMovePosition: movePosition, onSelectAll: selectAll
     }),
-    [onSelect, onMove, onResize])
+    [select, move, resize])
 
   useKeyboard({
-    onCopy, onPaste, onRemove, onCut, onUndo, onRedo
+    onCopy: copy, onPaste: paste, onRemove: remove, onCut: cut, onUndo: undo, onRedo: redo, onSelectAll: selectAll
   }, isMac());
 
   return (
@@ -88,7 +88,7 @@ export default function ReportWorkArea(props: Props) {
           mode !== 'edit'
         ) && <AppendShapeLayer
           shapeType={mode}
-          onAppend={onAppend}
+          onAppend={append}
         />
       }
     </ReportPaper>

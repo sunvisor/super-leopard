@@ -26,6 +26,7 @@ const CurrentHistoryAtom = atom((get) => {
 });
 
 const DirtyAtom = atom<boolean>(false);
+export const MAX_HISTORY = 100;
 
 /**
  * Read history for debug and testing
@@ -70,6 +71,10 @@ export const PushHistoryAtom = atom(null, (get, set, item: HistoryItem) => {
     report: JSON.stringify(item.report),
   }
   history.push(newItem);
+  // limit history size
+  if (history.length > MAX_HISTORY) {
+    history.shift(); // remove first
+  }
   set(HistoryAtom, history);
   set(PointerAtom, history.length - 1);
   set(DirtyAtom, true);

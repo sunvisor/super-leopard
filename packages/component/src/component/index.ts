@@ -4,7 +4,8 @@ export type ImageListData = {
 }
 import ReportEditor, { ReportId, OnSaveHandler, OnChangeTitleHandler } from './reportEditor/ReportEditor';
 import Report from './report/report/Report';
-import useReportStates from './reportEditor/hooks/useReportStates';
-export { ReportEditor, Report }
+import useReportManipulator from './reportEditor/hooks/useReportManipulator';
+import useReport from '../hooks/useReport';
+import useSelection from '../hooks/useSelection';
+export { ReportEditor, Report, useReportManipulator, useReport, useSelection }
 export type { ReportId, OnSaveHandler, OnChangeTitleHandler }
-export { useReportStates }

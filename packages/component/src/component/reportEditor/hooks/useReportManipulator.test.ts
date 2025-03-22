@@ -1,19 +1,21 @@
 /**
- * Test for useEventHandler
+ * Test for useReportManipulator
  *
  * Created by sunvisor on 2024/02/08.
  * Copyright (C) Sunvisor Lab. 2024.
  */
-import useEventHandler from "./useEventHandler";
+import useReportManipulator from "./useReportManipulator";
 import { act, renderHook } from '@testing-library/react';
 import { ReadShapesAtom, SetActiveLayerIndexAtom, SetReportAtom } from '../../../atom/ReportAtom';
 import { createRect, DPPX, PaperSize, ReportData, UnitType } from '@sunvisor/super-leopard-core';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { SelectionAtom } from '../../../atom/SelectionAtom';
 import { layerTestData } from '../../../__test_assets__';
+import { beforeEach } from 'vitest';
+import mockClipboard from '../../../__test_assets__/mockClipboard';
 
 
-describe('Tests for useEventHandler', () => {
+describe('Tests for useReportManipulator', () => {
 
   const X = DPPX / 25.4;
   const reportData: ReportData = {
@@ -47,59 +49,63 @@ describe('Tests for useEventHandler', () => {
     result.current(layer);
   }
 
-  test('Select with a rectangular area using onSelect', () => {
-    // Arrange
+  const setup = (layerIndex: number = 0) => {
     setReport();
-    setActiveLayer(0);
-    const { result } = renderHook(() => useEventHandler());
+    setActiveLayer(layerIndex);
+
+    const hook = renderHook(() => useReportManipulator());
+    return hook.result;
+  };
+
+  beforeEach(() => {
+    mockClipboard();
+  });
+
+  it('should select with a rectangle using "select"', () => {
+    // Arrange
+    const result = setup(0);
     // Act
     act(() => {
-      result.current.onSelect({ x: 0, y: 0, width: 45 * X, height: 30 * X });
+      result.current.select({ x: 0, y: 0, width: 45 * X, height: 30 * X });
     });
     // Assert
     const selection = getSelection();
     expect(selection.count).toBe(2);
   });
 
-  test('Select with a point using onSelect', () => {
+  it('should select with a point using "select"', () => {
     // Arrange
-    setReport();
-    setActiveLayer(0);
-    const { result } = renderHook(() => useEventHandler());
+    const result = setup(0);
     // Act
     act(() => {
-      result.current.onSelect({ x: 7 * X, y: 7 * X });
+      result.current.select({ x: 7 * X, y: 7 * X });
     });
     // Assert
     const selection = getSelection();
     expect(selection.count).toBe(1);
   });
 
-  test('Selection should be empty when selecting an empty area with onSelect', () => {
+  it('should be empty when selecting an empty area with "select"', () => {
     // Arrange
-    setReport();
-    setActiveLayer(0);
-    const { result } = renderHook(() => useEventHandler());
+    const result = setup(0);
     // Act
     act(() => {
-      result.current.onSelect({ x: 0, y: 0 });
+      result.current.select({ x: 0, y: 0 });
     });
     // Assert
     const selection = getSelection();
     expect(selection.count).toBe(0);
   });
 
-  test('Selection should move when onMove is called', () => {
+  it('should move the selection when "move" is called', () => {
     // Arrange
-    setReport();
-    setActiveLayer(0);
-    const { result } = renderHook(() => useEventHandler());
+    const result = setup(0);
     // Act
     act(() => {
-      result.current.onSelect({ x: 0, y: 0, width: 30 * X, height: 30 * X });
+      result.current.select({ x: 0, y: 0, width: 30 * X, height: 30 * X });
     });
     act(() => {
-      result.current.onMove({ x: 0, y: 0 });
+      result.current.move({ x: 0, y: 0 });
     });
     // Assert
     const selection = getSelection();
@@ -110,14 +116,12 @@ describe('Tests for useEventHandler', () => {
     expect(shapes.get(0).bbox.y).toBe(0);
   });
 
-  test('Selection should not move when there is no selection in onMove', () => {
+  it('should not move the selection when there is no selection in "move"', () => {
     // Arrange
-    setReport();
-    setActiveLayer(0);
-    const { result } = renderHook(() => useEventHandler());
+    const result = setup(0);
     // Act
     act(() => {
-      result.current.onMove({ x: 0, y: 0 });
+      result.current.move({ x: 0, y: 0 });
     });
     // Assert
     const shapes = getShapes();
@@ -125,17 +129,15 @@ describe('Tests for useEventHandler', () => {
     expect(shapes.get(0).bbox.y).toBe(5);
   });
 
-  test('Selection should resize when onResize is called', () => {
+  it('should resize the selection when "resize" is called', () => {
     // Arrange
-    setReport();
-    setActiveLayer(0);
-    const { result } = renderHook(() => useEventHandler());
+    const result = setup(0);
     // Act
     act(() => {
-      result.current.onSelect({ x: 0, y: 0, width: 30 * X, height: 30 * X });
+      result.current.select({ x: 0, y: 0, width: 30 * X, height: 30 * X });
     });
     act(() => {
-      result.current.onResize({ x: 0, y: 0, width: 10 * X, height: 10 * X });
+      result.current.resize({ x: 0, y: 0, width: 10 * X, height: 10 * X });
     });
     // Assert
     const selection = getSelection();
@@ -146,17 +148,15 @@ describe('Tests for useEventHandler', () => {
     expect(shapes.get(0).bbox.height).toBe(10);
   });
 
-  test('Selection should move when onMovePosition is called', () => {
+  it('should move the selection when "movePosition" is called', () => {
     // Arrange
-    setReport();
-    setActiveLayer(1);
-    const { result } = renderHook(() => useEventHandler());
+    const result = setup(1);
     // Act
     act(() => {
-      result.current.onSelect({ x: 0, y: 30 * X, width: 120 * X, height: 6 * X });
+      result.current.select({ x: 0, y: 30 * X, width: 120 * X, height: 6 * X });
     });
     act(() => {
-      result.current.onMovePosition({ x1: 0, y1: 0, x2: 10 * X, y2: 10 * X });
+      result.current.movePosition({ x1: 0, y1: 0, x2: 10 * X, y2: 10 * X });
     });
     // Assert
     const shapes = getShapes();
@@ -164,18 +164,16 @@ describe('Tests for useEventHandler', () => {
     expect(shapes.get(0).bbox.height).toBe(10);
   });
 
-  test('', () => {
+  it('should add a new shape when "append" is called', () => {
     // Arrange
-    setReport();
-    setActiveLayer(0);
-    const { result } = renderHook(() => useEventHandler());
+    const result = setup(0);
     const newShape = createRect({
       type: 'rect', x: 0, y: 0, width: 30, height: 30
     });
     const count = getShapes().count;
     // Act
     act(() => {
-      result.current.onAppend(newShape);
+      result.current.append(newShape);
     });
     // Assert
     const shapes = getShapes();
@@ -185,18 +183,16 @@ describe('Tests for useEventHandler', () => {
     expect(shapes.get(shapes.count - 1).bbox.height).toBe(30);
   });
 
-  it('should remove the selected shape when onRemove is called', () => {
+  it('should remove the selected shape when "remove" is called', () => {
     // Arrange
-    setReport();
-    setActiveLayer(0);
-    const { result } = renderHook(() => useEventHandler());
+    const result = setup(0);
     const count = getShapes().count;
     // Act
     act(() => {
-      result.current.onSelect({ x: 0, y: 0, width: 30 * X, height: 30 * X });
+      result.current.select({ x: 0, y: 0, width: 30 * X, height: 30 * X });
     });
     act(() => {
-      result.current.onRemove();
+      result.current.remove();
     });
     // Assert
     const shapes = getShapes();
@@ -205,23 +201,19 @@ describe('Tests for useEventHandler', () => {
     expect(selection.count).toBe(0);
   });
 
-  it('should append the copied shape when onCopy and onPaste is called', () => {
+  it('should append the copied shape when onCopy and "paste" is called', async () => {
     // Arrange
-    setReport();
-    setActiveLayer(0);
-    const { result } = renderHook(() => useEventHandler());
+    const result = setup(0);
     const count = getShapes().count;
     const x = getShapes().get(0).bbox.x;
     const y = getShapes().get(0).bbox.y;
     // Act
     act(() => {
-      result.current.onSelect({ x: 0, y: 0, width: 30 * X, height: 30 * X });
+      result.current.select({ x: 0, y: 0, width: 30 * X, height: 30 * X });
     });
-    act(() => {
-      result.current.onCopy();
-    });
-    act(() => {
-      result.current.onPaste();
+    await act(async () => {
+      await result.current.copy();
+      await result.current.paste();
     });
     // Assert
     const selection = getSelection();
@@ -235,21 +227,19 @@ describe('Tests for useEventHandler', () => {
     expect(added.bbox.y).toBe(y + Math.round(20 / X * 10) / 10);
   });
 
-  it('should move the copied shape when onCut and onPaste is called', () => {
+  it('should move the copied shape when onCut and "paste" is called', async () => {
     // Arrange
-    setReport();
-    setActiveLayer(0);
-    const { result } = renderHook(() => useEventHandler());
+    const result = setup(0);
     const count = getShapes().count;
     // Act
     act(() => {
-      result.current.onSelect({ x: 0, y: 0, width: 30 * X, height: 30 * X });
+      result.current.select({ x: 0, y: 0, width: 30 * X, height: 30 * X });
     });
-    act(() => {
-      result.current.onCut();
+    await act(async () => {
+      await result.current.cut();
     });
-    act(() => {
-      result.current.onPaste();
+    await act(async () => {
+      await result.current.paste();
     });
     // Assert
     const shapes = getShapes();
@@ -262,50 +252,60 @@ describe('Tests for useEventHandler', () => {
 
   describe('Tests for undo/redo', () => {
 
-    it('should undo when onUndo is called', () => {
+    it('should undo when "undo" is called', () => {
       // Arrange
-      setReport();
-      setActiveLayer(0);
-      const { result } = renderHook(() => useEventHandler());
+      const result = setup(0);
       const count = getShapes().count;
       // Act
       act(() => {
-        result.current.onSelect({ x: 0, y: 0, width: 30 * X, height: 30 * X });
+        result.current.select({ x: 0, y: 0, width: 30 * X, height: 30 * X });
       });
       act(() => {
-        result.current.onRemove();
+        result.current.remove();
       });
       act(() => {
-        result.current.onUndo();
+        result.current.undo();
       });
       // Assert
       const shapes = getShapes();
       expect(shapes.count).toBe(count);
     });
 
-    it('should redo when onRedo is called', () => {
+    it('should redo when "redo" is called', () => {
       // Arrange
-      setReport();
-      setActiveLayer(0);
-      const { result } = renderHook(() => useEventHandler());
+      const result = setup(0);
       const count = getShapes().count;
       // Act
       act(() => {
-        result.current.onSelect({ x: 0, y: 0, width: 30 * X, height: 30 * X });
+        result.current.select({ x: 0, y: 0, width: 31 * X, height: 30 * X });
       });
       act(() => {
-        result.current.onRemove();
+        result.current.remove();
       });
       act(() => {
-        result.current.onUndo();
+        result.current.undo();
       });
       act(() => {
-        result.current.onRedo();
+        result.current.redo();
       });
       // Assert
       const shapes = getShapes();
       expect(shapes.count).toBe(count - 1);
     });
 
+    it('should select all shapes when "selectAll" is called', () => {
+      // Arrange
+      const result = setup(0);
+      const count = getShapes().count;
+      // Act
+      act(() => {
+        result.current.selectAll();
+      });
+      // Assert
+      const selection = getSelection();
+      expect(selection.count).toBe(count);
+    });
+
   });
+
 });

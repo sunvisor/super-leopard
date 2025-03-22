@@ -16,6 +16,7 @@ describe('Tests for useKeyboard', () => {
     onRemove: vi.fn(),
     onUndo: vi.fn(),
     onRedo: vi.fn(),
+    onSelectAll: vi.fn(),
   }
 
   describe('Case of not macOS', () => {
@@ -121,6 +122,15 @@ describe('Tests for useKeyboard', () => {
       fireEvent.keyDown(document, { key: 'z', metaKey: true, shiftKey: true });
       // Assert
       expect(listeners.onRedo).toBeCalled();
+    });
+
+    it('should call onSelectAll when cmd + a is pressed', () => {
+      // Arrange
+      renderHook(() => useKeyboard(listeners, true));
+      // Act
+      fireEvent.keyDown(document, { key: 'a', metaKey: true });
+      // Assert
+      expect(listeners.onSelectAll).toBeCalled();
     });
 
   });

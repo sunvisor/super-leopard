@@ -1,7 +1,7 @@
 // noinspection JSUnusedGlobalSymbols
 
 /**
- * Editor Story
+ * ReportEditor Story
  *
  * Created by sunvisor on 2024/02/08.
  * Copyright (C) Sunvisor Lab. 2024.
@@ -18,8 +18,9 @@ import { testSettings } from '../../__test_assets__/settings';
 import { billTestData, en } from '@sunvisor/super-leopard-test-assets';
 import NoteAddIcon from '@mui/icons-material/NoteAdd';
 import FileOpenIcon from '@mui/icons-material/FileOpen';
-import useReportStates from './hooks/useReportStates';
 import { useEffect } from 'react';
+import useReport from '../../hooks/useReport';
+import useReportManipulator from './hooks/useReportManipulator';
 
 
 type Story = StoryObj<typeof ReportEditor>
@@ -28,7 +29,8 @@ const store = createStore();
 
 // test for useReportStates
 function Flame({ children } : { children: any}) {
-  const {report, dirty} = useReportStates();
+  const { report } = useReport();
+  const { dirty } = useReportManipulator();
   useEffect(() => {
     console.log('report', report);
     console.log('dirty', dirty);

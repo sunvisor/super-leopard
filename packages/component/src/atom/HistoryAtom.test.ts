@@ -4,6 +4,7 @@
  * Created by sunvisor on 2024/02/10.
  * Copyright (C) Sunvisor Lab. 2024.
  */
+
 import {
   CanRedoAtom,
   CanUndoAtom,
@@ -18,7 +19,7 @@ import { createStore } from 'jotai';
 import { ReportData } from '@sunvisor/super-leopard-core';
 import { ReadShapesAtom } from './ReportAtom';
 import { shapeTestData, shapeTestData2 } from '@sunvisor/super-leopard-test-assets';
-
+import { MAX_HISTORY } from './HistoryAtom';
 
 describe('Tests for HistoryAtom', () => {
 
@@ -111,4 +112,29 @@ describe('Tests for HistoryAtom', () => {
     expect(store.get(ReadPointerAtom)).toBe(-1);
   });
 
+  test('History does not exceed MAX_HISTORY', () => {
+    // Arrange
+    const store = createStore();
+
+    // Fill up history with MAX_HISTORY + 10 entries
+    for (let i = 0; i < MAX_HISTORY + 10; i++) {
+      const dummy: ReportData = {
+        page: report.page,
+        layers: [{
+          name: `layer-${i}`,
+          shapes: [],
+        }]
+      };
+      store.set(PushHistoryAtom, { report: dummy });
+    }
+
+    const history = store.get(ReadHistoryAtom);
+    const pointer = store.get(ReadPointerAtom);
+
+    // Assert
+    expect(history.length).toBe(MAX_HISTORY);
+    expect(pointer).toBe(MAX_HISTORY - 1);
+    expect(history[0].report.layers[0].name).toBe(`layer-10`); // first ten elements have been removed
+    expect(history[MAX_HISTORY - 1].report.layers[0].name).toBe(`layer-${MAX_HISTORY + 9}`); // last element
+  });
 });
