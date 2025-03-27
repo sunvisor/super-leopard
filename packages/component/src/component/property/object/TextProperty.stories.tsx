@@ -9,7 +9,7 @@
 import TextProperty from "./TextProperty";
 import { Meta, StoryObj } from "@storybook/react";
 import { createText, UnitType } from '@sunvisor/super-leopard-core';
-import { testFontList } from '../../../__test_assets__';
+import { testFontList } from '@/__test_assets__';
 import { fn } from '@storybook/test';
 
 

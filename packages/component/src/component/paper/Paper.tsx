@@ -7,7 +7,7 @@
 import { createPage, Page, PageData } from '@sunvisor/super-leopard-core';
 import styled from '@emotion/styled';
 import React from 'react';
-import useScale from '../../hooks/useScale';
+import useScale from '@/hooks/useScale';
 
 type Props = {
   page: PageData | Page;

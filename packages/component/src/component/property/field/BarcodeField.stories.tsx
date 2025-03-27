@@ -8,9 +8,10 @@
  */
 import BarcodeField from "./BarcodeField";
 import { Meta, StoryObj } from '@storybook/react';
-import { fieldDecorator } from '../../../__test_assets__';
 import { sampleBarcodeValues } from '@sunvisor/super-leopard-core';
-import { defaultSettings } from '../../../settings';
+import { fieldDecorator } from '@/__test_assets__';
+import { defaultSettings } from '@/settings';
+
 
 type Story = StoryObj<typeof BarcodeField>
 

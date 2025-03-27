@@ -4,10 +4,10 @@
  * Created by sunvisor on 2025/02/20.
  * Copyright (C) Sunvisor Lab. 2025.
  */
-import { WebFontMap } from '../font';
+import { WebFontMap } from '@/font';
 import { ColorData } from '@sunvisor/super-leopard-core';
-import { StrokeOptions } from '../svgDriver';
-import { ImageListData } from '../component';
+import { StrokeOptions } from '@/svgDriver';
+import { ImageListData } from '@/component';
 export * from './getSettings';
 
 /**

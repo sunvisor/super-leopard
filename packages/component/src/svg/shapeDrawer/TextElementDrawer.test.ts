@@ -14,7 +14,7 @@ import {
   TextData,
 } from '@sunvisor/super-leopard-core';
 import { WebFont } from './WebFont';
-import { SvgDrawerInterface, SvgTextInterface } from '../../svgDriver';
+import { SvgDrawerInterface, SvgTextInterface } from '@/svgDriver';
 import { Mock } from '@storybook/test';
 
 

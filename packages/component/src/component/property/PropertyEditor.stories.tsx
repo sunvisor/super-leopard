@@ -9,12 +9,12 @@
 import PropertyEditor from "./PropertyEditor";
 import { Meta, StoryContext, StoryFn, StoryObj } from '@storybook/react';
 import { createShapes, Shapes } from '@sunvisor/super-leopard-core';
-import { SelectionAtom } from '../../atom/SelectionAtom';
+import { SelectionAtom } from '@/atom/SelectionAtom';
 import { createStore, Provider } from 'jotai';
-import { SetReportAtom } from '../../atom/ReportAtom';
+import { SetReportAtom } from '@/atom/ReportAtom';
 import { emptyReport } from '../emptyReport';
-import { ClipboardAtom } from '../../atom/ClipboardAtom';
-import { testImageOptions } from '../../__test_assets__';
+import { ClipboardAtom } from '@/atom/ClipboardAtom';
+import { testImageOptions } from '@/__test_assets__';
 import { shapeTestData } from '@sunvisor/super-leopard-test-assets';
 
 

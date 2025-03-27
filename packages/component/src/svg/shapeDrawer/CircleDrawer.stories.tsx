@@ -11,7 +11,7 @@ import { within } from '@storybook/test';
 import { CircleDrawer } from './CircleDrawer';
 import {createScale, createCircle, CircleData,CircleShape,  UnitType} from '@sunvisor/super-leopard-core';
 import { expect } from '@storybook/test';
-import { createTestSvgDrawer } from '../../__test_assets__';
+import { createTestSvgDrawer } from '@/__test_assets__';
 
 
 type CircleProps = {

@@ -25,10 +25,10 @@ import { EllipseDrawer } from './EllipseDrawer';
 import { ImageDrawer } from './ImageDrawer';
 import { TextElementDrawer } from './TextElementDrawer';
 import { Measurement } from './Measurement';
-import { SettingData } from '../../settings';
+import { SettingData } from '@/settings';
 import { LineDrawer } from './LineDrawer';
 import { WebFont } from './WebFont';
-import { SvgDrawerInterface } from '../../svgDriver';
+import { SvgDrawerInterface } from '@/svgDriver';
 import { BarcodeDrawer } from './BarcodeDrawer';
 
 

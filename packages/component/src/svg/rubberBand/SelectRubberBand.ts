@@ -7,8 +7,8 @@
  */
 import { Box, normalizeBox, Position } from '@sunvisor/super-leopard-core';
 import { EditRubberBandInterface } from './EditRubberBand';
-import { RubberBandOptions } from '../../settings';
-import { SvgDrawerInterface, SvgRectInterface } from '../../svgDriver';
+import { RubberBandOptions } from '@/settings';
+import { SvgDrawerInterface, SvgRectInterface } from '@/svgDriver';
 
 export type OnSelectHandler = (area: Box | Position) => void;
 

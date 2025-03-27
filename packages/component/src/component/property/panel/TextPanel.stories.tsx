@@ -10,7 +10,7 @@ import TextPanel from "./TextPanel";
 import { Meta, StoryObj } from "@storybook/react";
 import { TextData, UnitType } from '@sunvisor/super-leopard-core';
 import { Box } from "@mui/material";
-import { testFontList } from '../../../__test_assets__';
+import { testFontList } from '@/__test_assets__';
 import { fn } from '@storybook/test';
 
 

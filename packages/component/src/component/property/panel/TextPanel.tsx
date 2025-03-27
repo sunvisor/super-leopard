@@ -12,9 +12,9 @@ import AlignFields, { AlignFieldType } from '../fieldGroup/AlignFields';
 import MultiLineFields, { MultiLineFieldType } from '../fieldGroup/MultiLineFields';
 import { ChangeValueHandler } from '../usePropertyStates';
 import { AlignType, FontData, TextData, UnitValue, ValignType } from '@sunvisor/super-leopard-core';
-import { FontList } from '../../../font';
+import { FontList } from '@/font';
 import SvCheckboxField from '../field/SvCheckboxField';
-import translation from '../../../translations/translation';
+import translation from '@/translations/translation';
 
 export type TextPanelValueType =
   number

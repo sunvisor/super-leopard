@@ -10,10 +10,10 @@ import PageUnitField from '../field/PageUnitField';
 import PaperSizeFields, { PaperSizeFieldType } from '../fieldGroup/PaperSizeFields';
 import GroupBox from '../fieldGroup/GroupBox';
 import PageMarginFields from '../fieldGroup/PageMarginFields';
-import translation from '../../../translations/translation';
+import translation from '@/translations/translation';
 import PropertyBox from '../object/PropertyBox';
 import Caption from '../Caption';
-import useReport from '../../../hooks/useReport';
+import useReport from '@/hooks/useReport';
 
 
 type Props = {

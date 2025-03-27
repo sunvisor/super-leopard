@@ -12,11 +12,11 @@ import ZOrderTool from './tool/ZOrderTool';
 import ObjectAlignTool from './tool/ObjectAlignTool';
 import GroupTool from './tool/GroupTool';
 import PageProperty from './page/PageProperty';
-import { FontList } from '../../font';
-import { ImageOptions } from '../../settings';
-import usePage from '../../hooks/usePage';
-import useScale from '../../hooks/useScale';
-import useSelection from '../../hooks/useSelection';
+import { FontList } from '@/font';
+import { ImageOptions } from '@/settings';
+import usePage from '@/hooks/usePage';
+import useScale from '@/hooks/useScale';
+import useSelection from '@/hooks/useSelection';
 
 
 type Props = {

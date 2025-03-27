@@ -20,9 +20,13 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "rootDir": "./src",
-    "baseUrl": "./src",
-    "outDir": "./dist"
+    /* paths */
+    "rootDir": "./",
+    "baseUrl": "./",
+    "outDir": "./dist",
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
   "include": [
     "./src"

@@ -9,7 +9,7 @@ import { ChangeValueHandler } from '../usePropertyStates';
 import GroupBox from './GroupBox';
 import BarcodeRotateField from '../field/BarcodeRotateField';
 import SvCheckboxField from '../field/SvCheckboxField';
-import translation from '../../../translations/translation';
+import translation from '@/translations/translation';
 import { useCallback } from 'react';
 
 type Props = {

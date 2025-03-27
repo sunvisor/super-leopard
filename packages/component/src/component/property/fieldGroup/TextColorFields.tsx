@@ -8,8 +8,8 @@ import { Box } from '@mui/material';
 import FillColorField from '../field/FillColorField';
 import { ChangeValueHandler } from '../usePropertyStates';
 import ColorPickerField from '../field/ColorPickerField';
-import translation from '../../../translations/translation';
-import GroupBox from '../fieldGroup/GroupBox';
+import translation from '@/translations/translation';
+import GroupBox from './GroupBox';
 
 export type TextColorFieldType = boolean | string | undefined;
 

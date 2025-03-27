@@ -29,11 +29,11 @@ import LineProperty from './LineProperty';
 import ListProperty from './ListProperty';
 import RectProperty from './RectProperty';
 import TextProperty from './TextProperty';
-import useShapes from '../../reportEditor/hooks/useShapes';
-import { FontList } from '../../../font';
+import useSelection from '@/hooks/useSelection';
+import useShapes from '@/hooks/useShapes';
+import { FontList } from '@/font';
 import BarcodeProperty from './BarcodeProperty';
-import { ImageOptions } from '../../../settings';
-import useSelection from '../../../hooks/useSelection';
+import { ImageOptions } from '@/settings';
 
 
 export type UpdateHandler = (target: Shape, updated: Shape) => void;

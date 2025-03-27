@@ -16,13 +16,13 @@ import {
   Shape,
   TextShapeType,
 } from '@sunvisor/super-leopard-core';
-import { AppendShapeRubberBand } from '../../../svg';
-import { LayerDiv } from '../../report/layer/Layer';
-import { SvgDriver } from '../../../svgDriver';
-import { getSettings } from '../../../settings';
-import usePage from '../../../hooks/usePage';
-import useScale from '../../../hooks/useScale';
-import useStyles from '../../../hooks/useStyles';
+import { AppendShapeRubberBand } from '@/svg';
+import { LayerDiv } from '@/component/report/layer/Layer';
+import { SvgDriver } from '@/svgDriver';
+import { getSettings } from '@/settings';
+import usePage from '@/hooks/usePage';
+import useScale from '@/hooks/useScale';
+import useStyles from '@/hooks/useStyles';
 
 export type OnAppendHandler = (shape: Shape) => void;
 

@@ -8,19 +8,19 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import { useEffect, useMemo } from "react";
-import ReportPaper from '../report/paper/ReportPaper';
-import Layer from '../report/layer/Layer';
-import { DrawModeType } from '../../svg';
+import { DrawModeType } from '@/svg';
 import EditingLayer from './layer/EditingLayer';
 import AppendShapeLayer, { AppendShapeType } from './layer/AppendShapeLayer';
-import useShapes from '../reportEditor/hooks/useShapes';
-import useKeyboard from '../reportEditor/hooks/useKeyboard';
-import useReportManipulator from './hooks/useReportManipulator';
+import useShapes from '@/hooks/useShapes';
+import useKeyboard from '@/hooks/useKeyboard';
+import useReportManipulator from '@/hooks/useReportManipulator';
+import useReport from '@/hooks/useReport';
+import useLayer from '@/hooks/useLayer';
+import useZoom from '@/hooks/useZoom';
 import { isMac } from '../environment';
 import contractShapes from '../report/layer/contractShapes';
-import useReport from '../../hooks/useReport';
-import useLayer from '../../hooks/useLayer';
-import useZoom from '../../hooks/useZoom';
+import ReportPaper from '../report/paper/ReportPaper';
+import Layer from '../report/layer/Layer';
 
 
 export type EditMode = AppendShapeType | 'edit';

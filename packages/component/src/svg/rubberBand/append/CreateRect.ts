@@ -8,7 +8,7 @@
  */
 import { ShapeCreatorInterface } from '.';
 import { createRect, Position, positionsToBox, Scale, Shape } from '@sunvisor/super-leopard-core';
-import { StylesData } from '../../style';
+import { StylesData } from '@/svg/style';
 
 export class CreateRect implements ShapeCreatorInterface {
   readonly #scale: Scale;

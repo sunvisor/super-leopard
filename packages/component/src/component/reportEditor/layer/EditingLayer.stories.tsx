@@ -10,9 +10,9 @@ import EditingLayer from "./EditingLayer";
 import { Meta, StoryContext, StoryFn, StoryObj } from '@storybook/react';
 import { createLine, createRect, Shapes } from '@sunvisor/super-leopard-core';
 import { createStore, Provider } from 'jotai';
-import { SetReportAtom } from '../../../atom/ReportAtom';
-import { emptyReport } from '../../emptyReport';
-import { SelectionAtom } from '../../../atom/SelectionAtom';
+import { SetReportAtom } from '@/atom/ReportAtom';
+import { emptyReport } from '@/component/emptyReport';
+import { SelectionAtom } from '@/atom/SelectionAtom';
 import { fn } from '@storybook/test';
 
 

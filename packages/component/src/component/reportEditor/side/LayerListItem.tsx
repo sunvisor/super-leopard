@@ -14,7 +14,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import ListItemButton from '@mui/material/ListItemButton';
 import { LayerItem } from './LayerList';
-import translation from '../../../translations/translation';
+import translation from '@/translations/translation';
 
 type Props = {
   item: LayerItem;

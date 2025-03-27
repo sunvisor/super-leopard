@@ -8,14 +8,14 @@ import { useCallback, useEffect, useState } from "react";
 import PositionFields from '../fieldGroup/PositionFields';
 import SizeFields from '../fieldGroup/SizeFields';
 import { Box, Button } from '@mui/material';
-import { UnitValue, ImageData } from '@sunvisor/super-leopard-core';
+import { ImageData, UnitValue } from '@sunvisor/super-leopard-core';
 import { ChangeValueHandler } from '../usePropertyStates';
-import translation from '../../../translations/translation';
 import SvImage from '../field/SvImage';
 import CollectionsIcon from '@mui/icons-material/Collections';
-import { ImageListData } from '../../index';
 import ImageListPanel from '../panel/ImageListPanel';
-import { ImageOptions } from '../../../settings';
+import translation from '@/translations/translation';
+import { ImageListData } from '@/component';
+import { ImageOptions } from '@/settings';
 
 export type ImagePanelValueType = string | number;
 type Props = {

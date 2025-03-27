@@ -24,9 +24,9 @@ import {
   createScale,
   UnitType,
 } from '@sunvisor/super-leopard-core';
-import { defaultSettings } from '../../settings';
+import { defaultSettings } from '@/settings';
 import { defaultStyle } from '../style';
-import { createTestSvgDrawer } from '../../__test_assets__';
+import { createTestSvgDrawer } from '@/__test_assets__';
 
 export type AppendShapeRubberBandProps = {
   type: AppendShapeType;

@@ -5,9 +5,9 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import { TextRubberBand } from "./TextRubberBand";
-import { defaultSettings } from '../../../settings';
-import { createTestSvgDrawer } from '../../../__test_assets__';
-import { SvgShapeInterface } from '../../../svgDriver';
+import { defaultSettings } from '@/settings';
+import { createTestSvgDrawer } from '@/__test_assets__';
+import { SvgShapeInterface } from '@/svgDriver';
 
 describe('Tests for TextRubberBand', () => {
   const svg = createTestSvgDrawer();

@@ -8,7 +8,7 @@
  */
 import BringForwardIcon from "./BringForwardIcon";
 import { Meta, StoryObj } from '@storybook/react';
-import { iconDecorator } from '../../../../__test_assets__';
+import { iconDecorator } from '@/__test_assets__';
 
 type Story = StoryObj<typeof BringForwardIcon>
 

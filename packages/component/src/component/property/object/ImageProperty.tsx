@@ -15,7 +15,7 @@ import usePropertyStates from '../usePropertyStates';
 import PropertyBox from './PropertyBox';
 import ImagePanel from '../panel/ImagePanel';
 import { UpdateHandler } from './ShapeProperty';
-import { ImageOptions } from '../../../settings';
+import { ImageOptions } from '@/settings';
 
 type Props = {
   imageOptions: ImageOptions;

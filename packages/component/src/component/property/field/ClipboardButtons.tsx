@@ -9,7 +9,7 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import ContentCutIcon from '@mui/icons-material/ContentCut';
 import ContentPasteIcon from '@mui/icons-material/ContentPaste';
 import DeleteIcon from '@mui/icons-material/Delete';
-import translation from '../../../translations/translation';
+import translation from '@/translations/translation';
 import GroupBox from '../fieldGroup/GroupBox';
 
 type Props = {

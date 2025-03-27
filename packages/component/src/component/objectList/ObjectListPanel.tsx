@@ -7,8 +7,8 @@
 import { useCallback } from "react";
 import ObjectList from '../objectList/ObjectList';
 import { Shape, Shapes } from '@sunvisor/super-leopard-core';
-import useShapes from '../reportEditor/hooks/useShapes';
-import useSelection from '../../hooks/useSelection';
+import useShapes from '@/hooks/useShapes';
+import useSelection from '@/hooks/useSelection';
 
 
 type Props = {

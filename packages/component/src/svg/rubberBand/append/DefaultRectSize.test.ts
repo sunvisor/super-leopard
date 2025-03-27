@@ -6,7 +6,7 @@
  */
 import { DefaultRectSize } from "./DefaultRectSize";
 import { Scale, DPPX, UnitType } from '@sunvisor/super-leopard-core';
-import { defaultSettings } from '../../../settings';
+import { defaultSettings } from '@/settings';
 
 describe('Test for DefaultRectSize#size', () => {
 

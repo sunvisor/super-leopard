@@ -5,11 +5,11 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import { ChangeValueHandler } from '../usePropertyStates';
-import translation from '../../../translations/translation';
+import translation from '@/translations/translation';
 import NumberField from '../field/NumberField';
 import { UnitValue } from '@sunvisor/super-leopard-core';
 import SvCheckboxField from '../field/SvCheckboxField';
-import GroupBox from '../fieldGroup/GroupBox';
+import GroupBox from './GroupBox';
 
 const MAX_LINE_PITCH = 100;
 

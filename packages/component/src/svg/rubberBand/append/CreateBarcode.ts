@@ -7,7 +7,7 @@ import {
   Scale,
   Shape
 } from '@sunvisor/super-leopard-core';
-import { StylesData } from '../../style';
+import { StylesData } from '@/svg/style';
 
 /**
  * CreateBarcode

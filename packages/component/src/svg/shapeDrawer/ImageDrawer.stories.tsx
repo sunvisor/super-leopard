@@ -20,7 +20,7 @@ import {
 import { expect, within } from "@storybook/test";
 import { RectDrawer } from './RectDrawer';
 import { ImageDrawer } from './ImageDrawer';
-import { createTestSvgDrawer, testImageOptions } from '../../__test_assets__';
+import { createTestSvgDrawer, testImageOptions } from '@/__test_assets__';
 
 type ImageProps = {
   image: ImageData;

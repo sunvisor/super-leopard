@@ -7,7 +7,7 @@
 import { SxProps, TextField } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 import { ChangeEvent, useCallback } from "react";
-import translation from '../../../translations/translation';
+import translation from '@/translations/translation';
 import { ChangeValueHandler } from '../usePropertyStates';
 
 type Props = {

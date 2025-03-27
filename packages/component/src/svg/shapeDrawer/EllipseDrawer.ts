@@ -7,7 +7,7 @@
 import { borderToStroke } from '../utils';
 import { DrawerParams, Ellipse, EllipseDrawerInterface, Scale } from '@sunvisor/super-leopard-core';
 import { ShapeDrawerProps } from './types';
-import { SvgDrawerInterface } from '../../svgDriver';
+import { SvgDrawerInterface } from '@/svgDriver';
 
 export class EllipseDrawer implements EllipseDrawerInterface {
   readonly #svg: SvgDrawerInterface;

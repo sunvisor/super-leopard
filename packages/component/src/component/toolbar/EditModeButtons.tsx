@@ -15,7 +15,7 @@ import QrCodeIcon from '@mui/icons-material/QrCode';
 import { EditMode } from '../reportEditor/ReportWorkArea';
 import EllipseIcon from '../toolbar/EllipseIcon';
 import LineIcon from '../toolbar/LineIcon';
-import translation from '../../translations/translation';
+import translation from '@/translations/translation';
 import ToggleTools, { ToggleToolButton } from '../property/ToggleTools';
 
 type OnChangeHandler = (event: React.MouseEvent<HTMLElement>, newMode: EditMode) => void;

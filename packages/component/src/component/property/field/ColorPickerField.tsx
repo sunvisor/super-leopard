@@ -6,7 +6,7 @@
  */
 import React, { useCallback, useMemo, useState } from "react";
 import { SxProps, TextField, TextFieldProps } from '@mui/material';
-import translation from '../../../translations/translation';
+import translation from '@/translations/translation';
 import { ChangeValueHandler } from '../usePropertyStates';
 import GroupBox from '../fieldGroup/GroupBox';
 

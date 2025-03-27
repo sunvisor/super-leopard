@@ -9,8 +9,8 @@ import { useCallback } from "react";
 import LayerToolbar from './LayerToolbar';
 import LayerList from './LayerList';
 import { LayerData } from '@sunvisor/super-leopard-core';
-import useReport from '../../../hooks/useReport';
-import useLayer from '../../../hooks/useLayer';
+import useReport from '@/hooks/useReport';
+import useLayer from '@/hooks/useLayer';
 
 export default function LayerPanel() {
   const { report } = useReport();

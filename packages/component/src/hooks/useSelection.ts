@@ -5,7 +5,7 @@
  * Copyright (C) Sunvisor Lab. 2025.
  */
 import { useAtom, useSetAtom } from 'jotai';
-import { ClearSelectionAtom, SelectionAtom } from '../atom/SelectionAtom';
+import { ClearSelectionAtom, SelectionAtom } from '@/atom/SelectionAtom';
 
 
 export default function useSelection() {

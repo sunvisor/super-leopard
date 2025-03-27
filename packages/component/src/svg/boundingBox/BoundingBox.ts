@@ -5,8 +5,8 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import { Scale, Box, PositionPair } from '@sunvisor/super-leopard-core';
-import { BoundingBoxOptions } from '../../settings';
-import { SvgDrawerInterface, SvgRectInterface } from '../../svgDriver';
+import { BoundingBoxOptions } from '@/settings';
+import { SvgDrawerInterface, SvgRectInterface } from '@/svgDriver';
 
 export type HandleType =
   'left-top' | 'right-top' | 'left-bottom' | 'right-bottom' |

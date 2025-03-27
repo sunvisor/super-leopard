@@ -6,10 +6,10 @@
  */
 import { renderHook, act } from '@testing-library/react';
 import { useSetAtom } from 'jotai';
-import { SetReportAtom, SetShapesAtom } from '../atom/ReportAtom';
+import { SetReportAtom, SetShapesAtom } from '@/atom/ReportAtom';
 import useReport from './useReport';
 import { billTestData, shapeTestData } from '@sunvisor/super-leopard-test-assets';
-import { emptyReport } from '../component/emptyReport';
+import { emptyReport } from '@/component/emptyReport';
 import { createShapes } from '@sunvisor/super-leopard-core';
 
 describe('Tests for useReport', () => {

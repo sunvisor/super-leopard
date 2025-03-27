@@ -16,7 +16,7 @@ import { Box } from '@mui/material';
 import SvTextField from '../field/SvTextField';
 import BarcodePanel from '../panel/BarcodePanel';
 import BarcodeField from '../field/BarcodeField';
-import translation from '../../../translations/translation';
+import translation from '@/translations/translation';
 
 
 type Props = {

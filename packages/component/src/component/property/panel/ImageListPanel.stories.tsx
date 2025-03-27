@@ -9,7 +9,7 @@
 import ImageListPanel from "./ImageListPanel";
 import { Meta, StoryObj } from '@storybook/react';
 import { Box } from '@mui/material';
-import { testImageListData } from '../../../__test_assets__';
+import { testImageListData } from '@/__test_assets__';
 import { fn } from '@storybook/test';
 
 type Story = StoryObj<typeof ImageListPanel>

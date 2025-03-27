@@ -7,7 +7,7 @@
 import { CircleDrawer } from "./CircleDrawer";
 import { Scale, UnitType, createCircle, CircleData } from '@sunvisor/super-leopard-core';
 import { afterEach } from 'vitest';
-import { createTestSvgDrawer } from '../../__test_assets__';
+import { createTestSvgDrawer } from '@/__test_assets__';
 
 describe('Tests for CircleDrawer#draw', () => {
   const svg = createTestSvgDrawer();

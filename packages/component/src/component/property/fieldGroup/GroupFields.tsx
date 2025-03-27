@@ -9,9 +9,9 @@ import DirectionButtons from '../field/DirectionButtons';
 import { DirectionValue } from '@sunvisor/super-leopard-core';
 import { ChangeValueHandler } from '../usePropertyStates';
 import NumberField from '../field/NumberField';
-import translation from '../../../translations/translation';
+import translation from '@/translations/translation';
 import Caption from '../Caption';
-import GroupBox from '../fieldGroup/GroupBox';
+import GroupBox from './GroupBox';
 import { SizeFieldValueType } from './SizeFields';
 
 const MAX_REPEAT_COUNT = 1000;

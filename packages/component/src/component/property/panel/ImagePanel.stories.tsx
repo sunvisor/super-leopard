@@ -10,7 +10,7 @@ import ImagePanel from "./ImagePanel";
 import { Meta, StoryObj } from '@storybook/react';
 import { UnitType, ImageData } from '@sunvisor/super-leopard-core';
 import { Box } from '@mui/material';
-import { testImageOptions } from '../../../__test_assets__';
+import { testImageOptions } from '@/__test_assets__';
 import { fn } from '@storybook/test';
 
 

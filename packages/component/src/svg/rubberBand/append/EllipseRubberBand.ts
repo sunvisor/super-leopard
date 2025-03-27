@@ -5,10 +5,10 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import { adjustPosition, moveElement, ShapeRubberBandInterface } from '.';
-import { borderToStroke } from '../../utils';
-import { StylesData } from '../../style';
+import { borderToStroke } from '@/svg/utils';
+import { StylesData } from '@/svg/style';
 import { createBorder, createColor, Position, Scale } from '@sunvisor/super-leopard-core';
-import { StrokeOptions, SvgDrawerInterface, SvgShapeInterface } from '../../../svgDriver';
+import { StrokeOptions, SvgDrawerInterface, SvgShapeInterface } from '@/svgDriver';
 
 export class EllipseRubberBand implements ShapeRubberBandInterface {
   readonly #svg: SvgDrawerInterface;

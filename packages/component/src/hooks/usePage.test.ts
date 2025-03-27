@@ -7,7 +7,7 @@
 import usePage from "./usePage";
 import { act, renderHook } from '@testing-library/react';
 import { useSetAtom } from 'jotai';
-import { SetReportAtom } from '../atom/ReportAtom';
+import { SetReportAtom } from '@/atom/ReportAtom';
 import { billTestData } from '@sunvisor/super-leopard-test-assets';
 
 

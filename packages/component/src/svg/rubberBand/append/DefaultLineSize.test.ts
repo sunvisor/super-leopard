@@ -6,7 +6,7 @@
  */
 import { DefaultLineSize } from "./DefaultLineSize";
 import { Scale, DPPX, UnitType } from '@sunvisor/super-leopard-core';
-import { defaultSettings } from '../../../settings';
+import { defaultSettings } from '@/settings';
 
 describe('Test of DefaultLineSize#size', () => {
 

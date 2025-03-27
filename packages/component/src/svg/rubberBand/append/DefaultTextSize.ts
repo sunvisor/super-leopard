@@ -6,8 +6,8 @@
  */
 import { Size, Scale } from '@sunvisor/super-leopard-core';
 import { DefaultShapeSizeInterface, DefaultSizeParams } from '.';
-import { DefaultShapeSize } from '../../../settings';
-import { StylesData } from '../../style';
+import { DefaultShapeSize } from '@/settings';
+import { StylesData } from '@/svg/style';
 
 export class DefaultTextSize implements DefaultShapeSizeInterface {
   readonly #scale: Scale;

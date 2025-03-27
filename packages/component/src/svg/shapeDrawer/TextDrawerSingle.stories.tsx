@@ -9,7 +9,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { expect } from '@storybook/test';
 import { AlignType, TextData, TextShape, ValignType } from '@sunvisor/super-leopard-core';
-import { draw, TextProps } from '../../__test_assets__';
+import { draw, TextProps } from '@/__test_assets__';
 
 type Story = StoryObj<TextProps>
 

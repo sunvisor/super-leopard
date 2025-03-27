@@ -7,7 +7,7 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import { http, HttpResponse } from 'msw';
-import { ImageListData } from '../../component';
+import { ImageListData } from '@/component';
 
 export default function imageHandler(data: ImageListData[]) {
   return [

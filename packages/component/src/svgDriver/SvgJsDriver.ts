@@ -10,12 +10,18 @@ import {
   ImageParams,
   LineParams,
   RectParams,
-  StrokeOptions, SvgCircleInterface,
+  StrokeOptions,
+  SvgCircleInterface,
   SvgDrawerInterface,
-  SvgDriverInterface, SvgEllipseInterface, SvgImageInterface, SvgLineInterface, SvgRectInterface, SvgTextInterface,
+  SvgDriverInterface,
+  SvgEllipseInterface,
+  SvgImageInterface,
+  SvgLineInterface,
+  SvgRectInterface,
+  SvgTextInterface,
   TextParams
 } from './SvgDriverInterface';
-import { Svg, SVG, Shape as SvgShape } from '@svgdotjs/svg.js';
+import { Shape as SvgShape, SVG, Svg } from '@svgdotjs/svg.js';
 import { Position, Size, StyleType } from '@sunvisor/super-leopard-core';
 import { SvgJsCircle, SvgJsEllipse, SvgJsImage, SvgJsLine, SvgJsRect, SvgJsText } from './SvgJsShape';
 

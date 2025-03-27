@@ -6,9 +6,9 @@
  */
 import { LineRubberBand } from "./LineRubberBand";
 import { Scale, UnitType } from '@sunvisor/super-leopard-core';
-import { defaultStyle } from '../../style';
-import { createTestSvgDrawer } from '../../../__test_assets__';
-import { SvgLineInterface } from '../../../svgDriver';
+import { defaultStyle } from '@/svg/style';
+import { createTestSvgDrawer } from '@/__test_assets__';
+import { SvgLineInterface } from '@/svgDriver';
 
 describe('Tests for LineRubberBand', () => {
   const scale = new Scale({ unit: UnitType.INCH });

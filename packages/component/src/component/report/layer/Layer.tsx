@@ -7,13 +7,13 @@
  * Copyright (C) Sunvisor Lab. 2023.
  */
 import { useEffect, useMemo, useRef } from "react";
-import { createLayerDrawer, DrawModeValue } from '../../../svg';
+import { createLayerDrawer, DrawModeValue } from '@/svg';
 import { FieldValues, Shapes } from '@sunvisor/super-leopard-core';
 import styled from '@emotion/styled';
-import { SvgDriver } from '../../../svgDriver';
-import { getSettings } from '../../../settings';
-import usePage from '../../../hooks/usePage';
-import useScale from '../../../hooks/useScale';
+import { SvgDriver } from '@/svgDriver';
+import { getSettings } from '@/settings';
+import usePage from '@/hooks/usePage';
+import useScale from '@/hooks/useScale';
 
 type Props = {
   name: string;

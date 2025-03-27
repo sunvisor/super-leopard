@@ -13,7 +13,7 @@ import {
   ShapeCreatorInterface,
   ShapeRubberBandInterface
 } from './append';
-import { SettingData } from '../../settings';
+import { SettingData } from '@/settings';
 import { StylesData } from '../style';
 import {
   CircleShapeType,
@@ -24,7 +24,7 @@ import {
   RectShapeType,
   TextShapeType
 } from '@sunvisor/super-leopard-core';
-import { SvgDrawerInterface, SvgShapeInterface } from '../../svgDriver';
+import { SvgDrawerInterface, SvgShapeInterface } from '@/svgDriver';
 
 export type AppendShapeType =
   RectShapeType |

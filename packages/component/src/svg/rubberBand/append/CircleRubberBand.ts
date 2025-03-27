@@ -4,11 +4,11 @@
  * Created by sunvisor on 2024/01/30.
  * Copyright (C) Sunvisor Lab. 2024.
  */
-import { borderToStroke } from '../../utils';
+import { borderToStroke } from '@/svg/utils';
 import { ShapeRubberBandInterface } from './index';
-import { StylesData } from '../../style';
+import { StylesData } from '@/svg/style';
 import { createBorder, createColor, Position, positionsToBox, Scale } from '@sunvisor/super-leopard-core';
-import { StrokeOptions, SvgDrawerInterface, SvgShapeInterface } from '../../../svgDriver';
+import { StrokeOptions, SvgDrawerInterface, SvgShapeInterface } from '@/svgDriver';
 
 export class CircleRubberBand implements ShapeRubberBandInterface {
   readonly #svg: SvgDrawerInterface;

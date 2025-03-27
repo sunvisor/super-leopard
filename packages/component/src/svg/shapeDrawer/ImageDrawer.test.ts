@@ -6,7 +6,7 @@
  */
 import { ImageDrawer } from "./ImageDrawer";
 import { Scale, UnitType, createImage, ImageData } from '@sunvisor/super-leopard-core';
-import { createTestSvgDrawer, testImageOptions } from '../../__test_assets__';
+import { createTestSvgDrawer, testImageOptions } from '@/__test_assets__';
 
 describe('Tests for ImageDrawer#draw', () => {
   const svg = createTestSvgDrawer();

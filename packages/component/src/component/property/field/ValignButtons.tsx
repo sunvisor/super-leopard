@@ -6,7 +6,7 @@
  */
 import React, { useMemo } from "react";
 import { AlignValue, ValignType, ValignValue } from '@sunvisor/super-leopard-core';
-import translation from '../../../translations/translation';
+import translation from '@/translations/translation';
 import ToggleTools, { ToggleToolButton } from '../ToggleTools';
 import { ChangeValueHandler } from '../usePropertyStates';
 import { SvgIcon } from '@mui/material';

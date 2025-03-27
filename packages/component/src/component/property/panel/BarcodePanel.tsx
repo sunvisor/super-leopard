@@ -10,7 +10,7 @@ import { ChangeValueHandler } from '../usePropertyStates';
 import SizeFields from '../fieldGroup/SizeFields';
 import GroupBox from '../fieldGroup/GroupBox';
 import BarcodeFormatField from '../field/BarcodeFormatField';
-import translation from '../../../translations/translation';
+import translation from '@/translations/translation';
 import BarcodeOptionFields from '../fieldGroup/BarcodeOptionFields';
 
 

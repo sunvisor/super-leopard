@@ -6,7 +6,7 @@
  */
 
 import { Scale, TextShape, UnitType, Text } from '@sunvisor/super-leopard-core';
-import { defaultStyle } from '../../style';
+import { defaultStyle } from '@/svg/style';
 import { CreateText } from './CreateText';
 
 describe('Tests for CreateText#create', () => {

@@ -11,7 +11,7 @@ import {
   RemoveLayerAtom,
   SetActiveLayerIndexAtom, UpdateLayerNameAtom,
   UpdateLayersAtom
-} from '../atom/ReportAtom';
+} from '@/atom/ReportAtom';
 import { useCallback } from 'react';
 
 

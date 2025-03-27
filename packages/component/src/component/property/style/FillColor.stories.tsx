@@ -9,8 +9,8 @@
 import FillColor from "./FillColor";
 import { Meta, StoryContext, StoryFn, StoryObj } from '@storybook/react';
 import { createStore, Provider } from 'jotai';
-import { FillColorAtom } from '../../../atom/StylesAtom';
-import { fieldDecorator } from '../../../__test_assets__';
+import { FillColorAtom } from '@/atom/StylesAtom';
+import { fieldDecorator } from '@/__test_assets__';
 
 type Story = StoryObj<typeof FillColor>
 

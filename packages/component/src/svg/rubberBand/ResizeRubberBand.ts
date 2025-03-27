@@ -9,8 +9,8 @@
 import { EditRubberBandInterface } from './EditRubberBand';
 import { Box, Position } from '@sunvisor/super-leopard-core';
 import { HandleCursor, HandleType } from '../boundingBox';
-import { RubberBandOptions } from '../../settings';
-import { StrokeOptions, SvgDrawerInterface, SvgRectInterface } from '../../svgDriver';
+import { RubberBandOptions } from '@/settings';
+import { StrokeOptions, SvgDrawerInterface, SvgRectInterface } from '@/svgDriver';
 
 export type OnResizeHandler = (box: Box) => void;
 

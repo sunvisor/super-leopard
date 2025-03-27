@@ -37,7 +37,7 @@ import {
   Text,
   TextShape,
 } from '@sunvisor/super-leopard-core';
-import translation from '../../translations/translation';
+import translation from '@/translations/translation';
 import EllipseIcon from '../toolbar/EllipseIcon';
 import LineIcon from '../toolbar/LineIcon';
 

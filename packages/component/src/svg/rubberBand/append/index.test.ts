@@ -5,7 +5,7 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import { adjustPosition, moveElement } from './';
-import { SvgShapeInterface } from '../../../svgDriver';
+import { SvgShapeInterface } from '@/svgDriver';
 
 
 describe('Tests for append rubberBand functions', () => {

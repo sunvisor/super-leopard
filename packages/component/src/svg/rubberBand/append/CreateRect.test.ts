@@ -6,7 +6,7 @@
  */
 import {CreateRect} from "./CreateRect";
 import { createBorder, Rect, RectShape, Scale, UnitType } from '@sunvisor/super-leopard-core';
-import { defaultStyle } from '../../style';
+import { defaultStyle } from '@/svg/style';
 
 describe('Tests for CreateRect#create', () => {
   const scale = new Scale({ unit: UnitType.INCH });

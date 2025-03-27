@@ -6,12 +6,12 @@
  */
 import { DirectionValue } from '@sunvisor/super-leopard-core';
 import { ChangeValueHandler } from '../usePropertyStates';
-import translation from '../../../translations/translation';
+import translation from '@/translations/translation';
 import { Box } from '@mui/material';
 import Caption from '../Caption';
 import DirectionButtons from '../field/DirectionButtons';
 import NumberField from '../field/NumberField';
-import GroupBox from '../fieldGroup/GroupBox';
+import GroupBox from './GroupBox';
 
 const MAX_ROWS = 1000;
 const MAX_COLUMNS = 1000;

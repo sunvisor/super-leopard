@@ -9,7 +9,7 @@
 import { MoveRubberBand, OnMoveHandler } from "./MoveRubberBand";
 import { Meta, StoryObj } from '@storybook/react';
 import { fn, within } from '@storybook/test';
-import { createTestSvgDrawer } from '../../__test_assets__';
+import { createTestSvgDrawer } from '@/__test_assets__';
 
 type MoveRubberBandProps = {
   onMove: OnMoveHandler;

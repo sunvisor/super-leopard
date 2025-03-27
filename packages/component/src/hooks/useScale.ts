@@ -5,7 +5,7 @@
  * Copyright (C) Sunvisor Lab. 2025.
  */
 import { useAtomValue } from 'jotai';
-import { ReadScaleAtom } from '../atom/ReportAtom';
+import { ReadScaleAtom } from '@/atom/ReportAtom';
 
 
 export default function useScale() {

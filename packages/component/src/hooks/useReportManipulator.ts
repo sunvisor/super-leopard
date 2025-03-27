@@ -8,11 +8,11 @@ import { useCallback } from 'react';
 import { Atom, useAtomValue, useSetAtom, WritableAtom } from 'jotai';
 import { Box, createShapesSelector, Line, Position, PositionPair, Shape, Shapes } from '@sunvisor/super-leopard-core';
 import useShapes from './useShapes';
-import useClipboard from './useClipboard';
-import { CanRedoAtom, CanUndoAtom, ReadDirtyAtom, RedoHistoryAtom, UndoHistoryAtom } from '../../../atom/HistoryAtom';
-import { getSettings } from '../../../settings';
-import useScale from '../../../hooks/useScale';
-import useSelection from '../../../hooks/useSelection';
+import useClipboard from '@/hooks/useClipboard';
+import { CanRedoAtom, CanUndoAtom, ReadDirtyAtom, RedoHistoryAtom, UndoHistoryAtom } from '@/atom/HistoryAtom';
+import { getSettings } from '@/settings';
+import useScale from './useScale';
+import useSelection from './useSelection';
 
 const PASTE_OFFSET = 20; // pixel
 

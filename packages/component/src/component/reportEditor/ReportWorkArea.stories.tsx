@@ -10,10 +10,10 @@ import ReportWorkArea from "./ReportWorkArea";
 import { Meta, StoryContext, StoryFn, StoryObj } from "@storybook/react";
 import { PaperSize, ReportData, UnitType } from '@sunvisor/super-leopard-core';
 import { createStore, Provider } from "jotai";
-import { SetReportAtom } from "../../atom/ReportAtom";
-import { lineTestData, layerTestData } from '../../__test_assets__';
-import { setSettings } from '../../settings';
-import { testSettings } from '../../__test_assets__/settings';
+import { SetReportAtom } from "@/atom/ReportAtom";
+import { lineTestData, layerTestData } from '@/__test_assets__';
+import { setSettings } from '@/settings';
+import { testSettings } from '@/__test_assets__/settings';
 import { billTestData } from '@sunvisor/super-leopard-test-assets';
 
 

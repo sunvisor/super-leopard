@@ -7,7 +7,7 @@
 import { createShapes, serializeShapes, ShapeData, Shapes } from '@sunvisor/super-leopard-core';
 import { useCallback } from 'react';
 import { useAtom } from 'jotai';
-import { ClipboardAtom } from '../../../atom/ClipboardAtom';
+import { ClipboardAtom } from '@/atom/ClipboardAtom';
 
 type OSClipboardData = {
   app: string;

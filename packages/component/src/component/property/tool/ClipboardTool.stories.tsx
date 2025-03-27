@@ -9,10 +9,10 @@
 import ClipboardTool from "./ClipboardTool";
 import { Meta, StoryObj } from '@storybook/react';
 import { createStore, Provider } from 'jotai';
-import { SelectionAtom } from '../../../atom/SelectionAtom';
 import { createShapes } from '@sunvisor/super-leopard-core';
-import { ClipboardAtom } from '../../../atom/ClipboardAtom';
 import { shapeTestData } from '@sunvisor/super-leopard-test-assets';
+import { SelectionAtom } from '@/atom/SelectionAtom';
+import { ClipboardAtom } from '@/atom/ClipboardAtom';
 
 
 type Story = StoryObj<typeof ClipboardTool>

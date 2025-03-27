@@ -5,11 +5,11 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import { Button, ButtonGroup, Tooltip } from '@mui/material';
-import BringFrontIcon from '../field/icon/BringFrontIcon';
-import BringForwardIcon from '../field/icon/BringForwardIcon';
-import SendBackwardIcon from '../field/icon/SendBackwardIcon';
-import SendBackIcon from '../field/icon/SendBackIcon';
-import translation from '../../../translations/translation';
+import BringFrontIcon from './icon/BringFrontIcon';
+import BringForwardIcon from './icon/BringForwardIcon';
+import SendBackwardIcon from './icon/SendBackwardIcon';
+import SendBackIcon from './icon/SendBackIcon';
+import translation from '@/translations/translation';
 
 
 export type ZOrderCommand = 'bringToFront' | 'bringToForward' | 'sendToBackward' | 'sendToBack';

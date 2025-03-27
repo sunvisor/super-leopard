@@ -9,7 +9,7 @@ import CropPortraitIcon from '@mui/icons-material/CropPortrait';
 import { SxProps } from '@mui/material';
 import { OrientationValue } from '@sunvisor/super-leopard-core';
 import React, { useCallback, useMemo } from "react";
-import translation from '../../../translations/translation';
+import translation from '@/translations/translation';
 import ToggleTools, { ToggleToolButton } from '../ToggleTools';
 import { ChangeValueHandler } from '../usePropertyStates';
 

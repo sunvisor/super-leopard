@@ -6,7 +6,7 @@
  */
 import { CreateCircle } from "./CreateCircle";
 import { Scale, UnitType, CircleShape, Circle, createBorder } from '@sunvisor/super-leopard-core';
-import { defaultStyle } from '../../style';
+import { defaultStyle } from '@/svg/style';
 
 describe('Tests for CreateCircle#create', () => {
   const scale = new Scale({ unit: UnitType.INCH });

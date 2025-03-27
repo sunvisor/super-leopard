@@ -7,9 +7,9 @@
 import ShapeTypeField from '../field/ShapeTypeField';
 import { ShapeType } from '@sunvisor/super-leopard-core';
 import { ChangeValueHandler } from '../usePropertyStates';
-import translation from '../../../translations/translation';
+import translation from '@/translations/translation';
 import SvTextField from '../field/SvTextField';
-import GroupBox from '../fieldGroup/GroupBox';
+import GroupBox from './GroupBox';
 
 export type FieldNameFieldType = ShapeType|string;
 type Props = {

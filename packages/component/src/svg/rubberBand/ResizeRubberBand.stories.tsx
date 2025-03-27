@@ -10,8 +10,8 @@ import { ResizeRubberBand } from "./ResizeRubberBand";
 import { Meta, StoryObj } from '@storybook/react';
 import { Box } from '@sunvisor/super-leopard-core';
 import { fn, within } from '@storybook/test';
-import { HandleType } from '../boundingBox';
-import { createTestSvgDrawer } from '../../__test_assets__';
+import { HandleType } from '@/svg';
+import { createTestSvgDrawer } from '@/__test_assets__';
 
 type ResizeRubberBandProps = {
   type: HandleType;

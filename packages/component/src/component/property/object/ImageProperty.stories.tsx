@@ -9,8 +9,8 @@
 import ImageProperty from "./ImageProperty";
 import { Meta, StoryObj } from '@storybook/react';
 import { createImage, Image, UnitType } from '@sunvisor/super-leopard-core';
-import imageHandlers from '../../../__test_assets__/msw/imageHandlers';
-import { testImageListData, testImageOptions } from '../../../__test_assets__';
+import imageHandlers from '@/__test_assets__/msw/imageHandlers';
+import { testImageListData, testImageOptions } from '@/__test_assets__';
 import { fn } from '@storybook/test';
 
 type Story = StoryObj<typeof ImageProperty>

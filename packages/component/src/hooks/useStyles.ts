@@ -5,7 +5,7 @@
  * Copyright (C) Sunvisor Lab. 2025.
  */
 import { useAtom, useAtomValue } from 'jotai';
-import { BorderAtom, FillColorAtom, FontStyleAtom, StylesAtom } from '../atom/StylesAtom';
+import { BorderAtom, FillColorAtom, FontStyleAtom, StylesAtom } from '@/atom/StylesAtom';
 
 
 export default function useStyles() {

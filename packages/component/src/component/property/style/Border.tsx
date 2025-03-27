@@ -7,7 +7,7 @@
 import { useCallback, useEffect, useState } from "react";
 import BorderFields from '../fieldGroup/BorderFields';
 import { BorderData, } from '@sunvisor/super-leopard-core';
-import useStyles from '../../../hooks/useStyles';
+import useStyles from '@/hooks/useStyles';
 
 
 export default function Border() {

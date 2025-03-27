@@ -5,7 +5,7 @@
  * Copyright (C) Sunvisor Lab. 2025.
  */
 import { useAtomValue } from 'jotai';
-import { ReadPageAtom } from '../atom/ReportAtom';
+import { ReadPageAtom } from '@/atom/ReportAtom';
 
 
 export default function usePage() {

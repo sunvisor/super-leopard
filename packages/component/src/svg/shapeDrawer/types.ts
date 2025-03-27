@@ -5,9 +5,9 @@
  * Copyright (C) Sunvisor Lab. 2025.
  */
 import { MeasurementInterface, Scale } from '@sunvisor/super-leopard-core';
-import { BarcodeOptions, ImageOptions, SettingData } from '../../settings';
+import { BarcodeOptions, ImageOptions, SettingData } from '@/settings';
+import { SvgDrawerInterface } from '@/svgDriver';
 import { WebFont } from './WebFont';
-import { SvgDrawerInterface } from '../../svgDriver';
 
 
 export type ShapeDrawerProps = {

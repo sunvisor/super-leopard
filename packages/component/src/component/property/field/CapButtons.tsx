@@ -5,11 +5,11 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import React, { useCallback, useMemo } from 'react';
-import CapButtIcon from '../field/icon/CapButtIcon';
+import CapButtIcon from './icon/CapButtIcon';
 import { CapValue } from '@sunvisor/super-leopard-core';
-import CapRoundIcon from '../field/icon/CapRoundIcon';
-import CapSquareIcon from '../field/icon/CapSquareIcon';
-import translation from '../../../translations/translation';
+import CapRoundIcon from './icon/CapRoundIcon';
+import CapSquareIcon from './icon/CapSquareIcon';
+import translation from '@/translations/translation';
 import ToggleTools, { ToggleToolButton } from '../ToggleTools';
 import { ChangeValueHandler } from '../usePropertyStates';
 

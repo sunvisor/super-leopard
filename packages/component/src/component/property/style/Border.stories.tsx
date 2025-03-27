@@ -9,8 +9,8 @@
 import Border from "./Border";
 import { Meta, StoryContext, StoryFn, StoryObj } from '@storybook/react';
 import { createStore, Provider } from 'jotai';
-import { BorderAtom } from '../../../atom/StylesAtom';
-import { fieldDecorator } from '../../../__test_assets__';
+import { BorderAtom } from '@/atom/StylesAtom';
+import { fieldDecorator } from '@/__test_assets__';
 
 type Story = StoryObj<typeof Border>
 

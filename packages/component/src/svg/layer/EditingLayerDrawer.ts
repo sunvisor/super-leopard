@@ -7,9 +7,9 @@
 import { Page, Shapes, Line, Scale, LineShape } from '@sunvisor/super-leopard-core';
 import { BoundingBox, HandleType } from '../boundingBox';
 import { EditRubberBand, RubberBandListeners } from '../rubberBand';
-import { SettingData } from '../../settings';
+import { SettingData } from '@/settings';
 import MouseEventHandler from './MouseEventHandler';
-import { SvgDrawerInterface } from '../../svgDriver';
+import { SvgDrawerInterface } from '@/svgDriver';
 
 export class EditingLayerDrawer {
   readonly #page: Page;

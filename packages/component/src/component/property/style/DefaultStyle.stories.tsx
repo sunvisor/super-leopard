@@ -8,7 +8,7 @@
  */
 import DefaultStyle from "./DefaultStyle";
 import { Meta, StoryObj } from '@storybook/react';
-import { testFontList} from '../../../__test_assets__';
+import { testFontList} from '@/__test_assets__';
 
 type Story = StoryObj<typeof DefaultStyle>
 

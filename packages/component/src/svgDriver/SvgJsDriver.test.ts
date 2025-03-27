@@ -7,7 +7,7 @@
 import { Shape, Svg } from '@svgdotjs/svg.js';
 import { SvgJsDrawer, SvgJsDriver } from "./SvgJsDriver";
 import { StrokeOptions } from './SvgDriverInterface';
-import { describe } from 'vitest';
+
 
 describe('Tests for SvgJsDriver', () => {
 

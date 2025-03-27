@@ -7,7 +7,7 @@
 import { borderToStroke } from '../utils';
 import { DrawerParams, Rect, RectDrawerInterface, Scale } from '@sunvisor/super-leopard-core';
 import { ShapeDrawerProps } from './types';
-import { SvgDrawerInterface } from '../../svgDriver';
+import { SvgDrawerInterface } from '@/svgDriver';
 
 export class RectDrawer implements RectDrawerInterface {
   readonly #svg: SvgDrawerInterface;

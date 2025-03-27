@@ -6,7 +6,7 @@
  */
 import { CreateLine } from "./CreateLine";
 import { Scale, UnitType, Line, createBorder } from '@sunvisor/super-leopard-core';
-import { defaultStyle } from '../../style';
+import { defaultStyle } from '@/svg/style';
 
 describe('Tests for CreateLine#create', () => {
   const scale = new Scale({ unit: UnitType.INCH });

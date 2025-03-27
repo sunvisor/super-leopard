@@ -11,9 +11,9 @@ import AlignVerticalBottomIcon from '@mui/icons-material/AlignVerticalBottom';
 import AlignVerticalCenterIcon from '@mui/icons-material/AlignVerticalCenter';
 import AlignVerticalTopIcon from '@mui/icons-material/AlignVerticalTop';
 import { Box, Button, ButtonGroup, Tooltip } from '@mui/material';
-import translation from '../../../translations/translation';
-import DistributeHorizontallyIcon from '../field/icon/DistributeHorizontallyIcon';
-import DistributeVerticallyIcon from '../field/icon/DistributeVerticallyIcon';
+import translation from '@/translations/translation';
+import DistributeHorizontallyIcon from './icon/DistributeHorizontallyIcon';
+import DistributeVerticallyIcon from './icon/DistributeVerticallyIcon';
 import React from 'react';
 
 type AlignButtonProps = {

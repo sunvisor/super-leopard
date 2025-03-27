@@ -6,7 +6,7 @@
  */
 import {EllipseDrawer} from "./EllipseDrawer";
 import { createEllipse, EllipseData, Scale, UnitType } from '@sunvisor/super-leopard-core';
-import { createTestSvgDrawer } from '../../__test_assets__';
+import { createTestSvgDrawer } from '@/__test_assets__';
 
 describe('Tests for EllipseDrawer#draw', () => {
   const svg = createTestSvgDrawer();

@@ -8,7 +8,7 @@
  */
 import AlignFields from "./AlignFields";
 import { Meta, StoryObj } from '@storybook/react';
-import { fieldDecorator } from '../../../__test_assets__';
+import { fieldDecorator } from '@/__test_assets__';
 import { fn } from '@storybook/test';
 
 

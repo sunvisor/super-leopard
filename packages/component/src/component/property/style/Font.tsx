@@ -6,9 +6,9 @@
  */
 import { useCallback, useState } from "react";
 import FontFields from '../fieldGroup/FontFields';
-import { FontList } from '../../../font';
+import { FontList } from '@/font';
 import { FontData } from '@sunvisor/super-leopard-core';
-import useStyles from '../../../hooks/useStyles';
+import useStyles from '@/hooks/useStyles';
 
 
 type Props = {

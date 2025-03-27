@@ -6,9 +6,9 @@
  */
 import { useCallback, useMemo } from "react";
 import { Box, UnitValue } from '@sunvisor/super-leopard-core';
-import useShapes from '../../reportEditor/hooks/useShapes';
+import useShapes from '@/hooks/useShapes';
+import useSelection from '@/hooks/useSelection';
 import TransformPanel from '../panel/TransformPanel';
-import useSelection from '../../../hooks/useSelection';
 
 type Props = {
   unit: UnitValue;

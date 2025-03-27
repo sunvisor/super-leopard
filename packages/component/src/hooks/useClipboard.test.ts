@@ -8,7 +8,7 @@ import useClipboard from "./useClipboard";
 import { createShapes } from '@sunvisor/super-leopard-core';
 import { act, renderHook } from '@testing-library/react';
 import { shapeTestData } from '@sunvisor/super-leopard-test-assets';
-import mockClipboard from '../../../__test_assets__/mockClipboard';
+import mockClipboard from '@/__test_assets__/mockClipboard';
 
 
 describe('Test for useClipboard', () => {

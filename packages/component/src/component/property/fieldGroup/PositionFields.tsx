@@ -5,10 +5,10 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import NumberField from '../field/NumberField';
-import translation from '../../../translations/translation';
+import translation from '@/translations/translation';
 import { ChangeValueHandler } from '../usePropertyStates';
 import { UnitValue } from '@sunvisor/super-leopard-core';
-import GroupBox from '../fieldGroup/GroupBox';
+import GroupBox from './GroupBox';
 import { MAX_SCALE_VALUE } from '@sunvisor/super-leopard-core';
 
 export type PositionFieldValue = number;
