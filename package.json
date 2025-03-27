@@ -1,7 +1,7 @@
 {
   "name": "@sunvisor/super-leopard-base",
   "private": true,
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Super Leopard monorepo base",
   "repository": "https://github.com/sunvisor/super-leopard",
   "license": "UNLICENSED",

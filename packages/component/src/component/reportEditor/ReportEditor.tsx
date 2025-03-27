@@ -22,7 +22,6 @@ import { emptyReport } from '../emptyReport';
 
 export type OnSaveHandler = (report: ReportData) => void;
 export type OnChangeTitleHandler = (title: string) => void;
-export type ReportId = number | 'new';
 
 type Props = {
   report?: ReportData;
