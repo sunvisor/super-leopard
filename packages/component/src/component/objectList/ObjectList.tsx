@@ -4,13 +4,14 @@
  * Created by sunvisor on 2024/03/12.
  * Copyright (C) Sunvisor Lab. 2024.
  */
+import React from 'react';
 import { Box, List } from '@mui/material';
 import {Shapes, Shape} from '@sunvisor/super-leopard-core';
 import ObjectListItem from './ObjectListItem';
 
 type Props = {
   shapes: Shapes;
-  onClick: (shape: Shape) => void;
+  onClick: (shape: Shape, event: React.MouseEvent) => void;
   onSettingClick: (shape: Shape) => void;
 }
 
