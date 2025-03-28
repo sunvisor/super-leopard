@@ -78,6 +78,19 @@ describe('Tests for Shapes', () => {
 
   });
 
+  describe('Test for items', () => {
+
+    it('should return array of shape', () => {
+      // Arrange
+      const items = createTestShapes();
+      const shapes = new Shapes(items);
+      // Act
+      const result = shapes.items;
+      // Assert
+      expect(result).toEqual(items);
+    });
+  });
+
   describe('Tests for get', () => {
 
     it('should return shape', () => {

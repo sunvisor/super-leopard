@@ -26,6 +26,10 @@ export class Shapes implements ShapeCollection, Boxable {
     return mergeBoxes(this.#items)
   }
 
+  get items(): Shape[] {
+    return this.#items;
+  }
+
   get(index: number): Shape {
     if (index < 0 || index >= this.#items.length) {
       throw new Error('Index out of range');

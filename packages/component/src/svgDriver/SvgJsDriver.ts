@@ -124,7 +124,7 @@ export class SvgJsDrawer implements SvgDrawerInterface {
     return this.svg.find(selector);
   }
 
-  clear() : this {
+  clear(): this {
     this.svg.clear();
     return this;
   }
@@ -134,8 +134,8 @@ export class SvgJsDrawer implements SvgDrawerInterface {
     return this;
   }
 
-  off(event: string | Event[]) : this {
-    this.svg.off(event);
+  off(event: string | Event[], callback?: EventListener, bind?: any): this {
+    this.svg.off(event, callback, bind);
     return this;
   }
 

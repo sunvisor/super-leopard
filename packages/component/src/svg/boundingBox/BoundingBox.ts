@@ -7,6 +7,7 @@
 import { Scale, Box, PositionPair } from '@sunvisor/super-leopard-core';
 import { BoundingBoxOptions } from '@/settings';
 import { SvgDrawerInterface, SvgRectInterface } from '@/svgDriver';
+import { isCmdOrCtrl } from '@/component/environment';
 
 export type HandleType =
   'left-top' | 'right-top' | 'left-bottom' | 'right-bottom' |
@@ -80,17 +81,46 @@ export class BoundingBox {
     const drawBox = this.getBox(box);
 
     const rectElement = this.drawRect(drawBox);
-    rectElement.on('mousedown', (event: Event) => {
-      (document.activeElement as HTMLElement).blur();
-      const e = event as MouseEvent;
-      if (e.button !== 0) return;
-      this.onHandleMouseDown(e, 'body');
-      e.stopPropagation();
-      e.preventDefault();
-    })
+    this.registerBodyDragEvent(rectElement);
+    this.registerCursorEvents(rectElement);
     this.drawHandles(drawBox, showCornerHandles, showEdgeHandles);
 
     return rectElement;
+  }
+  private registerBodyDragEvent(rectElement: SvgRectInterface) {
+    rectElement.on('mousedown', (event: Event) => {
+      (document.activeElement as HTMLElement).blur();
+      if (isCmdOrCtrl(event)) return;
+
+      const e = event as MouseEvent;
+      if (e.button !== 0) return;
+
+      this.onHandleMouseDown(e, 'body');
+      e.stopPropagation();
+      e.preventDefault();
+    });
+  }
+
+  private registerCursorEvents(rectElement: SvgRectInterface) {
+    const updateCursor = (event: Event) => this.changeCursor(event, rectElement);
+
+    rectElement.on('mouseenter', (event: Event) => {
+      updateCursor(event);
+      rectElement.on('mousemove', updateCursor);
+      document.addEventListener('keydown', updateCursor);
+      document.addEventListener('keyup', updateCursor);
+    });
+
+    rectElement.on('mouseleave', () => {
+      rectElement.off('mousemove', updateCursor);
+      document.removeEventListener('keydown', updateCursor);
+      document.removeEventListener('keyup', updateCursor);
+    });
+  }
+
+  private changeCursor(event: Event, element: SvgRectInterface) {
+    const cursor = isCmdOrCtrl(event) ? 'default' : 'grab';
+    element.css({ cursor });
   }
 
   /**
@@ -125,7 +155,6 @@ export class BoundingBox {
     return this.#svg.rect({
       ...box,
       fillColor: '#ffffff00',
-      css: { cursor: 'grab' },
       stroke
     })
   }

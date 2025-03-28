@@ -45,6 +45,7 @@ export type ShapeType =
   CompositeShapeType;
 
 type Collection<T> = {
+  items: T[];
   count: number;
   get: (index: number) => T;
   add: (item: T) => Collection<T>;

@@ -12,3 +12,8 @@
 export function isMac() {
   return navigator.userAgent.toLowerCase().indexOf('mac') > -1;
 }
+
+export function isCmdOrCtrl(event: Event): boolean {
+  const e = event as MouseEvent;
+  return isMac() ? e?.metaKey : e?.ctrlKey;
+}

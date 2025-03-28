@@ -25,7 +25,7 @@ export default function useReportManipulator(props: Props = {}) {
   const {
     shapes, removeShapes, addShape, updateShapes
   } = useShapes(props);
-  const { selection, setSelection, clearSelection } = useSelection();
+  const { selection, setSelection, clearSelection, changeSelection } = useSelection();
   const settings = getSettings();
   const { setToClipboard, getFromClipboard, canPaste } = useClipboard();
   const canUndo = useAtomValue(CanUndoAtom);
@@ -35,15 +35,15 @@ export default function useReportManipulator(props: Props = {}) {
   const dirty = useAtomValue(ReadDirtyAtom);
   const { scale } = useScale();
 
-  const select = useCallback((area: Box | Position) => {
+  const select = useCallback((area: Box | Position, toggle: boolean = false) => {
       const selector = createShapesSelector(scale, settings.lineSelect);
       if ('width' in area) {
-        setSelection(selector.selectByBox(area as Box, shapes));
+        changeSelection(selector.selectByBox(area as Box, shapes), toggle);
       } else {
-        setSelection(selector.selectByPosition(area, shapes));
+        changeSelection(selector.selectByPosition(area, shapes), toggle);
       }
     },
-    [scale, settings, setSelection, shapes]
+    [scale, settings, changeSelection, shapes]
   );
 
   const selectAll = useCallback(() => {

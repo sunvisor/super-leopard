@@ -10,7 +10,7 @@ import { EditRubberBandInterface } from './EditRubberBand';
 import { RubberBandOptions } from '@/settings';
 import { SvgDrawerInterface, SvgRectInterface } from '@/svgDriver';
 
-export type OnSelectHandler = (area: Box | Position) => void;
+export type OnSelectHandler = (area: Box | Position, event: MouseEvent) => void;
 
 export class SelectRubberBand implements EditRubberBandInterface {
   readonly #svg: SvgDrawerInterface;
@@ -31,9 +31,8 @@ export class SelectRubberBand implements EditRubberBandInterface {
 
   clear() {
     const el = this.#svg;
-    // el.off('mousedown');
-    el.off('mousemove');
-    el.off('mouseup');
+    el.off('mousemove', this.onMouseMove, this);
+    el.off('mouseup', this.onMouseUp, this);
   }
 
   start(x: number, y: number) {
@@ -55,26 +54,26 @@ export class SelectRubberBand implements EditRubberBandInterface {
     e.preventDefault();
   }
 
-  private onMouseUp(e: Event) {
-    e.preventDefault();
-    this.fireSelect();
-    this.#svg.off('mousemove');
-    this.#svg.off('mouseup');
+  private onMouseUp(event: Event) {
+    event.preventDefault();
+    this.fireSelect(event as MouseEvent);
+    this.#svg.off('mousemove', this.onMouseMove, this);
+    this.#svg.off('mouseup', this.onMouseUp, this);
     this.clearRubberBand();
   }
 
-  private fireSelect() {
+  private fireSelect(event: MouseEvent) {
     if (this.#rubberBand) {
       if (this.isClick(this.#rubberBand)) {
-        this.onSelect({ x: this.#rubberBand.x, y: this.#rubberBand.y });
+        this.onSelect({ x: this.#rubberBand.x, y: this.#rubberBand.y }, event);
       } else {
-        this.onSelect(normalizeBox(this.#rubberBand));
+        this.onSelect(normalizeBox(this.#rubberBand), event);
       }
     }
   }
 
-  private onSelect(box: Box | Position) {
-    if (this.#onSelect) this.#onSelect(box);
+  private onSelect(box: Box | Position, event: MouseEvent) {
+    if (this.#onSelect) this.#onSelect(box, event);
   }
 
   private isClick(box: Box) {
