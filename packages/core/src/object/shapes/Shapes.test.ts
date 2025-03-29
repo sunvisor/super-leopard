@@ -461,10 +461,10 @@ describe('Tests for Shapes', () => {
       // Assert
       expect(collection.get(1)).toEqual(shapes[1]);
       expect(result).not.toBe(collection);
-      expect(result.get(0).bbox.y).toEqual(24.5);
-      expect(result.get(1).bbox.y).toEqual(24);
-      expect(result.get(2).bbox.y).toEqual(23.5);
-      expect(result.get(3).bbox.y).toEqual(23);
+      expect(result.get(0).bbox.y).toEqual(23);
+      expect(result.get(1).bbox.y).toEqual(22.5);
+      expect(result.get(2).bbox.y).toEqual(22);
+      expect(result.get(3).bbox.y).toEqual(21.5);
     })
 
     it('should return a new instance with align to left', () => {
@@ -506,10 +506,10 @@ describe('Tests for Shapes', () => {
       // Assert
       expect(collection.get(1)).toEqual(shapes[1]);
       expect(result).not.toBe(collection);
-      expect(result.get(0).bbox.x).toEqual(14.5);
-      expect(result.get(1).bbox.x).toEqual(14);
-      expect(result.get(2).bbox.x).toEqual(13.5);
-      expect(result.get(3).bbox.x).toEqual(13);
+      expect(result.get(0).bbox.x).toEqual(13);
+      expect(result.get(1).bbox.x).toEqual(12.5);
+      expect(result.get(2).bbox.x).toEqual(12);
+      expect(result.get(3).bbox.x).toEqual(11.5);
     });
 
   });

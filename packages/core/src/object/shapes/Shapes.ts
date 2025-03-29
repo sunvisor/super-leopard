@@ -140,22 +140,20 @@ export class Shapes implements ShapeCollection, Boxable {
     return new Shapes(newItems);
   }
 
-  alignToMiddle(): Shapes {
-    const maxItem = findMaxBy(this.#items, item => item.bbox.height);
-    if (!maxItem) return new Shapes([]);
+  alignToCenter(): Shapes {
+    const centerX = this.bbox.x + this.bbox.width / 2;
     const newItems = this.#items.map(item => item.moveTo({
-      x: item.bbox.x,
-      y: maxItem.bbox.y + (maxItem.bbox.height - item.bbox.height) / 2
+      x: centerX - item.bbox.width / 2,
+      y: item.bbox.y
     }) as Shape);
     return new Shapes(newItems);
   }
 
-  alignToCenter(): Shapes {
-    const maxItem = findMaxBy(this.#items, item => item.bbox.width);
-    if (!maxItem) return new Shapes([]);
+  alignToMiddle(): Shapes {
+    const centerY = this.bbox.y + this.bbox.height / 2;
     const newItems = this.#items.map(item => item.moveTo({
-      x: maxItem.bbox.x + (maxItem.bbox.width - item.bbox.width) / 2,
-      y: item.bbox.y
+      x: item.bbox.x,
+      y: centerY - item.bbox.height / 2
     }) as Shape);
     return new Shapes(newItems);
   }
