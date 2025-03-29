@@ -10,7 +10,7 @@ import ReportWorkArea from '../reportEditor/ReportWorkArea';
 import EditToolbar from '../toolbar/EditToolbar';
 import { EditMode } from './ReportWorkArea';
 import FooterToolbar from '../toolbar/FooterToolbar';
-import { ReportData } from '@sunvisor/super-leopard-core';
+import { ReportData, Shape, Shapes } from '@sunvisor/super-leopard-core';
 import DrawToolbar from '../toolbar/DrawToolbar';
 import SidePanel from './side/SidePanel';
 import { setLanguage } from '@/translations/translation';
@@ -39,7 +39,7 @@ type Props = {
 
 export default function ReportEditor(props: Props) {
   const { report: data, onSave, language, settings, onChangeTitle, title } = props;
-  const { clearSelection } = useSelection();
+  const { clearSelection, setSelection } = useSelection();
   const { report, setReport, applyShapes } = useReport();
   const [mode, setMode] = React.useState<EditMode>("edit");
   const [zoom, setZoom] = useState<number>(100);
@@ -54,6 +54,11 @@ export default function ReportEditor(props: Props) {
   const handleChangeTool = useCallback((_: React.MouseEvent<HTMLElement>, newMode: EditMode) => {
     setMode(newMode);
   }, [setMode]);
+
+  const handleAfterAppend = useCallback((shape: Shape) => {
+    setMode('edit');
+    setSelection(new Shapes([shape]));
+  }, [setMode, setSelection]);
 
   const handleChangeZoom = useCallback((_: Event, value: number) => {
     setZoom(value);
@@ -82,11 +87,12 @@ export default function ReportEditor(props: Props) {
         />
       </AppBar>
       <Box sx={{ padding: 0, display: 'flex', overflow: 'hidden', flex: 1 }}>
-        <DrawToolbar onChange={handleChangeTool}/>
+        <DrawToolbar onChange={handleChangeTool} mode={mode}/>
         <Box sx={{ flex: 1, overflow: 'auto' }}>
           <ReportWorkArea
             mode={mode}
             zoom={zoom / 100}
+            afterAppend={handleAfterAppend}
           />
         </Box>
       </Box>

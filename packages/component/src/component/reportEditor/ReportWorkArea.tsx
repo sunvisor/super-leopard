@@ -21,7 +21,7 @@ import { isMac } from '../environment';
 import contractShapes from '../report/layer/contractShapes';
 import ReportPaper from '../report/paper/ReportPaper';
 import Layer from '../report/layer/Layer';
-import { Box, Position } from '@sunvisor/super-leopard-core';
+import { Box, Position, Shape } from '@sunvisor/super-leopard-core';
 
 
 export type EditMode = AppendShapeType | 'edit';
@@ -29,10 +29,11 @@ export type EditMode = AppendShapeType | 'edit';
 type Props = {
   mode: EditMode;
   zoom: number;
+  afterAppend: (shape: Shape) => void;
 }
 
 export default function ReportWorkArea(props: Props) {
-  const { mode, zoom } = props;
+  const { mode, zoom, afterAppend } = props;
   const { report } = useReport()
   const { activeLayerIndex } = useLayer();
   const layers = useMemo(
@@ -67,6 +68,11 @@ export default function ReportWorkArea(props: Props) {
     onCopy: copy, onPaste: paste, onRemove: remove, onCut: cut, onUndo: undo, onRedo: redo, onSelectAll: selectAll
   }, isMac());
 
+  const handleAppend = useCallback((shape: Shape) => {
+    append(shape);
+    afterAppend(shape);
+  }, [append, afterAppend]);
+
   return (
     <ReportPaper>
       {
@@ -94,7 +100,7 @@ export default function ReportWorkArea(props: Props) {
           mode !== 'edit'
         ) && <AppendShapeLayer
           shapeType={mode}
-          onAppend={append}
+          onAppend={handleAppend}
         />
       }
     </ReportPaper>

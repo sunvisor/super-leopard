@@ -21,23 +21,21 @@ import ToggleTools, { ToggleToolButton } from '../property/ToggleTools';
 type OnChangeHandler = (event: React.MouseEvent<HTMLElement>, newMode: EditMode) => void;
 
 type Props = {
-  mode?: EditMode;
+  mode: EditMode;
   onChange: OnChangeHandler;
   orientation?: 'vertical' | 'horizontal';
 }
 export type EditModeButtonsProps = Props;
 export default function EditModeButtons(props: Props) {
   const { onChange, orientation } = props;
-  const [mode, setMode] = React.useState<EditMode>(props.mode || "edit");
   const t = translation().editModeTool;
 
   const handleChange = useCallback((event: React.MouseEvent<HTMLElement>, value: string) => {
     if (value !== null) {
       const newMode = value as EditMode;
-      setMode(newMode);
       onChange(event, newMode);
     }
-  }, [onChange, setMode]);
+  }, [onChange]);
 
   const buttons: ToggleToolButton[] = useMemo(() => [
     { value: "edit", icon: <HighlightAltIcon />, title: t.edit },
@@ -53,7 +51,7 @@ export default function EditModeButtons(props: Props) {
 
   return (
     <ToggleTools
-      value={mode}
+      value={props.mode}
       exclusive
       orientation={orientation || "horizontal"}
       onChange={handleChange}
