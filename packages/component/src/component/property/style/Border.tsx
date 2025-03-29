@@ -15,13 +15,12 @@ export default function Border() {
   const [values, setValues] = useState<BorderData | undefined>(border);
 
   const handleChangeValue = useCallback(
-    (name: string, value: BorderData | undefined, update?: boolean) => {
-      const newValues = { ...values, [name]: value };
-      setValues(newValues);
+    (_: string, value: BorderData | undefined, update?: boolean) => {
+      setValues(value);
       if (update) {
-        setBorder(newValues);
+        setBorder(value);
       }
-    }, [setBorder, values]
+    }, [setBorder]
   )
 
   useEffect(() => {
@@ -30,7 +29,7 @@ export default function Border() {
 
   return (
     <BorderFields
-      border={border}
+      border={values}
       onChangeValue={handleChangeValue}
     />
   );

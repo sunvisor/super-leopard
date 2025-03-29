@@ -21,7 +21,6 @@ export default function PropertyTab({ mode, imageOptions, fontList, errorImageUr
   return (
     <>
       {
-
         mode === "edit" && <PropertyEditor
           imageOptions={imageOptions}
           fontList={fontList}
