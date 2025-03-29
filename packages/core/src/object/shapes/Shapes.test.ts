@@ -537,6 +537,27 @@ describe('Tests for Shapes', () => {
       expect(result.get(3).bbox.x).toEqual(70);
     });
 
+    it('should not change horizontal order of items', () => {
+      // Arrange
+      const data: ShapeData[] = [
+        { type: 'ellipse', x: 70, y: 20, width: 10, height: 40 },
+        { type: 'ellipse', x: 40, y: 20, width: 10, height: 40 },
+        { type: 'rect', x: 20, y: 20, width: 10, height: 40 },
+        { type: 'rect', x: 10, y: 20, width: 10, height: 40 },
+      ];
+      const shapes = createTestShapes(data);
+      const collection = new Shapes(shapes);
+      // Act
+      const result = collection.distributeHorizontally();
+      // Assert
+      expect(result).not.toBe(collection);
+      expect(collection.get(1)).toEqual(shapes[1]);
+      expect(result.get(0).type).toEqual('rect');
+      expect(result.get(1).type).toEqual('rect');
+      expect(result.get(2).type).toEqual('ellipse');
+      expect(result.get(3).type).toEqual('ellipse');
+    });
+
     it('should return a new instance with distribute vertically', () => {
       // Arrange
       const data: ShapeData[] = [

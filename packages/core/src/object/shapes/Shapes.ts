@@ -10,6 +10,8 @@ import { mergeBoxes, moveBoxes, resizeBoxes } from '../boxes';
 import { sendToBack, bringToForward, sendToBackward, bringToFront } from '../../order';
 import { Group } from '../group';
 import { List } from '../list';
+import { findMinBy, findMaxBy } from './extreme';
+
 
 export class Shapes implements ShapeCollection, Boxable {
   readonly #items: Shape[];
@@ -95,130 +97,98 @@ export class Shapes implements ShapeCollection, Boxable {
   }
 
   alignToTop(): Shapes {
-    let newY = Infinity;
-    this.each(item => {
-      newY = Math.min(item.bbox.y, newY);
-    });
-    const newItems: Shape[] = this.#items.map(item => {
-      return item.moveTo({
-        x: item.bbox.x,
-        y: newY
-      }) as Shape;
-    });
+    const minItem = findMinBy(this.#items, item => item.bbox.y);
+    if (!minItem) return new Shapes([]);
+    const y = minItem.bbox.y;
+    const newItems = this.#items.map(item => item.moveTo({
+      x: item.bbox.x,
+      y
+    }) as Shape);
     return new Shapes(newItems);
   }
 
   alignToBottom(): Shapes {
-    let newY = -Infinity;
-    this.each(item => {
-      newY = Math.max(item.bbox.y + item.bbox.height, newY);
-    });
-    const newItems: Shape[] = this.#items.map(item => {
-      return item.moveTo({
-        x: item.bbox.x,
-        y: newY - item.bbox.height
-      }) as Shape;
-    });
-    return new Shapes(newItems);
-  }
-
-  alignToMiddle(): Shapes {
-    let maxHeight = -Infinity;
-    this.each(item => {
-      maxHeight = Math.max(item.bbox.height, maxHeight);
-    });
-    const maxHeightShape = this.#items.find(item => item.bbox.height === maxHeight);
-    const y = maxHeightShape!.bbox.y;
-    const newItems: Shape[] = this.#items.map(item => {
-      const newY = y + (maxHeight - item.bbox.height) / 2;
-      return item.moveTo({
-        x: item.bbox.x,
-        y: newY,
-      }) as Shape;
-    });
+    const maxItem = findMaxBy(this.#items, item => item.bbox.y + item.bbox.height);
+    if (!maxItem) return new Shapes([]);
+    const y = maxItem.bbox.y + maxItem.bbox.height;
+    const newItems = this.#items.map(item => item.moveTo({
+      x: item.bbox.x,
+      y: y - item.bbox.height
+    }) as Shape);
     return new Shapes(newItems);
   }
 
   alignToLeft(): Shapes {
-    let newX = Infinity;
-    this.each(item => {
-      newX = Math.min(item.bbox.x, newX);
-    });
-    const newItems: Shape[] = this.#items.map(item => {
-      return item.moveTo({
-        x: newX,
-        y: item.bbox.y
-      }) as Shape;
-    });
+    const minItem = findMinBy(this.#items, item => item.bbox.x);
+    if (!minItem) return new Shapes([]);
+    const x = minItem.bbox.x;
+    const newItems = this.#items.map(item => item.moveTo({
+      x,
+      y: item.bbox.y
+    }) as Shape);
     return new Shapes(newItems);
   }
 
   alignToRight(): Shapes {
-    let newX = -Infinity;
-    this.each(item => {
-      newX = Math.max(item.bbox.x + item.bbox.width, newX);
-    });
-    const newItems: Shape[] = this.#items.map(item => {
-      return item.moveTo({
-        x: newX - item.bbox.width,
-        y: item.bbox.y
-      }) as Shape;
-    });
+    const maxItem = findMaxBy(this.#items, item => item.bbox.x + item.bbox.width);
+    if (!maxItem) return new Shapes([]);
+    const x = maxItem.bbox.x + maxItem.bbox.width;
+    const newItems = this.#items.map(item => item.moveTo({
+      x: x - item.bbox.width,
+      y: item.bbox.y
+    }) as Shape);
+    return new Shapes(newItems);
+  }
+
+  alignToMiddle(): Shapes {
+    const maxItem = findMaxBy(this.#items, item => item.bbox.height);
+    if (!maxItem) return new Shapes([]);
+    const newItems = this.#items.map(item => item.moveTo({
+      x: item.bbox.x,
+      y: maxItem.bbox.y + (maxItem.bbox.height - item.bbox.height) / 2
+    }) as Shape);
     return new Shapes(newItems);
   }
 
   alignToCenter(): Shapes {
-    let maxWidth = -Infinity;
-    this.each(item => {
-      maxWidth = Math.max(item.bbox.width, maxWidth);
-    });
-    const maxWidthShape = this.#items.find(item => item.bbox.width === maxWidth);
-    const x = maxWidthShape!.bbox.x;
-    const newItems: Shape[] = this.#items.map(item => {
-      const newX = x + (maxWidth - item.bbox.width) / 2;
-      return item.moveTo({
-        x: newX,
-        y: item.bbox.y
-      }) as Shape;
-    });
+    const maxItem = findMaxBy(this.#items, item => item.bbox.width);
+    if (!maxItem) return new Shapes([]);
+    const newItems = this.#items.map(item => item.moveTo({
+      x: maxItem.bbox.x + (maxItem.bbox.width - item.bbox.width) / 2,
+      y: item.bbox.y
+    }) as Shape);
     return new Shapes(newItems);
   }
 
   distributeHorizontally(): Shapes {
-    const fullWidth = this.bbox.width;
-    let width = 0;
-    this.each(item => {
-      width += item.bbox.width;
-    });
-    const space = (fullWidth - width) / (this.#items.length - 1);
-    let x = this.bbox.x;
-    const newItems: Shape[] = this.#items.map((item) => {
-      const newItem = item.moveTo({
-        x: x,
-        y: item.bbox.y
-      }) as Shape;
-      x += space + item.bbox.width;
-      return newItem;
-    });
-    return new Shapes(newItems);
+    return this.distribute('x');
   }
 
   distributeVertically(): Shapes {
-    const fullHeight = this.bbox.height;
-    let height = 0;
-    this.each(item => {
-      height += item.bbox.height;
-    });
-    const space = (fullHeight - height) / (this.#items.length - 1);
-    let y = this.bbox.y;
-    const newItems: Shape[] = this.#items.map((item) => {
-      const newItem = item.moveTo({
-        x: item.bbox.x,
-        y: y
-      }) as Shape;
-      y += space + item.bbox.height;
+    return this.distribute('y');
+  }
+
+  private sortItemsBy(axis: 'x' | 'y'): Shape[] {
+    return [...this.#items].sort((a, b) => a.bbox[axis] - b.bbox[axis]);
+  }
+
+  private distribute(axis: 'x' | 'y'): Shapes {
+    const fullSize = this.bbox[axis === 'x' ? 'width' : 'height'];
+
+    const sortedItems = this.sortItemsBy(axis);
+    const totalSize = sortedItems.reduce((sum, item) => sum + item.bbox[axis === 'x' ? 'width' : 'height'], 0);
+    const space = (sortedItems.length > 1) ? (fullSize - totalSize) / (sortedItems.length - 1) : 0;
+
+    let pos = this.bbox[axis];
+
+    const newItems = sortedItems.map(item => {
+      const newPos = { x: item.bbox.x, y: item.bbox.y };
+      newPos[axis] = pos;
+      const newItem = item.moveTo(newPos) as Shape;
+      pos += item.bbox[axis === 'x' ? 'width' : 'height'] + space;
       return newItem;
     });
+
     return new Shapes(newItems);
   }
 
