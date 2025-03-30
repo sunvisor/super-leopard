@@ -45,6 +45,7 @@
     "@dnd-kit/sortable": "^10.0.0",
     "@emotion/cache": "^11.14.0",
     "@emotion/styled": "^11.14.0",
+    "@emotion/react": "^11.14.0",
     "@mui/icons-material": "^6.4.5",
     "@mui/material": "^6.4.5",
     "@svgdotjs/svg.js": "^3.2.4",
@@ -53,8 +54,8 @@
     "react-dom": "19.0.0"
   },
   "dependencies": {
-    "@emotion/react": "^11.14.0",
-    "@sunvisor/super-leopard-core": "^0.1.9"
+    "@sunvisor/super-leopard-core": "^0.1.9",
+    "@sunvisor/super-leopard-barcode": "^0.1.9"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^3.2.2",
