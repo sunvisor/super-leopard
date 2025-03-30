@@ -5,7 +5,7 @@
  * Copyright (C) Sunvisor Lab. 2025.
  */
 import { SVG } from '@svgdotjs/svg.js';
-import { SvgJsDrawer } from '../svgDriver/SvgJsDriver';
+import { SvgJsDrawer } from '@/svgDriver/SvgJsDriver';
 
 export function createTestSvgDrawer(el?: HTMLElement) {
   const svgJs = SVG().size(500, 500)

@@ -4,16 +4,15 @@
  * Created by sunvisor on 2024/02/19.
  * Copyright (C) Sunvisor Lab. 2024.
  */
-import PositionFields from '../fieldGroup/PositionFields';
 import { Box } from '@mui/material';
+import { BorderData, CircleData, MAX_SCALE_VALUE, UnitValue } from '@sunvisor/super-leopard-core';
+import translation from '@/translations/translation';
 import NumberField from '../field/NumberField';
 import FillColorField from '../field/FillColorField';
 import BorderFields from '../fieldGroup/BorderFields';
-import { BorderData, CircleData, UnitValue } from '@sunvisor/super-leopard-core';
+import PositionFields from '../fieldGroup/PositionFields';
 import { ChangeValueHandler } from '../usePropertyStates';
-import translation from '../../../translations/translation';
 import GroupBox from '../fieldGroup/GroupBox';
-import { MAX_SCALE_VALUE } from '@sunvisor/super-leopard-core';
 
 export type CirclePanelValueType = number|string | BorderData | undefined;
 type Props = {

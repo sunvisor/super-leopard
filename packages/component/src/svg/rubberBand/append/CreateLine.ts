@@ -7,7 +7,7 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import { ShapeCreatorInterface } from '.';
-import { StylesData } from '../../style';
+import { StylesData } from '@/svg/style';
 import { createLine, Position, Scale, Shape } from '@sunvisor/super-leopard-core';
 
 export class CreateLine implements ShapeCreatorInterface {

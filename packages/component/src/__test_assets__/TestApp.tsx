@@ -7,10 +7,11 @@
 import { Box, IconButton } from '@mui/material';
 import UndoIcon from '@mui/icons-material/Undo';
 import RedoIcon from '@mui/icons-material/Redo';
-import { OnSaveHandler, ReportEditor, useReportManipulator } from '../component';
+import { OnSaveHandler, ReportEditor } from '../component';
 import { ReportData } from '@sunvisor/super-leopard-core';
 import { useCallback, useState } from 'react';
 import { testSettings } from './settings';
+import { useReportManipulator } from '@/hooks';
 
 
 function HistoryTool() {

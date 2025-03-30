@@ -5,7 +5,7 @@
  * Copyright (C) Sunvisor Lab. 2025.
  */
 import { BarcodeDrawer } from "./BarcodeDrawer";
-import { createTestSvgDrawer } from '../../__test_assets__';
+import { createTestSvgDrawer } from '@/__test_assets__';
 import { BarcodeData, createBarcode, Scale, UnitType } from '@sunvisor/super-leopard-core';
 import { afterEach } from 'vitest';
 

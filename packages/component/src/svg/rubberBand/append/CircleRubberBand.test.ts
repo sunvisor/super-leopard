@@ -6,9 +6,9 @@
  */
 import { CircleRubberBand } from "./CircleRubberBand";
 import { Scale, UnitType } from '@sunvisor/super-leopard-core';
-import { defaultStyle } from '../../style';
-import { createTestSvgDrawer } from '../../../__test_assets__';
-import { SvgCircleInterface } from '../../../svgDriver';
+import { defaultStyle } from '@/svg/style';
+import { createTestSvgDrawer } from '@/__test_assets__';
+import { SvgCircleInterface } from '@/svgDriver';
 
 describe('Tests for CircleRubberBand', () => {
   const scale = new Scale({ unit: UnitType.INCH });

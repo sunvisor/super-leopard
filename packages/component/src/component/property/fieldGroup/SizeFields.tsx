@@ -6,9 +6,9 @@
  */
 import NumberField from '../field/NumberField';
 import { ChangeValueHandler } from '../usePropertyStates';
-import translation from '../../../translations/translation';
+import translation from '@/translations/translation';
 import { UnitValue } from '@sunvisor/super-leopard-core';
-import GroupBox from '../fieldGroup/GroupBox';
+import GroupBox from './GroupBox';
 import { MAX_SCALE_VALUE } from '@sunvisor/super-leopard-core';
 
 export type SizeFieldValueType = number;

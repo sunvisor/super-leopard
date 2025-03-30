@@ -6,7 +6,7 @@
  */
 import { LineDrawer } from "./LineDrawer";
 import { createLine, LineData, Scale, UnitType } from '@sunvisor/super-leopard-core';
-import { createTestSvgDrawer } from '../../__test_assets__';
+import { createTestSvgDrawer } from '@/__test_assets__';
 
 describe('Tests for LineDrawer#draw', () => {
   const svg = createTestSvgDrawer();

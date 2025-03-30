@@ -8,7 +8,7 @@
  */
 import SendBackIcon from "./SendBackIcon";
 import { Meta, StoryObj } from '@storybook/react';
-import { iconDecorator } from '../../../../__test_assets__';
+import { iconDecorator } from '@/__test_assets__';
 
 type Story = StoryObj<typeof SendBackIcon>
 

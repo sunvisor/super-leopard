@@ -5,14 +5,14 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import { adjustPosition, moveElement, ShapeRubberBandInterface } from '.';
-import { borderToStroke } from '../../utils';
-import { StylesData } from '../../style';
+import { borderToStroke } from '@/svg/utils';
+import { StylesData } from '@/svg/style';
 import { createBorder, createColor, Position, Scale } from '@sunvisor/super-leopard-core';
 import {
   StrokeOptions,
   SvgDrawerInterface,
   SvgShapeInterface
-} from '../../../svgDriver';
+} from '@/svgDriver';
 
 export class RectRubberBand implements ShapeRubberBandInterface {
   readonly #svg: SvgDrawerInterface;

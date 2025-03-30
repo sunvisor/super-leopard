@@ -9,8 +9,8 @@
 import { SelectRubberBand, OnSelectHandler } from "./SelectRubberBand";
 import { Meta, StoryObj } from '@storybook/react';
 import { fn, within } from '@storybook/test';
-import { createTestSvgDrawer } from '../../__test_assets__';
-import { RubberBandOptions } from '../../settings';
+import { createTestSvgDrawer } from '@/__test_assets__';
+import { RubberBandOptions } from '@/settings';
 
 type SelectRubberBandProps = {
   onSelect: OnSelectHandler;

@@ -8,9 +8,9 @@
  */
 import BarcodeRotateField from "./BarcodeRotateField";
 import { Meta, StoryObj } from '@storybook/react';
-import { fieldDecorator } from '../../../__test_assets__';
+import { fieldDecorator } from '@/__test_assets__';
 import { fn } from '@storybook/test';
-import translation from '../../../translations/translation';
+import translation from '@/translations/translation';
 
 type Story = StoryObj<typeof BarcodeRotateField>
 

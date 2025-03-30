@@ -6,8 +6,8 @@
  */
 import { DefaultTextSize } from "./DefaultTextSize";
 import { DPPX, UnitType, Scale } from '@sunvisor/super-leopard-core';
-import { defaultSettings } from '../../../settings';
-import { defaultStyle } from '../../style';
+import { defaultSettings } from '@/settings';
+import { defaultStyle } from '@/svg/style';
 
 describe('Test for DefaultTextSize#size', () => {
 

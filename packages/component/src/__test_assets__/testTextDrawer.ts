@@ -3,11 +3,11 @@ import { UnitType } from '@sunvisor/super-leopard-core';
 import { createText, TextData } from '@sunvisor/super-leopard-core';
 import { within } from '@storybook/test';
 import { testFontMap } from './font';
-import { TextElementDrawer } from '../svg/shapeDrawer/TextElementDrawer';
-import { Measurement } from '../svg/shapeDrawer/Measurement';
-import { RectDrawer } from '../svg/shapeDrawer/RectDrawer';
-import { WebFont } from '../svg/shapeDrawer/WebFont';
-import { SvgJsDriver } from '../svgDriver/SvgJsDriver';
+import { TextElementDrawer } from '@/svg/shapeDrawer/TextElementDrawer';
+import { Measurement } from '@/svg/shapeDrawer/Measurement';
+import { RectDrawer } from '@/svg/shapeDrawer/RectDrawer';
+import { WebFont } from '@/svg/shapeDrawer/WebFont';
+import { SvgJsDriver } from '@/svgDriver/SvgJsDriver';
 
 
 export type TextProps = {

@@ -7,8 +7,8 @@
 import { useCallback } from "react";
 import PropertyBox from '../object/PropertyBox';
 import ZOrderButtons, { ZOrderCommand } from '../field/ZOrderButtons';
-import useShapes from '../../reportEditor/hooks/useShapes';
-import useSelection from '../../../hooks/useSelection';
+import useShapes from '@/hooks/useShapes';
+import useSelection from '@/hooks/useSelection';
 
 
 export default function ZOrderTool() {

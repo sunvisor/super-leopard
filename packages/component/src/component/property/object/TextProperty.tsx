@@ -7,9 +7,9 @@
 import { useCallback, useEffect, useMemo } from "react";
 import { createText, serializeText, Text, TextData, UnitValue } from '@sunvisor/super-leopard-core';
 import usePropertyStates from '../usePropertyStates';
-import { FontList } from '../../../font';
+import { FontList } from '@/font';
 import { Box } from '@mui/material';
-import translation from '../../../translations/translation';
+import translation from '@/translations/translation';
 import TextPanel from '../panel/TextPanel';
 import SvTextField from '../field/SvTextField';
 import { UpdateHandler } from './ShapeProperty';

@@ -9,7 +9,7 @@ import EastIcon from '@mui/icons-material/East';
 import SouthIcon from '@mui/icons-material/South';
 import ToggleTools, { ToggleToolButton } from '../ToggleTools';
 import { DirectionType, DirectionValue } from '@sunvisor/super-leopard-core';
-import translation from '../../../translations/translation';
+import translation from '@/translations/translation';
 import { ChangeValueHandler } from '../usePropertyStates';
 
 

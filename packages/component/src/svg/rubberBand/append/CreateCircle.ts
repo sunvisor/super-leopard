@@ -8,7 +8,7 @@
  */
 import { Position, positionsToBox, Shape, createCircle, Scale } from '@sunvisor/super-leopard-core';
 import { ShapeCreatorInterface } from '.';
-import { StylesData } from '../../style';
+import { StylesData } from '@/svg/style';
 
 export class CreateCircle implements ShapeCreatorInterface {
   readonly #scale: Scale;

@@ -5,7 +5,7 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import { useState } from 'react';
-import translation from '../../../translations/translation';
+import translation from '@/translations/translation';
 
 type Props = {
   minValue?: number,

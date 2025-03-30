@@ -5,9 +5,9 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import { Checkbox, FormControlLabel } from '@mui/material';
-import ColorPickerField from '../field/ColorPickerField';
+import ColorPickerField from './ColorPickerField';
 import React, { useCallback } from 'react';
-import translation from '../../../translations/translation';
+import translation from '@/translations/translation';
 import { ChangeValueHandler } from '../usePropertyStates';
 import Caption from '../Caption';
 import GroupBox from '../fieldGroup/GroupBox';

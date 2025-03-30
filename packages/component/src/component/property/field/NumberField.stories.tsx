@@ -6,7 +6,7 @@
  * Created by sunvisor on 2024/02/12.
  * Copyright (C) Sunvisor Lab. 2024.
  */
-import { fieldDecorator } from "../../../__test_assets__";
+import { fieldDecorator } from "@/__test_assets__";
 import NumberField from "./NumberField";
 import { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';

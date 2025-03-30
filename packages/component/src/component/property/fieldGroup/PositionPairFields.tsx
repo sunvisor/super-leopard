@@ -7,10 +7,10 @@
 import { ChangeValueHandler } from '../usePropertyStates';
 import { Box } from '@mui/material';
 import NumberField from '../field/NumberField';
-import translation from '../../../translations/translation';
+import translation from '@/translations/translation';
 import { UnitValue } from '@sunvisor/super-leopard-core';
 import Caption from '../Caption';
-import GroupBox from '../fieldGroup/GroupBox';
+import GroupBox from './GroupBox';
 import { MAX_SCALE_VALUE } from '@sunvisor/super-leopard-core';
 
 type Props = {

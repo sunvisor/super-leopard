@@ -6,13 +6,12 @@
  */
 import useReportManipulator from "./useReportManipulator";
 import { act, renderHook } from '@testing-library/react';
-import { ReadShapesAtom, SetActiveLayerIndexAtom, SetReportAtom } from '../../../atom/ReportAtom';
+import { ReadShapesAtom, SetActiveLayerIndexAtom, SetReportAtom } from '@/atom/ReportAtom';
 import { createRect, DPPX, PaperSize, ReportData, UnitType } from '@sunvisor/super-leopard-core';
 import { useAtomValue, useSetAtom } from 'jotai';
-import { SelectionAtom } from '../../../atom/SelectionAtom';
-import { layerTestData } from '../../../__test_assets__';
-import { beforeEach } from 'vitest';
-import mockClipboard from '../../../__test_assets__/mockClipboard';
+import { SelectionAtom } from '@/atom/SelectionAtom';
+import { layerTestData } from '@/__test_assets__';
+import mockClipboard from '@/__test_assets__/mockClipboard';
 
 
 describe('Tests for useReportManipulator', () => {

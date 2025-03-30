@@ -5,10 +5,10 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import { useCallback } from "react";
-import useShapes from '../../reportEditor/hooks/useShapes';
+import useShapes from '@/hooks/useShapes';
+import useSelection from '@/hooks/useSelection';
 import PropertyBox from '../object/PropertyBox';
 import ObjectsAlignButtons, { ObjectAlignCommand } from '../field/ObjectsAlignButtons';
-import useSelection from '../../../hooks/useSelection';
 
 
 export default function ObjectAlignTool() {

@@ -6,7 +6,7 @@
  */
 import { WebFont } from "./WebFont";
 import { describe } from 'vitest';
-import { testFontMap } from '../../__test_assets__';
+import { testFontMap } from '@/__test_assets__';
 import { createFont, createScale, FontData } from '@sunvisor/super-leopard-core';
 
 describe('Tests for WebFont', () => {

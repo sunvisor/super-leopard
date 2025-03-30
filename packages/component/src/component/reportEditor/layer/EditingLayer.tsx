@@ -11,13 +11,13 @@ import {
   OnMovePositionHandler,
   OnResizeHandler,
   OnSelectHandler
-} from '../../../svg';
-import { LayerDiv } from '../../report/layer/Layer';
-import { SvgDriver } from '../../../svgDriver';
-import { getSettings } from '../../../settings';
-import usePage from '../../../hooks/usePage';
-import useScale from '../../../hooks/useScale';
-import useSelection from '../../../hooks/useSelection';
+} from '@/svg';
+import { LayerDiv } from '@/component/report/layer/Layer';
+import { SvgDriver } from '@/svgDriver';
+import { getSettings } from '@/settings';
+import usePage from '@/hooks/usePage';
+import useScale from '@/hooks/useScale';
+import useSelection from '@/hooks/useSelection';
 
 type Props = {
   onSelect?: OnSelectHandler;

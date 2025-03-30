@@ -4,7 +4,7 @@
  * Created by sunvisor on 2025/02/08.
  * Copyright (C) Sunvisor Lab. 2025.
  */
-import { WebFontMap } from '../../font';
+import { WebFontMap } from '@/font';
 import { Font, FontStyleType, Scale } from '@sunvisor/super-leopard-core';
 
 type SvgFontParams = {

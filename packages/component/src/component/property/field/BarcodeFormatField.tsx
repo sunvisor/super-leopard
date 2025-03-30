@@ -5,11 +5,10 @@
  * Copyright (C) Sunvisor Lab. 2025.
  */
 import { ChangeValueHandler } from '../usePropertyStates';
-import { Box, InputLabel, Select, SxProps } from '@mui/material';
+import { Box, InputLabel, Select, SelectChangeEvent, SxProps } from '@mui/material';
 import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
 import { useCallback } from 'react';
-import { SelectChangeEvent } from '@mui/material/Select/SelectInput';
 import { barcodeDescriptions } from '@sunvisor/super-leopard-core';
 
 

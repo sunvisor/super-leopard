@@ -10,10 +10,10 @@ import {
   ImageListItemBar, Toolbar, Tooltip,
 } from "@mui/material";
 import Caption from '../Caption';
-import translation from '../../../translations/translation';
+import translation from '@/translations/translation';
 import CloseIcon from '@mui/icons-material/Close';
-import { ImageListData } from '../../index';
-import { GetImageUrl } from '../../../settings';
+import { GetImageUrl } from '@/settings';
+import { ImageListData } from '@/component';
 
 type Props = {
   imageList: ImageListData[];

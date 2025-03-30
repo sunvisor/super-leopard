@@ -1,5 +1,5 @@
 import { Border, Scale } from '@sunvisor/super-leopard-core';
-import { StrokeOptions } from '../svgDriver';
+import { StrokeOptions } from '@/svgDriver';
 
 
 export function borderToStroke(scale: Scale, border: Border | undefined): StrokeOptions | undefined {

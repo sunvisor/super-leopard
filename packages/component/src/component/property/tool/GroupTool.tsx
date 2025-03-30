@@ -7,15 +7,15 @@
 import { useCallback } from "react";
 import PropertyBox from '../object/PropertyBox';
 import { Button, ButtonGroup } from '@mui/material';
-import translation from '../../../translations/translation';
-import useShapes from '../../reportEditor/hooks/useShapes';
+import translation from '@/translations/translation';
+import useShapes from '@/hooks/useShapes';
 import {
   Field, Group, grouping, List, listToShapes,
   Shapes, shapesToList, ungrouping
 } from '@sunvisor/super-leopard-core';
 import GroupBox from '../fieldGroup/GroupBox';
-import useReport from '../../../hooks/useReport';
-import useSelection from '../../../hooks/useSelection';
+import useReport from '@/hooks/useReport';
+import useSelection from '@/hooks/useSelection';
 
 
 export default function GroupTool() {

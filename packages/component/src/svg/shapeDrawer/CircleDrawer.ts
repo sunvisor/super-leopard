@@ -7,7 +7,7 @@
 import { Scale, Circle, CircleDrawerInterface, DrawerParams } from '@sunvisor/super-leopard-core';
 import { borderToStroke } from '../utils';
 import { ShapeDrawerProps } from './types';
-import { SvgDrawerInterface } from '../../svgDriver';
+import { SvgDrawerInterface } from '@/svgDriver';
 
 export class CircleDrawer implements CircleDrawerInterface {
   readonly #svg: SvgDrawerInterface;

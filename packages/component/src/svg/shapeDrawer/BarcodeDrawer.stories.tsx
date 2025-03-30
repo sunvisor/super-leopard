@@ -10,8 +10,8 @@ import { BarcodeDrawer } from "./BarcodeDrawer";
 import { Meta, StoryObj } from '@storybook/react';
 import { BarcodeData, createBarcode, createScale, UnitType } from '@sunvisor/super-leopard-core';
 import { expect, within } from '@storybook/test';
-import { createTestSvgDrawer } from '../../__test_assets__';
-import { BarcodeOptions } from '../../settings';
+import { createTestSvgDrawer } from '@/__test_assets__';
+import { BarcodeOptions } from '@/settings';
 
 type BarcodeProps = {
   barcode: BarcodeData;

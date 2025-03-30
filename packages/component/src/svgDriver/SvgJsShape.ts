@@ -34,16 +34,21 @@ export class SvgJsShape implements SvgShapeInterface {
     return this;
   }
 
-  on(event: string | Event[], callback: EventListener): void {
-    this.shape.on(event, callback);
+  on(event: string | Event[], callback: EventListener, bind?: any): void {
+    this.shape.on(event, callback, bind);
   }
 
-  off(event: string | Event[]): void {
-    this.shape.off(event);
+  off(event: string | Event[], callback?: EventListener, bind?: any): void {
+    this.shape.off(event, callback, bind);
   }
 
   remove(): void {
     this.shape.remove();
+  }
+
+  css(css: Partial<CSSStyleDeclarationWithVars>): this {
+    this.shape.css(css);
+    return this;
   }
 }
 

@@ -7,14 +7,13 @@
 import { useCallback, useEffect, useState } from "react";
 import { Box } from '@mui/material';
 import FontFamilyField from '../field/FontFamilyField';
-import translation from '../../../translations/translation';
+import translation from '@/translations/translation';
 import { FontData, FontStyleValue, toStyleString, toStyleValues } from '@sunvisor/super-leopard-core';
 import { ChangeValueHandler } from '../usePropertyStates';
-import { FontList } from '../../../font';
+import { adjustFontStyle, FontList, FontListItem } from '@/font';
 import FontStyleButtons from '../field/FontStyleButtons';
-import GroupBox from '../fieldGroup/GroupBox';
+import GroupBox from './GroupBox';
 import NumberField from '../field/NumberField';
-import { adjustFontStyle, FontListItem } from '../../../font/font';
 
 
 const MAX_FONT_SIZE = 512;

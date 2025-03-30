@@ -7,7 +7,7 @@
 import { DataParams, FieldValues, ListRecords, Page, Scale, Shapes, ShapesDrawer } from '@sunvisor/super-leopard-core';
 import { DrawerProps } from '../shapeDrawer/types';
 import { createLayerDataDrawer, createLayerDesignDrawer } from '../shapeDrawer/createDrawer';
-import { SvgDrawerInterface } from '../../svgDriver';
+import { SvgDrawerInterface } from '@/svgDriver';
 
 
 export const DrawModeType = {

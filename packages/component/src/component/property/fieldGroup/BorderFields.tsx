@@ -1,3 +1,9 @@
+/**
+ * BorderFields
+ *
+ * Created by sunvisor on 2024/02/13.
+ * Copyright (C) Sunvisor Lab. 2024.
+ */
 import { Box } from '@mui/material';
 import ColorPickerField from '../field/ColorPickerField';
 import BorderWidthField from '../field/BorderWidthField';
@@ -6,11 +12,12 @@ import CapButtons from '../field/CapButtons';
 import JoinButtons from '../field/JoinButtons';
 import { ChangeValueHandler } from '../usePropertyStates';
 import BorderStyleField from '../field/BorderStyleField';
-import translation from '../../../translations/translation';
+import translation from '@/translations/translation';
 import Caption from '../Caption';
 import SvCheckboxField from '../field/SvCheckboxField';
-import GroupBox from '../fieldGroup/GroupBox';
+import GroupBox from './GroupBox';
 import { useCallback, useState } from 'react';
+
 
 export type BorderFieldType = string|number|CapValue|JoinValue|StyleValue;
 type Props = {
@@ -18,12 +25,6 @@ type Props = {
   onChangeValue: ChangeValueHandler<BorderData | undefined>;
 }
 
-/**
- * BorderFields
- *
- * Created by sunvisor on 2024/02/13.
- * Copyright (C) Sunvisor Lab. 2024.
- */
 export default function BorderFields(props: Props) {
   const { onChangeValue } = props;
   const t = translation().borderProperty;

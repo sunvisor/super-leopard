@@ -1,5 +1,5 @@
-import { FontListItem, getFontList, WebFontMap } from '../font/font';
-import { defaultSettings } from '../settings';
+import { FontListItem, getFontList, WebFontMap } from '@/font';
+import { defaultSettings } from '@/settings';
 
 export const testFontMap: WebFontMap = {
   ...defaultSettings.fontMap,

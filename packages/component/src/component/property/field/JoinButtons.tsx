@@ -5,11 +5,11 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import React, { useCallback, useMemo } from "react";
-import JoinMiterIcon from '../field/icon/JoinMiterIcon';
-import JoinRoundIcon from '../field/icon/JoinRoundIcon';
-import JoinBevelIcon from '../field/icon/JoinBevelIcon';
+import JoinMiterIcon from './icon/JoinMiterIcon';
+import JoinRoundIcon from './icon/JoinRoundIcon';
+import JoinBevelIcon from './icon/JoinBevelIcon';
 import { JoinValue } from '@sunvisor/super-leopard-core';
-import translation from '../../../translations/translation';
+import translation from '@/translations/translation';
 import ToggleTools, { ToggleToolButton } from '../ToggleTools';
 import { ChangeValueHandler } from '../usePropertyStates';
 

@@ -6,9 +6,9 @@
  */
 import { EllipseRubberBand } from "./EllipseRubberBand";
 import { Scale, UnitType } from '@sunvisor/super-leopard-core';
-import { defaultStyle } from '../../style';
-import { createTestSvgDrawer } from '../../../__test_assets__';
-import { SvgEllipseInterface } from '../../../svgDriver';
+import { defaultStyle } from '@/svg/style';
+import { createTestSvgDrawer } from '@/__test_assets__';
+import { SvgEllipseInterface } from '@/svgDriver';
 
 describe('Tests for EllipseRubberBand', () => {
   const scale = new Scale({ unit: UnitType.INCH });

@@ -5,7 +5,7 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import { resizeBox } from "./ResizeRubberBand";
-import { HandleType } from '../boundingBox';
+import { HandleType } from '@/svg';
 
 describe('Tests for ResizeRubberBand', () => {
 

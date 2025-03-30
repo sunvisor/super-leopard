@@ -37,14 +37,15 @@ import {
   Text,
   TextShape,
 } from '@sunvisor/super-leopard-core';
-import translation from '../../translations/translation';
+import translation from '@/translations/translation';
 import EllipseIcon from '../toolbar/EllipseIcon';
 import LineIcon from '../toolbar/LineIcon';
+import { useSelection } from '@/hooks';
 
 type Props = {
   shape: Shape;
   indent: number;
-  onClick: (shape: Shape) => void;
+  onClick: (shape: Shape, event: React.MouseEvent) => void;
   onSettingClick: (shape: Shape) => void;
 }
 
@@ -52,15 +53,16 @@ type ObjectListItemProps = {
   title: string;
   icon: React.ReactElement;
   indent: number;
+  selected: boolean;
   onItemClick: (e: React.MouseEvent) => void;
   onSettingClick: (e: React.MouseEvent) => void;
 }
 
-function ObjectListItemItem({ title, icon, indent, onItemClick, onSettingClick }: ObjectListItemProps) {
+function ObjectListItemItem({ title, icon, indent, onItemClick, onSettingClick, selected }: ObjectListItemProps) {
   const t = translation().reportObject;
   return (
     <ListItem dense disablePadding>
-      <ListItemButton dense sx={{ pl: indent * 2 }} onClick={onItemClick}>
+      <ListItemButton dense sx={{ pl: indent * 2 }} onClick={onItemClick} selected={selected}>
         <ListItemIcon>
           {icon}
         </ListItemIcon>
@@ -112,9 +114,10 @@ export default function ObjectListItem({ shape, indent, onClick, onSettingClick 
       ? (shape as Field).name
       : shapeTypes[shape.type];
   const icon = getIcon(shape)
+  const { selection } = useSelection();
 
-  const handleItemClick = useCallback(() => {
-    onClick(shape);
+  const handleItemClick = useCallback((e: React.MouseEvent) => {
+    onClick(shape, e);
   }, [onClick, shape])
 
   const handleSettingClick = useCallback(() => {
@@ -127,6 +130,7 @@ export default function ObjectListItem({ shape, indent, onClick, onSettingClick 
         icon={icon}
         title={title}
         indent={indent}
+        selected={selection.contains(shape)}
         onItemClick={handleItemClick}
         onSettingClick={handleSettingClick}
       />

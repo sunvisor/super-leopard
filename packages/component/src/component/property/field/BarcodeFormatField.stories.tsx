@@ -9,7 +9,7 @@
 import BarcodeFormatField from "./BarcodeFormatField";
 import { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
-import { fieldDecorator } from '../../../__test_assets__';
+import { fieldDecorator } from '@/__test_assets__';
 
 
 type Story = StoryObj<typeof BarcodeFormatField>

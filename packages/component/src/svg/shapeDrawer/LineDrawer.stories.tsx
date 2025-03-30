@@ -17,7 +17,7 @@ import {
   LineShape,
   UnitType,
 } from '@sunvisor/super-leopard-core';
-import { createTestSvgDrawer } from '../../__test_assets__';
+import { createTestSvgDrawer } from '@/__test_assets__';
 
 type LineProps = {
   line: LineData;

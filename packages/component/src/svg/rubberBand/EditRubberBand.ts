@@ -7,11 +7,11 @@
 import { Box, PositionPair } from '@sunvisor/super-leopard-core';
 import { SelectRubberBand, OnSelectHandler } from './SelectRubberBand';
 import { MoveRubberBand, OnMoveHandler } from './MoveRubberBand';
-import { HandleType } from '../boundingBox';
+import { HandleType } from '@/svg';
 import { ResizeRubberBand, OnResizeHandler } from './ResizeRubberBand';
 import { LineRubberBand, OnMovePositionHandler } from './LineRubberBand';
-import { RubberBandOptions } from '../../settings';
-import { SvgDrawerInterface } from '../../svgDriver';
+import { RubberBandOptions } from '@/settings';
+import { SvgDrawerInterface } from '@/svgDriver';
 
 
 export type EditRubberBandInterface = {

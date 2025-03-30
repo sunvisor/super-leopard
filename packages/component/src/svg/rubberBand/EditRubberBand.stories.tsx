@@ -6,13 +6,11 @@
  * Created by sunvisor on 2024/01/21.
  * Copyright (C) Sunvisor Lab. 2024.
  */
-import { EditRubberBand } from "./EditRubberBand";
+import { EditRubberBand, OnMoveHandler, OnSelectHandler } from "@/svg";
 import { Meta, StoryObj } from '@storybook/react';
 import { fn, within } from '@storybook/test';
-import { OnSelectHandler } from './SelectRubberBand';
-import { OnMoveHandler } from './MoveRubberBand';
-import { defaultSettings } from '../../settings';
-import { createTestSvgDrawer } from '../../__test_assets__';
+import { defaultSettings } from '@/settings';
+import { createTestSvgDrawer } from '@/__test_assets__';
 
 type EditRubberBandProps = {
   listeners: {

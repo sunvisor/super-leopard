@@ -9,7 +9,7 @@
 import FontFields from "./FontFields";
 import { Meta, StoryObj } from "@storybook/react";
 import { Box } from "@mui/material";
-import { testFontList } from '../../../__test_assets__';
+import { testFontList } from '@/__test_assets__';
 import { fn } from '@storybook/test';
 
 

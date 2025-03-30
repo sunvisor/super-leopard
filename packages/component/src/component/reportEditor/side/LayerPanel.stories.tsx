@@ -10,8 +10,8 @@ import LayerPanel from "./LayerPanel";
 import { Meta, StoryContext, StoryFn, StoryObj } from '@storybook/react';
 import { ReportData } from '@sunvisor/super-leopard-core';
 import { createStore, Provider } from 'jotai';
-import { SetActiveLayerIndexAtom, SetReportAtom } from "../../../atom/ReportAtom";
-import { layerTestData } from '../../../__test_assets__';
+import { SetActiveLayerIndexAtom, SetReportAtom } from "@/atom/ReportAtom";
+import { layerTestData } from '@/__test_assets__';
 
 type Story = StoryObj<typeof LayerPanel>
 

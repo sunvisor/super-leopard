@@ -15,7 +15,7 @@ import {
   TextDrawerInterface,
 } from '@sunvisor/super-leopard-core';
 import { WebFont } from './WebFont';
-import { SvgDrawerInterface } from '../../svgDriver';
+import { SvgDrawerInterface } from '@/svgDriver';
 
 
 type TextDrawerProps = {

@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import dts from 'vite-plugin-dts';
+import * as path from 'node:path';
 
 
 export default defineConfig({
@@ -13,6 +14,11 @@ export default defineConfig({
       exclude: ['**/*.test.ts', '**/*.test.tsx', "**/*.stories.tsx", "**/__test_assets__"],
     }),
   ],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+    },
+  },
   build: {
     outDir: 'dist',
     lib: {

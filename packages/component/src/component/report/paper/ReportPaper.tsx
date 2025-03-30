@@ -5,8 +5,8 @@
  * Copyright (C) Sunvisor Lab. 2023.
  */
 import React from "react";
-import Paper from '../../paper/Paper';
-import usePage from '../../../hooks/usePage';
+import Paper from '@/component/paper/Paper';
+import usePage from '@/hooks/usePage';
 
 type Props = {
   children?: React.ReactNode;

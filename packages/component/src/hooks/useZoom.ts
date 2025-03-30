@@ -5,7 +5,7 @@
  * Copyright (C) Sunvisor Lab. 2025.
  */
 import { useSetAtom } from 'jotai/index';
-import { SetZoomAtom } from '../atom/ReportAtom';
+import { SetZoomAtom } from '@/atom/ReportAtom';
 
 
 export default function useZoom() {

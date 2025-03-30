@@ -1,5 +1,7 @@
-# Super Leopard - Report Generation Library
+Super Leopard - Report Generation Library
 ================================
+
+<img src="./docs/images/super_leopard.png" style="float: left; margin-right: 20px; margin-bottom : 20px; width: 150px" alt="Super Leopard">
 
 **Super Leopard** is a library for generating reports.  
 It allows you to insert data into a predefined template and output a **PDF**.  

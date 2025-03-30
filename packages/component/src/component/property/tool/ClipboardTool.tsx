@@ -6,8 +6,8 @@
  */
 import PropertyBox from '../object/PropertyBox';
 import ClipboardButtons from '../field/ClipboardButtons';
-import useReportManipulator from '../../reportEditor/hooks/useReportManipulator';
-import useSelection from '../../../hooks/useSelection';
+import useReportManipulator from '@/hooks/useReportManipulator';
+import useSelection from '@/hooks/useSelection';
 
 
 export default function ClipboardTool() {

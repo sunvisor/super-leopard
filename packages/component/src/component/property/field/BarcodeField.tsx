@@ -5,8 +5,9 @@
  * Copyright (C) Sunvisor Lab. 2025.
  */
 import { BarcodeRotateType } from '@sunvisor/super-leopard-core';
-import SvImage from './SvImage';
 import { createBarcodeSvg } from '@sunvisor/super-leopard-barcode';
+import SvImage from './SvImage';
+
 
 type Props = {
   format: string;

@@ -10,7 +10,7 @@ import BarcodeOptionFields from "./BarcodeOptionFields";
 import { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
 import { Box } from '@mui/material';
-import translation from '../../../translations/translation';
+import translation from '@/translations/translation';
 
 type Story = StoryObj<typeof BarcodeOptionFields>
 

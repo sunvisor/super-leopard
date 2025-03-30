@@ -8,7 +8,7 @@
  */
 import { ShapeCreatorInterface } from '.'
 import { Scale, Shape, createEllipse, Position, positionsToBox } from '@sunvisor/super-leopard-core';
-import { StylesData } from '../../style';
+import { StylesData } from '@/svg/style';
 
 export class CreateEllipse implements ShapeCreatorInterface {
   readonly #scale: Scale;

@@ -14,7 +14,7 @@ import {
   positionsToBox ,
   createField,
 } from '@sunvisor/super-leopard-core';
-import { StylesData } from '../../style';
+import { StylesData } from '@/svg/style';
 
 export class CreateField implements ShapeCreatorInterface {
   readonly #scale: Scale;

@@ -1,6 +1,6 @@
 import { Barcode, BarcodeDrawerInterface, Box, DrawerParams, Scale } from '@sunvisor/super-leopard-core';
 import { BarcodeDrawerProps } from './types';
-import { SvgDrawerInterface } from '../../svgDriver';
+import { SvgDrawerInterface } from '@/svgDriver';
 import { createBarcodeSvg } from '@sunvisor/super-leopard-barcode';
 
 /**

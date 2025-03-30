@@ -9,11 +9,11 @@
 import Layer from "./Layer";
 import { createStore, Provider } from "jotai";
 import { Meta, StoryObj } from "@storybook/react";
-import { DrawModeType } from '../../../svg';
+import { DrawModeType } from '@/svg';
 import { ShapeData, createShapes } from '@sunvisor/super-leopard-core';
 import { expect, waitFor, within } from "@storybook/test";
-import { testSettings } from '../../../__test_assets__/settings';
-import { setSettings } from '../../../settings';
+import { testSettings } from '@/__test_assets__/settings';
+import { setSettings } from '@/settings';
 import {
   billListRecords,
   billTestLayerData,

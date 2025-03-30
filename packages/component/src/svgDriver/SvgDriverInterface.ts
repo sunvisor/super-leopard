@@ -74,9 +74,10 @@ export type SvgShapeInterface = {
   type: string;
   move(x: number, y: number): SvgShapeInterface;
   size(width: number, height?: number): SvgShapeInterface;
-  on(event: string | Event[], callback: EventListener): void;
-  off(event: string | Event[]): void;
+  on(event: string | Event[], callback: EventListener, bind?: any): void;
+  off(event: string | Event[], callback?: EventListener, bind?: any): void;
   remove(): void;
+  css(css: Partial<CSSStyleDeclarationWithVars>): void;
 }
 
 // Element interfaces
@@ -111,7 +112,7 @@ export interface SvgDrawerInterface {
 
   on(event: string | Event[], callback: EventListener, bind?: any): this;
 
-  off(event: string | Event[]): this;
+  off(event: string | Event[], callback?: EventListener, bind?: any): this;
 
   css(css: Partial<CSSStyleDeclarationWithVars>): this;
 

@@ -11,16 +11,16 @@ import { Meta, StoryObj } from '@storybook/react';
 import { createStore, Provider } from 'jotai';
 import { expect, fn, waitFor, within } from '@storybook/test';
 import { emptyReport } from '../emptyReport';
-import { SetReportAtom } from '../../atom/ReportAtom';
-import imageHandlers from '../../__test_assets__/msw/imageHandlers';
-import { testImageListData } from '../../__test_assets__';
-import { testSettings } from '../../__test_assets__/settings';
+import { SetReportAtom } from '@/atom/ReportAtom';
+import imageHandlers from '@/__test_assets__/msw/imageHandlers';
+import { testImageListData } from '@/__test_assets__';
+import { testSettings } from '@/__test_assets__/settings';
 import { billTestData, en } from '@sunvisor/super-leopard-test-assets';
 import NoteAddIcon from '@mui/icons-material/NoteAdd';
 import FileOpenIcon from '@mui/icons-material/FileOpen';
 import { useEffect } from 'react';
-import useReport from '../../hooks/useReport';
-import useReportManipulator from './hooks/useReportManipulator';
+import useReport from '@/hooks/useReport';
+import useReportManipulator from '@/hooks/useReportManipulator';
 
 
 type Story = StoryObj<typeof ReportEditor>

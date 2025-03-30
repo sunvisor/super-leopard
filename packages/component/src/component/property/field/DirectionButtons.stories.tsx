@@ -9,7 +9,7 @@
 import DirectionButtons from "./DirectionButtons";
 import { Meta, StoryObj } from '@storybook/react';
 import { DirectionType } from '@sunvisor/super-leopard-core';
-import { fieldDecorator } from '../../../__test_assets__';
+import { fieldDecorator } from '@/__test_assets__';
 import { fn } from '@storybook/test';
 
 

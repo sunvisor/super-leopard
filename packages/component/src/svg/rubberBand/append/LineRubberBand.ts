@@ -6,15 +6,15 @@
  */
 import { ShapeRubberBandInterface } from '../';
 import { createBorder, Position, Scale, } from '@sunvisor/super-leopard-core';
-import { borderToStroke } from '../../utils';
-import { adjustLinePosition } from '../LineRubberBand';
-import { StylesData } from '../../style';
+import { borderToStroke } from '@/svg/utils';
+import { adjustLinePosition } from '@/svg/rubberBand';
+import { StylesData } from '@/svg/style';
 import {
   StrokeOptions,
   SvgDrawerInterface,
   SvgLineInterface,
   SvgShapeInterface
-} from '../../../svgDriver';
+} from '@/svgDriver';
 
 export class LineRubberBand implements ShapeRubberBandInterface {
   readonly #svg: SvgDrawerInterface;

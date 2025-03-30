@@ -6,7 +6,7 @@
  * Created by sunvisor on 2025/03/05.
  * Copyright (C) Sunvisor Lab. 2025.
  */
-import TestApp from "../../__test_assets__/TestApp";
+import TestApp from "@/__test_assets__/TestApp";
 import { Meta, StoryObj } from '@storybook/react';
 import { billTestData } from '@sunvisor/super-leopard-test-assets';
 import { fn } from '@storybook/test';

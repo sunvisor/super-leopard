@@ -29,9 +29,9 @@ import {
   Shapes,
   UnitType
 } from '@sunvisor/super-leopard-core';
-import { testFontList, testImageOptions } from '../../../__test_assets__';
+import { testFontList, testImageOptions } from '@/__test_assets__';
 import { createStore, Provider } from 'jotai';
-import { SelectionAtom } from '../../../atom/SelectionAtom';
+import { SelectionAtom } from '@/atom/SelectionAtom';
 import { fieldTestData, shapeTestData } from '@sunvisor/super-leopard-test-assets';
 
 

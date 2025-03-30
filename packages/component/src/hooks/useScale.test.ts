@@ -5,10 +5,10 @@
  * Copyright (C) Sunvisor Lab. 2025.
  */
 import { renderHook } from '@testing-library/react';
-import { SetReportAtom } from '../atom/ReportAtom';
+import { SetReportAtom } from '@/atom/ReportAtom';
 import useScale from './useScale';
 import { createStore } from 'jotai';
-import { emptyReport } from '../component/emptyReport';
+import { emptyReport } from '@/component/emptyReport';
 
 describe('Tests for useScale', () => {
 

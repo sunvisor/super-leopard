@@ -7,7 +7,7 @@
 import { useCallback } from "react";
 import { ColorData } from '@sunvisor/super-leopard-core';
 import FillColorField from '../field/FillColorField';
-import useStyles from '../../../hooks/useStyles';
+import useStyles from '@/hooks/useStyles';
 
 
 export default function FillColor() {

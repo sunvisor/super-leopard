@@ -5,13 +5,13 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import { useCallback, useEffect, useState } from "react";
-import GroupBox from '../fieldGroup/GroupBox';
+import GroupBox from './GroupBox';
 import PaperSizeField from '../field/PaperSizeField';
 import { Page, OrientationValue, PageSize, PaperSize, PaperSizeValue } from '@sunvisor/super-leopard-core';
 import NumberField from '../field/NumberField';
 import { MAX_SCALE_VALUE } from '@sunvisor/super-leopard-core';
 import { ChangeValueHandler } from '../usePropertyStates';
-import translation from '../../../translations/translation';
+import translation from '@/translations/translation';
 import OrientationField from '../field/OrientationField';
 
 

@@ -8,11 +8,11 @@ import { useCallback } from 'react';
 import { Atom, useAtomValue, useSetAtom, WritableAtom } from 'jotai';
 import { Box, createShapesSelector, Line, Position, PositionPair, Shape, Shapes } from '@sunvisor/super-leopard-core';
 import useShapes from './useShapes';
-import useClipboard from './useClipboard';
-import { CanRedoAtom, CanUndoAtom, ReadDirtyAtom, RedoHistoryAtom, UndoHistoryAtom } from '../../../atom/HistoryAtom';
-import { getSettings } from '../../../settings';
-import useScale from '../../../hooks/useScale';
-import useSelection from '../../../hooks/useSelection';
+import useClipboard from '@/hooks/useClipboard';
+import { CanRedoAtom, CanUndoAtom, ReadDirtyAtom, RedoHistoryAtom, UndoHistoryAtom } from '@/atom/HistoryAtom';
+import { getSettings } from '@/settings';
+import useScale from './useScale';
+import useSelection from './useSelection';
 
 const PASTE_OFFSET = 20; // pixel
 
@@ -25,7 +25,7 @@ export default function useReportManipulator(props: Props = {}) {
   const {
     shapes, removeShapes, addShape, updateShapes
   } = useShapes(props);
-  const { selection, setSelection, clearSelection } = useSelection();
+  const { selection, setSelection, clearSelection, changeSelection } = useSelection();
   const settings = getSettings();
   const { setToClipboard, getFromClipboard, canPaste } = useClipboard();
   const canUndo = useAtomValue(CanUndoAtom);
@@ -35,15 +35,15 @@ export default function useReportManipulator(props: Props = {}) {
   const dirty = useAtomValue(ReadDirtyAtom);
   const { scale } = useScale();
 
-  const select = useCallback((area: Box | Position) => {
+  const select = useCallback((area: Box | Position, toggle: boolean = false) => {
       const selector = createShapesSelector(scale, settings.lineSelect);
       if ('width' in area) {
-        setSelection(selector.selectByBox(area as Box, shapes));
+        changeSelection(selector.selectByBox(area as Box, shapes), toggle);
       } else {
-        setSelection(selector.selectByPosition(area, shapes));
+        changeSelection(selector.selectByPosition(area, shapes), toggle);
       }
     },
-    [scale, settings, setSelection, shapes]
+    [scale, settings, changeSelection, shapes]
   );
 
   const selectAll = useCallback(() => {

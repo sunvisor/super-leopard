@@ -5,12 +5,12 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import React, { useCallback, useEffect } from "react";
-import GroupBox from '../fieldGroup/GroupBox';
+import GroupBox from './GroupBox';
 import NumberField from '../field/NumberField';
 import { MAX_SCALE_VALUE, PageMargin } from '@sunvisor/super-leopard-core';
 import { UnitValue } from '@sunvisor/super-leopard-core';
 import { ChangeValueHandler } from '../usePropertyStates';
-import translation from '../../../translations/translation';
+import translation from '@/translations/translation';
 
 type Props = {
   margin: PageMargin;

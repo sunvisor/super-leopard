@@ -5,8 +5,7 @@
  * Copyright (C) Sunvisor Lab. 2024.
  */
 import { JSX, useCallback } from "react";
-import { Box, InputLabel, Select, SxProps } from '@mui/material';
-import { SelectChangeEvent } from '@mui/material/Select/SelectInput';
+import { Box, InputLabel, Select, SelectChangeEvent, SxProps } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import { StyleValue } from '@sunvisor/super-leopard-core';

@@ -9,13 +9,13 @@ import { Box, Drawer, IconButton, Tab, Tabs, Toolbar, Tooltip, Typography } from
 import { EditMode } from '../ReportWorkArea';
 import CloseIcon from '@mui/icons-material/Close';
 import { Shapes } from '@sunvisor/super-leopard-core';
-import translation from '../../../translations/translation';
+import translation from '@/translations/translation';
 import PropertyTab from './PropertyTab';
 import LayerPanel from './LayerPanel';
-import ObjectListPanel from '../../objectList/ObjectListPanel';
-import { getSettings } from '../../../settings';
-import { getFontList } from '../../../font/font';
-import useSelection from '../../../hooks/useSelection';
+import ObjectListPanel from '@/component/objectList/ObjectListPanel';
+import { getSettings } from '@/settings';
+import { getFontList } from '@/font/font';
+import useSelection from '@/hooks/useSelection';
 
 
 type Props = {

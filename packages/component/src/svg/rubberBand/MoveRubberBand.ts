@@ -8,8 +8,8 @@
 import { Box, normalizeBox, Position } from '@sunvisor/super-leopard-core';
 import { EditRubberBandInterface } from './EditRubberBand';
 import { HandleCursor } from '../boundingBox';
-import { RubberBandOptions } from '../../settings';
-import { StrokeOptions, SvgDrawerInterface, SvgRectInterface } from '../../svgDriver';
+import { RubberBandOptions } from '@/settings';
+import { StrokeOptions, SvgDrawerInterface, SvgRectInterface } from '@/svgDriver';
 
 
 export type OnMoveHandler = (pos: Position) => void;

@@ -4,7 +4,7 @@
  * Created by sunvisor on 2024/02/25.
  * Copyright (C) Sunvisor Lab. 2024.
  */
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import PropertyBox from '../object/PropertyBox';
 import PositionFields from '../fieldGroup/PositionFields';
 import SizeFields from '../fieldGroup/SizeFields';
@@ -25,10 +25,14 @@ export default function TransformPanel(props: Props) {
     }, [onUpdate]
   );
 
-  const { values, handleChangeValue } = usePropertyStates<Box>(
+  const { values, handleChangeValue, setValues } = usePropertyStates<Box>(
     box,
     values => handleUpdate(values)
   );
+
+  useEffect(() => {
+    setValues(box);
+  }, [box]);
 
   return (
     <PropertyBox

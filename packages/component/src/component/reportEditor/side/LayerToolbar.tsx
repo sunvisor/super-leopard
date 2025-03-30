@@ -7,7 +7,7 @@
 import { Button, Toolbar } from "@mui/material";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { useCallback } from "react";
-import translation from '../../../translations/translation';
+import translation from '@/translations/translation';
 
 type Props = {
   onAddLayer: () => void;

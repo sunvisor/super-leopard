@@ -10,9 +10,9 @@ import {
   ImageDrawerInterface,
   Scale
 } from '@sunvisor/super-leopard-core';
-import { GetImageUrl } from '../../settings';
+import { GetImageUrl } from '@/settings';
 import { ImageDrawerProps } from './types';
-import { SvgDrawerInterface } from '../../svgDriver';
+import { SvgDrawerInterface } from '@/svgDriver';
 
 export class ImageDrawer implements ImageDrawerInterface {
 

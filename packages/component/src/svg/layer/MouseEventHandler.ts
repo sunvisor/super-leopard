@@ -1,7 +1,3 @@
-import { HandleKind, HandleType } from '../boundingBox';
-import { Line, Scale, Shapes } from '@sunvisor/super-leopard-core';
-import { EditRubberBand } from '../rubberBand';
-
 /**
  * MouseEventHandler
  *
@@ -10,6 +6,10 @@ import { EditRubberBand } from '../rubberBand';
  * Created by sunvisor on 2024/02/07.
  * Copyright (C) Sunvisor Lab. 2024.
  */
+import { EditRubberBand, HandleKind, HandleType } from '@/svg';
+import { Line, Scale, Shapes } from '@sunvisor/super-leopard-core';
+
+
 export default class MouseEventHandler {
   readonly #scale: Scale;
   readonly #selection: Shapes;

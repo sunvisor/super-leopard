@@ -10,19 +10,18 @@ import ReportWorkArea from '../reportEditor/ReportWorkArea';
 import EditToolbar from '../toolbar/EditToolbar';
 import { EditMode } from './ReportWorkArea';
 import FooterToolbar from '../toolbar/FooterToolbar';
-import { ReportData } from '@sunvisor/super-leopard-core';
+import { ReportData, Shape, Shapes } from '@sunvisor/super-leopard-core';
 import DrawToolbar from '../toolbar/DrawToolbar';
 import SidePanel from './side/SidePanel';
-import { setLanguage } from '../../translations/translation';
-import { setSettings, SettingData } from '../../settings';
-import useReport from '../../hooks/useReport';
-import useSelection from '../../hooks/useSelection';
+import { setLanguage } from '@/translations/translation';
+import { setSettings, SettingData } from '@/settings';
+import useReport from '@/hooks/useReport';
+import useSelection from '@/hooks/useSelection';
 import { emptyReport } from '../emptyReport';
 
 
 export type OnSaveHandler = (report: ReportData) => void;
 export type OnChangeTitleHandler = (title: string) => void;
-export type ReportId = number | 'new';
 
 type Props = {
   report?: ReportData;
@@ -40,11 +39,12 @@ type Props = {
 
 export default function ReportEditor(props: Props) {
   const { report: data, onSave, language, settings, onChangeTitle, title } = props;
-  const { clearSelection } = useSelection();
+  const { clearSelection, setSelection } = useSelection();
   const { report, setReport, applyShapes } = useReport();
   const [mode, setMode] = React.useState<EditMode>("edit");
   const [zoom, setZoom] = useState<number>(100);
   const [open, setOpen] = useState<boolean>(true);
+  const [locked, setLocked] = useState<boolean>(false);
 
   useEffect(() => {
     setReport(data || emptyReport);
@@ -55,6 +55,16 @@ export default function ReportEditor(props: Props) {
   const handleChangeTool = useCallback((_: React.MouseEvent<HTMLElement>, newMode: EditMode) => {
     setMode(newMode);
   }, [setMode]);
+
+  const handleChangeLocked = useCallback((locked: boolean) => {
+    setLocked(locked);
+  }, [setLocked]);
+
+  const handleAfterAppend = useCallback((shape: Shape) => {
+    if (locked) return;
+    setMode('edit');
+    setSelection(new Shapes([shape]));
+  }, [setMode, setSelection, locked]);
 
   const handleChangeZoom = useCallback((_: Event, value: number) => {
     setZoom(value);
@@ -83,11 +93,17 @@ export default function ReportEditor(props: Props) {
         />
       </AppBar>
       <Box sx={{ padding: 0, display: 'flex', overflow: 'hidden', flex: 1 }}>
-        <DrawToolbar onChange={handleChangeTool}/>
+        <DrawToolbar
+          mode={mode}
+          locked={locked}
+          onChange={handleChangeTool}
+          onChangeLocked={handleChangeLocked}
+        />
         <Box sx={{ flex: 1, overflow: 'auto' }}>
           <ReportWorkArea
             mode={mode}
             zoom={zoom / 100}
+            afterAppend={handleAfterAppend}
           />
         </Box>
       </Box>

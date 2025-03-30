@@ -4,11 +4,13 @@
  * Created by sunvisor on 2024/03/12.
  * Copyright (C) Sunvisor Lab. 2024.
  */
+import React from 'react';
 import { useCallback } from "react";
 import ObjectList from '../objectList/ObjectList';
 import { Shape, Shapes } from '@sunvisor/super-leopard-core';
-import useShapes from '../reportEditor/hooks/useShapes';
-import useSelection from '../../hooks/useSelection';
+import useShapes from '@/hooks/useShapes';
+import useSelection from '@/hooks/useSelection';
+import { isCmdOrCtrl } from '@/component/environment';
 
 
 type Props = {
@@ -17,11 +19,11 @@ type Props = {
 
 export default function ObjectListPanel({ showPropertyTab }: Props) {
   const { shapes } = useShapes()
-  const { setSelection } = useSelection();
+  const { setSelection, changeSelection } = useSelection();
 
-  const handleClick = useCallback((shape: Shape) => {
-    setSelection(new Shapes([shape]))
-  }, [setSelection])
+  const handleClick = useCallback((shape: Shape, e: React.MouseEvent) => {
+    changeSelection(new Shapes([shape]), isCmdOrCtrl(e));
+  }, [changeSelection])
 
   const handleSettingClick = useCallback((shape: Shape) => {
     setSelection(new Shapes([shape]));

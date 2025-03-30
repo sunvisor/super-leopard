@@ -4,8 +4,8 @@
  * Created by sunvisor on 2024/03/09.
  * Copyright (C) Sunvisor Lab. 2024.
  */
-import { ImageListData } from '../component';
-import { defaultSettings, ImageOptions } from '../settings';
+import { ImageListData } from '@/component';
+import { defaultSettings, ImageOptions } from '@/settings';
 
 
 export const testImageListData: ImageListData[] = [

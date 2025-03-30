@@ -6,10 +6,10 @@
  */
 import { act, renderHook } from '@testing-library/react';
 import { useAtomValue, useSetAtom } from 'jotai';
-import { ReadReportAtom, SetReportAtom, } from '../atom/ReportAtom';
+import { ReadReportAtom, SetReportAtom, } from '@/atom/ReportAtom';
 import useLayer from './useLayer';
 import { billTestData } from '@sunvisor/super-leopard-test-assets';
-import { layerTestData } from '../__test_assets__';
+import { layerTestData } from '@/__test_assets__';
 
 
 describe('Tests for useLayer', () => {

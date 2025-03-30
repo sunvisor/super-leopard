@@ -27,11 +27,11 @@ import { DefaultRectSize } from './DefaultRectSize';
 import { DefaultLineSize } from './DefaultLineSize';
 import { CreateField } from './CreateField';
 import { CreateImage } from './CreateImage';
-import { DefaultShapeSize, SettingData } from '../../../settings';
-import { StylesData } from '../../style';
-import { AppendShapeType } from '../AppendShapeRubberBand';
-import { SvgDrawerInterface, SvgShapeInterface } from '../../../svgDriver';
+import { DefaultShapeSize, SettingData } from '@/settings';
+import { AppendShapeType } from '@/svg/rubberBand';
+import { SvgDrawerInterface, SvgShapeInterface } from '@/svgDriver';
 import { CreateBarcode } from './CreateBarcode';
+import { StylesData } from '@/svg/style';
 
 export type ShapeCreatorInterface = {
   create(start: Position, end: Position): Shape;

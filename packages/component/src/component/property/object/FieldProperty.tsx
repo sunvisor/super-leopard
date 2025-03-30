@@ -14,21 +14,21 @@ import {
   StaticShapeType,
   UnitValue
 } from '@sunvisor/super-leopard-core';
+import { FontList } from '@/font';
+import { ImageOptions } from '@/settings';
+import useStyles from '@/hooks/useStyles';
 import usePropertyStates from '../usePropertyStates';
-import PropertyBox from './PropertyBox';
 import FieldNameFields from '../fieldGroup/FieldNameFields';
 import TextPanel from '../panel/TextPanel';
-import { FontList } from '../../../font';
 import CirclePanel from '../panel/CirclePanel';
 import EllipsePanel from '../panel/EllipsePanel';
 import ImagePanel from '../panel/ImagePanel';
 import LinePanel from '../panel/LinePanel';
 import RectPanel from '../panel/RectPanel';
-import { UpdateHandler } from './ShapeProperty';
 import BarcodePanel from '../panel/BarcodePanel';
 import ShapeState from '../ShapeState';
-import { ImageOptions } from '../../../settings';
-import useStyles from '../../../hooks/useStyles';
+import PropertyBox from './PropertyBox';
+import { UpdateHandler } from './ShapeProperty';
 
 type Props = {
   unit: UnitValue;

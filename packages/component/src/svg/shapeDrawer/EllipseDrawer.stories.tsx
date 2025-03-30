@@ -10,7 +10,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from "@storybook/test";
 import { EllipseDrawer } from './EllipseDrawer';
 import { createEllipse, createScale, EllipseData, EllipseShape, UnitType } from '@sunvisor/super-leopard-core';
-import { createTestSvgDrawer } from '../../__test_assets__';
+import { createTestSvgDrawer } from '@/__test_assets__';
 
 
 type EllipseProps = {

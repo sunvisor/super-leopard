@@ -9,7 +9,7 @@ import { Box, Divider, IconButton, Input, Toolbar, Tooltip } from "@mui/material
 import SaveIcon from '@mui/icons-material/Save';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
-import translation from '../../translations/translation';
+import translation from '@/translations/translation';
 
 type Props = {
   title: string;

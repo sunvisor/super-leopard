@@ -6,7 +6,7 @@
  */
 import {RectDrawer} from "./RectDrawer";
 import { createRect, RectData, Scale, UnitType } from '@sunvisor/super-leopard-core';
-import { createTestSvgDrawer } from '../../__test_assets__';
+import { createTestSvgDrawer } from '@/__test_assets__';
 
 describe('Tests for RectDrawer#draw', () => {
   const svg = createTestSvgDrawer();

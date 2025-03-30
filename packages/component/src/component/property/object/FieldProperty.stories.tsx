@@ -9,7 +9,7 @@
 import FieldProperty from "./FieldProperty";
 import { Meta, StoryObj } from "@storybook/react";
 import { createField, Field } from "@sunvisor/super-leopard-core";
-import { testFontList, testImageOptions } from '../../../__test_assets__';
+import { testFontList, testImageOptions } from '@/__test_assets__';
 import { fn } from '@storybook/test';
 
 type Story = StoryObj<typeof FieldProperty>;

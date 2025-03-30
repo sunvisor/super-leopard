@@ -8,22 +8,34 @@ import React from "react";
 import { Box } from '@mui/material';
 import EditModeButtons from '../toolbar/EditModeButtons';
 import { EditMode } from '../reportEditor/ReportWorkArea';
+import LockToggle from '@/component/toolbar/LockToggle';
+
 
 type Props = {
-  mode?: EditMode;
+  mode: EditMode;
+  locked: boolean;
   onChange: (event: React.MouseEvent<HTMLElement>, newMode: EditMode) => void;
+  onChangeLocked: (locked: boolean) => void;
 }
 
 export type DrawToolbarProps = Props;
 
 export default function DrawToolbar(props: Props) {
+  const { mode, locked, onChange, onChangeLocked } = props;
+
   return (
-    <Box sx={{ height: '100%', p: 1 }}>
-      <EditModeButtons
-        mode={props.mode}
-        onChange={props.onChange}
-        orientation="vertical"
-      />
+    <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+      <Box sx={{ p: 1 }}>
+        <EditModeButtons
+          mode={mode}
+          onChange={onChange}
+          orientation="vertical"
+        />
+      </Box>
+      <Box sx={{ p: 1 }}>
+        <LockToggle locked={locked} onChange={onChangeLocked}/>
+      </Box>
+      <Box sx={{ flex: 1 }}/>
     </Box>
   );
 }

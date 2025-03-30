@@ -7,7 +7,7 @@
 import { Measurement } from "./Measurement";
 import { beforeEach, describe } from 'vitest';
 import { createScale, createText, TextData } from '@sunvisor/super-leopard-core';
-import { testFontMap } from '../../__test_assets__';
+import { testFontMap } from '@/__test_assets__';
 import { WebFont } from './WebFont';
 
 describe('Tests for Measurement', () => {

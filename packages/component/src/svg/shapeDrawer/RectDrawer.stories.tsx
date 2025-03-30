@@ -10,7 +10,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from "@storybook/test";
 import { RectDrawer } from './RectDrawer';
 import { createRect, createScale, RectData, RectShape, UnitType } from '@sunvisor/super-leopard-core';
-import { createTestSvgDrawer } from '../../__test_assets__';
+import { createTestSvgDrawer } from '@/__test_assets__';
 
 type RectProps = {
   rect: RectData;

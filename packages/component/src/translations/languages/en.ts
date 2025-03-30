@@ -71,6 +71,8 @@ const editTool= {
 const editModeTool= {
   edit: "Edit",
   field: "Field",
+  lock: 'Stay in add mode after adding',
+  unlock: 'Return to select mode after adding',
   ...staticShapeType,
 }
 

@@ -8,11 +8,11 @@ import { useEffect, useMemo } from "react";
 import ReportPaper from '../paper/ReportPaper';
 import { FieldValues, ReportData } from '@sunvisor/super-leopard-core';
 import Layer from '../layer/Layer';
-import { DrawModeType } from '../../../svg';
-import contractShapes from '../../report/layer/contractShapes';
-import { setSettings, SettingData } from '../../../settings';
-import useReport from '../../../hooks/useReport';
-import useZoom from '../../../hooks/useZoom';
+import { DrawModeType } from '@/svg';
+import contractShapes from '@/component/report/layer/contractShapes';
+import { setSettings, SettingData } from '@/settings';
+import useReport from '@/hooks/useReport';
+import useZoom from '@/hooks/useZoom';
 
 type Props = {
   report: ReportData;

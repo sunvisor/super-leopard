@@ -8,10 +8,10 @@
  */
 import { LineRubberBand } from "./LineRubberBand";
 import { Meta, StoryObj } from '@storybook/react';
-import { HandleType } from '../boundingBox';
+import { HandleType } from '@/svg';
 import { PositionPair } from '@sunvisor/super-leopard-core';
 import { fn, within } from '@storybook/test';
-import { createTestSvgDrawer } from '../../__test_assets__';
+import { createTestSvgDrawer } from '@/__test_assets__';
 
 
 type LineRubberBandProps = {

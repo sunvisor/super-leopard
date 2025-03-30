@@ -7,8 +7,7 @@
 import { SyntheticEvent, useCallback } from "react";
 import { Autocomplete, SxProps, TextField } from '@mui/material';
 import { ChangeValueHandler } from '../usePropertyStates';
-import { FontList } from '../../../font';
-import { FontListItem } from '../../../font/font';
+import { FontList, FontListItem } from '@/font';
 
 type Props = {
   label: string;
