@@ -50,8 +50,8 @@
     "@mui/material": "^7.0.0",
     "@svgdotjs/svg.js": "^3.2.4",
     "jotai": "^2.12.1",
-    "react": "19.0.0",
-    "react-dom": "19.0.0"
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
   },
   "dependencies": {
     "@sunvisor/super-leopard-core": "^0.1.9",
