@@ -44,6 +44,7 @@ export default function ReportEditor(props: Props) {
   const [mode, setMode] = React.useState<EditMode>("edit");
   const [zoom, setZoom] = useState<number>(100);
   const [open, setOpen] = useState<boolean>(true);
+  const [locked, setLocked] = useState<boolean>(false);
 
   useEffect(() => {
     setReport(data || emptyReport);
@@ -55,10 +56,15 @@ export default function ReportEditor(props: Props) {
     setMode(newMode);
   }, [setMode]);
 
+  const handleChangeLocked = useCallback((locked: boolean) => {
+    setLocked(locked);
+  }, [setLocked]);
+
   const handleAfterAppend = useCallback((shape: Shape) => {
+    if (locked) return;
     setMode('edit');
     setSelection(new Shapes([shape]));
-  }, [setMode, setSelection]);
+  }, [setMode, setSelection, locked]);
 
   const handleChangeZoom = useCallback((_: Event, value: number) => {
     setZoom(value);
@@ -87,7 +93,12 @@ export default function ReportEditor(props: Props) {
         />
       </AppBar>
       <Box sx={{ padding: 0, display: 'flex', overflow: 'hidden', flex: 1 }}>
-        <DrawToolbar onChange={handleChangeTool} mode={mode}/>
+        <DrawToolbar
+          mode={mode}
+          locked={locked}
+          onChange={handleChangeTool}
+          onChangeLocked={handleChangeLocked}
+        />
         <Box sx={{ flex: 1, overflow: 'auto' }}>
           <ReportWorkArea
             mode={mode}

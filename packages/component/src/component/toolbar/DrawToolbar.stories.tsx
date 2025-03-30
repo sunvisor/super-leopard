@@ -22,6 +22,7 @@ const meta: Meta<typeof DrawToolbar> = {
   ),
   args: {
     onChange: fn(),
+    onChangeLocked: fn(),
   }
 };
 

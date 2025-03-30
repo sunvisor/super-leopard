@@ -69,6 +69,8 @@ const editTool = {
 const editModeTool = {
   edit: '編集',
   field: 'フィールド',
+  lock: '追加モードを継続する',
+  unlock: '追加後選択モードに戻る',
   ...staticShapeType,
 }
 
